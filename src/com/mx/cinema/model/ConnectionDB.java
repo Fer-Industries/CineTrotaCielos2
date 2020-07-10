@@ -10,7 +10,7 @@ public class ConnectionDB {
 	
 	public ConnectionDB() {
 		try{
-			String connectionURL = "jdbc:mysql://fermcfly.cgkjurfvbaby.us-east-1.rds.amazonaws.com:3306/Northwind?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&autoReconnect=true&useSSL=false&" +"user=admin&password=Starwars.97"; 
+			String connectionURL = "jdbc:mysql://proyecto.cgkjurfvbaby.us-east-1.rds.amazonaws.com:3306/Cinema?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&autoReconnect=true&useSSL=false&" +"user=admin&password=Fer_industries123."; 
 			con = DriverManager.getConnection(connectionURL);
 			if(con != null){
 				System.out.println("Conexion exitosa");
