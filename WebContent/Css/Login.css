@@ -1,0 +1,73 @@
+@charset "ISO-8859-1";
+.border{
+	border-style: dotted;
+	border-width: 4px; 
+}
+
+/*div { 
+	border-style: solid; 
+}*/
+
+.fondo{
+background-color: #1B998B
+}
+
+.fondo1{
+background-color: #ED217C
+}
+
+.fondo2{
+background-color: #55DDFF
+}
+
+.letra{
+	color: #1B998B
+}
+.letra1{
+	color: #ED217C
+}
+
+.letra2{
+	color: #55DDFF
+}
+
+.padding{
+	padding-top: 180px;
+}
+
+.padding1{
+	padding-left: 500px;
+}
+
+.padding2{
+	padding-left: 600px;
+	padding-top: 10px;
+}
+
+.padding3{
+	padding-top: 20px;
+}
+
+.Olv{
+	padding-left: 75px;
+	font-family: 'Roboto', sans-serif;
+	font-size: 15px;
+}
+
+.Cuen{
+	padding-left: 500px;
+	padding-top: 15px;
+	font-family: 'Roboto', sans-serif;
+}
+
+.padding6{
+	padding-left:40px;
+}
+
+.title{
+font-family: 'Unica One', cursive;
+}
+
+.text1{
+font-family: 'Roboto', sans-serif;
+}
