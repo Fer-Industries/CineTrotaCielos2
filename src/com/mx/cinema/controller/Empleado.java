@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mx.cinema.model.ConnectionDB;
+
 /**
  * Servlet implementation class Empleado
  */
@@ -27,6 +29,8 @@ public class Empleado extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		ConnectionDB conexion=new ConnectionDB();
+		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
