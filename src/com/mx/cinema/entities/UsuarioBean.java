@@ -2,90 +2,111 @@ package com.mx.cinema.entities;
 
 public class UsuarioBean {
 	
-	private int    USU_idtarjeta;
-	private String USU_nombre;
-	private String USU_ap;
-	private String USU_am;
-	private int    USU_idnivel;
-	private String USU_birthday;
-	private String USU_correo;
-	private String USU_contrasena;
-	private int    USU_status;
-	private int    USU_puntos;
-	
+	private int    idTarjeta;
+	private String nombre;
+	private String aPaterno;
+	private String aMaterno;
+	private int    idNivel;
+	private String birthday;
+	private String correo;
+	private String contrasena;
+	private int    status;
 	
 public UsuarioBean() {
 		
 	}
 	
-	public UsuarioBean(String USU_correo, String USU_contrasena ){
-		this.USU_correo = USU_correo;
-		this.USU_contrasena = USU_contrasena;
+	public UsuarioBean(String correo, String contrasena ){
+		this.correo = correo;
+		this.contrasena = contrasena;
 	}
 	
 	
-	public int getUSU_idtarjeta() {
-		return USU_idtarjeta;
+	
+	public int getIdTarjeta() {
+		return idTarjeta;
 	}
-	public void setUSU_idtarjeta(int uSU_idtarjeta) {
-		USU_idtarjeta = uSU_idtarjeta;
+
+	public void setIdTarjeta(int idTarjeta) {
+		this.idTarjeta = idTarjeta;
 	}
-	public String getUSU_nombre() {
-		return USU_nombre;
+
+	public String getNombre() {
+		return nombre;
 	}
-	public void setUSU_nombre(String uSU_nombre) {
-		USU_nombre = uSU_nombre;
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
-	public String getUSU_ap() {
-		return USU_ap;
+
+	public String getaPaterno() {
+		return aPaterno;
 	}
-	public void setUSU_ap(String uSU_ap) {
-		USU_ap = uSU_ap;
+
+	public void setaPaterno(String aPaterno) {
+		this.aPaterno = aPaterno;
 	}
-	public String getUSU_am() {
-		return USU_am;
+
+	public String getaMaterno() {
+		return aMaterno;
 	}
-	public void setUSU_am(String uSU_am) {
-		USU_am = uSU_am;
+
+	public void setaMaterno(String aMaterno) {
+		this.aMaterno = aMaterno;
 	}
-	public int getUSU_idnivel() {
-		return USU_idnivel;
+
+	public int getIdNivel() {
+		return idNivel;
 	}
-	public void setUSU_idnivel(int uSU_idnivel) {
-		USU_idnivel = uSU_idnivel;
+
+	public void setIdNivel(int idNivel) {
+		this.idNivel = idNivel;
 	}
-	public String getUSU_birthday() {
-		return USU_birthday;
+
+	public String getBirthday() {
+		return birthday;
 	}
-	public void setUSU_birthday(String uSU_birthday) {
-		USU_birthday = uSU_birthday;
+
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
 	}
-	public String getUSU_correo() {
-		return USU_correo;
+
+	public String getCorreo() {
+		return correo;
 	}
-	public void setUSU_correo(String uSU_correo) {
-		USU_correo = uSU_correo;
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
 	}
-	public String getUSU_contrasena() {
-		return USU_contrasena;
+
+	public String getContrasena() {
+		return contrasena;
 	}
-	public void setUSU_contrasena(String uSU_contrasena) {
-		USU_contrasena = uSU_contrasena;
+
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
 	}
-	public int getUSU_status() {
-		return USU_status;
+
+	public int getStatus() {
+		return status;
 	}
-	public void setUSU_status(int uSU_status) {
-		USU_status = uSU_status;
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
-	public int getUSU_puntos() {
-		return USU_puntos;
+
+	public int getPuntos() {
+		return puntos;
 	}
-	public void setUSU_puntos(int uSU_puntos) {
-		USU_puntos = uSU_puntos;
+
+	public void setPuntos(int puntos) {
+		this.puntos = puntos;
 	}
+
+	private int    puntos;
 	
 	
+
 	
 
 }
