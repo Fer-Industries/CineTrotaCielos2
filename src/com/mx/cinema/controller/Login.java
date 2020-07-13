@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.mx.cinema.entities.EmpleadoBean;
+import com.mx.cinema.entities.UsuarioBean;
 import com.mx.cinema.model.EmpleadoCrud;
+import com.mx.cinema.model.UsuarioCrud;
 
 /**
  * Servlet implementation class Login
@@ -42,13 +44,13 @@ public class Login extends HttpServlet {
 		
 HttpSession sesion = request.getSession();
 		
-		EmpleadoBean empleado = new EmpleadoBean( request.getParameter("name"), request.getParameter("contraseña"));
-		EmpleadoCrud empCrud = new EmpleadoCrud();
+		UsuarioBean usuario = new UsuarioBean( request.getParameter("correo"), request.getParameter("contraseña"));
+		UsuarioCrud usuCrud = new UsuarioCrud();
 
-		empleado = empCrud.validar(empleado);
+		usuario = usuCrud.validar(usuario);
 		
-		if(empleado.getIdEmpleado() > 0) {
-			sesion.setAttribute("empleado", empleado);
+		if(usuario.getIdTarjeta() > 0) {
+			sesion.setAttribute("usuario", usuario);
 			request.getRequestDispatcher("principal.jsp").forward(request, response);
 		}else {
 			request.getRequestDispatcher("login.html").forward(request, response);
