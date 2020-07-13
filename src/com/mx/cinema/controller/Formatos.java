@@ -7,19 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.mx.cinema.model.ConnectionDB;
-
 /**
- * Servlet implementation class Empleado
+ * Servlet implementation class Formatos
  */
-@WebServlet("/Empleado")
-public class Empleado extends HttpServlet {
+@WebServlet("/Formatos")
+public class Formatos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Empleado() {
+    public Formatos() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,8 +27,6 @@ public class Empleado extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ConnectionDB conexion=new ConnectionDB();
-		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

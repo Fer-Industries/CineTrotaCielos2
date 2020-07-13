@@ -1,87 +1,109 @@
 package com.mx.cinema.entities;
 
 public class EmpleadoBean {
-	private int    EMP_idempleado;
-	private String EMP_nombre;
-	private String EMP_ap;
-	private String EMP_am;
-	private String EMP_birthday;
-	private String EMP_area;
-	private float  EMP_salario;
-	private int    EMP_status;
-	private String EMP_contrasena;
-	private String EMP_administrador;
+	private int    idEmpleado;
+	private String nombre;
+	private String aPaterno;
+	private String aMaterno;
+	private String birthday;
+	private String area;
+	private float  salario;
+	private int    status;
+	private String contrasena;
+	private String administrador;
 	
-	
-    public EmpleadoBean() {
+public EmpleadoBean(String nombre,String contraseña) {
+	this.nombre=nombre;
+	this.contrasena=contraseña;
 		
 	}
 	
-	public EmpleadoBean(int EMP_idempleado, String EMP_contrasena ){
-		this.EMP_idempleado = EMP_idempleado;
-		this.EMP_contrasena = EMP_contrasena;
-	}
 	
-	public int getEMP_idempleado() {
-		return EMP_idempleado;
+	
+	
+	
+	
+    
+	public int getIdEmpleado() {
+		return idEmpleado;
 	}
-	public void setEMP_idempleado(int eMP_idempleado) {
-		EMP_idempleado = eMP_idempleado;
+
+	public void setIdEmpleado(int idEmpleado) {
+		this.idEmpleado = idEmpleado;
 	}
-	public String getEMP_nombre() {
-		return EMP_nombre;
+
+	public String getNombre() {
+		return nombre;
 	}
-	public void setEMP_nombre(String eMP_nombre) {
-		EMP_nombre = eMP_nombre;
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
-	public String getEMP_ap() {
-		return EMP_ap;
+
+	public String getaPaterno() {
+		return aPaterno;
 	}
-	public void setEMP_ap(String eMP_ap) {
-		EMP_ap = eMP_ap;
+
+	public void setaPaterno(String aPaterno) {
+		this.aPaterno = aPaterno;
 	}
-	public String getEMP_am() {
-		return EMP_am;
+
+	public String getaMaterno() {
+		return aMaterno;
 	}
-	public void setEMP_am(String eMP_am) {
-		EMP_am = eMP_am;
+
+	public void setaMaterno(String aMaterno) {
+		this.aMaterno = aMaterno;
 	}
-	public String getEMP_birthday() {
-		return EMP_birthday;
+
+	public String getBirthday() {
+		return birthday;
 	}
-	public void setEMP_birthday(String eMP_birthday) {
-		EMP_birthday = eMP_birthday;
+
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
 	}
-	public String getEMP_area() {
-		return EMP_area;
+
+	public String getArea() {
+		return area;
 	}
-	public void setEMP_area(String eMP_area) {
-		EMP_area = eMP_area;
+
+	public void setArea(String area) {
+		this.area = area;
 	}
-	public float getEMP_salario() {
-		return EMP_salario;
+
+	public float getSalario() {
+		return salario;
 	}
-	public void setEMP_salario(float eMP_salario) {
-		EMP_salario = eMP_salario;
+
+	public void setSalario(float salario) {
+		this.salario = salario;
 	}
-	public int getEMP_status() {
-		return EMP_status;
+
+	public int getStatus() {
+		return status;
 	}
-	public void setEMP_status(int eMP_status) {
-		EMP_status = eMP_status;
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
-	public String getEMP_contrasena() {
-		return EMP_contrasena;
+
+	public String getContrasena() {
+		return contrasena;
 	}
-	public void setEMP_contrasena(String eMP_contrasena) {
-		EMP_contrasena = eMP_contrasena;
+
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
 	}
-	public String getEMP_administrador() {
-		return EMP_administrador;
+
+	public String getAdministrador() {
+		return administrador;
 	}
-	public void setEMP_administrador(String eMP_administrador) {
-		EMP_administrador = eMP_administrador;
+
+	public void setAdministrador(String administrador) {
+		this.administrador = administrador;
 	}
+
 	
 	
 	
