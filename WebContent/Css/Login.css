@@ -79,3 +79,8 @@ font-family: 'Roboto', sans-serif;
 	color: black;
 	font-size: 15px;
 }
+
+.mensajeErroneo{
+	color: red;
+	font-style: bold;
+}

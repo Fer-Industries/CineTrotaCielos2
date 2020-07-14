@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <meta charset="ISO-8859-1">
 <title>Login Cinema</title>
@@ -19,18 +19,21 @@
 
 <div class="container animate__animated animate__backInDown padown">
 		<h3 class="tittle text-center"> Inicio de sesión</h3>
-		<form class="contf shadow">
+		<div class="contf shadow" action="">
 			<div class="padcenter">
 			<div class="text1">
 		  	<div class="row">
 		      <label for="inputEmail4">Email: </label>
-		      <input type="email" class="form-control " id="inputEmail4" name="Login">
+		      <input type="email" class="form-control " id="Email" name="Login" onfocusout="validacionEmail()">
+		      <label id="emailMensaje" class="mensajeErroneo"></label>
 			</div>
 		</div>
 
 		 	<div class="row">
 		      <label for="inputPassword4">Password:</label>
-		      <input type="password" class="form-control" id="inputPassword4">
+		      <input type="password" class="form-control" id="Password"  minlength="8" name="Pass" 
+		      onfocusout="validacionPass()">
+		      <label id="passwordMensaje" class="mensajeErroneo"></label>
 			</div>	
 			
 
@@ -40,15 +43,19 @@
 			</div>	
 			</div>
 			<div class="paddingB">
-			<input class="btn btn-primary padding1" type="submit" value="Entrar"> 
+			<input class="btn btn-primary padding1" id="enviar"
+			type="submit"  value="Entrar" > 
 			</div>
 			</div>
 				
 
-				</form>
+				</div>
 				<div class="Cuen">
 				<p class="text-center">¿No tienes una cuenta? <a href="#" class="rgt"> <strong>¡Regístrate aquí! </strong></a></p> 
 				</div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="JS/Login.js"></script>
 </body>
 </html>
