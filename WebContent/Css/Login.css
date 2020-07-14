@@ -1,0 +1,86 @@
+@charset "ISO-8859-1";
+
+.padding{
+	padding-top: 180px;
+}
+
+.padding1{
+	padding-left: 455px;
+}
+.paddingB{
+	padding-left: 270px;
+}
+.padding2{
+	padding-left: 515px;
+	padding-top: 10px;
+}
+
+
+.Olv{
+	
+	font-family: 'Roboto', sans-serif;
+	font-size: 15px;
+}
+
+.Cuen{
+	
+	font-family: 'Roboto', sans-serif;
+}
+
+
+.tittle{
+font-family: 'Unica One', cursive;
+}
+
+.text1{
+font-family: 'Roboto', sans-serif;
+}
+/*contf{
+	background-color: #BB8FCE ! important;
+    color: #FFFFFF;
+    border-radius: 225px;
+    margin: 20px;
+    padding: 25px;
+    width: 500px ! important;
+    height: 150px;
+}
+*/
+.contf{
+	background-color: #FFFAFA ! important;
+	border-radius: 200px;
+	opacity: 95%;
+	width: 500px;
+	align-content: center ! important;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: auto;
+	padding: 50px;
+	border-width: 50px;
+	border-color: #0C0C0C ;
+}
+.padown{
+ padding-top: 125px;
+}
+.padcenter{
+	padding-left: 50px;
+}
+.contform{
+    background-color: #FFFAFA ! important;
+    color: #FFFFFF;
+    border-radius: 25px;
+    margin: 20px;
+    padding: 70px;
+    width: 700px;
+    align-content: center;
+
+}
+
+.rgt{
+	color: black;
+	font-size: 15px;
+}
+
+.mensajeErroneo{
+	color: red;
+	font-style: bold;
+}

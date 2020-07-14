@@ -1,0 +1,48 @@
+[33mcommit 4921088392495d50bb95bd193af940343cc8e366[m[33m ([m[1;36mHEAD -> [m[1;32mZyanya[m[33m)[m
+Author: Melanie <melanie.segundo@outlook.com>
+Date:   Tue Jul 14 14:36:56 2020 -0500
+
+    Validación de Login
+
+[33mcommit 5a5ece7c1cbea0a86ce8eb0fd18162a0a49b3157[m[33m ([m[1;31morigin/Zyanya[m[33m)[m
+Author: Melanie <melanie.segundo@outlook.com>
+Date:   Mon Jul 13 22:31:00 2020 -0500
+
+    Actualizacion de login
+
+[33mcommit eb45cfa218a567af6c8136d1b8c3afee19a86a03[m
+Author: Melanie <melanie.segundo@outlook.com>
+Date:   Sat Jul 11 15:02:48 2020 -0500
+
+    Se sube el Login
+
+[33mcommit 1924ec04f86390ada844c43243cda33be8b5172b[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/front-end[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m, [m[1;32mcheckout[m[33m)[m
+Author: AnthonyMaya <anthony.maya94@gmail.com>
+Date:   Thu Jul 9 19:11:17 2020 -0500
+
+    Se agrega clase inicio
+
+[33mcommit 36dfbfea6ec1f7c422d3203be25141e38b429abd[m
+Author: AnthonyMaya <anthony.maya94@gmail.com>
+Date:   Thu Jul 9 19:07:08 2020 -0500
+
+    Correccion de carpeta
+
+[33mcommit dc1da116d9a855b325823463b2a75ff4adc43fbd[m
+Merge: 10ac49f f33feb1
+Author: AnthonyMaya <anthony.maya94@gmail.com>
+Date:   Thu Jul 9 18:53:11 2020 -0500
+
+    Merge branch 'master' of https://github.com/Fer-Industries/CineTrotaCielos2
+
+[33mcommit 10ac49f423ab9a8f7eb7c78212b757e758006b81[m
+Author: AnthonyMaya <anthony.maya94@gmail.com>
+Date:   Thu Jul 9 18:44:40 2020 -0500
+
+    Se inicia el proyecto
+
+[33mcommit f33feb10543dfb8facc5ecba6a9794e81086d3c2[m
+Author: AnthonyMaya21 <65049345+AnthonyMaya21@users.noreply.github.com>
+Date:   Thu Jul 9 18:38:25 2020 -0500
+
+    Initial commit
