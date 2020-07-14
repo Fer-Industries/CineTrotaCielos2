@@ -16,10 +16,11 @@ public class UsuarioCrud {
 	PreparedStatement ptmt;
 	ResultSet rs;
 	
+	
 	public UsuarioBean validar(UsuarioBean usuarioLogin) {
 		conAWS = new ConnectionDB();
 		con = conAWS.getConexion();
-		String proc = "call Login(??)";
+		String proc = "call Login(?,?)";
 		
 		try {
 			ptmt = con.prepareStatement(proc);
@@ -28,15 +29,16 @@ public class UsuarioCrud {
 			
 			rs = ptmt.executeQuery();
 			if(rs.next()) {
-				usuarioLogin.setIdTarjeta(rs.getInt("idTarjeta"));
-				usuarioLogin.setNombre(rs.getString("nombre"));
-				usuarioLogin.setaPaterno(rs.getString("aPaterno"));
+				usuarioLogin.setIdTarjeta(rs.getLong("USU_idtarjeta"));
+				usuarioLogin.setNombre(rs.getString("USU_nombre"));
+				usuarioLogin.setaPaterno(rs.getString("USU_ap"));
 				
 			}
 			con.close();
 		}catch(SQLException sqle) {
 			System.out.println("Error SQL" + sqle.getMessage());
 		}
+		System.out.println(usuarioLogin.toString());
 		return usuarioLogin;
 	}
 

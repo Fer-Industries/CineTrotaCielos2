@@ -34,7 +34,10 @@ public class Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ConnectionDB con = new ConnectionDB();
+		UsuarioBean usuario = new UsuarioBean( request.getParameter("correo"), request.getParameter("contra"));
+		UsuarioCrud usuCrud = new UsuarioCrud();
+
+		usuario = usuCrud.validar(usuario);
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -44,9 +47,9 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-HttpSession sesion = request.getSession();
+		HttpSession sesion = request.getSession();
 		
-		UsuarioBean usuario = new UsuarioBean( request.getParameter("correo"), request.getParameter("contraseña"));
+		UsuarioBean usuario = new UsuarioBean( request.getParameter("correo"), request.getParameter("contra"));
 		UsuarioCrud usuCrud = new UsuarioCrud();
 
 		usuario = usuCrud.validar(usuario);

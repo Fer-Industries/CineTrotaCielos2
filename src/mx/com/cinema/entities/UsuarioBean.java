@@ -2,7 +2,7 @@ package mx.com.cinema.entities;
 
 public class UsuarioBean {
 	
-	private int    idTarjeta;
+	private Long    idTarjeta;
 	private String nombre;
 	private String aPaterno;
 	private String aMaterno;
@@ -12,22 +12,30 @@ public class UsuarioBean {
 	private String contrasena;
 	private int    status;
 	
-public UsuarioBean() {
+	public UsuarioBean() {
 		
 	}
 	
+	@Override
+	public String toString() {
+		return "UsuarioBean [idTarjeta=" + idTarjeta + ", nombre=" + nombre + ", aPaterno=" + aPaterno + ", aMaterno="
+				+ aMaterno + ", idNivel=" + idNivel + ", birthday=" + birthday + ", correo=" + correo + ", contrasena="
+				+ contrasena + ", status=" + status + ", puntos=" + puntos + "]";
+	}
+
+
+
 	public UsuarioBean(String correo, String contrasena ){
 		this.correo = correo;
 		this.contrasena = contrasena;
 	}
+
 	
-	
-	
-	public int getIdTarjeta() {
+	public Long getIdTarjeta() {
 		return idTarjeta;
 	}
 
-	public void setIdTarjeta(int idTarjeta) {
+	public void setIdTarjeta(Long idTarjeta) {
 		this.idTarjeta = idTarjeta;
 	}
 
