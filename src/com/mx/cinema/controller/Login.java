@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import com.mx.cinema.entities.EmpleadoBean;
 import com.mx.cinema.entities.UsuarioBean;
+import com.mx.cinema.model.ConnectionDB;
 import com.mx.cinema.model.EmpleadoCrud;
 import com.mx.cinema.model.UsuarioCrud;
 
@@ -33,6 +34,7 @@ public class Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		ConnectionDB con = new ConnectionDB();
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
