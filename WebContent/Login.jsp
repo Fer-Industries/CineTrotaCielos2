@@ -8,52 +8,47 @@
 <link rel="stylesheet" href="Css/Login.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
+     <style type="text/css">
+     body{
+	background-image: url("Img/Back.PNG") !important;
+		}
+     </style>
 </head>
 <body>
-<section class="padding1">
-	<div class="padding">
-	<div class="container">
-		<div class="title">
-		<h3 class="padding6">Inicio de sesión</h3>
-		</div>
-		<form>
+
+<div class="container animate__animated animate__backInDown padown">
+		<h3 class="tittle text-center"> Inicio de sesión</h3>
+		<form class="contf shadow">
+			<div class="padcenter">
 			<div class="text1">
 		  	<div class="row">
-		  	<div class="col-sm-4">
-		      <label for="inputEmail4">Usuario o Email: </label>
-		      <input type="email" class="form-control" id="inputEmail4" name="Email">
-		    </div>
+		      <label for="inputEmail4">Email: </label>
+		      <input type="email" class="form-control " id="inputEmail4" name="Login">
 			</div>
+		</div>
 
-			<div class="padding3">
 		 	<div class="row">
-		 	<div class="col-sm-4">
 		      <label for="inputPassword4">Password:</label>
-		      <input type="password" class="form-control" id="inputPassword4 " name="Pass">
-		    </div>
+		      <input type="password" class="form-control" id="inputPassword4">
 			</div>	
-			</div> 
+			
 
 			<div class="Olv">
 		 	<div class="row">
-		 	<div class="col-sm-4">
-		 	<a href="#" class="padding3" id="Olvido" >¿Olvidaste tu contraseña?</a>
-		 	</div>
+		 	<a href="#" class="text-center">¿Olvidaste tu contraseña?</a>
 			</div>	
-			</div> 
 			</div>
-		</form>
-	</div>
-	</div>
-</section>
+			<div class="paddingB">
+			<input class="btn btn-primary padding1" type="submit" value="Entrar"> 
+			</div>
+			</div>
+				
 
-	<div class="padding2">	
-	<input class="btn btn-primary" type="submit" value="Submit" id="btn1">
-	</div>
-
-	<div class="Cuen">
-	<p>¿No tienes una cuenta? <a href="#" class="padding3" id="Rgt" >Regístrate aquí </a></p> 
-	</div>
-
+				</form>
+				<div class="Cuen">
+				<p class="text-center">¿No tienes una cuenta? <a href="#" class="rgt"> <strong>¡Regístrate aquí! </strong></a></p> 
+				</div>
+</div>
 </body>
 </html>
