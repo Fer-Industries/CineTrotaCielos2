@@ -6,14 +6,14 @@ function validacionEmail(){
         let elementoMensaje = document.getElementById("emailMensaje");
         correo = document.getElementById("Email").value;
         if(correo.length == 0){
-            elementoMensaje.innerHTML = "*Colocar tu dirección de correo electrónico";
+            elementoMensaje.innerHTML = "Colocar tu direcci\u00F3n de correo electr\u00F3nico";
 			return false;
         }else{
             elementoMensaje.innerHTML = "";
 			if(pEmail.test(correo)){
 				return true;	
 			}else{
-				elementoMensaje.innerHTML = "Coloca una dirección valida";
+				elementoMensaje.innerHTML = "Coloca una direcci\u00F3n v\u00E1lida";
 				return false;	
 			}
         }
@@ -24,12 +24,12 @@ function validacionPass(){
         let elementoMensaje = document.getElementById("passwordMensaje");
         password = document.getElementById("Password").value;
         if(password.length == 0 ){
-            elementoMensaje.innerHTML = "*Coloca tu contraseña de mínimo 8 caractéres";
+            elementoMensaje.innerHTML = "Coloca tu contrase\u00F1a de m\u00EDnimo 8 car\u00E1cteres";
 			return false;
         }else{
             elementoMensaje.innerHTML = "";
 			if(password.length < 8){
-				elementoMensaje.innerHTML = "*Coloca tu contraseña de mínimo 8 caractéres";
+				elementoMensaje.innerHTML = "Coloca tu contrase\u00F1a de m\u00EDnimo 8 car\u00E1cteres";
 				return false;	
 			}else{
 				return true;
