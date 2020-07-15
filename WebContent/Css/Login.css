@@ -1,5 +1,9 @@
 @charset "ISO-8859-1";
 
+ body{
+			background-image: url("../Img/Back.PNG") !important;
+}
+
 .padding{
 	padding-top: 180px;
 }
@@ -15,6 +19,9 @@
 	padding-top: 10px;
 }
 
+.textWhite{
+	color:#fff;
+}
 
 .Olv{
 	

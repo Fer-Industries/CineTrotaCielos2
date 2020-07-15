@@ -40,6 +40,8 @@ function validacionPass(){
 document.getElementById("enviar").addEventListener("click",() =>{
 	const respuestaCorreo =validacionEmail();
 	const respuestaPass = validacionPass(); 
+	Swal.fire('Espere por favor');
+	Swal.showLoading();
 	if(respuestaCorreo == false || respuestaPass == false){
 		Swal.fire({
 		  icon: 'error',
@@ -51,12 +53,34 @@ document.getElementById("enviar").addEventListener("click",() =>{
 	//	alert('Corriga sus errores');
 		return;
 	}else{//ya esta correct la info
-		Swal.fire({
-		  icon: 'success',
-		  title: 'Bienvendo',
-		  showConfirmButton: false,
-		  timer: 1500
-		})
+		 $.ajax( {
+	         url: '/Cinema/Login',
+	         type: 'post',
+	         data: {  
+	        	 correo:correo,
+	        	 contra:password
+	         },
+	         success: function (response) {
+	        	 Swal.close();
+	        	 if(response == '0'){
+	        		 Swal.fire({
+	        			  icon: 'error',
+	        			  title: 'Credenciales Invalidas',
+	        			  showConfirmButton: false,
+	        			  timer: 1500
+	        			});
+	        	 }else{
+	        		 Swal.fire({
+	        			  icon: 'success',
+	        			  title: 'Bienvenido',
+	        			  showConfirmButton: false,
+	        			  timer: 1500
+	        			})
+	        			window.location.href = "principal.jsp";
+	        	 }
+	         }
+	     } );
+		
 		//alert('se envia la info');
 	}
 });

@@ -33,6 +33,8 @@ public class UsuarioCrud {
 				usuarioLogin.setNombre(rs.getString("USU_nombre"));
 				usuarioLogin.setaPaterno(rs.getString("USU_ap"));
 				
+			}else {
+				usuarioLogin.setIdTarjeta(new Long(0));
 			}
 			con.close();
 		}catch(SQLException sqle) {

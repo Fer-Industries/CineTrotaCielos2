@@ -13,6 +13,8 @@ import mx.com.cinema.entities.UsuarioBean;
 import mx.com.cinema.model.ConnectionDB;
 import mx.com.cinema.model.EmpleadoCrud;
 import mx.com.cinema.model.UsuarioCrud;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 /**
  * Servlet implementation class Login
@@ -33,11 +35,6 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		UsuarioBean usuario = new UsuarioBean( request.getParameter("correo"), request.getParameter("contra"));
-		UsuarioCrud usuCrud = new UsuarioCrud();
-
-		usuario = usuCrud.validar(usuario);
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -56,9 +53,9 @@ public class Login extends HttpServlet {
 		
 		if(usuario.getIdTarjeta() > 0) {
 			sesion.setAttribute("usuario", usuario);
-			request.getRequestDispatcher("principal.jsp").forward(request, response);
+			response.getWriter().write("1");
 		}else {
-			request.getRequestDispatcher("login.html").forward(request, response);
+			response.getWriter().write("0");
 		}
 	}
 
