@@ -22,6 +22,11 @@ import java.util.regex.Matcher;
 @WebServlet("/Login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	Pattern pattern = Pattern
+			.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+					+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+	
+	
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -48,6 +53,8 @@ public class Login extends HttpServlet {
 		
 		UsuarioBean usuario = new UsuarioBean( request.getParameter("correo"), request.getParameter("contra"));
 		UsuarioCrud usuCrud = new UsuarioCrud();
+		
+		Matcher mather = pattern.matcher("correo");
 
 		usuario = usuCrud.validar(usuario);
 		
