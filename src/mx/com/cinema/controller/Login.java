@@ -27,6 +27,8 @@ public class Login extends HttpServlet {
 					+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
 	
 	
+	
+	
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -51,19 +53,32 @@ public class Login extends HttpServlet {
 		
 		HttpSession sesion = request.getSession();
 		
-		UsuarioBean usuario = new UsuarioBean( request.getParameter("correo"), request.getParameter("contra"));
-		UsuarioCrud usuCrud = new UsuarioCrud();
+		String correo=request.getParameter("correo");
 		
-		Matcher mather = pattern.matcher("correo");
-
-		usuario = usuCrud.validar(usuario);
+		Matcher mather = pattern.matcher(correo);
 		
-		if(usuario.getIdTarjeta() > 0) {
-			sesion.setAttribute("usuario", usuario);
-			response.getWriter().write("1");
-		}else {
-			response.getWriter().write("0");
+		if (mather.matches()) {
+			UsuarioBean usuario = new UsuarioBean( correo, request.getParameter("contra"));
+			UsuarioCrud usuCrud = new UsuarioCrud();
+			usuario = usuCrud.validar(usuario);
+			
+			if(usuario.getIdTarjeta() > 0) {
+				sesion.setAttribute("usuario", usuario);
+				response.getWriter().write("1");
+			}else {
+				response.getWriter().write("0");
+			}
+			
+			
+		} else {
+			
+			response.getWriter().write("-1");
+			
 		}
+
+	
+		
+		
 	}
 
 }

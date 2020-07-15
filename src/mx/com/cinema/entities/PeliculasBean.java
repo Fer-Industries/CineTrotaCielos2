@@ -5,7 +5,7 @@ public class PeliculasBean {
 	private int idPelicula;
 	private String nombrePelicula;
 	private String clasificacionPeliculas;
-	private float duracionPelicula;
+	private String duracionPelicula;
 	private Date fechaEstreno;
 	private String imagenPelicula;
 	
@@ -37,11 +37,11 @@ public class PeliculasBean {
 		this.clasificacionPeliculas = clasificacionPeliculas;
 	}
 
-	public float getDuracionPelicula() {
+	public String getDuracionPelicula() {
 		return duracionPelicula;
 	}
 
-	public void setDuracionPelicula(float duracionPelicula) {
+	public void setDuracionPelicula(String duracionPelicula) {
 		this.duracionPelicula = duracionPelicula;
 	}
 

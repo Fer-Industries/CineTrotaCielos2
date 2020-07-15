@@ -26,28 +26,30 @@ public class PeliculasCrud {
 		con  = conexionAWS.getConexion();
 	}
 	
-	public List<PeliculasBean> catalogoPeliculas(int idPelicula){
-		String procPeliculas = "";
-		List<PeliculasBean> procedimientoPeliculas = new ArrayList <> ();
+	public List<PeliculasBean> getPeliculasEstreno(){
+		String getPelEstreno = "{call Pel_estreno}";
+		List<PeliculasBean> listaPeliculas = new ArrayList <> ();
 		
 		try {
-			ctmt= con.prepareCall(procPeliculas);
-			ctmt.setInt(1, idPelicula );
+			ctmt= con.prepareCall(getPelEstreno);
+			
 			rs= ctmt.executeQuery();
 			while(rs.next()) {
-			PeliculasBean peliculaEncontrada = new PeliculasBean();
-			peliculaEncontrada.setNombrePelicula(rs.getString("PEL_nombre"));
-			peliculaEncontrada.setClasificacionPeliculas(rs.getString("PEL_clasificacion"));
-			peliculaEncontrada.setDuracionPelicula(rs.getFloat("PEL_duracion"));
-			peliculaEncontrada.setFechaEstreno(rs.getDate("PEL_fechaestreno"));
-			peliculaEncontrada.setImagenPelicula(rs.getString("PEL_imagen"));
+				PeliculasBean peliculaEncontrada = new PeliculasBean();
+				peliculaEncontrada.setIdPelicula(rs.getInt("PEL_idpelicula"));
+				peliculaEncontrada.setNombrePelicula(rs.getString("PEL_nombre"));
+				peliculaEncontrada.setClasificacionPeliculas(rs.getString("PEL_clasificacion"));
+				peliculaEncontrada.setDuracionPelicula(rs.getString("PEL_duracion"));
+				peliculaEncontrada.setFechaEstreno(rs.getDate("PEL_fechaestreno"));
+				peliculaEncontrada.setImagenPelicula(rs.getString("PEL_imagen"));
+				listaPeliculas.add(peliculaEncontrada);
 			
 			}
 			con.close();
 		}catch (SQLException sqle){
 			System.out.println(sqle.getMessage());
 		}
-		return procedimientoPeliculas;
+			return listaPeliculas;
 		}
 	}
 
