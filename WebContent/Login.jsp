@@ -10,7 +10,11 @@
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
 </head>
 <body>
+<div class="fondo">
 
+<h1>Cinema</h1>
+
+</div>
 <div class="container animate__animated animate__backInDown padown">
 		<h3 class="tittle text-center textWhite"> Inicio de sesión</h3>
 		<div class="contf shadow" action="">

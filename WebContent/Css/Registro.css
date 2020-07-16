@@ -1,0 +1,23 @@
+.rgt{
+	padding-top: 140px; 
+}
+
+.cr{
+	padding-top:10px;
+}
+
+body{
+	font-family: 'Roboto', sans-serif;
+}
+
+.mensajeErroneo{
+	color: red;
+	font-style: bold;
+}
+.boton{
+	padding-top: 120px;
+}
+
+.fondo{
+	background-color: ED217C;
+}

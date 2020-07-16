@@ -49,8 +49,6 @@ document.getElementById("enviar").addEventListener("click",() =>{
 		  showConfirmButton: false,
 		  timer: 1500
 		})
-		
-	//	alert('Corriga sus errores');
 		return;
 	}else{//ya esta correct la info
 		 $.ajax( {
