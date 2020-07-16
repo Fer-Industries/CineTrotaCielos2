@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Date;
 
 import mx.com.cinema.entities.RegistroBean;
+import mx.com.cinema.entities.UsuarioBean;
 import mx.com.cinema.model.ConnectionDB;
 
 
@@ -26,12 +27,12 @@ public class RegistroCrud {
 		con  = conexionAWS.getConexion();
 	}
 	
-	public void guardarUsuario(int tarjetaIdRegistro , String correoRegistro, String nombreRegistro, String apellidopRegistro
-			, String apellidomRegistro, Date cumpleañosRegistro, String contrasenaRegistro){
+	public void guardarUsuario(UsuarioBean usuarioNuevo){
 		String insertarUsuario ="{call InsertarUsuario(?,?,?,?,?,?)}";
 		try{
-			PreparedStatement ps = con.prepareStatement(insertarUsuario);
-			int registroIngresado = ps.executeUpdate(insertarUsuario);
+			CallableStatement ctmt = con.prepareCall(insertarUsuario);
+			ctmt.setString(1,usuarioNuevo.getNombre());
+			int registroIngresado = ctmt.executeUpdate();
 			if(registroIngresado > 0){
 				System.out.println("Se insertaron " + registroIngresado + " registros correctamente");
 			}else{
