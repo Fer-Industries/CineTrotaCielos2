@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%String nombreImagen = "vader.jpg"; %>
+    <% %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Principal Cinema</title>
-    <link rel="stylesheet" href="Css/Login.css">
+    <link rel="stylesheet" href="Css/Principal.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
@@ -46,7 +46,7 @@
       </nav>
 	<!--Carrusel-->
 	<div class="carrusel">
-		<div class="container paddingC">
+		<div class="container-fluid Carrusel">
 			<div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
 			  <ol class="carousel-indicators">
 			    <li data-target="#carouselExampleCaptions" data-slide-to=" 1" class="active"></li>
@@ -56,27 +56,27 @@
 			  </ol>
 			  <div class="carousel-inner">
 			    <div class="carousel-item active">
-			      <img src="Carrusel_Img/John4.png" class="d-block w-100" alt="...">
+			      <img id="pelImg1" class="d-block w-100" alt="...">
 			      <div class="carousel-caption d-none d-md-block">
-			        <h5>John Wick Chapter 4</h5>
+			        <h5 id="pelNom1"></h5>
 			      </div>
 			    </div>
 			    <div class="carousel-item">
-			      <img src="Carrusel_Img/BackTo.png" class="d-block w-100" alt="...">
+			      <img id="pelImg2" class="d-block w-100" alt="...">
 			      <div class="carousel-caption d-none d-md-block">
-			        <h5 class="text2" ><strong>Regreso al futuro</strong></h5>
+			        <h5 id="pelNom2"><strong></strong></h5>
 			      </div>
 			    </div>
 			    <div class="carousel-item">
-			      <img src="Carrusel_Img/Nemo.png" class="d-block w-100" alt="...">
+			      <img id="pelImg3" class="d-block w-100" alt="...">
 			      <div class="carousel-caption d-none d-md-block">
-			        <h5 class="text2"><strong>Buscando a Nemo</strong></h5>
+			        <h5 id="pelNom3"><strong></strong></h5>
 			      </div>
 			    </div>
 			    <div class="carousel-item">
-			      <img src="Carrusel_Img/Parasite.png" class="d-block w-100" alt="...">
+			      <img id="pelImg4" class="d-block w-100" alt="...">
 			      <div class="carousel-caption d-none d-md-block">
-			        <h5 class="text3"> <strong>Parasite </strong></h5>
+			        <h5 id="pelNom4"> <strong></strong></h5>
 			      </div>
 			    </div>
 			  </div>
@@ -95,5 +95,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 	<script src="https://kit.fontawesome.com/af8d928238.js" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="JS/principal.js"></script>
 </body>
 </html>
