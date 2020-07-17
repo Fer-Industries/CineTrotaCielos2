@@ -25,11 +25,35 @@ public class RegistroCrud {
 
 	
 	public RegistroCrud () {
-		conexionAWS = new ConnectionDB();
-		con  = conexionAWS.getConexion();
+		
 	}
 	
-	public void guardarUsuario(UsuarioBean usuarioNuevo){
+	public boolean checarId(long idTarjetaGenerado) {
+		boolean existente = true;
+		conexionAWS = new ConnectionDB();
+		con  = conexionAWS.getConexion();
+		try {
+			String consultaId = "select * from Usuarios where USU_idtarjeta = ? ";
+			PreparedStatement ptmt = con.prepareStatement(consultaId);
+			ptmt.setLong(1, idTarjetaGenerado);
+			rs = ptmt.executeQuery();
+			if(rs.next()) {
+				existente = true;
+			}else {
+				existente = false;
+			}
+			con.close();
+		}catch(SQLException sqle) {
+			System.out.println(sqle.getMessage());
+		}
+		return existente;
+	}
+	
+	
+	public int guardarUsuario(UsuarioBean usuarioNuevo){
+		int mensaje = 0;
+		conexionAWS = new ConnectionDB();
+		con  = conexionAWS.getConexion();
 		String insertarUsuario ="{call InsertarUsuario(?,?,?,?,?,?)}";
 		try{
 			CallableStatement ctmt = con.prepareCall(insertarUsuario);
@@ -37,17 +61,20 @@ public class RegistroCrud {
 			ctmt.setString(2,usuarioNuevo.getNombre());
 			ctmt.setString(3, usuarioNuevo.getaPaterno());
 			ctmt.setString(4,usuarioNuevo.getaMaterno());
-			ctmt.setDate(5,usuarioNuevo.getBirthday());
+			ctmt.setString(5,usuarioNuevo.getBirthday());
 			ctmt.setString(6, usuarioNuevo.getCorreo());
 			ctmt.setString(7,usuarioNuevo.getContrasena());
-			int registroIngresado = ctmt.executeUpdate();
-			if(registroIngresado > 0){
-				System.out.println("Se insertaron " + registroIngresado + " registros correctamente");
-			}else{
-				System.out.println("No se insertaron correctamente");
-			}
+			rs = ctmt.executeQuery();
+			rs.next();
+			mensaje = rs.getInt("alta");
+			/*
+			 * mensaje = 3 todo en orden
+			 * mensaje = 2 que existe y esta activo
+			 * mensaje = 1 existe y esta inactivo*/
+			con.close();
 		}catch(SQLException sqle){
 			System.out.println("Error de SQL "+ sqle.getMessage());
 		}
+		return mensaje;
 	}
 }

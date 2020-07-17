@@ -8,7 +8,7 @@ public class UsuarioBean {
 	private String aPaterno;
 	private String aMaterno;
 	private int    idNivel;
-	private java.sql.Date birthday;
+	private String birthday;
 	private String correo;
 	private String contrasena;
 	private int    status;
@@ -74,11 +74,11 @@ public class UsuarioBean {
 
 
 
-	public java.sql.Date getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(java.sql.Date birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 
