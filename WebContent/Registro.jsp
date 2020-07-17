@@ -10,10 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
 </head>
-<body>
+<body class= fondo>
 <h2 class="text">Registro de Cinema</h2>
 <div class="container rgt">
-<div>
+<div class="text1">
 	  <div class="form-row">
 		    <div class="col">
 		      <label for ="Nombre"> Nombre(s):</label>	
@@ -37,6 +37,11 @@
 		      <input type="email" class="form-control" placeholder="example@.com" id="EmailRg" onfocusout="validacionCorreoRg()">
 		      <label id = "emailrgMensaje" class="mensajeErroneo"></label>
 		    </div>
+		    <div class="col">
+	      	<label for ="Fecha"> Fecha de Nacimiento: </label>	
+	      	<input type="date" class="form-control" placeholder="" id="Fecha" onfocusout="validacionFecha()">
+	      	<label id = "fechaMensaje" class="mensajeErroneo"></label>
+	    	</div>
 	  </div>
 	  	<div class="form-row cr">
 		    <div class="col">
@@ -51,19 +56,15 @@
 		    </div>
 		</div>
 	    <div class="form-row cr">
-	     <div class="col-sm-6">
-	      <label for ="Fecha"> Fecha de Nacimiento: </label>	
-	      <input type="date" class="form-control" placeholder="" id="Fecha">
-	      <label id = "fechaMensaje" class="mensajeErroneo"></label>
-	    </div>
 	    <div class="boton">
-	    <input class="btn btn-primary padding1" id="Registro"
+	    <input class="btn btn-primary" id="Registro"
 				type="submit"  value="Registrarse" > 
 	    </div>
 	  </div>
 
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="JS/Registro.js"></script>
 </div>

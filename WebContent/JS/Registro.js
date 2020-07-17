@@ -120,12 +120,10 @@ function validacionVerifPasswordRg(){
 }
 
 
-
-
 function validacionFecha(){
         let elementoMensaje = document.getElementById("fechaMensaje");
         usuarioNuevo.birthday = document.getElementById("Fecha").value;
-        if(usuarioNuevo.birthday.length == 0){
+        if(usuarioNuevo.birthday == " " || usuarioNuevo.birthday ==0){
             elementoMensaje.innerHTML = "Debes llenar este campo";
 			return false;
         }else{
@@ -136,23 +134,71 @@ function validacionFecha(){
 
 document.getElementById("Registro").addEventListener("click",()=>{
 	console.log(usuarioNuevo);
-	 $.ajax({
-         url: '/Cinema/Registro',
-         type: 'post',
-         contentType:'application/json',
-         data:{usuarioNuevo:usuarioNuevo},
-         success: function (response) {
-        	 console.log(response);
-         }
-     });
-});
-/*
-document.getElementById("Registro").addEventListener("click",() =>{
-	const respuestaCorreoRg =validacionCorreoRg();
-	const respuestaPassRg = validacionPasswordRg(); 
+	const resCorreo = validacionCorreoRg();
+	const resPass = validacionPasswordRg();
+	const resNomb = validacionNombre();
+	const resaPa = validacionPaterno();
+	const resaMa = validacionMaterno();
+	const resVerifPass = validacionVerifPasswordRg();
+	const resFecha = validacionFecha();
 	Swal.fire('Espere por favor');
 	Swal.showLoading();
-	if(respuestaCorreoRg == false || respuestaPassRg  == false){
+	if(resNomb == false || resaPa == false || resaMa == false || resCorreo == false || resPass == false || resVerifPass == false || resFecha == false){
+			Swal.fire({
+		  icon: 'error',
+		  title: 'Verifique que los campos esten llenos',
+		  showConfirmButton: false,
+		  timer: 1500
+		})
+		return;
+		
+	}else{
+	 $.ajax( {
+         url: '/Cinema/Registro',
+         type: 'POST',
+         data:{info:JSON.stringify (usuarioNuevo)},
+         success: function (response) {
+			Swal.close();
+			if (response == "3"){
+			Swal.fire({
+	        			  icon: 'succes',
+	        			  title: 'Registro Exitoso',
+	        			  showConfirmButton: false,
+	        			  timer: 1500
+	        			});
+			}else if(response == "2"){
+				Swal.fire({
+  				title: 'Ya existe un usuario con este correo',
+  				showClass: {
+    			popup: 'animate__animated animate__fadeInDown'
+  				},
+  				hideClass: {
+    			popup: 'animate__animated animate__fadeOutUp'
+  						}
+					});
+			}else if(response == "1"){
+				Swal.fire({
+  				title: 'Tu usuario ya está dado de baja',
+  				showClass: {
+    			popup: 'animate__animated animate__fadeInDown'
+  				},
+  				hideClass: {
+    			popup: 'animate__animated animate__fadeOutUp'
+  						}
+					});
+					}
+					}
+     });
+	}
+});
+
+/*
+document.getElementById("enviar").addEventListener("click",() =>{
+	const respuestaCorreo =validacionEmail();
+	const respuestaPass = validacionPass(); 
+	Swal.fire('Espere por favor');
+	Swal.showLoading();
+	if(respuestaCorreo == false || respuestaPass == false){
 		Swal.fire({
 		  icon: 'error',
 		  title: 'Verifique que sus datos sean correctos',
@@ -160,5 +206,38 @@ document.getElementById("Registro").addEventListener("click",() =>{
 		  timer: 1500
 		})
 		return;
+	}else{//ya esta correct la info
+		 $.ajax( {
+	         url: '/Cinema/Login',
+	         type: 'post',
+	         data: {  
+	        	 correo:correo,
+	        	 contra:password
+	         },
+	         success: function (response) {
+	        	 Swal.close();
+	        	 if(response == '0'){
+	        		 Swal.fire({
+	        			  icon: 'error',
+	        			  title: 'Credenciales Invalidas',
+	        			  showConfirmButton: false,
+	        			  timer: 1500
+	        			});
+	        	 }else{
+	        		 Swal.fire({
+	        			  icon: 'success',
+	        			  title: 'Bienvenido',
+	        			  showConfirmButton: false,
+	        			  timer: 1500
+	        			})
+	        			window.location.href = "principal.jsp";
+	        	 }
+	         }
+	     } );
+		
+		//alert('se envia la info');
+	}
+});
+
 	}*/
 

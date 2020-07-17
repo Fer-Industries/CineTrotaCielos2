@@ -45,7 +45,7 @@ public class Registro extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		
-		String jsonUser = request.getParameter("usuarioNuevo");
+		String jsonUser = request.getParameter("info");
 		System.out.println(jsonUser);
 		
 		Gson gson = new Gson();
