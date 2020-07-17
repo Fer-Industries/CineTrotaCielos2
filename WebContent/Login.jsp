@@ -5,12 +5,27 @@
 <head>
 
 <link rel="stylesheet" href="Css/Login.css">
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@800&family=Kanit:ital,wght@1,600&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap" rel="stylesheet">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
 </head>
 <body>
-
+<nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-dark animate_animated animate_fadeInDown  shadow-lg sticky-top">
+		<button class="navbar-toggler navbar-toggler-right togglercolor" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="principal.jsp">Cinema<img class="imagenav mx-sm-2"  alt""></a>
+         <div class="collapse navbar-collapse" id="menu">
+            <div class="navbar-nav" >
+                
+            
+                <a class="nav-link buttonnav pl" href="principal.jsp">REGRESAR <i class="fas fa-undo-alt"></i></a>
+                <a class="nav-link buttonnav pl2" href="Registro.jsp">REGISTRARME  <i class="fas fa-user-edit"></i></a>
+          
+          </div>
+         </div>
+      </nav>
 <div class="container animate__animated animate__backInDown padown">
 		<h3 class="tittle text-center textWhite"> Inicio de sesión</h3>
 		<div class="contf shadow" action="">
@@ -45,9 +60,10 @@
 
 				</div>
 				<div class="Cuen">
-				<p class="text-center textWhite">¿No tienes una cuenta? <a href="#" class="rgt"> <strong>¡Regístrate aquí­! </strong></a></p> 
+				<p class="text-center textWhite">¿No tienes una cuenta? <a href="Registro.jsp" class="rgt"> <strong>¡Regístrate aquí­! </strong></a></p> 
 				</div>
 </div>
+<script src="https://kit.fontawesome.com/af8d928238.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="JS/Login.js"></script>

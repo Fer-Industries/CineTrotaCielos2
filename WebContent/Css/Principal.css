@@ -1,26 +1,21 @@
 
 /*NAVBAR*/
 
+body{
+	background: linear-gradient(#1B1B1B,#635D5D);
+}
 .navbar{
-     background-color:-webkit-linear-gradient(left, #ED217C, 60%, #F94B9A, 25%, #FF91C3, 15% ) ! important;
-     background-color: #ED217C ! important;
-     height: 35px ! important;
+     background: linear-gradient(to right, #1B1B1B,#3E3241,#6E2C7E); 
+     height: 50px ! important;
      font-size: 15px ! important;
      text-align: center;
     font-family: 'Roboto', sans-serif ! important;
      
 }
-.navbar-brand{
+ .navbar-brand{
    font-family: 'Fira Sans', sans-serif  ! important;
    font-size: 15px ! important;
  }
-.buttonnav{
-border-width: 7px;
-background-color: #1B998B;
-border-radius: 7px;
-height: 30px;
-text-align: center;
-}
 
 /*CARRUSEL*/
 .Carrusel{
@@ -37,3 +32,72 @@ text-align: center;
 
 
 }
+.tittle{
+font-family: 'Unica One', cursive;
+color: white;
+font-size: 80px;
+}
+.tittle2{
+font-family: 'Unica One', cursive;
+color: black;
+font-size: 60px;
+}
+.tittle3{
+font-family: 'Unica One', cursive;
+color: white;
+font-size: 60px;
+}
+.sutitulos{
+	color: white ! important;
+	 font-family: 'Roboto', sans-serif ! important;
+}
+
+.fondo1cont{
+    background-color: #6E2C7E ! important;
+    border-radius: 5px;
+    color: white;
+}
+.justificado{
+	text-align: justify;
+	font-family: 'Roboto', sans-serif ! important;
+}
+.justificado2{
+	text-align: justify;
+	font-family: 'Roboto', sans-serif ! important;
+	color:white;
+}
+.fondo2cont{
+    background: linear-gradient(to right, #1B1B1B,#3E3241,#6E2C7E);
+    border-radius: 5px;
+}
+.fondo3cont{
+	  background:  #1B1B1B;
+}
+.contredondo{
+	border-radius: 5px;
+}
+/*.pl{
+	padding-left: 20% !important;
+	margin-left: 50px;
+	
+}
+.pl2{
+	/*padding-left: 30% ! important;*/
+	margin-left: 15px;
+}*/
+.navbar-toggler{
+	height: 30px ! important;
+	vertical-align: text-top ! important;
+	background-color: #3E3241;
+	
+}
+.togglercolor{
+	background-color: #3E3241;
+}
+
+.padd{
+padding-left: 25%;
+}
+.custom-toggler.navbar-toggler {
+  border-color: rgb(255,102,203);
+} 

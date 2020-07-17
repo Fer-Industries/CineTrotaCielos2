@@ -1,4 +1,9 @@
-
+Swal.fire({
+	title: 'Espere un momento',
+    timer: 2000});
+	Swal.showLoading();
+	
+	
 $.get("/Cinema/Peliculas",function(peliculasEstreno){
 
 	console.log(peliculasEstreno);
@@ -8,5 +13,6 @@ $.get("/Cinema/Peliculas",function(peliculasEstreno){
 		$("#pelImg"+i).attr("src","https://fer-industries.s3.amazonaws.com/Cinema/"+pelicula.imagenPelicula);
 		$("#pelNom"+i).text(pelicula.nombrePelicula);
 		i++;
+		return;
 	});
 });

@@ -1,7 +1,7 @@
 @charset "ISO-8859-1";
 
  body{
-	background-image: url("../Img/Back.PNG") !important;
+	background-color: #3E3241 ! important; 
 }
 
 .padding{
@@ -83,7 +83,7 @@ font-family: 'Roboto', sans-serif;
 }
 
 .rgt{
-	color: black;
+	color: #E6A6E9;
 	font-size: 15px;
 }
 
@@ -92,4 +92,19 @@ font-family: 'Roboto', sans-serif;
 	font-style: bold;
 }
 
-
+.navbar{
+     background: linear-gradient(to right, #1B1B1B,#3E3241,#6E2C7E); 
+     height: 45px ! important;
+     font-size: 15px ! important;
+     text-align: center;
+    font-family: 'Roboto', sans-serif ! important;
+     
+}
+ .navbar-brand{
+   font-family: 'Fira Sans', sans-serif  ! important;
+   font-size: 15px ! important;
+ }
+ .btn{
+  background: #AA5DAD ! important;
+  border-color: #AA5DAD ! important;
+ }
