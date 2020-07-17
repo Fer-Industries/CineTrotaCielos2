@@ -4,6 +4,12 @@
 body{
 	background: linear-gradient(#1B1B1B,#635D5D);
 }
+
+.navbar-nav{
+	z-index:10 !important;
+	background-color:#1B1B1B !important; 
+	
+}
 .navbar{
      background: linear-gradient(to right, #1B1B1B,#3E3241,#6E2C7E); 
      height: 50px ! important;

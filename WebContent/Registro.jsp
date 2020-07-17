@@ -1,5 +1,9 @@
+<%@page import="mx.com.cinema.entities.UsuarioBean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <% HttpSession sesion = request.getSession();
+    UsuarioBean usuarioLogueado = (UsuarioBean) sesion.getAttribute("usuario");
+     %>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -12,6 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
 </head>
 <body class= fondo>
+<% if(usuarioLogueado == null){%>
 <h2 class="text">Registro de Cinema</h2>
 <div class="container rgt">
 <div class="text1">
@@ -67,6 +72,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="JS/Registro.js"></script>
 </div>
-
+<%}else{%>
+	<script>
+		window.location.href = "/Cinema/principal.jsp";
+	</script>
+<%}%>
 
 </body>

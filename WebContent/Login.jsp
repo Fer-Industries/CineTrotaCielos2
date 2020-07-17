@@ -1,5 +1,9 @@
+<%@page import="mx.com.cinema.entities.UsuarioBean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <% HttpSession sesion = request.getSession();
+    UsuarioBean usuarioLogueado = (UsuarioBean) sesion.getAttribute("usuario");
+     %>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -11,6 +15,7 @@
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
 </head>
 <body>
+<% if(usuarioLogueado == null){%>
 <nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-dark animate_animated animate_fadeInDown  shadow-lg sticky-top">
 		<button class="navbar-toggler navbar-toggler-right togglercolor" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -67,5 +72,10 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="JS/Login.js"></script>
+<%}else{%>
+	<script>
+		window.location.href = "/Cinema/principal.jsp";
+	</script>
+<%}%>
 </body>
 </html>

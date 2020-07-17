@@ -1,6 +1,9 @@
+<%@page import="mx.com.cinema.entities.UsuarioBean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <% %>
+    <% HttpSession sesion = request.getSession();
+    UsuarioBean usuarioLogueado = (UsuarioBean) sesion.getAttribute("usuario");
+     %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,10 +28,12 @@
                 <a class="nav-link" href=""> CARTELERA <span class="sr-only">(current)</span></a>
                 <a class="nav-link" href="">PRODUCTOS</a>
                 <a class="nav-link" href="">CONTACTO</a>
-            
+            	<% if(usuarioLogueado == null){%>
                 <a class="nav-link buttonnav pl" href="Login.jsp">INICIAR SESIÓN <i class="fas fa-user-circle"></i></a>
                 <a class="nav-link buttonnav pl2" href="Registro.jsp">REGISTRARME  <i class="fas fa-user-edit"></i></a>
-          
+          		<% }else{%>
+          			<a class="nav-link buttonnav pl2" ><%=usuarioLogueado.getNombre() +" "+ usuarioLogueado.getaPaterno()%></a>
+          		<%}%>
           </div>
          </div>
       </nav>
