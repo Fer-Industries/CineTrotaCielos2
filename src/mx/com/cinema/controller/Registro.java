@@ -34,7 +34,7 @@ public class Registro extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		response.getWriter().write("Soy el registro#");
 		
 	}
 
@@ -43,20 +43,27 @@ public class Registro extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
-		Gson gson = new Gson();
-		String jsonUser = request.getParameter("usuarioNuevo");
 		
-		UsuarioBean usuarioNuevo = gson.fromJson(jsonUser, UsuarioBean.class);
+		
+		String jsonUser = request.getParameter("usuarioNuevo");
+		System.out.println(jsonUser);
+		
+		Gson gson = new Gson();
+		
+		UsuarioBean usuarioNuevo = new UsuarioBean(); 
+		usuarioNuevo = gson.fromJson(jsonUser, UsuarioBean.class);
 		
 		RegistroCrud registros = new RegistroCrud();
 		GeneradorTarjeta generador = new GeneradorTarjeta();
 		boolean existente = true;
+		long idTarjetaGenerado = 0;
 		do {
-			long idTarjetaGenerado = generador.getNumTarjeta();
+			idTarjetaGenerado= generador.getNumTarjeta();
+			
 			existente = registros.checarId(idTarjetaGenerado);
-			usuarioNuevo.setIdTarjeta(idTarjetaGenerado);
 		}while(existente == true);
+		System.out.println("NUm tarjeta!!!" +idTarjetaGenerado);
+		usuarioNuevo.setIdTarjeta(idTarjetaGenerado);
 		
 		int mensaje = registros.guardarUsuario(usuarioNuevo);
 		MensajeJson message = new MensajeJson();

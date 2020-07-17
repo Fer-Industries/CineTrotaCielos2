@@ -13,7 +13,7 @@
 <body>
 <h2 class="text">Registro de Cinema</h2>
 <div class="container rgt">
-<form>
+<div>
 	  <div class="form-row">
 		    <div class="col">
 		      <label for ="Nombre"> Nombre(s):</label>	
@@ -62,9 +62,9 @@
 	    </div>
 	  </div>
 
-</form>
+</div>
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="JS/Registro.js"></script>
 </div>
 

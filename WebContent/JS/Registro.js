@@ -9,7 +9,7 @@ let usuarioNuevo = {
  contrasena: " ",
  verifpassRg:" ",
  birthday:" "
-}
+};
 
 
 function validacionNombre(){
@@ -104,13 +104,13 @@ function validacionPasswordRg(){
     }
 function validacionVerifPasswordRg(){
 	let elementoMensaje = document.getElementById("verifpasswordMensaje")
-	verifpassRg = document.getElementById("VerifPasswordRg").value;
-	if(verifpassRg.length == 0){
+	usuarioNuevo.verifpassRg = document.getElementById("VerifPasswordRg").value;
+	if(usuarioNuevo.verifpassRg.length == 0){
 		elementoMensaje.innerHTML = "Debes rellenar este campo";
 		return false;
 	}else{
 		elementoMensaje.innerHTML = "";
-		if(passwordRg != verifpassRg){
+		if(usuarioNuevo.contrasena != usuarioNuevo.verifpassRg){
 			elementoMensaje.innerHTML = "Sus constrase\u00F1as no coinciden, verif\u00EDquelos";
 			return false;
 		}else{
@@ -124,8 +124,8 @@ function validacionVerifPasswordRg(){
 
 function validacionFecha(){
         let elementoMensaje = document.getElementById("fechaMensaje");
-        birthday = document.getElementById("Fecha").value;
-        if(birthday.length == 0){
+        usuarioNuevo.birthday = document.getElementById("Fecha").value;
+        if(usuarioNuevo.birthday.length == 0){
             elementoMensaje.innerHTML = "Debes llenar este campo";
 			return false;
         }else{
@@ -134,6 +134,18 @@ function validacionFecha(){
         }
     }
 
+document.getElementById("Registro").addEventListener("click",()=>{
+	console.log(usuarioNuevo);
+	 $.ajax({
+         url: '/Cinema/Registro',
+         type: 'post',
+         contentType:'application/json',
+         data:{usuarioNuevo:usuarioNuevo},
+         success: function (response) {
+        	 console.log(response);
+         }
+     });
+});
 /*
 document.getElementById("Registro").addEventListener("click",() =>{
 	const respuestaCorreoRg =validacionCorreoRg();
