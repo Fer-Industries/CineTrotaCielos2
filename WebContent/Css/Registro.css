@@ -1,5 +1,8 @@
+body{
+	background-color: #635D5D;
+}
 .rgt{
-	padding-top: 140px; 
+	padding-top: 100px; 
 }
 
 .cr{
@@ -20,4 +23,8 @@ body{
 
 .fondo{
 	background-color: ED217C;
+}
+.text{
+	text-align: center;
+	padding-top: 35px;
 }

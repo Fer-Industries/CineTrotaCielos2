@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
 </head>
 <body>
+<h2 class="text">Registro de Cinema</h2>
 <div class="container rgt">
 <form>
 	  <div class="form-row">
@@ -50,12 +51,7 @@
 		    </div>
 		</div>
 	    <div class="form-row cr">
-	    <div class="col">
-	      <label for ="Telefono"> Teléfono(opcional): </label>	
-	      <input type="text" class="form-control" placeholder="" id="Telefono" onfocusout="validacionTelefono()">
-	      <label id = "telefonoMensaje" class="mensajeErroneo"></label>
-	    </div>
-	     <div class="col">
+	     <div class="col-sm-6">
 	      <label for ="Fecha"> Fecha de Nacimiento: </label>	
 	      <input type="date" class="form-control" placeholder="" id="Fecha">
 	      <label id = "fechaMensaje" class="mensajeErroneo"></label>

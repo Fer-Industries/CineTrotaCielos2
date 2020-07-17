@@ -1,24 +1,26 @@
 const pNombre = /[a-zA-Z ]/;
 const pEmailRg = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 const pPhone = /^[0-9]$/;
-let nombre;
-let paterno;
-let materno;
-let correoRg;
-let passwordRg;
-let verifpassRg;
-let telefono;
-let fecha;
+let usuarioNuevo = {
+ nombre: " ",
+ aPaterno: " ",
+ aMaterno: " ",
+ correo: " ",
+ contrasena: " ",
+ verifpassRg:" ",
+ birthday:" "
+}
+
 
 function validacionNombre(){
         let elementoMensaje = document.getElementById("nombreMensaje");
-        nombre = document.getElementById("Nombre").value;
-        if(nombre.length == 0){
+        usuarioNuevo.nombre = document.getElementById("Nombre").value;
+        if(usuarioNuevo.nombre.length == 0){
             elementoMensaje.innerHTML = "Debes rellenar este campo";
 			return false;
         }else{
             elementoMensaje.innerHTML = "";
-			if(pNombre.test(nombre)){
+			if(pNombre.test(usuarioNuevo.nombre)){
 				return true;	
 			}else{
 				elementoMensaje.innerHTML = "Solo se aceptan letras en este campo";
@@ -29,13 +31,13 @@ function validacionNombre(){
 
 function validacionPaterno(){
         let elementoMensaje = document.getElementById("paternoMensaje");
-        paterno = document.getElementById("Paterno").value;
-        if(paterno.length == 0){
+        usuarioNuevo.aPaterno = document.getElementById("Paterno").value;
+        if(usuarioNuevo.aPaterno.length == 0){
             elementoMensaje.innerHTML = "Debes rellenar este campo";
 			return false;
         }else{
             elementoMensaje.innerHTML = "";
-			if(pNombre.test(paterno)){
+			if(pNombre.test(usuarioNuevo.aPaterno)){
 				return true;	
 			}else{
 				elementoMensaje.innerHTML = "Solo se aceptan letras en este campo";
@@ -46,13 +48,13 @@ function validacionPaterno(){
 
 function validacionMaterno(){
         let elementoMensaje = document.getElementById("maternoMensaje");
-        materno = document.getElementById("Materno").value;
-        if(materno.length == 0){
+        usuarioNuevo.aMaterno = document.getElementById("Materno").value;
+        if(usuarioNuevo.aMaterno.length == 0){
             elementoMensaje.innerHTML = "Debes rellenar este campo";
 			return false;
         }else{
             elementoMensaje.innerHTML = "";
-			if(pNombre.test(materno)){
+			if(pNombre.test(usuarioNuevo.aMaterno)){
 				return true;	
 			}else{
 				elementoMensaje.innerHTML = "Solo se aceptan letras en este campo";
@@ -63,13 +65,13 @@ function validacionMaterno(){
 
 function validacionCorreoRg(){
         let elementoMensaje = document.getElementById("emailrgMensaje");
-        correoRg = document.getElementById("EmailRg").value;
-        if(correoRg.length == 0){
+        usuarioNuevo.correo = document.getElementById("EmailRg").value;
+        if(usuarioNuevo.correo.length == 0){
             elementoMensaje.innerHTML = "Debes rellenar este campo";
 			return false;
         }else{
             elementoMensaje.innerHTML = "";
-			if(pEmailRg.test(correoRg)){
+			if(pEmailRg.test(usuarioNuevo.correo)){
 				return true;	
 			}else{
 				elementoMensaje.innerHTML = "Inserta una direcci\u00F3n v\u00E1lida";
@@ -80,17 +82,23 @@ function validacionCorreoRg(){
 
 function validacionPasswordRg(){
         let elementoMensaje = document.getElementById("passwordrgMensaje");
-        passwordRg = document.getElementById("PasswordRg").value;
-        if(passwordRg.length == 0){
+        usuarioNuevo.contrasena = document.getElementById("PasswordRg").value;
+        if(usuarioNuevo.contrasena.length == 0){
             elementoMensaje.innerHTML = "Debes rellenar este campo";
 			return false;
         }else{
             elementoMensaje.innerHTML = "";
-			if(passwordRg.length < 8){
+			if(usuarioNuevo.contrasena.length < 8){
 				elementoMensaje.innerHTML ="Coloca una contrase\u00F1a de m\u00EDnimo 8 car\u00E1cteres";
 				return false;	
 			}else{
-				return true;	
+				elementoMensaje.innerHTML = "";
+				if(usuarioNuevo.contrasena.length > 16){
+					elementoMensaje.innerHTML ="Coloca una contrase\u00F1a de maximo 16 car\u00E1cteres";
+					return false;
+				}else{
+				return true;
+				}	
 			}
         }
     }
@@ -112,27 +120,12 @@ function validacionVerifPasswordRg(){
 }
 
 
-function validacionTelefono(){
-        let elementoMensaje = document.getElementById("telefonoMensaje");
-        telefono = document.getElementById("Telefono").value;
-        if(telefono.length == 0){
-            elementoMensaje.innerHTML = "";
-			return false;
-        }else{
-            elementoMensaje.innerHTML = "";
-			if(pPhone.test(telefono)){
-				return true;	
-			}else{
-				elementoMensaje.innerHTML = "Solo se aceptan n\u00FAmeros en este campo";
-				return false;	
-			}
-        }
-    }
+
 
 function validacionFecha(){
         let elementoMensaje = document.getElementById("fechaMensaje");
-        fecha = document.getElementById("Fecha").value;
-        if(fecha.length == 0){
+        birthday = document.getElementById("Fecha").value;
+        if(birthday.length == 0){
             elementoMensaje.innerHTML = "Debes llenar este campo";
 			return false;
         }else{
