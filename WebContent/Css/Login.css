@@ -1,7 +1,7 @@
 @charset "ISO-8859-1";
 
  body{
-			background-image: url("../Img/Back.PNG") !important;
+	background-image: url("../Img/Back.PNG") !important;
 }
 
 .padding{
@@ -91,3 +91,5 @@ font-family: 'Roboto', sans-serif;
 	color: red;
 	font-style: bold;
 }
+
+

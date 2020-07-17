@@ -1,0 +1,39 @@
+
+/*NAVBAR*/
+
+.navbar{
+     background-color:-webkit-linear-gradient(left, #ED217C, 60%, #F94B9A, 25%, #FF91C3, 15% ) ! important;
+     background-color: #ED217C ! important;
+     height: 35px ! important;
+     font-size: 15px ! important;
+     text-align: center;
+    font-family: 'Roboto', sans-serif ! important;
+     
+}
+.navbar-brand{
+   font-family: 'Fira Sans', sans-serif  ! important;
+   font-size: 15px ! important;
+ }
+.buttonnav{
+border-width: 7px;
+background-color: #1B998B;
+border-radius: 7px;
+height: 30px;
+text-align: center;
+}
+
+/*CARRUSEL*/
+.Carrusel{
+	padding-top: 80px !important; 
+}
+
+.carousel-inner img {
+    
+    max-height: 460px !important;
+}
+
+.carousel-inner{
+ height: 450px !important;
+
+
+}

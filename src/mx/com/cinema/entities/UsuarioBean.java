@@ -3,7 +3,7 @@ import java.util.Date;
 
 public class UsuarioBean {
 	
-	private Long   idTarjeta;
+	private Long   idTarjeta = new Long(0);
 	private String nombre;
 	private String aPaterno;
 	private String aMaterno;
