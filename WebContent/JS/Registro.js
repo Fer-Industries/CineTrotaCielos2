@@ -146,7 +146,7 @@ document.getElementById("Registro").addEventListener("click",()=>{
 	if(resNomb == false || resaPa == false || resaMa == false || resCorreo == false || resPass == false || resVerifPass == false || resFecha == false){
 			Swal.fire({
 		  icon: 'error',
-		  title: 'Verifique que los campos esten llenos',
+		  title: 'Verifique que los campos est\u00E9n llenos',
 		  showConfirmButton: false,
 		  timer: 1500
 		})
@@ -178,7 +178,7 @@ document.getElementById("Registro").addEventListener("click",()=>{
 					});
 			}else if(response == "1"){
 				Swal.fire({
-  				title: 'Tu usuario ya está dado de baja',
+  				title: 'Tu usuario ya est\u00E1dado de baja',
   				showClass: {
     			popup: 'animate__animated animate__fadeInDown'
   				},

@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
     <title>Registro Cinema</title>
     <link rel="stylesheet" href="Css/Registro.css">
+    <link href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
@@ -55,11 +56,9 @@
 		      <label id = "verifpasswordMensaje" class="mensajeErroneo"></label>
 		    </div>
 		</div>
-	    <div class="form-row cr">
-	    <div class="boton">
+	    <div class="form-row cr wrapper">
 	    <input class="btn btn-primary" id="Registro"
 				type="submit"  value="Registrarse" > 
-	    </div>
 	  </div>
 
 </div>

@@ -17,21 +17,28 @@ body{
 	color: red;
 	font-style: bold;
 }
-.boton{
-	padding-top: 50px;
-	padding-left: 500px;
-}
+
+.btn{
+  background: #AA5DAD ! important;
+  border-color: #AA5DAD ! important;
+ }
 
 .fondo{
 	background-color: #3E3241;
 }
 .text{
+	font-family: 'Unica One', cursive;
 	text-align: center;
 	padding-top: 70px;
 	color: white;
 }
 
 .text1{
-	
-	color: white;
+font-family: 'Roboto', sans-serif;
+color: white;
+}
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
