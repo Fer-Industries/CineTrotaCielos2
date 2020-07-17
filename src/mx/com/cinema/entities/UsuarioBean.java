@@ -1,8 +1,9 @@
 package mx.com.cinema.entities;
+import java.util.Date;
 
 public class UsuarioBean {
 	
-	private Long    idTarjeta;
+	private Long   idTarjeta;
 	private String nombre;
 	private String aPaterno;
 	private String aMaterno;
@@ -11,6 +12,7 @@ public class UsuarioBean {
 	private String correo;
 	private String contrasena;
 	private int    status;
+	private int    puntos;
 	
 	public UsuarioBean() {
 		
@@ -30,7 +32,6 @@ public class UsuarioBean {
 		this.contrasena = contrasena;
 	}
 
-	
 	public Long getIdTarjeta() {
 		return idTarjeta;
 	}
@@ -70,6 +71,8 @@ public class UsuarioBean {
 	public void setIdNivel(int idNivel) {
 		this.idNivel = idNivel;
 	}
+
+
 
 	public String getBirthday() {
 		return birthday;
@@ -111,7 +114,9 @@ public class UsuarioBean {
 		this.puntos = puntos;
 	}
 
-	private int    puntos;
+	
+	
+	
 	
 	
 
