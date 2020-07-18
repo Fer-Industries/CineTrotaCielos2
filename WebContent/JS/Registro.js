@@ -158,25 +158,32 @@ document.getElementById("Registro").addEventListener("click",()=>{
          type: 'POST',
          data:{info:JSON.stringify (usuarioNuevo)},
          success: function (response) {
+			console.log(response);
 			Swal.close();
-			if (response == "3"){
+			if (response.codigo == "3"){
 			Swal.fire({
-	        			  icon: 'succes',
+	        			  icon: 'success',
 	        			  title: 'Registro Exitoso',
 	        			  showConfirmButton: false,
 	        			  timer: 1500
 	        			});
-			}else if(response == "2"){
+			}else if(response.codigo == "2"){
 				Swal.fire({
-  				title: 'Ya existe un usuario con este correo',
-  				showClass: {
-    			popup: 'animate__animated animate__fadeInDown'
-  				},
-  				hideClass: {
-    			popup: 'animate__animated animate__fadeOutUp'
-  						}
-					});
-			}else if(response == "1"){
+				  title: 'Ya existe un usuario con este correo',
+				  text: "¿Desea iniciar sesi\u00F3n?",
+				  icon: 'warning',
+				  showCancelButton: true,
+				  confirmButtonColor: '#3085d6',
+				  cancelButtonColor: '#d33',
+				  confirmButtonText: 'Ir a login',
+				  cancelButtonText: 'Reintentar'
+				}).then((result) => {
+				  if (result.value) {
+				    window.location.href ="/Cinema/Login.jsp";
+				  }
+				});
+				
+			}else if(response.codigo == "1"){
 				Swal.fire({
   				title: 'Tu usuario ya est\u00E1dado de baja',
   				showClass: {
@@ -187,7 +194,7 @@ document.getElementById("Registro").addEventListener("click",()=>{
   						}
 					});
 					}
-					}
+			}
      });
 	}
 });
