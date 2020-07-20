@@ -11,10 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.Date;
 
-import com.northwind.entities.OrdenBean;
-import com.northwind.entities.ProductoJson;
-import com.northwind.model.String;
-
 import mx.com.cinema.model.ConnectionDB;
 import mx.com.cinema.entities.PeliculasBean;
 import mx.com.cinema.entities.BusquedaPelBean;
@@ -98,7 +94,7 @@ public class PeliculasCrud {
 			return listaPeliculas;
 		}
 	}
-
+/*
 public int generarOrden(OrdenBean orden) {
 	String procOrden = "{call crearOrden(?,?,?)}";
 	String procOrderDetails = "{call productosOrden(?,?,?)}";
@@ -130,3 +126,4 @@ public int generarOrden(OrdenBean orden) {
 	}
 	return idOrdenGenerado;
 }
+*/

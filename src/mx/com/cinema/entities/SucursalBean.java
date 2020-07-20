@@ -5,8 +5,6 @@ public class SucursalBean {
 	private int idSucursal;
 	private String nombre;
 	
-	
-	
 	public SucursalBean() {
 		
 	}
