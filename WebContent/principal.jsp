@@ -28,6 +28,7 @@
                 <a class="nav-link" href=""> CARTELERA <span class="sr-only">(current)</span></a>
                 <a class="nav-link" href="">PRODUCTOS</a>
                 <a class="nav-link" href="">CONTACTO</a>
+                <a class="nav-link" href="Funciones.jsp">BUSQUEDA<span class="sr-only">(current)</span></a>
             	<% if(usuarioLogueado == null){%>
                 <a class="nav-link buttonnav pl" href="Login.jsp">INICIAR SESIÓN <i class="fas fa-user-circle"></i></a>
                 <a class="nav-link buttonnav pl2" href="Registro.jsp">REGISTRARME  <i class="fas fa-user-edit"></i></a>
