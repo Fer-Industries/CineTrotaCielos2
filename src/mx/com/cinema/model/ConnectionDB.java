@@ -9,39 +9,31 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+
 public class ConnectionDB {
 	
 	Connection con;
 	
 	public ConnectionDB() {
-		Properties prop = new Properties();
-		InputStream is;
-		//System.out.println(System.getProperty("user.dir"));
-		try {
-			is = getClass().getClassLoader().getResourceAsStream("application.properties");
-			prop.load(is);
-		}catch(IOException ioe) {
-			System.out.println(ioe.getMessage());
-			return;
+		
+	
+		try{ 
+			//java database conectivity 
+			Class.forName("com.mysql.cj.jdbc.Driver");//Obtiene el driver 
+			con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/Cinema?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&autoReconnect=true&useSSL=false&" +"user=root&password=12345");
+				/* local host en vez de eso va la ip*/
+			if(con != null)
+				System.out.println("Success Connection");
+			else
+				System.out.println("Fail Connection");
 		}
-		
-		String endpoint = prop.getProperty("bd.endpoint");
-		String port = prop.getProperty("bd.port");
-		String name = prop.getProperty("bd.name");
-		String user = prop.getProperty("bd.user");
-		String pass = prop.getProperty("bd.pass");
-		
-		try{
-			String connectionURL = "jdbc:mysql://"+endpoint+":"+port+"/"+name+"?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&autoReconnect=true&useSSL=false&" +
-		   "user="+user+"&password="+pass; 
-			con = DriverManager.getConnection(connectionURL);
-			if(con != null){
-				System.out.println("Conexion exitosa");
-			}else{
-				System.out.println("Conexion fallida");
-			}
-		}catch(SQLException sqle){
-			System.out.println(sqle.getMessage());
+		//si no se encuentra el driver 
+		catch(ClassNotFoundException cnfe){
+			System.out.println("Revisa el driver"+cnfe);
+		}
+		catch(SQLException sqle){
+			System.out.println("Checa la conexion");
+			sqle.getMessage();
 		}
 	}
 	
