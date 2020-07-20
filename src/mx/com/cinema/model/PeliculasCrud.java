@@ -5,16 +5,28 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Date;
+
+import com.northwind.entities.OrdenBean;
+import com.northwind.entities.ProductoJson;
+import com.northwind.model.String;
 
 import mx.com.cinema.model.ConnectionDB;
 import mx.com.cinema.entities.PeliculasBean;
+import mx.com.cinema.entities.BusquedaPelBean;
+
+import mx.com.cinema.entities.FormatosBean;
+
+
 
 
 public class PeliculasCrud {
 	
-	ConnectionDB conexionAWS;
+	ConnectionDB conexion;
 	Connection con;
 	CallableStatement ctmt;
 	ResultSet rs;
@@ -22,8 +34,8 @@ public class PeliculasCrud {
 
 	
 	public PeliculasCrud() {
-		conexionAWS = new ConnectionDB();
-		con  = conexionAWS.getConexion();
+		conexion= new ConnectionDB();
+		con  = conexion.getConexion();
 	}
 	
 	public List<PeliculasBean> getPeliculasEstreno(){
@@ -51,5 +63,70 @@ public class PeliculasCrud {
 		}
 			return listaPeliculas;
 		}
+	
+	public List<PeliculasBean> Busqueda(BusquedaPelBean peliculas ){
+	
+		String getPeliculas = "{call mostrarPeli(?,?,?,?,?)}";
+		List<PeliculasBean> listaPeliculas = new ArrayList <> ();
+		
+		try {
+			java.sql.Date sDate = new java.sql.Date(peliculas.getFecha().getTime());
+			ctmt= con.prepareCall(getPeliculas);
+			ctmt.setString(1, peliculas.getNombre());
+			ctmt.setString(2, peliculas.getHora());
+			ctmt.setDate (3,  sDate );
+			ctmt.setNString(4, peliculas.getFormato());
+			ctmt.setNString(5, peliculas.getSucursal());
+			
+			rs= ctmt.executeQuery();
+			
+			while(rs.next()) {
+				PeliculasBean peliculaEncontrada = new PeliculasBean();
+				FormatosBean formatos = new FormatosBean();
+				peliculaEncontrada.setNombrePelicula(rs.getString("nombre"));
+				formatos.setNombreFormato(rs.getString("Formato"));
+				peliculaEncontrada.setDuracionPelicula(rs.getString("Hora"));
+				peliculaEncontrada.setFechaEstreno(rs.getDate("dia"));
+				peliculaEncontrada.setImagenPelicula(rs.getString("PEL_IMAGEN"));
+				listaPeliculas.add(peliculaEncontrada);
+			
+			}
+			con.close();
+		}catch (SQLException sqle){
+			System.out.println(sqle.getMessage());
+		}
+			return listaPeliculas;
+		}
 	}
 
+public int generarOrden(OrdenBean orden) {
+	String procOrden = "{call crearOrden(?,?,?)}";
+	String procOrderDetails = "{call productosOrden(?,?,?)}";
+	
+	int idOrdenGenerado = 0;
+	try {
+		ctmt = con.prepareCall(procOrden);
+		ctmt.setString(1, orden.getCustomer());
+		ctmt.setString(2, orden.getFechaReq());
+		ctmt.setInt(3, orden.getEmployeeId());
+		rs = ctmt.executeQuery();
+		if(rs.next()) {
+			idOrdenGenerado = rs.getInt(1);
+			System.out.println(idOrdenGenerado);
+			ctmt = con.prepareCall(procOrderDetails);
+			
+			for(ProductoJson producto: orden.getProducts()) {
+				ctmt.setInt(1,idOrdenGenerado);
+				ctmt.setInt(2,producto.getId());
+				ctmt.setInt(3, producto.getCantidad());
+				ctmt.executeQuery();
+			}
+		}else {
+			System.out.println("oppss");
+		}
+		con.close();
+	}catch(SQLException sqle){
+		System.out.println(sqle.getMessage());
+	}
+	return idOrdenGenerado;
+}
