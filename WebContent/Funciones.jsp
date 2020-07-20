@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="css/weather-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
 </head>
-<body class= "fondo" >
+<body class= "fondo animate__animated animate__fadeIn" >
 
   <nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-dark animate_animated animate_fadeInDown  shadow-lg sticky-top">
 		<button class="navbar-toggler navbar-toggler-right togglercolor" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,7 +40,7 @@
 <br>
 <br>
 
-<section class="pelis letra ">
+<section class="pelis letra mb-5">
   <div class="container a ">
 
       <div class="row">
@@ -48,9 +48,12 @@
           <div class="col-lg-3">
 
 
-     <div class="sidebar-box">
-   <div class="sidebar-box-title"  style="background: linear-gradient(to right ,#3E3241,#6E2C7E);" >Ubicación <i class="fas fa-search-location"></i></i></div>
-        <div class="sidebar-box-content">
+     <div class="sidebar-box rounded ">
+     <div class="sidebar-box-title"  style="background: linear-gradient(to right ,#3E3241,#6E2C7E);" >Ubicación <i class="fas fa-search-location"></i></i></div>
+       
+     <div class="sidebar-box-content">
+     
+    
       <select id="inputCine" class="form-control col-md-10">
         <option selected>Selecciona tu cine </option>
         <option>Norte</option>
@@ -63,14 +66,14 @@
  
   
 
-<div class="sidebar-box">
+<div class="sidebar-box  rounded ">
    <div class="sidebar-box-title"  style="background: linear-gradient(to right ,#3E3241,#6E2C7E);" >Horario <i class="far fa-clock"></i></i></div>
         <div class="sidebar-box-content">
 		<div class="outerrainge"> 
 		   <div id="slider-range" ></div>
 		   <div class="slider-labels">
 		    <div class=" caption">
-		      <strong >De: <span id="slider-range-value1"> AM</strong></span>
+		      <strong >De: </strong><span id="slider-range-value1"> AM</span>
 		    </div>
 		    <div class=" text-right caption">
 		      <strong >A las:</strong> <span id="slider-range-value2"><strong>PM</strong></span>
@@ -81,7 +84,7 @@
 </div>
 
 
-<div class="sidebar-box">
+<div class="sidebar-box rounded">
         <div class="sidebar-box-title" style="background: linear-gradient(to right ,#3E3241,#6E2C7E);">Día <i class="far fa-calendar-alt"></i></div>
         <div class="sidebar-box-content">
         <input type="date" id="fecha" name="fecha" min="2020-07-20" max="2020-08-20">
@@ -90,7 +93,7 @@
   
   
    
-        <div class="sidebar-box">
+        <div class="sidebar-box rounded">
         <div class="sidebar-box-title" style="background: linear-gradient(to right ,#3E3241,#6E2C7E);">Idioma <i class="fas fa-language"></i></div>
         <div class="sidebar-box-content">
           <div class="check-row"><label><input type="radio" name="lang-filter" value="" checked="checked" /> <span>Todos los idiomas</span></label></div>
@@ -101,7 +104,7 @@
       </div>
   
   
-     <div class="sidebar-box">
+     <div class="sidebar-box rounded">
         <div class="sidebar-box-title" style="background: linear-gradient(to right ,#3E3241,#6E2C7E);">Formato <i class="fas fa-film"></i></div>
         <div class="sidebar-box-content">
           <div class="check-row no-platinum"><label><input type="checkbox" name="format-filter" value="trad" /> <span>Salas tradicionales</span></label></div>
@@ -112,22 +115,22 @@
       </div>
 
 
- 	 <div class="sidebar-box">
+ 	 <div class="sidebar-box rounded">
   		<button type="button" class="btn btn-secondary">Buscar</button>
  	 </div>
  </div>
           
-          <div class="col-lg-9">
+          <div class="col-lg-9 ">
 
-              <div class="card  " style="background-color:  #A497A7;">
-                  <h5 class="card-header mb-3 " style="background: linear-gradient(to right, #1B1B1B,#3E3241,#6E2C7E);"><i class="fas fa-film"></i>  Cinema sucursal...</h5>
+              <div class="card caja-1 " style="background-color:  #A497A7;">
+                  <h5 class="card-header mb-3 caja-2" style="background: linear-gradient(to right, #1B1B1B,#3E3241,#6E2C7E);"><i class="fas fa-film"></i>  Cinema sucursal...</h5>
 
 
 
-                  <div class=" mb-3" style="max-width: 540px;">
+                  <div class="margeniz mb-3" style="max-width: 540px;">
                       <div class="row no-gutters">
                           <div class="col-md-4">
-                              <img src="Img/duro.jpg" class="card-img" alt="...">
+                              <img src="Img/duro.jpg" class="card-img sombra" alt="...">
                           </div>
                           <div class="col-md-8">
                               <div class="card-body">
@@ -143,10 +146,10 @@
                   </div>
 
 
-                  <div class=" mb-3" style="max-width: 540px;">
+                  <div class="margeniz mb-3" style="max-width: 540px;">
                       <div class="row no-gutters">
                           <div class="col-md-4">
-                              <img src="Img/duro.jpg" class="card-img" alt="...">
+                              <img src="Img/duro.jpg" class="card-img sombra" alt="...">
                           </div>
                           <div class="col-md-8">
                               <div class="card-body">
@@ -162,10 +165,10 @@
                   </div>
 
 
-                  <div class=" mb-3" style="max-width: 540px;">
+                  <div class="margeniz mb-3" style="max-width: 540px;">
                       <div class="row no-gutters">
                           <div class="col-md-4">
-                             <img src="Img/duro.jpg" class="card-img contenedor:hover contenedor imagen" alt="...">   
+                             <img src="Img/duro.jpg" class="card-img sombra" alt="...">   
                           </div>
                           <div class="col-md-8">
                               <div class="card-body">
@@ -181,10 +184,10 @@
                   </div>
 
 
-                  <div class=" mb-3" style="max-width: 540px;">
+                  <div class="margeniz mb-3" style="max-width: 540px;">
                       <div class="row no-gutters">
                           <div class="col-md-4">
-                               <img src="Img/duro.jpg" class="card-img contenedor:hover contenedor imagen" alt="...">   
+                               <img src="Img/duro.jpg" class="card-img sombra" alt="...">   
                           </div>
                           <div class="col-md-8">
                               <div class="card-body">
@@ -207,6 +210,12 @@
   </div>
 
 </section>
+
+
+
+
+
+
 
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
