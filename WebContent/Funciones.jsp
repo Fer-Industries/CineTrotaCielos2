@@ -116,7 +116,7 @@
 
 
  	 <div class="sidebar-box rounded">
-  		<button type="button" class="btn btn-secondary">Buscar</button>
+  		<button type="button" onclick="enviarInfo()" class="btn btn-secondary">Buscar</button>
  	 </div>
  </div>
           
@@ -227,6 +227,8 @@
 	  <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.1.0/nouislider.js"></script>
 	  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
    <script>   
+   let minimo;
+   let maximo;
 // Requires jQuery
 
 // Initialize slider:
@@ -288,13 +290,23 @@ var aproximateHour = function (mins)
     		}
     		
   rangeSlider.noUiSlider.on('update', function(values, handle) {
+	  minimo=values[0];
+	  maximo=values[1];
     document.getElementById('slider-range-value1').innerHTML = values[0];
     document.getElementById('slider-range-value2').innerHTML = values[1];
     document.getElementsByName('slider-range-value1').value = aproximateHour.from(
       values[0]);
     document.getElementsByName('slider-range-value2').value = aproximateHour.from(
       values[1]);
-  });});
+  });
+});
+   
+   const enviarInfo=()=>{
+	   console.log(minimo);
+	   console.log(maximo);
+   }
+   
+   
 
    </script>
 </body>
