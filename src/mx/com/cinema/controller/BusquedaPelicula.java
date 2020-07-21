@@ -33,7 +33,7 @@ public class BusquedaPelicula extends HttpServlet {
 		// TODO Auto-generated method stub
 				//response.getWriter().append("Served at: ").app-end(request.getContextPath());
 				// estoy obteniendo el parametro de la peticion con el nombre persona
-				String jsonPelicula= request.getParameter("ParametrosPel");	
+				/*String jsonPelicula= request.getParameter("ParametrosPel");	
 				//if(request.getContentType()=="application/json"){}
 				
 				
@@ -48,7 +48,7 @@ public class BusquedaPelicula extends HttpServlet {
 				System.out.println(orden.toString());
 				response.setContentType("text/plain");
 				response.setCharacterEncoding("UTF-8");
-				response.getWriter().write("" +ordenGenerada); 
+				response.getWriter().write("" +ordenGenerada); */
 	}
 
 	/**

@@ -56,10 +56,7 @@
     
       <select id="inputCine" class="form-control col-md-10">
         <option selected>Selecciona tu cine </option>
-        <option>Norte</option>
-        <option>Este</option>
-        <option>Oeste</option>
-        <option>Sur</option>
+        
       </select>
     </div>
   </div>
@@ -226,6 +223,7 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.0.4/wNumb.js"></script>
 	  <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.1.0/nouislider.js"></script>
 	  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	  <script src="JS/funciones.js"></script>
    <script>   
    let minimo;
    let maximo;
