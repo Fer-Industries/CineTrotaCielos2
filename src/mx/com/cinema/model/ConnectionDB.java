@@ -15,11 +15,27 @@ public class ConnectionDB {
 	Connection con;
 	
 	public ConnectionDB() {
+		Properties prop = new Properties();
+		InputStream is;
+		//System.out.println(System.getProperty("user.dir"));
+		try {
+			is = getClass().getClassLoader().getResourceAsStream("application.properties");
+			prop.load(is);
+		}catch(IOException ioe) {
+			System.out.println(ioe.getMessage());
+			return;
+		}
 		
+		String endpoint = prop.getProperty("bd.endpoint");
+		String port = prop.getProperty("bd.port");
+		String name = prop.getProperty("bd.name");
+		String user = prop.getProperty("bd.user");
+		String pass = prop.getProperty("bd.pass");
 	
 		try{ 
 			//java database conectivity 
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&autoReconnect=true&useSSL=false&" +"user=root&password=Starwars.97");
+			con = DriverManager.getConnection("jdbc:mysql://"+endpoint+":"+port+"/"+name+"?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&autoReconnect=true&useSSL=false&" 
+			+"user="+user+"&password="+pass+"");
 				/* local host en vez de eso va la ip*/
 			if(con != null)
 				System.out.println("Success Connection");

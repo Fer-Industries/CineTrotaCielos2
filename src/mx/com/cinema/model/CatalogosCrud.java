@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import mx.com.cinema.entities.FormatosBean;
+import mx.com.cinema.entities.IdiomaBean;
 import mx.com.cinema.entities.SucursalBean;
 
 public class CatalogosCrud {
@@ -60,4 +61,49 @@ public class CatalogosCrud {
 		}
 		return listaFormatos;
 	}
+	
+	
+	public List<IdiomaBean> getIdiomas( )
+	{
+		/*Falta el nombre del proc y las columnas de la base de datos*/
+		List<IdiomaBean> listaidioma = new ArrayList<IdiomaBean>();
+		ConnectionDB conection = new ConnectionDB();
+		con = conection.getConexion();
+		String textsql= "{call MostrarIDioma}";
+		try {
+			ctmt= con.prepareCall(textsql);
+			rs = ctmt.executeQuery();
+			while(rs.next()){
+				IdiomaBean idioma = new IdiomaBean();
+				idioma.setIdidioma(rs.getInt("ID"));
+				idioma.setNombre(rs.getString("Nombre"));
+				idioma.setStatus(rs.getInt("Estatus"));
+				listaidioma.add(idioma);
+			}
+			con.close();
+		}
+		catch(SQLException sqle) {
+			System.out.println(sqle.getMessage());
+		}
+		return listaidioma;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

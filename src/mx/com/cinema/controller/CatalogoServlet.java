@@ -40,6 +40,7 @@ public class CatalogoServlet extends HttpServlet {
 		CatalogosBean catalogos = new CatalogosBean();
 		catalogos .setListaSucursales(catalogosCrud.getSurcursales());
 		catalogos.setListaFormatos(catalogosCrud.getFormatos());
+		catalogos.setListaIdiomas(catalogosCrud.getIdiomas());
 		
 		Gson gson = new Gson();
 		String jsonSucursales = gson.toJson(catalogos);
