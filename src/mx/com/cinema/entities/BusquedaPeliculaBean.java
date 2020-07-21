@@ -17,7 +17,53 @@ public class BusquedaPeliculaBean{
 	 private int idformato;
 	 private String hora;
 	 private String horafinal;
-	 public String getHorafinal() {
+	 private String NombrePel;
+	 private String NombreSuc;
+	 private String imagen;
+	 private String Nombreformato;
+	 private String NombreIdioma;
+	 
+	 public String getNombrePel() {
+		return NombrePel;
+	}
+
+	public void setNombrePel(String nombrePel) {
+		NombrePel = nombrePel;
+	}
+
+	public String getNombreSuc() {
+		return NombreSuc;
+	}
+
+	public void setNombreSuc(String nombreSuc) {
+		NombreSuc = nombreSuc;
+	}
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
+	public String getNombreformato() {
+		return Nombreformato;
+	}
+
+	public void setNombreformato(String nombreformato) {
+		Nombreformato = nombreformato;
+	}
+
+	public String getNombreIdioma() {
+		return NombreIdioma;
+	}
+
+	public void setNombreIdioma(String nombreIdioma) {
+		NombreIdioma = nombreIdioma;
+	}
+
+	public String getHorafinal() {
 		return horafinal;
 	}
 

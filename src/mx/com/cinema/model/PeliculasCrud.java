@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,95 +63,50 @@ public class PeliculasCrud {
 	
 	public List<BusquedaPeliculaBean> Busqueda(BusquedaPeliculaBean peliculas ){
 	
-		String getPeliculas = "{call mostrarPeli(?,?,?,?,?)}";
+		String getPeliculas = "{call mostrarPeli(?,?,?,?,?,?)}";
 		
-		List<BusquedaPeliculaBean> listaenontrado = new ArrayList <BusquedaPeliculaBean>();
+		List<BusquedaPeliculaBean> listaencontrado = new ArrayList <BusquedaPeliculaBean>();
 		try {
 			java.sql.Date sDate = new java.sql.Date(peliculas.getFecha().getTime());
+			DateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+			java.sql.Time timeValue = new java.sql.Time(formatter.parse(peliculas.getHora()).getTime());
+			
+			
 			ctmt = con.prepareCall(getPeliculas);
 			ctmt.setInt(1,peliculas.getIdpel());
 			ctmt.setInt(2,peliculas.getIdidioma());
 			ctmt.setInt(3,peliculas.getIdformato());
 			ctmt.setInt(4,peliculas.getIdsucursal());
 			ctmt.setDate(5,sDate);
-			
-			ctmt.set
+			ctmt.setTime(6, timeValue );
 			/*id del formato 
 			 * 
 			 * id del idioma 
 			 * 
 			 * */
-		}catch(SQLException sqle) {
-			System.out.println(sqle.getMessage());
-		}
-		
-		
-		
-		
-		
-		
-		
-		List<PeliculasBean> listaPeliculas = new ArrayList <> ();
-		
-		try {
-			java.sql.Date sDate = new java.sql.Date(peliculas.getFecha().getTime());
-			ctmt= con.prepareCall(getPeliculas);
-			ctmt.setString(1, peliculas.getNombre());
-			ctmt.setString(2, peliculas.getHora());
-			ctmt.setDate (3,  sDate );
-			ctmt.setNString(4, peliculas.getFormato());
-			ctmt.setNString(5, peliculas.getSucursal());
 			
-			rs= ctmt.executeQuery();
-			
+			rs = ctmt.executeQuery();
 			while(rs.next()) {
-				PeliculasBean peliculaEncontrada = new PeliculasBean();
-				FormatosBean formatos = new FormatosBean();
-				peliculaEncontrada.setNombrePelicula(rs.getString("nombre"));
-				formatos.setNombreFormato(rs.getString("Formato"));
-				peliculaEncontrada.setDuracionPelicula(rs.getString("Hora"));
-				peliculaEncontrada.setFechaEstreno(rs.getDate("dia"));
-				peliculaEncontrada.setImagenPelicula(rs.getString("PEL_IMAGEN"));
-				listaPeliculas.add(peliculaEncontrada);
-			
+				BusquedaPeliculaBean found = new BusquedaPeliculaBean();
+				found.setImagen(rs.getString("Imagen"));
+				found.setIdpel(rs.getInt("IDpelicula"));
+				found.setNombrePel(rs.getString("Pelicua"));
+				found.setIdformato(rs.getInt("IDformato"));
+				found.setNombreformato(rs.getNString("Formato"));
+				found.setIdidioma(rs.getInt("IDidioma"));
+				found.setNombreIdioma(rs.getString("Idioma"));
+				found.setIdsucursal(rs.getInt("IDsucursal"));
+				found.setNombreSuc(rs.getString("Sucursal"));
+				found.setHora(rs.getTime("Hora").toString());
+				listaencontrado.add(found);
 			}
 			con.close();
-		}catch (SQLException sqle){
+		}catch(SQLException sqle) {
 			System.out.println(sqle.getMessage());
+		}catch(ParseException pe) {
+			System.out.println(pe.getMessage() + "La cagamos en la conversionn disculpa :c ia estaooooosss");
 		}
-			return listaPeliculas;
-		}
-	}
-/*
-public int generarOrden(OrdenBean orden) {
-	String procOrden = "{call crearOrden(?,?,?)}";
-	String procOrderDetails = "{call productosOrden(?,?,?)}";
+		return listaencontrado;
+	}	
 	
-	int idOrdenGenerado = 0;
-	try {
-		ctmt = con.prepareCall(procOrden);
-		ctmt.setString(1, orden.getCustomer());
-		ctmt.setString(2, orden.getFechaReq());
-		ctmt.setInt(3, orden.getEmployeeId());
-		rs = ctmt.executeQuery();
-		if(rs.next()) {
-			idOrdenGenerado = rs.getInt(1);
-			System.out.println(idOrdenGenerado);
-			ctmt = con.prepareCall(procOrderDetails);
-			
-			for(ProductoJson producto: orden.getProducts()) {
-				ctmt.setInt(1,idOrdenGenerado);
-				ctmt.setInt(2,producto.getId());
-				ctmt.setInt(3, producto.getCantidad());
-				ctmt.executeQuery();
-			}
-		}else {
-			System.out.println("oppss");
-		}
-		con.close();
-	}catch(SQLException sqle){
-		System.out.println(sqle.getMessage());
-	}
-	return idOrdenGenerado;
 }
-*/
