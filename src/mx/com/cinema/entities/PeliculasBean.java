@@ -4,15 +4,14 @@ import java.util.Date;
 import java.time.format.DateTimeFormatter;
 
 
-public class PeliculasBean extends SucursalBean{
+public class PeliculasBean extends SucursalBean {
 	private int idPelicula;
 	private String nombrePelicula;
 	private String clasificacionPeliculas;
-	DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("HH:mm:ss");
+	
 	private String duracionPelicula ;
 	private Date fechaEstreno;
 	private String imagenPelicula;
-	
 	public PeliculasBean () {
 	
 	}

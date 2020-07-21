@@ -4,11 +4,16 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import mx.com.cinema.entities.FormatosBean;
 import mx.com.cinema.entities.IdiomaBean;
+import mx.com.cinema.entities.PeliculasBean;
 import mx.com.cinema.entities.SucursalBean;
 
 public class CatalogosCrud {
@@ -22,7 +27,7 @@ public class CatalogosCrud {
 		
 		ConnectionDB conexion = new ConnectionDB();
 		con = conexion.getConexion();
-		String procSucursales = "{call surcursalesActivas}";
+		String procSucursales = "{call sucursalesActivas}";
 		try {
 			ctmt = con.prepareCall(procSucursales);
 			rs = ctmt.executeQuery();
@@ -89,21 +94,30 @@ public class CatalogosCrud {
 	}
 	
 	
+	public List<PeliculasBean> getListapelicula(){
+		List<PeliculasBean> listaPeliculas = new ArrayList<PeliculasBean>();
+		ConnectionDB conexion = new ConnectionDB();
+		con = conexion.getConexion();
+		String llamarproc ="{call mostrarPeliIdNombre}";
+		try {
+			ctmt =con.prepareCall(llamarproc) ;
+			rs= ctmt.executeQuery();
+			while(rs.next()) {
+				PeliculasBean pelencontrada = new PeliculasBean();
+				pelencontrada.setNombrePelicula(rs.getString("Nombre"));
+				pelencontrada.setIdPelicula(rs.getInt("ID"));
+			
+				
+				
+				listaPeliculas.add(pelencontrada);
+			}
+			con.close();
+		}
+		catch(SQLException sqle) {
+			System.out.println(sqle.getMessage());
+		}
+		return listaPeliculas;
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	}
 	
 }

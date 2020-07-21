@@ -14,7 +14,7 @@ import java.sql.Date;
 import mx.com.cinema.model.ConnectionDB;
 import mx.com.cinema.entities.PeliculasBean;
 import mx.com.cinema.entities.BusquedaPelBean;
-
+import mx.com.cinema.entities.BusquedaPeliculaBean;
 import mx.com.cinema.entities.FormatosBean;
 
 
@@ -60,9 +60,36 @@ public class PeliculasCrud {
 			return listaPeliculas;
 		}
 	
-	public List<PeliculasBean> Busqueda(BusquedaPelBean peliculas ){
+	public List<BusquedaPeliculaBean> Busqueda(BusquedaPeliculaBean peliculas ){
 	
 		String getPeliculas = "{call mostrarPeli(?,?,?,?,?)}";
+		
+		List<BusquedaPeliculaBean> listaenontrado = new ArrayList <BusquedaPeliculaBean>();
+		try {
+			java.sql.Date sDate = new java.sql.Date(peliculas.getFecha().getTime());
+			ctmt = con.prepareCall(getPeliculas);
+			ctmt.setInt(1,peliculas.getIdpel());
+			ctmt.setInt(2,peliculas.getIdidioma());
+			ctmt.setInt(3,peliculas.getIdformato());
+			ctmt.setInt(4,peliculas.getIdsucursal());
+			ctmt.setDate(5,sDate);
+			
+			ctmt.set
+			/*id del formato 
+			 * 
+			 * id del idioma 
+			 * 
+			 * */
+		}catch(SQLException sqle) {
+			System.out.println(sqle.getMessage());
+		}
+		
+		
+		
+		
+		
+		
+		
 		List<PeliculasBean> listaPeliculas = new ArrayList <> ();
 		
 		try {

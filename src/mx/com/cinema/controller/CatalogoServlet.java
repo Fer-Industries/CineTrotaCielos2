@@ -41,6 +41,7 @@ public class CatalogoServlet extends HttpServlet {
 		catalogos .setListaSucursales(catalogosCrud.getSurcursales());
 		catalogos.setListaFormatos(catalogosCrud.getFormatos());
 		catalogos.setListaIdiomas(catalogosCrud.getIdiomas());
+		catalogos.setListaPeliculas(catalogosCrud.getListapelicula());
 		
 		Gson gson = new Gson();
 		String jsonSucursales = gson.toJson(catalogos);

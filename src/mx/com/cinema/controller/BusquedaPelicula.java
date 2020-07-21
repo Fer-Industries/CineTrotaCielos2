@@ -1,6 +1,8 @@
 package mx.com.cinema.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+
+import mx.com.cinema.entities.BusquedaPeliculaBean;
 import mx.com.cinema.entities.PeliculasBean;
 import mx.com.cinema.model.PeliculasCrud;
 /**
@@ -39,16 +43,18 @@ public class BusquedaPelicula extends HttpServlet {
 				
 				Gson gson = new Gson();
 				/// es convertir el json recibido a una clase de Java 
-				PeliculasBean busqueda = gson.fromJson(jsonPelicula, PeliculasBean.class);
+				BusquedaPeliculaBean busqueda = gson.fromJson(jsonPelicula, BusquedaPeliculaBean.class);
 				
-				PeliculasCrud ordenCrud = new PeliculasCrud();
 				
-				int ordenGenerada = ordenCrud.generarOrden(orden);
 				
-				System.out.println(orden.toString());
-				response.setContentType("text/plain");
+				PeliculasCrud peliculas=new PeliculasCrud();
+				
+				List<BusquedaPeliculaBean> listaEstrenos= peliculas.Busqueda(busqueda);
+				
+				String jsonPeliculas=gson.toJson(listaEstrenos);
+				response.setContentType("application/json");
 				response.setCharacterEncoding("UTF-8");
-				response.getWriter().write("" +ordenGenerada); 
+				response.getWriter().write(jsonPeliculas);
 	}
 
 	/**
