@@ -1,6 +1,7 @@
 package mx.com.cinema.entities;
 import java.util.Date;
 
+
 public class PeliculasBean {
 	private int idPelicula;
 	private String nombrePelicula;

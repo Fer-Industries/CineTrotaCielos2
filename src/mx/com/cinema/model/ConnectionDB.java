@@ -9,39 +9,25 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+
 public class ConnectionDB {
 	
 	Connection con;
 	
 	public ConnectionDB() {
-		Properties prop = new Properties();
-		InputStream is;
-		//System.out.println(System.getProperty("user.dir"));
-		try {
-			is = getClass().getClassLoader().getResourceAsStream("application.properties");
-			prop.load(is);
-		}catch(IOException ioe) {
-			System.out.println(ioe.getMessage());
-			return;
-		}
 		
-		String endpoint = prop.getProperty("bd.endpoint");
-		String port = prop.getProperty("bd.port");
-		String name = prop.getProperty("bd.name");
-		String user = prop.getProperty("bd.user");
-		String pass = prop.getProperty("bd.pass");
-		
-		try{
-			String connectionURL = "jdbc:mysql://"+endpoint+":"+port+"/"+name+"?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&autoReconnect=true&useSSL=false&" +
-		   "user="+user+"&password="+pass; 
-			con = DriverManager.getConnection(connectionURL);
-			if(con != null){
-				System.out.println("Conexion exitosa");
-			}else{
-				System.out.println("Conexion fallida");
-			}
+	
+		try{ 
+			//java database conectivity 
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cinema?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&autoReconnect=true&useSSL=false&" +"user=root&password=Starwars.97");
+				/* local host en vez de eso va la ip*/
+			if(con != null)
+				System.out.println("Success Connection");
+			else
+				System.out.println("Fail Connection");
 		}catch(SQLException sqle){
-			System.out.println(sqle.getMessage());
+			System.out.println("Checa la conexion");
+			sqle.getMessage();
 		}
 	}
 	
