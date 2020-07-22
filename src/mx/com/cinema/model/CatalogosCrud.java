@@ -68,10 +68,10 @@ public class CatalogosCrud {
 	}
 	
 	
-	public List<IdiomaBean> getIdiomas( )
+	public List<IdiomaBean> getIdiomas()
 	{
 		/*Falta el nombre del proc y las columnas de la base de datos*/
-		List<IdiomaBean> listaidioma = new ArrayList<IdiomaBean>();
+		List<IdiomaBean> listaIdiomas = new ArrayList<IdiomaBean>();
 		ConnectionDB conection = new ConnectionDB();
 		con = conection.getConexion();
 		String textsql= "{call MostrarIDioma}";
@@ -83,14 +83,14 @@ public class CatalogosCrud {
 				idioma.setIdidioma(rs.getInt("ID"));
 				idioma.setNombre(rs.getString("Nombre"));
 				idioma.setStatus(rs.getInt("Estatus"));
-				listaidioma.add(idioma);
+				listaIdiomas.add(idioma);
 			}
 			con.close();
 		}
 		catch(SQLException sqle) {
 			System.out.println(sqle.getMessage());
 		}
-		return listaidioma;
+		return listaIdiomas;
 	}
 	
 	

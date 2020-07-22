@@ -38,7 +38,7 @@ public class CatalogoServlet extends HttpServlet {
 		CatalogosCrud catalogosCrud = new CatalogosCrud();
 		
 		CatalogosBean catalogos = new CatalogosBean();
-		catalogos .setListaSucursales(catalogosCrud.getSurcursales());
+		catalogos.setListaSucursales(catalogosCrud.getSurcursales());
 		catalogos.setListaFormatos(catalogosCrud.getFormatos());
 		catalogos.setListaIdiomas(catalogosCrud.getIdiomas());
 		catalogos.setListaPeliculas(catalogosCrud.getListapelicula());
