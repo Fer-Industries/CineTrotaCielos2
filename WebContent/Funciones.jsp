@@ -52,7 +52,7 @@
 		     			</div>
 		     			<div class="container mx-auto p-3 ">
 			     			<select id="inputCine" class="form-control col-md-10">
-						        <option selected>Selecciona tu cine </option>
+						        <option selected value=0 >Selecciona tu cine </option>
 						    </select>
 		     			</div>
  				</div>
@@ -83,7 +83,7 @@
 				        <div class="caja-2 sidebar-box-title px-2" style="background: linear-gradient(to right ,#3E3241,#6E2C7E);">Día <i class="far fa-calendar-alt"></i></div>
 				       
 				         <div class="container mx-auto p-3">
-				        <input type="date" id="fecha" name="fecha" min="2020-07-20" max="2020-08-20">
+				        <input type="date" id="fecha" name="fecha"  max="2020-08-20">
 				 
 				  </div>
 				  </div>
@@ -101,9 +101,11 @@
 				          <div class="check-row"><label><input id="idioma" type="radio" name="lang-filter" value="other" /> </label></div>
 				        Social buttons -->
 				        
-				       <div class="check-row" id="idioma"></div><br>
-				        
-				         
+				       <div class="check-row" >
+				       <label  id="idioma"></label>
+				       
+				       </div><br>	
+				       			       
 				        </div>
 				      </div>
 				      <div class="sidebar-box rounded ">
@@ -114,7 +116,7 @@
 				     <i class="fas fa-tv"></i></div>
 				     <div class="container mx-auto p-3">
 				      <select id="inputPelicula" class="form-control col-md-10">
-				        <option selected>Selecciona Pelicula </option>
+				        <option selected value=0>Selecciona Pelicula </option>
 				      </select>
 				    </div>
 				  </div>
@@ -126,7 +128,7 @@
 				     
 				     <div class="container mx-auto p-3">
 				      <select id="inputFormato" class="form-control col-md-10">
-				        <option selected>Selecciona Formato </option>
+				        <option selected value=0>Selecciona Formato </option>
 				      </select>
 			
 				  </div>
