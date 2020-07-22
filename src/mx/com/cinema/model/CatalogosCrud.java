@@ -106,9 +106,6 @@ public class CatalogosCrud {
 				PeliculasBean pelencontrada = new PeliculasBean();
 				pelencontrada.setNombrePelicula(rs.getString("Nombre"));
 				pelencontrada.setIdPelicula(rs.getInt("ID"));
-			
-				
-				
 				listaPeliculas.add(pelencontrada);
 			}
 			con.close();

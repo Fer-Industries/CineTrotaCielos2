@@ -10,19 +10,19 @@ import java.util.Date;
  * pelicula
  * formatos
  * */
-public class BusquedaPeliculaBean{
-	 private int idpel;
-	 private int idsucursal;
-	 private int ididioma;
-	 private int idformato;
-	 private String hora;
+public class BusquedaPeliculaBean extends FuncionesBean{
+	 
 	 private String horafinal;
 	 private String NombrePel;
 	 private String NombreSuc;
 	 private String imagen;
 	 private String Nombreformato;
 	 private String NombreIdioma;
-	 
+	 //PEL_IMAGEN, PEL_Nombre as Nombre ,  f.FUN_Hora as Hora, f.FUN_dia as dia, fo.FOR_nombre as Formato, 
+	 void BusquedaPeliculaBean() {
+			
+	}
+		 
 	 public String getNombrePel() {
 		return NombrePel;
 	}
@@ -70,51 +70,8 @@ public class BusquedaPeliculaBean{
 	public void setHorafinal(String horafinal) {
 		this.horafinal = horafinal;
 	}
-	private Date fecha;
-	 
-	 public Date getFecha() {
-		return fecha;
-	}
 
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	}
 
-	void BusquedaPeliculaBean() {
-			
-	}
-	 
-	public int getIdpel() {
-		return idpel;
-	}
-	public void setIdpel(int idpel) {
-		this.idpel = idpel;
-	}
-	public int getIdsucursal() {
-		return idsucursal;
-	}
-	public void setIdsucursal(int idsucursal) {
-		this.idsucursal = idsucursal;
-	}
-	public int getIdidioma() {
-		return ididioma;
-	}
-	public void setIdidioma(int ididioma) {
-		this.ididioma = ididioma;
-	}
-	public int getIdformato() {
-		return idformato;
-	}
-	public void setIdformato(int idformato) {
-		this.idformato = idformato;
-	}
-	public String getHora() {
-		return hora;
-	}
-	public void setHora(String hora) {
-		this.hora = hora;
-	}
-	
 	
 	
 }

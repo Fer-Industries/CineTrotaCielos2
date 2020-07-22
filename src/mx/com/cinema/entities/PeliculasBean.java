@@ -4,11 +4,10 @@ import java.util.Date;
 import java.time.format.DateTimeFormatter;
 
 
-public class PeliculasBean extends SucursalBean {
+public class PeliculasBean  {
 	private int idPelicula;
 	private String nombrePelicula;
 	private String clasificacionPeliculas;
-	
 	private String duracionPelicula ;
 	private Date fechaEstreno;
 	private String imagenPelicula;

@@ -45,8 +45,7 @@ public class BusquedaPelicula extends HttpServlet {
 				/// es convertir el json recibido a una clase de Java 
 				BusquedaPeliculaBean busqueda = gson.fromJson(jsonPelicula, BusquedaPeliculaBean.class);
 				
-				
-				
+
 				PeliculasCrud peliculas=new PeliculasCrud();
 				
 				List<BusquedaPeliculaBean> listaEstrenos= peliculas.Busqueda(busqueda);
