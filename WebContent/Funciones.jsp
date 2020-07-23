@@ -9,12 +9,14 @@
 <meta charset="ISO-8859-1">
 <title>Busqueda</title>
 
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
     <link rel="stylesheet" href="Css/Funciones.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
     <link rel="stylesheet" href="css/weather-icons.css">
 </head>
-<body class= "fondo animate__animated animate__fadeIn" >
+<body id="cuerpo" class= "fondo animate__animated animate__fadeIn" >
 
   <nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-dark animate_animated animate_fadeInDown  shadow-lg sticky-top">
 		<button class="navbar-toggler navbar-toggler-right togglercolor" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,14 +83,14 @@
 				<div class="sidebar-box rounded mb-3">
 				<div  class="card caja-1 " style="background-color:  #A497A7;">
 				        <div class="caja-2 sidebar-box-title px-2" style="background: linear-gradient(to right ,#3E3241,#6E2C7E);">Día <i class="far fa-calendar-alt"></i></div>
-				       
 				         <div class="container mx-auto p-3">
-				        <input type="date" id="fecha" name="fecha"  max="2020-08-20">
+				         <p>Date: <input type="text" id="fecha" placeholder="seleciona la fecha <3">
+				       
+				       <!--   <input type="date" id="fecha" name="fecha"  max="2020-08-20">-->
 				 
 				  </div>
 				  </div>
 				  </div>
-
 				   
 				       <div  class="card caja-1 " style="background-color:  #A497A7;">
 				       <div class="sidebar-box-title px-2 caja-2" style="background: linear-gradient(to right ,#3E3241,#6E2C7E);">Idioma <i class="fas fa-language"></i></div>
@@ -289,6 +291,11 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.0.4/wNumb.js"></script>
 	  <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.1.0/nouislider.js"></script>
 	  <script src="JS/Funciones.js"></script>
+	  
+	  
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	  
   
 </body>
 </html>

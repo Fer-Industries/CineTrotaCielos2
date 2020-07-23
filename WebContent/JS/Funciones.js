@@ -38,7 +38,6 @@ $.get("/Cinema/CatalogoServlet",function(response){
 });
 
 $.get("/Cinema/CatalogoServlet",function(response){
-	
 	console.log(response);
 	let bandera = 0;
 	response.listaIdiomas.forEach(idioma=>{
@@ -155,26 +154,33 @@ function  idiomaseleccionado(){
 
 
 
-document.getElementById("#fecha").addEventListener(onpageload,function(){
-	var date = new date.getDate();
-	var dia = date.getDate()+1; 
-    var mes = date.getMonth() + 1; 
-    var aniyear = date.getFullYear(); 
-	document.getElementById("fecha").min(date);	
-})
- 
-	
- 
+let enviarfecha=()=>{
+var hoy = new Date();
+var dd = hoy.getDate();
+var mm = hoy.getMonth()+1;
+var yyyy = hoy.getFullYear();
+hoy = yyyy+'/'+mm+'/'+dd;
+console.log("Desde loasbody"+ hoy);
+return hoy;
+
+}
+
+
+$(function() {
+$("#fecha").datepicker({ minDate: 0 });
+});
 
 const enviarInfo=()=>{
 	var date = new Date($('#fecha').val()); 
-    day = date.getDate()+1; 
+    day = date.getDate(); 
     month = date.getMonth() + 1; 
     year = date.getFullYear(); 
-		 
-
- 	let fechaselec = [day, month, year].join('/');
+	
+	console.log(document.getElementById("fecha"));
+ 	let fechaselec = [year, month, day].join('/');
+	
 	console.log(fechaselec);
+	
  	/*console.log([day, month, year].join('/')); */ 
 	console.log(minimo);
 	console.log(maximo);	 
@@ -191,86 +197,37 @@ const enviarInfo=()=>{
 	let idpelicula = document.getElementById("inputPelicula").value;
 	console.log("id pelicula"+ idpelicula);
 	
-	/* Fuente http://www.eslomas.com/2005/09/obtener-el-valor-de-un-radiobutton-seleccionado-con-javascript/ */
-}
-
-function infoOrden(){
-	let customerVal = document.getElementById("busquedaCustomer").value;
-	let requiredDate = document.getElementById("requiredDate").value;
-	
-	if(customerVal.length == 0){
-		Swal.fire({
-			icon:'error',
-			text:'No ha escrito el cliente'
-		});
-		//impedir que siga la función corriendo después del if 
-		return;
-	}
-	
-	if(Idioma.length == 0){
-		Idioma.value = 0;
-	}
-	// guardo el arreglo del tbody que regresa el jQuery
-	let arregloTBody = $("#tbodySeleccionados");
-	//DESPUÉS OBTENGO EL ARREGLO DE TR
-	let arregloTR = arregloTBody[0].children;
-	// estoy entrando a cada row de la tabla
-	let arregloProductos = [];
-	//push() agregar elementos a nuestro arreglo
-	for(let tr of arregloTR){
-		if(tr.children[4].textContent == 0){
-			Swal.fire({
-				icon:'error',
-				text:'No ha indicado cantidad del producto ' + tr.children[1].textContent  
-			});
-			return;
-		}else{
-			let producto = {
-				id:parseInt(tr.children[0].textContent,10),
-				cantidad:parseInt(tr.children[4].textContent,10)
-			};
-			arregloProductos.push(producto);
-		}
-	}
-
-	let infoOrder = {
-		customer: customerVal,
-		fechaReq:requiredDate,
-		products:arregloProductos,
-		horafinal:idioma
-	};
-	
 	let ParametrosPel = {
-		nombre : custemerVal
+		idPelicula: idpelicula,
+		idSucursal: idubicacion,
+		horaFuncion: minimo,
+		diaFuncion: fechaselec,
+		idFormato: idformato,
+		idIdioma:ididioma,
+		horaFinal:maximo
 	}
 	
-	
-	
-	console.log(ParametrosPel);
 	 $.ajax( {
-         url: '/Cinema/BusquedaPeliculas',
+         url: '/Cinema/BusquedaPelicula',
          type: 'get',
          contentType:'application/json',
          data: { // EL ENVIO DEL JSON, PONEMOS EN LA PROPIEDAD person el valor convertido en JSON para jQuery 
-        	 infoOrder: JSON.stringify(ParametrosPel)
+        	 enviarInfo: JSON.stringify(ParametrosPel)
          },
          success: function (response) {
-        	 console.log(response);
-        	 if(parseInt(response) > 0){
-        		 Swal.fire({
-            		 icon:'success',
-            		 text:'Para seguimiento de la orden el id es ' + response
-            	 });
-        	 }else{
-        		 Swal.fire({
-            		 icon:'error',
-            		 text:'Se produjo un error para generar la orden'
-            	 });
-        	 }
-        	 
+        	 console.log(response); 
          }
      } );
+	
+	/* Fuente http://www.eslomas.com/2005/09/obtener-el-valor-de-un-radiobutton-seleccionado-con-javascript/ */
 }
+
+
+
+
+ 
+	
+
 
 
 

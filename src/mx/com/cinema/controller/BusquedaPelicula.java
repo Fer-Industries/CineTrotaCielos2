@@ -37,7 +37,8 @@ public class BusquedaPelicula extends HttpServlet {
 		// TODO Auto-generated method stub
 				//response.getWriter().append("Served at: ").app-end(request.getContextPath());
 				// estoy obteniendo el parametro de la peticion con el nombre persona
-				String jsonPelicula= request.getParameter("ParametrosPel");	
+				String jsonPelicula= request.getParameter("enviarInfo");	
+				System.out.println(jsonPelicula);
 				//if(request.getContentType()=="application/json"){}
 				
 				

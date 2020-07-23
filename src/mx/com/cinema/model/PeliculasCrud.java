@@ -62,6 +62,7 @@ public class PeliculasCrud {
 		}
 	
 	public List<BusquedaPeliculaBean> Busqueda(BusquedaPeliculaBean peliculas ){
+		System.out.println(peliculas);
 		List<BusquedaPeliculaBean> listaencontrado = new ArrayList <BusquedaPeliculaBean>();
 		String generandoConsulta = 
 				"select PEL_IMAGEN as Imagen, PEL_Nombre as Nombre ,  f.FUN_Hora as Hora, f.FUN_dia as Dia, fo.FOR_nombre as Formato, s.SUC_nombre as Sucursal,\r\n" + 
