@@ -7,7 +7,7 @@ public class FuncionesBean {
 	private int idPelicula;
 	private int idSucursal;
 	private String horaFuncion;
-	private Date diaFuncion;
+	private String diaFuncion;
 	private int idFormato;
 	private int idIdioma;
 	
@@ -67,11 +67,11 @@ public class FuncionesBean {
 	}
 
 
-	public Date getDiaFuncion() {
+	public String getDiaFuncion() {
 		return diaFuncion;
 	}
 
-	public void setDiaFuncion(Date diaFuncion) {
+	public void setDiaFuncion(String diaFuncion) {
 		this.diaFuncion = diaFuncion;
 	}
 

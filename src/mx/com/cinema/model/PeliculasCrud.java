@@ -10,7 +10,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.Date;
+
+
+
 
 import mx.com.cinema.model.ConnectionDB;
 import mx.com.cinema.entities.PeliculasBean;
@@ -19,6 +21,7 @@ import mx.com.cinema.entities.BusquedaPeliculaBean;
 import mx.com.cinema.entities.FormatosBean;
 
 
+import java.util.Date;
 
 
 public class PeliculasCrud {
@@ -67,52 +70,83 @@ public class PeliculasCrud {
 		String generandoConsulta = 
 				"select PEL_IMAGEN as Imagen, PEL_Nombre as Nombre ,  f.FUN_Hora as Hora, f.FUN_dia as Dia, fo.FOR_nombre as Formato, s.SUC_nombre as Sucursal,\r\n" + 
 				"i.IDI_nombre as Idioma\r\n" + 
-				" from peliculas as p  \r\n" + 
+				" from peliculas as p  \r\n" + 	
 				"inner join funciones as f on  p.PEL_idpelicula = f.FUN_idpelicula \r\n" + 
 				"inner join formatos as fo on fo.FOR_idformato = f.FUN_idformato\r\n" + 
 				"inner join sucursal as s on f.FUN_idsucursal = s.SUC_idsucursal\r\n" + 
 				"inner join idiomas as i on i.IDI_id = f.FUN_ididioma where f.FUN_dia >= curdate() and f.FUN_Hora >= now()";
         try {
-		PreparedStatement ptmt = con.prepareStatement(generandoConsulta);
+		
         int bandera = 1;
+        int idpelicula = 0;
+        int idsucursal = 0;
+        int idformato = 0;
+        int ididioma = 0;
+        
         if(peliculas.getIdFormato() > 0){
             generandoConsulta = generandoConsulta + " and FOR_idformato = ?";
-            ptmt.setInt(bandera, peliculas.getIdFormato());
+            idformato = bandera;
             bandera++;
         }
         if(peliculas.getIdSucursal() > 0 ){
             generandoConsulta = generandoConsulta + " and s.SUC_idsucursal = ?";           
-            ptmt.setInt(bandera, peliculas.getIdSucursal());
+            idsucursal = bandera;
             bandera++;
         }
         if(peliculas.getIdPelicula() > 0 ){
             generandoConsulta = generandoConsulta + " and p.PEL_idpelicula = ?";           
-            ptmt.setInt(bandera, peliculas.getIdPelicula());
+            idpelicula = bandera;
             bandera++;
         }
         if(peliculas.getIdIdioma() > 0 ){
             generandoConsulta = generandoConsulta + " and  i.IDI_id = ?";           
-            ptmt.setInt(bandera, peliculas.getIdIdioma());
+            ididioma = bandera;
             bandera++;
         }
+        generandoConsulta = generandoConsulta + " and f.FUN_dia = ?";
         
-        java.sql.Date sDate = new java.sql.Date(peliculas.getDiaFuncion().getTime());
-        generandoConsulta = generandoConsulta + " and f.FUN_dia = ?";   
-        ptmt.setDate(bandera, sDate);
-        bandera++;
+        generandoConsulta = generandoConsulta + " and f.FUN_Hora  >= ?";
+        
+       // generandoConsulta = generandoConsulta + " and f.FUN_Hora  <= ?";
+        
+        PreparedStatement ptmt = con.prepareStatement(generandoConsulta);
+        if(idpelicula >0) {
+        	ptmt.setInt(idpelicula, peliculas.getIdPelicula());
+        }
+        if(idsucursal >0) {
+        	ptmt.setInt(idsucursal, peliculas.getIdSucursal());
+        }
+        if(idformato > 0) {
+        	ptmt.setInt(idformato, peliculas.getIdFormato());
+        }
+        if(ididioma > 0) {
+        	ptmt.setInt(ididioma, peliculas.getIdIdioma());	
+        }
         
         
-        generandoConsulta = generandoConsulta + " and f.FUN_Hora  >= ?";   
+    
+        
+        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+        
+        Date parsed = format.parse(peliculas.getDiaFuncion());
+        java.sql.Date Dsql = new java.sql.Date(parsed.getTime());
+        System.out.println("yo soy la fecha ya con el formato papu :"+ Dsql);
+        ptmt.setDate(bandera, Dsql);
+        bandera++; 
+        
+        
+    
+        
         DateFormat formatter = new SimpleDateFormat("HH:mm:ss");
-        java.sql.Time timeValue = new java.sql.Time(formatter.parse(peliculas.getHoraFuncion()).getTime());
+        java.sql.Time timeValue = new java.sql.Time(formatter.parse("13:30:00").getTime());
         ptmt.setTime(bandera, timeValue);
         bandera++;
         
-        
-        generandoConsulta = generandoConsulta + " and f.FUN_Hora  <= ?";   
-        java.sql.Time horafinal= new java.sql.Time(formatter.parse(peliculas.getHorafinal()).getTime());
+      /*  DateFormat formateando = new SimpleDateFormat("HH:mm:ss");
+        java.sql.Time horafinal= new java.sql.Time(formateando.parse(peliculas.getHorafinal()).getTime());
         ptmt.setTime(bandera, horafinal);
-        bandera++;
+        bandera++; 
+        */
         
         System.out.println(generandoConsulta);
         
@@ -127,7 +161,7 @@ public class PeliculasCrud {
 			
 			found.setHoraFuncion(rs.getTime("Hora").toString());
 			
-			found.setDiaFuncion(rs.getDate("Dia"));
+			found.setDiaFuncion(rs.getDate("Dia").toString());
 			
 			found.setNombreformato(rs.getNString("Formato"));
 			
@@ -140,11 +174,11 @@ public class PeliculasCrud {
         }catch(SQLException sqle) {
         	System.out.println(sqle.getMessage() + "chechar peliculas crud metodo Busqueda");
         }catch(ParseException pe) {
-			System.out.println(pe.getMessage() + "La cagamos en la conversionn disculpa :c ia estaooooosss");
-		} 
+        	System.out.println(pe.getMessage() + "checate la conversion");
+        }
         
         System.out.println(generandoConsulta);
-		
+        System.out.println(listaencontrado);
 		
 	/*	String getPeliculas = "{call mostrarPeli(?,?,?,?,?,?)}";
 		

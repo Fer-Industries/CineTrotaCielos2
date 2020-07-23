@@ -142,8 +142,9 @@ function  idiomaseleccionado(){
 	var flag = 0;
 	for(var i = 0; i< elementos.length;i++){
 		if(elementos[i].checked){
-			register = elementos[i].value; break;
+			register = elementos[i].value; 
 			flag = 1;
+			break;
 		}
 	}
 	if(flag <= 0){
@@ -172,14 +173,14 @@ $("#fecha").datepicker({ minDate: 0 });
 
 const enviarInfo=()=>{
 	var date = new Date($('#fecha').val()); 
-    day = date.getDate(); 
+    day = date.getDate() + 1; 
     month = date.getMonth() + 1; 
     year = date.getFullYear(); 
 	
 	console.log(document.getElementById("fecha"));
- 	let fechaselec = [year, month, day].join('/');
+ 	let fechaselec = [year,month,day].join('/');
 	
-	console.log(fechaselec);
+	console.log("yo soy la fecha que selecciono :" + fechaselec);
 	
  	/*console.log([day, month, year].join('/')); */ 
 	console.log(minimo);
@@ -192,8 +193,10 @@ const enviarInfo=()=>{
 	console.log("id formato"+idformato);
 	//console.log(document.getElementById("inputFormato"));
 	//console.log(document.getElementById("idioma"));
+	
 	let ididioma =  idiomaseleccionado();	
-	console.log ("id idoma: " + ididioma);
+	console.log ("id idioma: " + ididioma);
+	
 	let idpelicula = document.getElementById("inputPelicula").value;
 	console.log("id pelicula"+ idpelicula);
 	
