@@ -173,7 +173,7 @@ $("#fecha").datepicker({ minDate: 0 });
 
 const enviarInfo=()=>{
 	var date = new Date($('#fecha').val()); 
-    day = date.getDate() + 1; 
+    day = date.getDate() ; 
     month = date.getMonth() + 1; 
     year = date.getFullYear(); 
 	

@@ -103,7 +103,9 @@ public class PeliculasCrud {
             ididioma = bandera;
             bandera++;
         }
+        
         generandoConsulta = generandoConsulta + " and f.FUN_dia = ?";
+        
         
         generandoConsulta = generandoConsulta + " and f.FUN_Hora  >= ?";
         
@@ -124,8 +126,6 @@ public class PeliculasCrud {
         }
         
         
-    
-        
         SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
         
         Date parsed = format.parse(peliculas.getDiaFuncion());
@@ -133,23 +133,20 @@ public class PeliculasCrud {
         System.out.println("yo soy la fecha ya con el formato papu :"+ Dsql);
         ptmt.setDate(bandera, Dsql);
         bandera++; 
+
         
-        
-    
-        
-        DateFormat formatter = new SimpleDateFormat("HH:mm:ss");
-        java.sql.Time timeValue = new java.sql.Time(formatter.parse("13:30:00").getTime());
+       DateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+        java.sql.Time timeValue = new java.sql.Time(formatter.parse("21:00:00").getTime());
+        System.out.println(timeValue);
         ptmt.setTime(bandera, timeValue);
-        bandera++;
+        bandera++; 
         
       /*  DateFormat formateando = new SimpleDateFormat("HH:mm:ss");
         java.sql.Time horafinal= new java.sql.Time(formateando.parse(peliculas.getHorafinal()).getTime());
         ptmt.setTime(bandera, horafinal);
         bandera++; 
         */
-        
-        System.out.println(generandoConsulta);
-        
+       
         rs = ptmt.executeQuery();
         
         while(rs.next()) {
@@ -159,7 +156,9 @@ public class PeliculasCrud {
 			
 			found.setNombrePel(rs.getString("Nombre"));
 			
+			
 			found.setHoraFuncion(rs.getTime("Hora").toString());
+			
 			
 			found.setDiaFuncion(rs.getDate("Dia").toString());
 			
@@ -178,7 +177,7 @@ public class PeliculasCrud {
         }
         
         System.out.println(generandoConsulta);
-        System.out.println(listaencontrado);
+        //System.out.println(listaencontrado);	
 		
 	/*	String getPeliculas = "{call mostrarPeli(?,?,?,?,?,?)}";
 		
