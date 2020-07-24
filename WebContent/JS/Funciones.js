@@ -208,7 +208,7 @@ const enviarInfo=()=>{
 		diaFuncion: fechaselec,
 		idFormato: idformato,
 		idIdioma:ididioma,
-		horafinal:maximo
+		horaFinal:maximo
 	}
 	console.log(ParametrosPel);
 	 $.ajax( {
