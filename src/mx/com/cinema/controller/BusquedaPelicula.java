@@ -35,22 +35,13 @@ public class BusquedaPelicula extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
-				//response.getWriter().append("Served at: ").app-end(request.getContextPath());
-				// estoy obteniendo el parametro de la peticion con el nombre persona
+			
 				String jsonPelicula= request.getParameter("enviarInfo");	
 				System.out.println(jsonPelicula);
-				//if(request.getContentType()=="application/json"){}
-				
-				
-				Gson gson = new Gson();
-				/// es convertir el json recibido a una clase de Java 
+				Gson gson = new Gson();			 
 				BusquedaPeliculaBean busqueda = gson.fromJson(jsonPelicula, BusquedaPeliculaBean.class);
-				
-
-				PeliculasCrud peliculas=new PeliculasCrud();
-				
-				List<BusquedaPeliculaBean> listaEstrenos= peliculas.Busqueda(busqueda);
-				
+				PeliculasCrud peliculas =new PeliculasCrud();
+				List<BusquedaPeliculaBean> listaEstrenos = peliculas.busqueda(busqueda);
 				String jsonPeliculas=gson.toJson(listaEstrenos);
 				response.setContentType("application/json");
 				response.setCharacterEncoding("UTF-8");

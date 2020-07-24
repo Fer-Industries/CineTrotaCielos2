@@ -11,8 +11,9 @@ import java.util.Date;
  * formatos
  * */
 public class BusquedaPeliculaBean extends FuncionesBean{
-	 
+	 //CAMEL CASE!!!!
 	 private String horafinal;
+	 private String horaInicio;
 	 private String NombrePel;
 	 private String NombreSuc;
 	 private String imagen;
@@ -69,6 +70,14 @@ public class BusquedaPeliculaBean extends FuncionesBean{
 
 	public void setHorafinal(String horafinal) {
 		this.horafinal = horafinal;
+	}
+
+	public String getHoraInicio() {
+		return horaInicio;
+	}
+
+	public void setHoraInicio(String horaInicio) {
+		this.horaInicio = horaInicio;
 	}
 
 

@@ -172,6 +172,7 @@ $("#fecha").datepicker({ minDate: 0 });
 });
 
 const enviarInfo=()=>{
+	//CAMEL CASE
 	var date = new Date($('#fecha').val()); 
     day = date.getDate() ; 
     month = date.getMonth() + 1; 
@@ -199,17 +200,17 @@ const enviarInfo=()=>{
 	
 	let idpelicula = document.getElementById("inputPelicula").value;
 	console.log("id pelicula"+ idpelicula);
-	
+	//CAMEL CASE
 	let ParametrosPel = {
 		idPelicula: idpelicula,
 		idSucursal: idubicacion,
-		horaFuncion: minimo,
+		horaInicio: minimo,
 		diaFuncion: fechaselec,
 		idFormato: idformato,
 		idIdioma:ididioma,
-		horaFinal:maximo
+		horafinal:maximo
 	}
-	
+	console.log(ParametrosPel);
 	 $.ajax( {
          url: '/Cinema/BusquedaPelicula',
          type: 'get',

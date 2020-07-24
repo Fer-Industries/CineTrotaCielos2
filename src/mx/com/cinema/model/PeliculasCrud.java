@@ -31,17 +31,15 @@ public class PeliculasCrud {
 	CallableStatement ctmt;
 	ResultSet rs;
 
-
-	
 	public PeliculasCrud() {
 		conexion= new ConnectionDB();
 		con  = conexion.getConexion();
 	}
 	
 	public List<PeliculasBean> getPeliculasEstreno(){
-		String getPelEstreno = "{call Pel_estreno}";
-		List<PeliculasBean> listaPeliculas = new ArrayList <> ();
 		
+		String getPelEstreno = "{call Pel_estreno}";
+		List<PeliculasBean> listaPeliculas = new ArrayList <> ();	
 		try {
 			ctmt= con.prepareCall(getPelEstreno);
 			
@@ -54,8 +52,7 @@ public class PeliculasCrud {
 				peliculaEncontrada.setDuracionPelicula(rs.getString("PEL_duracion"));
 				peliculaEncontrada.setFechaEstreno(rs.getDate("PEL_fechaestreno"));
 				peliculaEncontrada.setImagenPelicula(rs.getString("PEL_imagen"));
-				listaPeliculas.add(peliculaEncontrada);
-			
+				listaPeliculas.add(peliculaEncontrada);			
 			}
 			con.close();
 		}catch (SQLException sqle){
@@ -63,9 +60,10 @@ public class PeliculasCrud {
 		}
 			return listaPeliculas;
 		}
-	
-	public List<BusquedaPeliculaBean> Busqueda(BusquedaPeliculaBean peliculas ){
-		System.out.println(peliculas);
+				
+	public List<BusquedaPeliculaBean> busqueda (BusquedaPeliculaBean parametrosPel ){
+		System.out.println(parametrosPel);
+		
 		List<BusquedaPeliculaBean> listaencontrado = new ArrayList <BusquedaPeliculaBean>();
 		String generandoConsulta = 
 				"select PEL_IMAGEN as Imagen, PEL_Nombre as Nombre ,  f.FUN_Hora as Hora, f.FUN_dia as Dia, fo.FOR_nombre as Formato, s.SUC_nombre as Sucursal,\r\n" + 
@@ -76,76 +74,63 @@ public class PeliculasCrud {
 				"inner join sucursal as s on f.FUN_idsucursal = s.SUC_idsucursal\r\n" + 
 				"inner join idiomas as i on i.IDI_id = f.FUN_ididioma where f.FUN_dia >= curdate() and f.FUN_Hora >= now()";
         try {
-		
         int bandera = 1;
         int idpelicula = 0;
         int idsucursal = 0;
         int idformato = 0;
         int ididioma = 0;
         
-        if(peliculas.getIdFormato() > 0){
+        if(parametrosPel.getIdFormato() > 0){
             generandoConsulta = generandoConsulta + " and FOR_idformato = ?";
             idformato = bandera;
             bandera++;
         }
-        if(peliculas.getIdSucursal() > 0 ){
+        if(parametrosPel.getIdSucursal() > 0 ){
             generandoConsulta = generandoConsulta + " and s.SUC_idsucursal = ?";           
             idsucursal = bandera;
             bandera++;
         }
-        if(peliculas.getIdPelicula() > 0 ){
+        if(parametrosPel.getIdPelicula() > 0 ){
             generandoConsulta = generandoConsulta + " and p.PEL_idpelicula = ?";           
             idpelicula = bandera;
             bandera++;
         }
-        if(peliculas.getIdIdioma() > 0 ){
+        if(parametrosPel.getIdIdioma() > 0 ){
             generandoConsulta = generandoConsulta + " and  i.IDI_id = ?";           
             ididioma = bandera;
             bandera++;
         }
-        
         generandoConsulta = generandoConsulta + " and f.FUN_dia = ?";
-        
-        
-        generandoConsulta = generandoConsulta + " and f.FUN_Hora  >= ?";
-        
-       // generandoConsulta = generandoConsulta + " and f.FUN_Hora  <= ?";
+        generandoConsulta = generandoConsulta + " and f.FUN_Hora between ? and ?";
         
         PreparedStatement ptmt = con.prepareStatement(generandoConsulta);
         if(idpelicula >0) {
-        	ptmt.setInt(idpelicula, peliculas.getIdPelicula());
+        	ptmt.setInt(idpelicula, parametrosPel.getIdPelicula());
         }
         if(idsucursal >0) {
-        	ptmt.setInt(idsucursal, peliculas.getIdSucursal());
+        	ptmt.setInt(idsucursal, parametrosPel.getIdSucursal());
         }
         if(idformato > 0) {
-        	ptmt.setInt(idformato, peliculas.getIdFormato());
+        	ptmt.setInt(idformato, parametrosPel.getIdFormato());
         }
         if(ididioma > 0) {
-        	ptmt.setInt(ididioma, peliculas.getIdIdioma());	
+        	ptmt.setInt(ididioma, parametrosPel.getIdIdioma());	
         }
         
+        /*SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+        Date parsed = format.parse(parametrosPel.getDiaFuncion());
+        java.sql.Date Dsql = new java.sql.Date(parsed.getTime()); */
         
-        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
-        
-        Date parsed = format.parse(peliculas.getDiaFuncion());
-        java.sql.Date Dsql = new java.sql.Date(parsed.getTime());
-        System.out.println("yo soy la fecha ya con el formato papu :"+ Dsql);
-        ptmt.setDate(bandera, Dsql);
+        ptmt.setString(bandera, parametrosPel.getDiaFuncion());
         bandera++; 
-
-        
-       DateFormat formatter = new SimpleDateFormat("HH:mm:ss");
-        java.sql.Time timeValue = new java.sql.Time(formatter.parse("21:00:00").getTime());
-        System.out.println(timeValue);
-        ptmt.setTime(bandera, timeValue);
+        ptmt.setString(bandera, parametrosPel.getHoraInicio());
         bandera++; 
-        
-      /*  DateFormat formateando = new SimpleDateFormat("HH:mm:ss");
-        java.sql.Time horafinal= new java.sql.Time(formateando.parse(peliculas.getHorafinal()).getTime());
+        ptmt.setString(bandera, parametrosPel.getHorafinal());
+        bandera++;
+        /*DateFormat formateando = new SimpleDateFormat("HH:mm:ss");
+        java.sql.Time horafinal= new java.sql.Time(formateando.parse(parametrosPel.getHorafinal()).getTime());
         ptmt.setTime(bandera, horafinal);
-        bandera++; 
-        */
+        bandera++; */
        
         rs = ptmt.executeQuery();
         
@@ -156,66 +141,25 @@ public class PeliculasCrud {
 			
 			found.setNombrePel(rs.getString("Nombre"));
 			
+			//found.setHoraFuncion(rs.getTime("Hora").toString());
+			found.setHoraFuncion(rs.getString("Hora"));
 			
-			found.setHoraFuncion(rs.getTime("Hora").toString());
-			
-			
-			found.setDiaFuncion(rs.getDate("Dia").toString());
+			found.setDiaFuncion(rs.getString("Dia"));
 			
 			found.setNombreformato(rs.getNString("Formato"));
 			
 			found.setNombreSuc(rs.getString("Sucursal"));
 			
 			found.setNombreIdioma(rs.getString("Idioma"));
+			
 			listaencontrado.add(found);
 		}
 		con.close();
-        }catch(SQLException sqle) {
+        }catch(SQLException sqle){
         	System.out.println(sqle.getMessage() + "chechar peliculas crud metodo Busqueda");
-        }catch(ParseException pe) {
+        }/*catch(ParseException pe){
         	System.out.println(pe.getMessage() + "checate la conversion");
-        }
-        
-        System.out.println(generandoConsulta);
-        //System.out.println(listaencontrado);	
-		
-	/*	String getPeliculas = "{call mostrarPeli(?,?,?,?,?,?)}";
-		
-		List<BusquedaPeliculaBean> listaencontrado = new ArrayList <BusquedaPeliculaBean>();
-		try {
-			java.sql.Date sDate = new java.sql.Date(peliculas.getFecha().getTime());
-			DateFormat formatter = new SimpleDateFormat("HH:mm:ss");
-			java.sql.Time timeValue = new java.sql.Time(formatter.parse(peliculas.getHora()).getTime());		
-			ctmt = con.prepareCall(getPeliculas);
-			ctmt.setInt(1,peliculas.getIdpel());
-			ctmt.setInt(2,peliculas.getIdidioma());
-			ctmt.setInt(3,peliculas.getIdformato());
-			ctmt.setInt(4,peliculas.getIdsucursal());
-			ctmt.setDate(5,sDate);
-			ctmt.setTime(6, timeValue );
-		
-			
-			rs = ctmt.executeQuery();
-			while(rs.next()) {
-				BusquedaPeliculaBean found = new BusquedaPeliculaBean();
-				found.setImagen(rs.getString("Imagen"));
-				found.setIdpel(rs.getInt("IDpelicula"));
-				found.setNombrePel(rs.getString("Pelicua"));
-				found.setIdformato(rs.getInt("IDformato"));
-				found.setNombreformato(rs.getNString("Formato"));
-				found.setIdidioma(rs.getInt("IDidioma"));
-				found.setNombreIdioma(rs.getString("Idioma"));
-				found.setIdsucursal(rs.getInt("IDsucursal"));
-				found.setNombreSuc(rs.getString("Sucursal"));
-				found.setHora(rs.getTime("Hora").toString());
-				listaencontrado.add(found);
-			}
-			con.close();
-		}catch(SQLException sqle) {
-			System.out.println(sqle.getMessage());
-		}catch(ParseException pe) {
-			System.out.println(pe.getMessage() + "La cagamos en la conversionn disculpa :c ia estaooooosss");
-		} */
+        } */
 		return listaencontrado;
 	}	
 	
