@@ -1,15 +1,16 @@
 package mx.com.cinema.entities;
 import java.util.Date;
+//import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 
-public class PeliculasBean {
+public class PeliculasBean  {
 	private int idPelicula;
 	private String nombrePelicula;
 	private String clasificacionPeliculas;
-	private String duracionPelicula;
+	private String duracionPelicula ;
 	private Date fechaEstreno;
 	private String imagenPelicula;
-	
 	public PeliculasBean () {
 	
 	}

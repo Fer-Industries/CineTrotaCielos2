@@ -56,6 +56,12 @@ $("#buscar").on("click",function(){
 	console.log(document.getElementById("fecha"));
  	let fechaselec = [year,month,day].join('/');
 	
+	console.log("yo soy la fecha que selecciono :" + fechaselec);
+	
+ 	/*console.log([day, month, year].join('/')); */ 
+	console.log(minimo);
+	console.log(maximo);	 
+	
 	let idubicacion = document.getElementById("inputCine").value;
 	console.log("id ubicacion"+idubicacion);
 	
@@ -117,6 +123,10 @@ $("#buscar").on("click",function(){
 let minimo;
 let maximo;
 
+
+
+
+
 $(document).ready(function() {
 $('.noUi-handle').on('click', function() {
  $(this).width(50);
@@ -125,6 +135,7 @@ var rangeSlider = document.getElementById('slider-range');
 
 rangeSlider.style.height = '8px';
 rangeSlider.style.margin = '0 auto 3px';
+
 
 var aproximateHour = function (mins)
 {
@@ -166,6 +177,9 @@ format:  wNumb({
 		    density:1
 		  }
 		});
+
+
+
  		function filter_hour(value, type) {
  		  return (value % 60 == 0) ? 1 : 0;
  		}
@@ -209,7 +223,9 @@ var yyyy = hoy.getFullYear();
 hoy = yyyy+'/'+mm+'/'+dd;
 console.log("Desde loasbody"+ hoy);
 return hoy;
+
 }
+
 
 $(function() {
 $("#fecha").datepicker({ minDate: 0 });

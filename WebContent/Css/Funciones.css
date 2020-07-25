@@ -1,4 +1,7 @@
-
+.contenedor-pel{
+	height:900px;
+	overflow-y:auto;
+}
 .slider-labels {
     display: flex;
     justify-content: space-between;
@@ -57,9 +60,6 @@
 	position: relative;
 	z-index: 1;
 }
-
-
-
 
 .noUi-horizontal .noUi-handle {
 	width: 34px;
@@ -124,14 +124,11 @@
 
 }
 
-
-
-
-
-
 .sidebar-box-content {
     background: #A497A7;
-    padding: 14px;
+}
+.rellenocajas{
+	background: #A497A7;
 }
 
 .sidebar-box-title{
@@ -140,11 +137,7 @@
 
 .sidebar-box {
     margin-top: 16px;
-    
 }
-
-
-
 
 
 
@@ -240,3 +233,15 @@ color: white;
     border-width:20px !important;
 }
 
+.margeniz{
+	margin-left:20px !important;
+}
+
+.letrachi{
+	font-size: 20px;
+	text-align:center;
+}
+
+.marginder{
+	margin-right:20px !important;
+}

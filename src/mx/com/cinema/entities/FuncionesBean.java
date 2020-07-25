@@ -1,17 +1,38 @@
 package mx.com.cinema.entities;
 
+import java.util.Date;
 
 public class FuncionesBean {
 	private int idFuncion;
 	private int idPelicula;
 	private int idSucursal;
-	private float horaFuncion;
+	private String horaFuncion;
 	private String diaFuncion;
+	private int idFormato;
+	private int idIdioma;
 	
 	public FuncionesBean() {
 		
 	}
 
+	
+	public int getIdFormato() {
+		return idFormato;
+	}
+
+	public void setIdFormato(int idFormato) {
+		this.idFormato = idFormato;
+	}
+
+	public int getIdIdioma() {
+		return idIdioma;
+	}
+
+	public void setIdIdioma(int idIdioma) {
+		this.idIdioma = idIdioma;
+	}
+
+	
 	public int getIdFuncion() {
 		return idFuncion;
 	}
@@ -36,13 +57,15 @@ public class FuncionesBean {
 		this.idSucursal = idSucursal;
 	}
 
-	public float getHoraFuncion() {
+	public String getHoraFuncion() {
 		return horaFuncion;
 	}
 
-	public void setHoraFuncion(float horaFuncion) {
+
+	public void setHoraFuncion(String horaFuncion) {
 		this.horaFuncion = horaFuncion;
 	}
+
 
 	public String getDiaFuncion() {
 		return diaFuncion;

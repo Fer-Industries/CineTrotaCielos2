@@ -16,6 +16,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
 </head>
 <body class= fondo>
+  <nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-dark animate_animated animate_fadeInDown  shadow-lg sticky-top">
+		<button class="navbar-toggler navbar-toggler-right togglercolor" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="principal.jsp">Cinema<img class="imagenav mx-sm-2"  alt""></a>
+         <div class="collapse navbar-collapse" id="menu">
+            <div class="navbar-nav" >
+                <a class="nav-link" href="principal.jsp">INICIO<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href=""> CARTELERA <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="">PRODUCTOS</a>
+                <a class="nav-link" href="">CONTACTO</a>
+                <a class="nav-link" href="Funciones.jsp">BUSQUEDA<span class="sr-only">(current)</span></a>
+          </div>
+         </div>
+      </nav>
 <% if(usuarioLogueado == null){%>
 <h2 class="text">Registro de Cinema</h2>
 <div class="container rgt">
