@@ -33,7 +33,7 @@ public class RegistroCrud {
 		conexionAWS = new ConnectionDB();
 		con  = conexionAWS.getConexion();
 		try {
-			String consultaId = "select * from Usuarios where USU_idtarjeta = ? ";
+			String consultaId = "select * from usuarios where USU_idtarjeta = ? ";
 			PreparedStatement ptmt = con.prepareStatement(consultaId);
 			ptmt.setLong(1, idTarjetaGenerado);
 			rs = ptmt.executeQuery();

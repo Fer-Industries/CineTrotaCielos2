@@ -18,7 +18,10 @@ async function getCatalogo(){
 console.log(getCatalogo());
 getCatalogo()
 	.then(jsonCatalogos => console.log(jsonCatalogos));*/
-
+Swal.fire({
+		text:'Espere por favor...'
+	});
+	Swal.showLoading();
 $.get("/Cinema/CatalogoServlet",function(response){
 	response.listaSucursales.forEach(sucursal =>{
 		console.log(sucursal);
@@ -32,13 +35,15 @@ $.get("/Cinema/CatalogoServlet",function(response){
 	let bandera = 0;
 	response.listaIdiomas.forEach(idioma=>{
 		console.log(idioma);
-		$("#idioma").append("<input id="+bandera+" type='radio' name='pamela' value="+idioma.ididioma+">"+idioma.nombre + "<br>");
+		$("#idiomas").append("<input id="+bandera+" type='radio' name='idiomas' " +
+				"value="+idioma.ididioma+"><label  for='"+bandera+"'>"+idioma.nombre + "</label><br>");
 		bandera++;
 	});
 	response.listaPeliculas.forEach(pelencontrada =>{
 		console.log(pelencontrada);
 		$("#inputPelicula").append("<option value="+pelencontrada.idPelicula+">"+pelencontrada.nombrePelicula+"</option>");
 	});
+	Swal.close();
 });
 
 $("#buscar").on("click",function(){

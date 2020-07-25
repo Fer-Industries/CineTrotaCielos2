@@ -9,6 +9,7 @@
 <head>
 
 <link rel="stylesheet" href="Css/Login.css">
+<link rel="stylesheet" href="Css/navbar.css">
 <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@800&family=Kanit:ital,wght@1,600&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap" rel="stylesheet">
@@ -16,21 +17,28 @@
 </head>
 <body>
 <% if(usuarioLogueado == null){%>
-<nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-dark animate_animated animate_fadeInDown  shadow-lg sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-dark 
+  animate_animated animate_fadeInDown  shadow-lg sticky-top">
 		<button class="navbar-toggler navbar-toggler-right togglercolor" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="principal.jsp">Cinema<img class="imagenav mx-sm-2"  alt""></a>
          <div class="collapse navbar-collapse" id="menu">
             <div class="navbar-nav" >
-                
-            
-                <a class="nav-link buttonnav pl" href="principal.jsp">REGRESAR <i class="fas fa-undo-alt"></i></a>
+                <a class="nav-link" href="principal.jsp">INICIO<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href=""> CARTELERA <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="">PRODUCTOS</a>
+                <a class="nav-link" href="">CONTACTO</a>
+                <a class="nav-link" href="Funciones.jsp">BUSQUEDA<span class="sr-only">(current)</span></a>
+            	<% if(usuarioLogueado == null){%>
+                <a class="nav-link buttonnav pl" href="Login.jsp">INICIAR SESIÓN <i class="fas fa-user-circle"></i></a>
                 <a class="nav-link buttonnav pl2" href="Registro.jsp">REGISTRARME  <i class="fas fa-user-edit"></i></a>
-          
+          		<% }else{%>
+          			<a class="nav-link buttonnav pl2" ><%=usuarioLogueado.getNombre() +" "+ usuarioLogueado.getaPaterno()%></a>
+          		<%}%>
           </div>
          </div>
-      </nav>
+     </nav>
 <div class="container animate__animated animate__backInDown padown">
 		<h3 class="tittle text-center textWhite"> Inicio de sesión</h3>
 		<div class="contf shadow" action="">

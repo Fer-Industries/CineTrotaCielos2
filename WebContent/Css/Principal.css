@@ -2,7 +2,8 @@
 /*NAVBAR*/
 
 body{
-	background: linear-gradient(#1B1B1B,#635D5D);
+	/*background: linear-gradient(#1B1B1B,#635D5D);*/
+	background-color:#1B1B1B !important;
 }
 
 
@@ -115,3 +116,12 @@ padding-left: 25%;
 .custom-toggler.navbar-toggler {
   border-color: rgb(255,102,203);
 } 
+
+.anuncios{
+	background-color:#8A8585;
+}
+
+.pie{
+	color: #FFF !important;
+	 font-family: 'Roboto', sans-serif ! important;
+}

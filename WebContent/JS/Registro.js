@@ -167,7 +167,7 @@ document.getElementById("Registro").addEventListener("click",()=>{
 	        			  showConfirmButton: false,
 	        			  timer: 1500
 	        			})
-	      	window.location.href ="/Cinema/principal.jsp";
+	      	window.location.href ="/Cinema/Login.jsp";
 
 			}
 

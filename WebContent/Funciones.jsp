@@ -14,11 +14,11 @@
     <link rel="stylesheet" href="Css/Funciones.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
-    <link rel="stylesheet" href="css/weather-icons.css">
 </head>
 <body id="cuerpo" class= "fondo animate__animated animate__fadeIn" >
 
-  <nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-dark animate_animated animate_fadeInDown  shadow-lg sticky-top">
+  <nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-dark 
+  animate_animated animate_fadeInDown  shadow-lg sticky-top">
 		<button class="navbar-toggler navbar-toggler-right togglercolor" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -38,7 +38,7 @@
           		<%}%>
           </div>
          </div>
-      </nav>
+     </nav>
 <br>
 <br>
 
@@ -58,7 +58,6 @@
 						    </select>
 		     			</div>
  				</div>
- 				
 				<div class="sidebar-box  rounded  " >
 				<div class="card caja-1" style="background-color:  #A497A7;">
 				   <div class="sidebar-box-title caja-2 "  style="background: linear-gradient(to right ,#3E3241,#6E2C7E);" >Horario <i class="far fa-clock"></i> </div>
@@ -79,17 +78,16 @@
 				 
 				</div>
 				
-				
 				<div class="sidebar-box rounded mb-3">
-				<div  class="card caja-1 " style="background-color:  #A497A7;">
-				        <div class="caja-2 sidebar-box-title px-2" style="background: linear-gradient(to right ,#3E3241,#6E2C7E);">Día <i class="far fa-calendar-alt"></i></div>
-				         <div class="container mx-auto p-3">
-				         <p>Date: <input type="text" id="fecha" placeholder="seleciona la fecha <3">
-				       
-				       <!--   <input type="date" id="fecha" name="fecha"  max="2020-08-20">-->
-				 
-				  </div>
-				  </div>
+					<div  class="card caja-1 " style="background-color:  #A497A7;">
+					        <div class="caja-2 sidebar-box-title px-2" style="background: linear-gradient(to right ,#3E3241,#6E2C7E);">Día <i class="far fa-calendar-alt"></i></div>
+					         <div class="container mx-auto p-3">
+					         <p>Date: <input type="text" id="fecha" placeholder="seleciona la fecha">
+					       
+					       <!--   <input type="date" id="fecha" name="fecha"  max="2020-08-20">-->
+					 
+					  </div>
+					  </div>
 				  </div>
 				   
 				       <div  class="card caja-1 " style="background-color:  #A497A7;">
@@ -97,16 +95,11 @@
 				        
 				        <div class=" sidebar-box rounded">
 				        
-				        <!--  <div class="check-row"><label><input id="idioma" type="radio" name="lang-filter" value="" checked="checked" /> </label></div>
-				          <div class="check-row"><label><input id="idioma" type="radio" name="lang-filter" value="es" /> </label></div>
-				          <div class="check-row"><label><input id="idioma" type="radio" name="lang-filter" value="en" /></label></div>
-				          <div class="check-row"><label><input id="idioma" type="radio" name="lang-filter" value="other" /> </label></div>
-				        Social buttons -->
-				        
-				       <div class="check-row" >
-				       <label  id="idioma"></label>
+				       <div class="check-row" id="idiomas">
 				       
-				       </div><br>	
+				       
+				       </div>
+				       <br>	
 				       			       
 				        </div>
 				      </div>
@@ -199,20 +192,19 @@
 
 </footer>
 <!-- Footer -->
- 	  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-      <script src="https://kit.fontawesome.com/af8d928238.js" crossorigin="anonymous"></script>
-
-  	
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.0.4/wNumb.js"></script>
-	  <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.1.0/nouislider.js"></script>
-	  <script src="JS/Funciones.js"></script>
-		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	  
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/af8d928238.js" crossorigin="anonymous"></script>
+	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.0.4/wNumb.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.1.0/nouislider.js"></script>
+ 
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+ <script src="JS/funciones.js"></script>
   
 </body>
 </html>

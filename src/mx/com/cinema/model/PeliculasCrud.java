@@ -28,12 +28,12 @@ public class PeliculasCrud {
 	ResultSet rs;
 
 	public PeliculasCrud() {
-		conexion= new ConnectionDB();
-		con  = conexion.getConexion();
+		
 	}
 	
 	public List<PeliculasBean> getPeliculasEstreno(){
-		
+		conexion= new ConnectionDB();
+		con  = conexion.getConexion();
 		String getPelEstreno = "{call Pel_estreno}";
 		List<PeliculasBean> listaPeliculas = new ArrayList <> ();	
 		try {
@@ -58,6 +58,8 @@ public class PeliculasCrud {
 		}
 				
 	public List<BusquedaPeliculaBean> busqueda (BusquedaPeliculaBean parametrosPel ){
+		conexion= new ConnectionDB();
+		con  = conexion.getConexion();
 		System.out.println(parametrosPel);
 		
 		List<BusquedaPeliculaBean> listaEncontrado = new ArrayList <BusquedaPeliculaBean>();
