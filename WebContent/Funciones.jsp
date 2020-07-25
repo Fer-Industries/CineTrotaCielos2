@@ -138,92 +138,17 @@
 				     </div>
 				
 				 	 <div class="sidebar-box rounded">
-				  		<button id="buton" type="button"  onclick="enviarInfo()" class="btn btn-secondary">Buscar</button>
+				  		<button type="button" id="buscar" class="btn btn-secondary">Buscar</button>
 				  		
 				 	 </div>
 			 </div>
           
-          <div class="col-lg-9 ">
-
-              <div class="card caja-1 " style="background-color:  #A497A7;">
-                  <h5 class="card-header mb-3 caja-2" style="background: linear-gradient(to right, #1B1B1B,#3E3241,#6E2C7E);"><i class="fas fa-film"></i>  Cinema sucursal...</h5>
-
-                  <div class="margeniz mb-3" style="max-width: 540px;">
-                      <div class="row no-gutters">
-                          <div class="col-md-4">
-                              <img src="Img/duro.jpg" class="card-img sombra " alt="...">
-                          </div>
-                          <div class="col-md-8">
-                              <div class="card-body">
-                                  <h5 class="card-title">Titulo de la pelicula</h5>
-                                  <p class="card-text">Idioma</p>
-                                  <p class="card-text">Clasificacion</p>
-                                  <p class="card-text">Duración</p>
-                                  <p class="card-text">Horarios</p>
-                                  <button type="button" class="btn btn-dark btn-lg donwload-buttons"><i class="fas fa-ticket-alt"></i>  Boletos</button>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-
-
-                  <div class="margeniz mb-3" style="max-width: 540px;">
-                      <div class="row no-gutters">
-                          <div class="col-md-4">
-                              <img src="Img/duro.jpg" class="card-img sombra" alt="...">
-                          </div>
-                          <div class="col-md-8">
-                              <div class="card-body">
-                                  <h5 class="card-title">Titulo de la pelicula</h5>
-                                  <p class="card-text">Idioma</p>
-                                  <p class="card-text">Clasificacion</p>
-                                  <p class="card-text">Duración</p>
-                                  <p class="card-text">Horarios</p>
-                                  <button type="button" class="btn btn-dark btn-lg donwload-buttons"><i class="fas fa-ticket-alt"></i>  Boletos</button>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-
-
-                  <div class="margeniz mb-3" style="max-width: 540px;">
-                      <div class="row no-gutters">
-                          <div class="col-md-4">
-                             <img src="Img/duro.jpg" class="card-img sombra" alt="...">   
-                          </div>
-                          <div class="col-md-8">
-                              <div class="card-body">
-                                  <h5 class="card-title">Titulo de la pelicula</h5>
-                                  <p class="card-text">Idioma</p>
-                                  <p class="card-text">Clasificacion</p>
-                                  <p class="card-text">Duración</p>
-                                  <p class="card-text">Horarios</p>
-                                  <button type="button" class="btn btn-dark btn-lg donwload-buttons"><i class="fas fa-ticket-alt"></i>  Boletos</button>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-
-
-                  <div class="margeniz mb-3" style="max-width: 540px;">
-                      <div class="row no-gutters">
-                          <div class="col-md-4">
-                               <img src="Img/duro.jpg" class="card-img sombra" alt="...">   
-                          </div>
-                          <div class="col-md-8">
-                              <div class="card-body">
-                                  <h5 class="card-title">Titulo de la pelicula</h5>
-                                  <p class="card-text">Idioma</p>
-                                  <p class="card-text">Clasificacion</p>
-                                  <p class="card-text">Duración</p>
-                                  <p class="card-text">Horarios</p>
-                                  <button type="button" class="btn btn-dark btn-lg donwload-buttons"><i class="fas fa-ticket-alt"></i>  Boletos</button>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
+          <div class="col-lg-9 " >
+			  <h5 class="card-header mb-3 caja-2" style="background: linear-gradient(to right, #1B1B1B,#3E3241,#6E2C7E);"><i class="fas fa-film"></i>  Cinema sucursal...</h5>
+              <div class="card caja-1 contenedor-pel" style="background-color:  #A497A7;"
+              id="funcionesEncontradas">
               </div>
-
+				
           </div>
 
       </div>
@@ -286,7 +211,7 @@
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
       <script src="https://kit.fontawesome.com/af8d928238.js" crossorigin="anonymous"></script>
 
-  
+  	
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.0.4/wNumb.js"></script>
 	  <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.1.0/nouislider.js"></script>

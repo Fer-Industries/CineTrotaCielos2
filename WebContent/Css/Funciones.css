@@ -1,4 +1,7 @@
-
+.contenedor-pel{
+	height:900px;
+	overflow-y:auto;
+}
 .slider-labels {
     display: flex;
     justify-content: space-between;

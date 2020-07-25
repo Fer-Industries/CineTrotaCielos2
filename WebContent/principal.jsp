@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
 </head>
 <body>
-		<nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-dark animate_animated animate_fadeInDown  shadow-lg sticky-top">
+  <nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-dark animate_animated animate_fadeInDown  shadow-lg sticky-top">
 		<button class="navbar-toggler navbar-toggler-right togglercolor" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -25,9 +25,10 @@
          <div class="collapse navbar-collapse" id="menu">
             <div class="navbar-nav" >
                 <a class="nav-link" href="principal.jsp">INICIO<span class="sr-only">(current)</span></a>
-                <a class="nav-link" href="Funciones.jsp"> CARTELERA <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href=""> CARTELERA <span class="sr-only">(current)</span></a>
                 <a class="nav-link" href="">PRODUCTOS</a>
                 <a class="nav-link" href="">CONTACTO</a>
+                <a class="nav-link" href="Funciones.jsp">BUSQUEDA<span class="sr-only">(current)</span></a>
             	<% if(usuarioLogueado == null){%>
                 <a class="nav-link buttonnav pl" href="Login.jsp">INICIAR SESIÓN <i class="fas fa-user-circle"></i></a>
                 <a class="nav-link buttonnav pl2" href="Registro.jsp">REGISTRARME  <i class="fas fa-user-edit"></i></a>
@@ -95,19 +96,19 @@
 	<br>
 	<br>
 	<div class="container">
-		<div class="fondo1cont shadow">
+		<div style="background-color:  #A497A7;">
 			<div class="row">
-				<div class="col-md-6">
-					<h1 class="text-center tittle3  fondo2cont">PROMOCIONES</h1>
+				<div class="col-md-6 justificado2">
+					<h1 class="text-center tittle3  fondo21cont">PROMOCIONES</h1>
 					<ul>
-  					<h3 class="text-center">MES JULIO</h3>
+  					<h3 class="justificado2">JULIO</h3>
  				    <li>Martes: Taquilla 2x1 con credencial de estudiante</li>
   					<li>Entrada Gratis Niños Sábados de 12:00 - 13:00</li>
   					<li>Viernes: Palomitas Grandes en la compra de cualquier snack</li>
   					<li>Pase CineUp $250.00 </li>
 					</ul>
 				</div>
-			<div class="col-md-6">
+			<div class="col-md-6  justificado2">
 					<h1 class="text-center tittle3  fondo2cont">COVID-19</h1>
 					<p class="justificado">Agradecemos el cuidado y respeto que ústed da a las medidas de salud. Los cines actúalmente cuenta con el equipo de sanitización y la atención de salud para recibir
 					su visita, de igual manera le pedimos que conserve su distancia y cuente con un cubrebocas.
@@ -121,40 +122,70 @@
 	<br>
 	
 	<div class="container-fluid">
-		<div class="fondo2cont">
+		<div style="background-color:  #A497A7;">
 			<div class="row">
-				<div class="col-md-3">
-					<h1 class="text-center tittle3 shadow">GRUPO FER-INDUSTRIES</h1>
-					<p class="justificado2">Grupo líder en méxico de entrenimiento, encargados de brindar el mejor servicio para el cliente.
+				<div class="col-md-4">
+					<h1 class="text-center tittle3 fondo21cont">GRUPO FER-INDUSTRIES</h1>
+					<p class="justificado3">Grupo líder en méxico de entrenimiento, encargados de brindar el mejor servicio para el cliente.
 					Uniendo la amistad, familiar y al pueblo mexicano para una mejor convivencia.<p>
 				</div>
-			<div class="col-md-3">
-					<h1 class="text-center tittle3 shadow">LEGALIDAD</h1>
-					<ul class="justificado2">
-						<li type="square">Términos y condiciones</li>
-						<li type="square">Aviso de privacidad</li>
-						<li type="square">Código de Integridad</li>
-					</ul>
+			<div class="col-md-4">
+					<h1 class="text-center tittle3 fondo2cont">LEGALIDAD</h1>
+						<p class="text-center tittle31" >* Términos y condiciones</p>
+						<p class="text-center tittle31" >* Aviso de privacidad</p>
+						<p class="text-center tittle31" >* Código de Integridad</p>
 			</div>
-			<div class="col-md-3">
-					<h1 class="text-center tittle3 shadow">SERVICIOS</h1>
-					<ul class="justificado2">
-						<li type="square">Cine y productos</li>
-						<li type="square">Atención a clientes</li>
-						<li type="square">CinemaSky App</li>
-					</ul>
-			</div>
-			<div class="col-md-3">
-					<h1 class="text-center tittle3 shadow">REDES SOCIALES</h1>
-					<p class="justificado2">Síguenos en nuestras redes sociales<p>
-					<ul class="justificado2">
-						<li type="square">Facebook  <i class="fab fa-facebook-square">  CinemaSky</i></li>
-						<li type="square">Twitter  <i class="fab fa-twitter-square">  @CinemaSky</i></li>
-						<li type="square">Instagram  <i class="fab fa-instagram">  CinemaSky</i></li>
-					</ul>
+			<div class="col-md-4">
+					<h1 class="text-center tittle3 fondo22cont">SERVICIOS</h1>
+					
+						<p class="text-center tittle31" >* Cine y productos</p>
+						<p class="text-center tittle31" >* Atención a clientes</p>
+						<p class="text-center tittle31" >* CinemaSky App</p>
+					
 			</div>
 		</div>
 		</div>
+		<footer class="page-footer font-small special-color-dark pt-4">
+			
+			  <!-- Footer Elements -->
+			  <div class="container">
+			
+			    <!-- Social buttons -->
+			    <ul class="list-unstyled list-inline text-center">
+			      <li class="list-inline-item">
+			        <a class="btn-floating btn-fb mx-1">
+			          <i class="fab fa-facebook-f fa-2x"> </i>
+			        </a>
+			      </li>
+			      <li class="list-inline-item">
+			        <a class="btn-floating btn-tw mx-1">
+			          <i class="fab fa-twitter fa-2x"> </i>
+			        </a>
+			      </li>
+			      <li class="list-inline-item">
+			        <a class="btn-floating btn-gplus mx-1">
+			          <i class="fab fa-google-plus-g fa-2x"> </i>
+			        </a>
+			      </li>
+			      <li class="list-inline-item">
+			        <a class="btn-floating btn-li mx-1">
+			          <i class="fab fa-linkedin-in fa-2x"> </i>
+			        </a>
+			      </li>
+			     
+			    </ul>
+			    <!-- Social buttons -->
+			
+			  </div>
+			  <!-- Footer Elements -->
+			
+			  <!-- Copyright -->
+			  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+			    <a href="https://mdbootstrap.com/"> www.Cinema.com</a>
+			  </div>
+			  <!-- Copyright -->
+			
+			</footer>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

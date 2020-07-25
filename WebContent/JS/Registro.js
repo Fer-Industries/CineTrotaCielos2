@@ -166,8 +166,12 @@ document.getElementById("Registro").addEventListener("click",()=>{
 	        			  title: 'Registro Exitoso',
 	        			  showConfirmButton: false,
 	        			  timer: 1500
-	        			});
-			}else if(response.codigo == "2"){
+	        			})
+	      	window.location.href ="/Cinema/principal.jsp";
+
+			}
+
+			else if(response.codigo == "2"){
 				Swal.fire({
 				  title: 'Ya existe un usuario con este correo',
 				  text: "¿Desea iniciar sesi\u00F3n?",
@@ -178,7 +182,7 @@ document.getElementById("Registro").addEventListener("click",()=>{
 				  confirmButtonText: 'Ir a login',
 				  cancelButtonText: 'Reintentar'
 				}).then((result) => {
-				  if (result.value) {
+				  if (result.value) { 
 				    window.location.href ="/Cinema/Login.jsp";
 				  }
 				});
