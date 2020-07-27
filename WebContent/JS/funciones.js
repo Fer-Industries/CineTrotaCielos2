@@ -45,6 +45,14 @@ $.get("/Cinema/CatalogoServlet",function(response){
 	Swal.close();
 });
 
+
+/*
+$("#btnfuncion").on("click",function(){
+	console.log("event listener btnfuncion");
+});*/
+
+let peliculajson;
+
 $("#buscar").on("click",function(){
 	Swal.fire({
 		text:'Obteniendo datos'
@@ -97,7 +105,9 @@ $("#buscar").on("click",function(){
         	 enviarInfo: JSON.stringify(ParametrosPel)
          },
          success: function (peliculas) {
+			 peliculajson = peliculas;
         	 console.log(peliculas); 
+			 console.log(peliculajson);
         	 peliculas.forEach(pelicula=>{
      			$("#funcionesEncontradas").append("<div class='margeniz mb-3' style='max-width: 540px;'>"+
                            "<div class='row no-gutters'>"+
@@ -110,25 +120,93 @@ $("#buscar").on("click",function(){
                                        "<p class=\"card-text\">"+pelicula.nombreIdioma+"</p>"+
                                        "<p class='card-text'>"+pelicula.nombreFormato+"</p>"+
                                        "<p class='card-text'>"+pelicula.horaFuncion+"</p>"+
-                                       "<button type='button' class='btn btn-dark btn-lg donwload-buttons'>" +
-                                       		"<i class='fas fa-ticket-alt'></i>  Boletos</button>"+
+									   "<p class='card-text'>"+pelicula.idFuncion+"</p>"+
+                                       "<button type='button' id='btnfuncion' onclick='disponibilidad()' value="+pelicula.idFuncion +" class='btn btn-dark btn-lg donwload-buttons'>" +
+                                       		"<i class='fas fa-ticket-alt'></i>Boletos</button>"+
                                    "</div>"+
                                "</div>"+
                            "</div>"+
-                       "</div><hr>");
+                      	"</div><hr>");
      		});
          }
      } );
 	 Swal.close();
 });
 		
-
+function disponibilidad(){
+	console.log(document.getElementById("btnfuncion").value);
+	let idFun = document.getElementById("btnfuncion").value;
+	let diafune;
+	let imagene;
+	let formatoe;
+	let pele;
+	let sucursale;
+	let horae;
+	let idiomae;
+	
+	let parametroFuncion ={
+		idFuncion: idFun
+	} 
+	Swal.fire({
+		text:'Verificando cupo'
+	});
+	Swal.showLoading();
+	$.ajax({
+         url: '/Cinema/CupoSala',
+         type: 'get',
+         contentType:'application/json',
+         data: { 
+        	 enviarInfo: JSON.stringify(parametroFuncion)
+         },
+         success: function(cupo) {
+         	console.log(cupo);
+			if(cupo = 1){
+				Swal.fire({
+	  				title: 'Lo sentimos la sala ya esta llena',
+					type: "warning",
+	  				showClass: {
+	    				popup: 'animate__animated animate__fadeInDown'
+	  				},
+	  				hideClass: {
+	    				popup: 'animate__animated animate__fadeOutUp'
+	  				}
+				});
+			}	 
+			else{
+				let informacion; 
+				peliculajson.forEach(pel=>{
+					if(pel.idFuncion = idFun){
+						informacion = {
+						diafune = pel.diaFuncion,
+						imagene = pel.imagen,
+						formatoe = pel.nombreFormato,
+						pele = pel.nombrePel,
+						sucursale = pel.nombreSuc,
+						horae = pel.horaFuncion,
+						idiomae = pel.nombreIdioma
+						}
+					 break;
+					} 
+				 });				
+				$.ajax( {
+					 url: '/Cinema/AsientosController',
+			         type: 'get',
+			         contentType:'application/json',
+			         data: { 
+			        	 enviarInfo: JSON.stringify(informacion)
+			         }
+				});
+				window.location.href ="/Cinema/Asientos.jsp";
+			}
+         }
+     });
+	 Swal.close(); 
+	
+	
+};
    
 let minimo;
 let maximo;
-
-
-
 
 
 $(document).ready(function() {

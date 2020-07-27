@@ -59,7 +59,7 @@ font-size: 15px;
 }
 .justificado2{
 	text-align: center;
-	font-family: "Lucida Console", Courier, monospace; !important;
+	font-family: "Lucida Console", Courier, monospace !important;
 	color:white;
 }
 .justificado3{
@@ -97,7 +97,7 @@ font-size: 15px;
 	
 }
 .pl2{
-	/*padding-left: 30% ! important;*/
+	padding-left: 30% ! important;
 	margin-left: 15px;
 }*/
 .navbar-toggler{

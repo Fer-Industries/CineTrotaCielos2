@@ -64,7 +64,7 @@ public class PeliculasCrud {
 		
 		List<BusquedaPeliculaBean> listaEncontrado = new ArrayList <BusquedaPeliculaBean>();
 		String generandoConsulta = 
-				"select PEL_IMAGEN as Imagen, PEL_Nombre as Nombre ,  f.FUN_Hora as Hora, f.FUN_dia as Dia, fo.FOR_nombre as Formato, s.SUC_nombre as Sucursal,\r\n" + 
+				"select PEL_IMAGEN as Imagen,f.FUN_idfuncion as Funcion, PEL_Nombre as Nombre ,  f.FUN_Hora as Hora, f.FUN_dia as Dia, fo.FOR_nombre as Formato, s.SUC_nombre as Sucursal,\r\n" + 
 				"i.IDI_nombre as Idioma\r\n" + 
 				" from peliculas as p  \r\n" + 	
 				"inner join funciones as f on  p.PEL_idpelicula = f.FUN_idpelicula \r\n" + 
@@ -157,6 +157,8 @@ public class PeliculasCrud {
 				found.setNombreSuc(rs.getString("Sucursal"));
 				
 				found.setNombreIdioma(rs.getString("Idioma"));
+				
+				found.setIdFuncion(rs.getInt("Funcion"));
 				
 				listaEncontrado.add(found);
 			}
