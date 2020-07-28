@@ -33,19 +33,18 @@ public class CupoSala extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	
-		String idFun = request.getParameter("idFuncion");
-		Gson gson = new Gson();
-		
-		int idFuncion = gson.fromJson(idFun, idFuncion);
+		int idFuncion = Integer.parseInt( request.getParameter("enviarInfo"));
 		
 		FuncionesCrud funciones = new FuncionesCrud();
-		
+		Gson gson = new Gson();	
 		int disponible = funciones.getDispsala(idFuncion);
 		
+		String disponibilidad=gson.toJson(disponible);
 		response.setContentType("text/plain");
 		response.setCharacterEncoding("UTF-8");
 		System.out.println(disponible);
-		response.getWriter().write(disponible);
+		System.out.println(disponibilidad);
+		response.getWriter().write(disponibilidad);
 	
 	
 	}

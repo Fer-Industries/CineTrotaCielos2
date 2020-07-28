@@ -144,9 +144,7 @@ function disponibilidad(idFuncion){
 	let horae;
 	let idiomae;
 	
-	let parametroFuncion ={
-		idFuncion: idFun
-	} 
+
 	
 	Swal.fire({
 		text:'Verificando cupo'
@@ -157,14 +155,14 @@ function disponibilidad(idFuncion){
          type: 'get',
          contentType:'application/json',
          data: { 
-        	 enviarInfo: JSON.stringify(parametroFuncion)
+        	 enviarInfo: idFun
          },
          success: function(cupo) {
          	console.log(cupo);
-			if(cupo = 1){
+			if(cupo == 1){
 				Swal.fire({
 	  				title: 'Lo sentimos la sala ya esta llena',
-					type: "warning",
+					type: "success",
 	  				showClass: {
 	    				popup: 'animate__animated animate__fadeInDown'
 	  				},
@@ -175,31 +173,6 @@ function disponibilidad(idFuncion){
 			}	 
 			else{
 				console.log("tiene cupo podemos redirigir");
-				/*
-				let informacion; 
-				peliculajson.forEach(pel=>{
-					if(pel.idFuncion = idFun){
-						informacion = {
-						diafune = pel.diaFuncion,
-						imagene = pel.imagen,
-						formatoe = pel.nombreFormato,
-						pele = pel.nombrePel,
-						sucursale = pel.nombreSuc,
-						horae = pel.horaFuncion,
-						idiomae = pel.nombreIdioma
-						}
-					 break;
-					} 
-				 });				
-				$.ajax( {
-					 url: '/Cinema/AsientosController',
-			         type: 'get',
-			         contentType:'application/json',
-			         data: { 
-			        	 enviarInfo: JSON.stringify(informacion)
-			         }
-				});*/
-				//window.location.href ="/Cinema/Asientos.jsp";
 			}
          }
      });
