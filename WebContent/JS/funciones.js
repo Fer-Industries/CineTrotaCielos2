@@ -121,7 +121,7 @@ $("#buscar").on("click",function(){
                                        "<p class='card-text'>"+pelicula.nombreFormato+"</p>"+
                                        "<p class='card-text'>"+pelicula.horaFuncion+"</p>"+
 									   "<p class='card-text'>"+pelicula.idFuncion+"</p>"+
-                                       "<button type='button' id='btnfuncion' onclick='disponibilidad()' value="+pelicula.idFuncion +" class='btn btn-dark btn-lg donwload-buttons'>" +
+                                       "<button type='button' id='btnfuncion' onclick='disponibilidad("+pelicula.idFuncion+")'class='btn btn-dark btn-lg donwload-buttons'>" +
                                        		"<i class='fas fa-ticket-alt'></i>Boletos</button>"+
                                    "</div>"+
                                "</div>"+
@@ -133,9 +133,9 @@ $("#buscar").on("click",function(){
 	 Swal.close();
 });
 		
-function disponibilidad(){
-	console.log(document.getElementById("btnfuncion").value);
-	let idFun = document.getElementById("btnfuncion").value;
+function disponibilidad(idFuncion){
+	console.log(idFuncion);
+	let idFun = idFuncion;
 	let diafune;
 	let imagene;
 	let formatoe;
@@ -147,6 +147,7 @@ function disponibilidad(){
 	let parametroFuncion ={
 		idFuncion: idFun
 	} 
+	
 	Swal.fire({
 		text:'Verificando cupo'
 	});
@@ -173,6 +174,8 @@ function disponibilidad(){
 				});
 			}	 
 			else{
+				console.log("tiene cupo podemos redirigir");
+				/*
 				let informacion; 
 				peliculajson.forEach(pel=>{
 					if(pel.idFuncion = idFun){
@@ -195,14 +198,13 @@ function disponibilidad(){
 			         data: { 
 			        	 enviarInfo: JSON.stringify(informacion)
 			         }
-				});
-				window.location.href ="/Cinema/Asientos.jsp";
+				});*/
+				//window.location.href ="/Cinema/Asientos.jsp";
 			}
          }
      });
 	 Swal.close(); 
-	
-	
+
 };
    
 let minimo;

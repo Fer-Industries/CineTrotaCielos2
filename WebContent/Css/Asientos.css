@@ -1,8 +1,7 @@
 @charset "ISO-8859-1";
 
 .fondo{
-	background: #635D5D;
-	
+	background: linear-gradient(#1B1B1B,#635D5D);
 }
 
 .titulos{
