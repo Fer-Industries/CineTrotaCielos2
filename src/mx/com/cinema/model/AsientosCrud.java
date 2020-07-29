@@ -4,8 +4,12 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import mx.com.cinema.entities.FuncionesBean;
+import mx.com.cinema.entities.SalaAsientoBean;
+
 
 
 
@@ -15,27 +19,30 @@ public class AsientosCrud {
 	CallableStatement ctmt;
 	ResultSet rs;
 	
-	public int mostrardispAsiento(FuncionesBean sala) {
-		int mensaje = 0;
-		String dispAsiento = "{call mostrarDispAsientos (?)}";
-		
+
+	public List<SalaAsientoBean> getAsientos(int idFuncion) {
+		List<SalaAsientoBean> listaAsientos = new ArrayList<SalaAsientoBean>();
 		ConnectionDB conexion = new ConnectionDB();
 		con = conexion.getConexion();
-		try{
-			CallableStatement ctmt = con.prepareCall(dispAsiento);
-			ctmt.setInt(1,sala.getIdFormato());
+		String procAsientos = "{call mostrarDispAsientos (?)}";
+		
+		try {
+			ctmt = con.prepareCall(procAsientos);
+			ctmt.setInt(1, idFuncion);
 			rs = ctmt.executeQuery();
-			rs.next();
-			mensaje = rs.getInt("disponible");
-			/*
-			 * mensaje = 1 El asiento esta disponible
-			 * mensaje = 2 El asiento está ocupado
-			 */
+			
+			while
+				(rs.next()) {
+				SalaAsientoBean asiento = new SalaAsientoBean();
+				asiento.setIdAsiento(rs.getInt("SAS_idasiento"));
+				asiento.setAsiento(rs.getString("SAS_asiento"));
+				asiento.setDisponibilidad(rs.getInt("RFA_disponible"));
+				listaAsientos.add(asiento);
+			}
 			con.close();
-		}catch(SQLException sqle){
-			System.out.println("Error de SQL "+ sqle.getMessage());
+		}catch(SQLException sqle) {
+			System.out.println(sqle.getMessage());
 		}
-		return mensaje;
+		return listaAsientos;
 	}
-	
 }

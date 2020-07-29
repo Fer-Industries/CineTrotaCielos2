@@ -1,6 +1,8 @@
 package mx.com.cinema.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,12 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import mx.com.cinema.entities.BusquedaPeliculaBean;
-import mx.com.cinema.entities.CatalogosBean;
+import mx.com.cinema.entities.AsientosBean;
 import mx.com.cinema.entities.FuncionesBean;
-import mx.com.cinema.entities.MensajeJson;
 import mx.com.cinema.model.AsientosCrud;
-import mx.com.cinema.utils.GeneradorTarjeta;
+
 
 /**
  * Servlet implementation class AsientosController
@@ -36,7 +36,19 @@ public class AsientosController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		response.getWriter().write("Disponibilidad de asientos");
+		
+		AsientosCrud asientosCrud = new AsientosCrud();
+		
+		AsientosBean dispAsientos = new AsientosBean();
+		
+		dispAsientos.setListaAsientos(asientosCrud.getAsientos(1));
+		
+		Gson gson = new Gson();
+		String jsonAsientos = gson.toJson(dispAsientos);
+		
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().write(jsonAsientos);
 	}
 	
 
@@ -44,26 +56,8 @@ public class AsientosController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String jsonAsiento = request.getParameter("obtenerInfo");
-		System.out.println(jsonAsiento);
-		Gson gson = new Gson();
-		FuncionesBean asientos = gson.fromJson(jsonAsiento, FuncionesBean.class);
-		
-		AsientosCrud asientosDis = new AsientosCrud();
-		
-		int mensaje = asientosDis.mostrardispAsiento(asientos);
-		MensajeJson message = new MensajeJson();
-		if(mensaje == 1) {
-			message.setCodigo(1);
-			message.setMensaje("Asiento disponible");
-		}else if(mensaje == 2) {
-			message.setCodigo(2);
-			message.setMensaje("Asiento ocupado");
-		}
-		response.setContentType("application/json");
-		response.setCharacterEncoding("UTF-8");
-		String respuesta = gson.toJson(message);
-		response.getWriter().write(respuesta);
+		// TODO Auto-generated method stub
+				doGet(request, response);
 	}
 
 }

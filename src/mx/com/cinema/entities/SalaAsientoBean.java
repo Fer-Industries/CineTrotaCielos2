@@ -1,13 +1,19 @@
 package mx.com.cinema.entities;
 
-public class Sala_asientoBean {
+public class SalaAsientoBean {
 	
 	private int idAsiento;
 	private String asiento;
-	private int sala;
+	private int disponibilidad;
 	
 	
-	public Sala_asientoBean() {
+	public int getDisponibilidad() {
+		return disponibilidad;
+	}
+	public void setDisponibilidad(int disponibilidad) {
+		this.disponibilidad = disponibilidad;
+	}
+	public SalaAsientoBean() {
 		
 	}
 	public int getIdAsiento() {
@@ -26,12 +32,7 @@ public class Sala_asientoBean {
 	public void setAsiento(String asiento) {
 		this.asiento = asiento;
 	}
-	public int getSala() {
-		return sala;
-	}
-	public void setSala(int sala) {
-		this.sala = sala;
-	}
+
 	
 	
 	
