@@ -105,6 +105,8 @@ public class PeliculasCrud {
 	        Date myDate = new Date();
 			//Aquí obtienes el formato que deseas
  		    String hoy = new SimpleDateFormat("yyyy/M/dd").format(myDate);
+ 		    System.out.println("la fecha es :"+ hoy);
+ 		   System.out.println("la fecha es :"+ parametrosPel.getDiaFuncion());
 			if(parametrosPel.getDiaFuncion().equals(hoy)) { // comparamos el dia deseado con el día de hoy
 			  	generandoConsulta = generandoConsulta + "and f.FUN_Hora >= now()";
 			}

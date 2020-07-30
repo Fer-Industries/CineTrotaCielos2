@@ -40,14 +40,9 @@
          </div>
      </nav>
 <% if(usuarioLogueado == null){%>
-
-	<div class="container mx-auto alert alert-warning m-5 text-justify" id="elemento">
-		<h1 >Lo sentimos debes estar logeado para poder seleccionar tus asientos</h1>
-		<h2 >Puedes seleccionar directamente en el menu o presionando el boton el boton</h2>
-		<div class="container text-center">
-		<a type="button" href="Login.jsp" id="confirmar" class="btn btn-info btn-block">OK</a>
-		</div>
-	</div> 
+	<script>
+		window.location.href = "Login.jsp";
+	</script> 
 <%}else{%>
 	<div class="container mt-4 text-center titulos">
 		<div class="row ">

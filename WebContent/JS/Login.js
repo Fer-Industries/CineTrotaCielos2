@@ -38,6 +38,9 @@ function validacionPass(){
     }
 
 document.getElementById("enviar").addEventListener("click",() =>{
+	
+		
+		
 	const respuestaCorreo =validacionEmail();
 	const respuestaPass = validacionPass(); 
 	Swal.fire('Espere por favor');
@@ -67,7 +70,12 @@ document.getElementById("enviar").addEventListener("click",() =>{
 	        			  showConfirmButton: false,
 	        			  timer: 1500
 	        			});
-	        	 }else{
+	        	 }else{					
+					let paginaV =sessionStorage.getItem("paginaActual");
+					console.log(paginaV);
+					if (paginaV != null){
+						window.location.href = paginaV;		
+					}else{
 	        		 Swal.fire({
 	        			  icon: 'success',
 	        			  title: 'Bienvenido',
@@ -75,6 +83,7 @@ document.getElementById("enviar").addEventListener("click",() =>{
 	        			  timer: 1500
 	        			})
 	        			window.location.href = "principal.jsp";
+						}
 	        	 }
 	         }
 	     } );

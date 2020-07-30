@@ -36,18 +36,13 @@ public class CupoSala extends HttpServlet {
 		// TODO Auto-generated method stub
 	
 		int idFuncion = Integer.parseInt( request.getParameter("enviarInfo"));
-		
 		FuncionesCrud funciones = new FuncionesCrud();
 		Gson gson = new Gson();	
 		int disponible = funciones.getDispsala(idFuncion);
-		
 		String disponibilidad=gson.toJson(disponible);
 		response.setContentType("text/plain");
 		response.setCharacterEncoding("UTF-8");
-		System.out.println(disponible);
-		System.out.println(disponibilidad);
 		response.getWriter().write(disponibilidad);
-	
 	
 	}
 
@@ -55,18 +50,21 @@ public class CupoSala extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		AsientosCrud asientosCrud = new AsientosCrud();
+		int idFuncion = Integer.parseInt( request.getParameter("enviarInfo"));
 		
+		AsientosCrud asientosCrud = new AsientosCrud();
 		AsientosBean dispAsientos = new AsientosBean();
 		
-		dispAsientos.setListaAsientos(asientosCrud.getAsientos(1));
-		
-		Gson gson = new Gson();
-		String jsonAsientos = gson.toJson(dispAsientos);
+		dispAsientos.setListaAsientos(asientosCrud.getAsientos(idFuncion));
 		
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
+		Gson gson = new Gson();
+		String jsonAsientos = gson.toJson(dispAsientos );
+		response.setContentType("text/plain");
+		response.setCharacterEncoding("UTF-8");
 		response.getWriter().write(jsonAsientos);
+		 
 	}
 
 }

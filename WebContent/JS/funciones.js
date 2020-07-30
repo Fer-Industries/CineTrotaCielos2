@@ -60,15 +60,27 @@ $("#buscar").on("click",function(){
 	Swal.showLoading();
 	//CAMEL CASE
 	$("#funcionesEncontradas").html("");
-	var date = new Date($('#fecha').val()); 
-    day = date.getDate() ; 
-    month = date.getMonth() + 1; 
-    year = date.getFullYear(); 
-	
-	console.log(document.getElementById("fecha"));
- 	let fechaselec = [year,month,day].join('/');
+	let fechaselec;
+	var date = new Date($('#fecha').val());
+	console.log("fecha solita"+ date);
+	if(date == "Invalid Date") {
+		date = enviarfecha();
+		day = date.getDate();
+		month = date.getMonth()+1;	
+		year = date.getFullYear();
+		fechaselec = [year,month,day].join('/');
+		console.log("La fecha default es el dia de hoy "+ fechaselec);
+	}
+	else{
+		day = date.getDate(); 
+	    month = date.getMonth() + 1; 
+	    year = date.getFullYear();
+		fechaselec = [year,month,day].join('/'); 	
+	}
 	
 	console.log("yo soy la fecha que selecciono :" + fechaselec);
+	
+	
 	
  	/*console.log([day, month, year].join('/')); */ 
 	console.log(minimo);
@@ -133,19 +145,8 @@ $("#buscar").on("click",function(){
 	 Swal.close();
 });
 		
-function disponibilidad(idFuncion){
-	console.log(idFuncion);
-	let idFun = idFuncion;
-	let diafune;
-	let imagene;
-	let formatoe;
-	let pele;
-	let sucursale;
-	let horae;
-	let idiomae;
-	
-
-	
+function disponibilidad(idFuncioon){
+	console.log(idFuncioon);
 	Swal.fire({
 		text:'Verificando cupo'
 	});
@@ -153,16 +154,14 @@ function disponibilidad(idFuncion){
 	$.ajax({
          url: '/Cinema/CupoSala',
          type: 'get',
-         contentType:'application/json',
          data: { 
-        	 enviarInfo: idFun
+        	 enviarInfo: idFuncioon
          },
          success: function(cupo) {
-         	console.log(cupo);
 			if(cupo == 1){
 				Swal.fire({
+					icon:"error",
 	  				title: 'Lo sentimos la sala ya esta llena',
-					type: "success",
 	  				showClass: {
 	    				popup: 'animate__animated animate__fadeInDown'
 	  				},
@@ -172,7 +171,21 @@ function disponibilidad(idFuncion){
 				});
 			}	 
 			else{
-				console.log("tiene cupo podemos redirigir");
+				peliculajson.forEach(pel=>{
+					if(pel.idFuncion == idFuncioon){			
+						sessionStorage.setItem("diafune", pel.diaFuncion);
+						sessionStorage.setItem("imagene", pel.imagen);
+						sessionStorage.setItem("formatoe", pel.nombreFormato);
+						sessionStorage.setItem("pele", pel.nombrePel);
+						sessionStorage.setItem("sucursale", pel.nombreSuc);
+						sessionStorage.setItem("horae", pel.horaFuncion);
+						sessionStorage.setItem("idiomae", pel.nombreIdioma);
+						return;
+					} 
+				});	
+				sessionStorage.setItem("funcion",idFuncioon);
+				sessionStorage.setItem("paginaActual","Asientos.jsp");
+				window.location.href="Asientos.jsp";
 			}
          }
      });
@@ -185,9 +198,10 @@ let maximo;
 
 
 $(document).ready(function() {
-$('.noUi-handle').on('click', function() {
- $(this).width(50);
+	$('.noUi-handle').on('click', function(){
+		$(this).width(50);
 });
+
 var rangeSlider = document.getElementById('slider-range');
 
 rangeSlider.style.height = '8px';
@@ -196,23 +210,23 @@ rangeSlider.style.margin = '0 auto 3px';
 
 var aproximateHour = function (mins)
 {
-var minutes = Math.round(mins % 60);
-if (minutes == 60 || minutes == 0)
-{
- return mins / 60;
-}
-return Math.trunc (mins / 60) + minutes / 100;
+	var minutes = Math.round(mins % 60);
+	if (minutes == 60 || minutes == 0)
+	{
+	 return mins / 60;
+	}
+	return Math.trunc (mins / 60) + minutes / 100;
 }
 
 
 noUiSlider.create(rangeSlider, {
-start : [800, 1080],
+start : [540, 1320],
 connect: true, 
 orientation: 'horizontal', 
 behaviour: 'tap-drag', 
 step: 30,
 tooltips: true,
-range : {'min': 540, 'max': 1440},
+range : {'min': 540, 'max': 1320},
 format:  wNumb({
 		decimals: 2,
  mark: ":",
@@ -234,9 +248,6 @@ format:  wNumb({
 		    density:1
 		  }
 		});
-
-
-
  		function filter_hour(value, type) {
  		  return (value % 60 == 0) ? 1 : 0;
  		}
@@ -273,17 +284,18 @@ function  idiomaseleccionado(){
 
 
 let enviarfecha=()=>{
-var hoy = new Date();
-var dd = hoy.getDate();
-var mm = hoy.getMonth()+1;
-var yyyy = hoy.getFullYear();
-hoy = yyyy+'/'+mm+'/'+dd;
-console.log("Desde loasbody"+ hoy);
-return hoy;
-
+	let d = new Date();
+	let dd = d.getDate();
+	let currMonth = d.getMonth();
+	let currYear = d.getFullYear();
+	let hoy = new Date(currYear, currMonth, dd);                      
+	return hoy;
 }
 
-
 $(function() {
-$("#fecha").datepicker({ minDate: 0 });
+	$("#fecha").datepicker({ minDate: 0});
+	$("#fecha").datepicker("setDate", enviarfecha());
 });
+
+
+
