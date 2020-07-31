@@ -7,14 +7,30 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<style>
+.dispo{
+    background-color:#4cff00; 
+}
+.dispoNo{
+    background-color:#ff0000;
+}
+.selec{
+    background-color:#0026ff;
+}
+</style>
+
 <meta charset="ISO-8859-1">
 <title>Asientos</title>
+
+	
 	<link rel="stylesheet" href="Css/Asientos.css">
  	<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@800&family=Kanit:ital,wght@1,600&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
+  
 </head>
 <body class="fondo animate__animated animate__fadeIn">
 <nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-dark 
@@ -44,30 +60,38 @@
 		window.location.href = "Login.jsp";
 	</script> 
 <%}else{%>
+  	
 	<div class="container mt-4 text-center titulos">
 		<div class="row ">
-			<div class="col-3 text-left border border-success">
-			 <img src="" alt="Foto Pelicula">
-			 <p>Titulo</p>
-			 <p>Formato</p>
-			 <p>Sala</p>
-			 <p>Idioma</p> 
+			<div id="contenido" class="col-auto text-left border border-success">			 			  
 			</div>
-			<div class=" col-9 border border-primary" >
+			<div class=" col-auto border border-primary" >
 			 <div class="container">
-			 	<button class "btn btn primary  btn-block">Aqui van a ir los asientos informativos </button>
+			 	<table id="userdata" class="table table-hover">
+				  <tbody id="cuerpoTabla">
+				  </tbody>
+				</table>
 			 </div>
 			</div>
 		</div>
 	</div>
 <%}%>
-
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+	
+<!--  	
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 	<script src="https://kit.fontawesome.com/af8d928238.js" crossorigin="anonymous"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+	<!-- JS, Popper.js, and jQuery -->
+	
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 	<script src="JS/Asientos.js"></script>
+	
 </body>
 </html>

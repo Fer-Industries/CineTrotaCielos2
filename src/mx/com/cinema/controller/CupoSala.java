@@ -36,6 +36,7 @@ public class CupoSala extends HttpServlet {
 		// TODO Auto-generated method stub
 	
 		int idFuncion = Integer.parseInt( request.getParameter("enviarInfo"));
+		System.out.println("yo soy en id funcion"+idFuncion);
 		FuncionesCrud funciones = new FuncionesCrud();
 		Gson gson = new Gson();	
 		int disponible = funciones.getDispsala(idFuncion);
@@ -57,11 +58,9 @@ public class CupoSala extends HttpServlet {
 		
 		dispAsientos.setListaAsientos(asientosCrud.getAsientos(idFuncion));
 		
-		response.setContentType("application/json");
-		response.setCharacterEncoding("UTF-8");
 		Gson gson = new Gson();
 		String jsonAsientos = gson.toJson(dispAsientos );
-		response.setContentType("text/plain");
+		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().write(jsonAsientos);
 		 

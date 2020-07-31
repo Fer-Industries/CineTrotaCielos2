@@ -23,6 +23,7 @@ Swal.fire({
 });
 Swal.showLoading();
 $.get("/Cinema/CatalogoServlet",function(response){
+	console.log(response);
 	response.listaSucursales.forEach(sucursal =>{
 		console.log(sucursal);
 		$("#inputCine").append("<option value="+sucursal.idSucursal+">"+sucursal.nombre+"</option>");
@@ -154,6 +155,7 @@ function disponibilidad(idFuncioon){
 	$.ajax({
          url: '/Cinema/CupoSala',
          type: 'get',
+		 contentType:'text/plain',
          data: { 
         	 enviarInfo: idFuncioon
          },

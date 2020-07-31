@@ -8,3 +8,17 @@
 	color: white;
 }
 
+.dispo{
+    background-color:#4cff00; 
+}
+.dispoNo{
+    background-color:#ff0000;
+}
+.selec{
+    background-color:#0026ff;
+}
+    
+
+.foto{
+	height:150px;
+}
