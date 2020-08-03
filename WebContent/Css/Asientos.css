@@ -4,21 +4,129 @@
 	background:#1B1B1B;
 }
 
+body{
+	height: 100%;
+}
+.barraInfo{
+	width: 600px;
+}
 .titulos{
 	color: white;
 }
+.caja-1 {
+    border-radius: 22px 22px 22px 22px !important;
+    -moz-border-radius: 22px 22px 22px 22px !important;
+    -webkit-border-radius: 22px 22px 22px 22px !important;
+    border: 0px solid #635D5D !important;
+}
+
 
 .dispo{
-    background-color:#4cff00; 
+    color:#4cff00; 
 }
 .dispoNo{
-    background-color:#ff0000;
+    color:#ff0000;
 }
 .selec{
-    background-color:#0026ff;
+    color:#0026ff;
 }
     
-
 .foto{
-	height:150px;
+	height:130px;
+}
+
+
+body{
+	background-color:#3E3241 !important;
+}
+
+
+.infocard{
+	width:700px;
+}
+.navbar-toggler{
+	height: 30px ! important;
+	vertical-align: text-top ! important;
+	background-color: #3E3241;
+	
+}
+.togglercolor{
+	background-color: #3E3241;
+	
+}
+
+.padd{
+padding-left: 25%;
+}
+.custom-toggler.navbar-toggler {
+  border-color: rgb(255,102,203);
+} 
+
+
+.pie{
+	color: #FFF !important;
+	 font-family: 'Roboto', sans-serif ! important;
+}
+.navbar-toggler{
+	height: 30px ! important;
+	vertical-align: text-top ! important;
+	background-color: #3E3241;
+	
+}
+.togglercolor{
+	background-color: #3E3241;
+}
+
+.padd{
+padding-left: 25%;
+}
+.custom-toggler.navbar-toggler {
+  border-color: rgb(255,102,203);
+} 
+.card{
+ border-color:  #705077 ! important;
+ border-radius: 15px ! important;
+}
+.tittle{
+font-family: 'Unica One', cursive;
+color: white;
+font-size: 20px;
+}
+.tittle1{
+	font-family: 'Unica One', cursive;
+color: white;
+font-size: 100px;
+}
+.cont{
+	color: white;
+}
+.container1{
+	display: flex;
+	justify-content: center;
+	
+}
+.fondo2{
+	background-color: #858186;
+	
+ border-radius: 15px ! important;
+}
+.card-block { 
+background-color: #A497A7 ! important;
+ border-color:  #705077 ! important;
+ border-width: 10px ! important;
+ border-style: solid ! important;
+}
+/*.img-radious{
+	border-radius: 7px ! important;
+}*/
+
+
+.pie{
+	color: #FFF !important;
+	 font-family: 'Roboto', sans-serif ! important;
+}
+
+.fondo-cont{
+	background-color:#A497A7 ! important;
+	border-radius: 15px;
 }

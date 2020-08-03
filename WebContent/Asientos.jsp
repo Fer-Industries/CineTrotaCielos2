@@ -8,17 +8,6 @@
 <html>
 <head>
 
-<style>
-.dispo{
-    background-color:#4cff00; 
-}
-.dispoNo{
-    background-color:#ff0000;
-}
-.selec{
-    background-color:#0026ff;
-}
-</style>
 
 <meta charset="ISO-8859-1">
 <title>Asientos</title>
@@ -60,37 +49,107 @@
 		window.location.href = "Login.jsp";
 	</script> 
 <%}else{%>
-  	
-	<div class="container mt-4 text-center titulos">
+	<div class="container text-center">
+      	<p class="tittle1"> ASIENTOS </p>
+      	<p class="cont"> Checa los asientos disponibles y selecciona los de tu agrado <p>
+    </div>
+    <div class="container container1  animate__animated animate__backInDown padown mb-4">
+	<div class="infocard" >
+	  <div class="row no-gutters card-block" >
+	    <div id="imagenP"  class="col-md-7">
+	    </div>
+	    <div class="col-md-5">
+	      <div id="contenidoP" class="card-body ">
+	    </div>
+	  </div>
+	</div>
+	</div>
+	</div>
+	
+	<div class="container fondo-cont table-responsive">
+	<div class="container-fluid container1 fondo2 mt-2">
 		<div class="row ">
-			<div id="contenido" class="col-auto text-left border border-success">			 			  
+			<div class="col-md-4">
+			<i class="fas fa-chair container text-center dispo"></i>
+			<p class="cont text-center">Asientos disponibles  </p>
 			</div>
-			<div class=" col-auto border border-primary" >
-			 <div class="container">
-			 	<table id="userdata" class="table table-hover">
-				  <tbody id="cuerpoTabla">
-				  </tbody>
-				</table>
-			 </div>
+			<div class="col-md-4 ">
+			<i class="fas fa-chair dispoNo container text-center"></i>
+			<p class="cont text-center">Asientos no disponibles </p>
+			</div>
+			<div class="col-md-4">
+			<i class="fas fa-chair container text-center selec"></i>
+			<p class="cont text-center">Asientos seleccionados  </p>
 			</div>
 		</div>
 	</div>
+	<table id="userdata" class="table table-sm mt-3">
+	  <tbody id="cuerpoTabla">
+	  </tbody>
+	</table>
+</div>
+<!--	<div class="container-sm my-5" >		
+		<div class="mx-auto barraInfo" >
+			<div class="container border caja-1 titulos row align-items-center" style="background-color:  #A497A7;">
+				<div id="imagenP" class="col-6" >
+				</div>
+				<div id="contenidoP" class="col-6 text-left"  >
+				</div>
+			</div>
+		</div>
+	</div> -->
+<!--  	<div class="container">
+	 	<table id="userdata" class="table table-hover">
+		  <tbody id="cuerpoTabla">
+		  </tbody>
+		</table>
+	</div>-->
+
 <%}%>
+<footer class="footer mt-3">
+    <ul class="list-unstyled list-inline text-center">
+      <li class="list-inline-item">
+        <a class="btn-floating btn-fb mx-1">
+          <i class="fab fa-facebook-f fa-2x"> </i>
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a class="btn-floating btn-tw mx-1">
+          <i class="fab fa-twitter fa-2x"> </i>
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a class="btn-floating btn-gplus mx-1">
+          <i class="fab fa-google-plus-g fa-2x"> </i>
+        </a>
+      </li>
+      <li class="list-inline-item">
+        <a class="btn-floating btn-li mx-1">
+          <i class="fab fa-linkedin-in fa-2x"> </i>
+        </a>
+      </li>
+     
+    </ul>
+    <!-- Social buttons -->
+
+  </div>
+  <!-- Footer Elements -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="https://mdbootstrap.com/"> www.Cinema.com</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->	
+
 	
-<!--  	
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 	<script src="https://kit.fontawesome.com/af8d928238.js" crossorigin="anonymous"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-	<!-- JS, Popper.js, and jQuery -->
-	
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 	<script src="JS/Asientos.js"></script>
 	
 </body>

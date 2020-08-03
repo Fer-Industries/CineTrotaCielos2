@@ -4,14 +4,16 @@
 
 
 console.log(sessionStorage.getItem("funcion"));
-$("#contenido").append("<img class='my-1 foto'  height=100px   src='https://fer-industries.s3.amazonaws.com/Cinema/"+sessionStorage.getItem("imagene")+"'>" 
-						  + "<p>Dia: "+sessionStorage.getItem("diafune")+ "</p>"
-						  + "<p>Formato: "+sessionStorage.getItem("formatoe")+ "</p>"
-						  + "<p>Titulo: "+sessionStorage.getItem("pele")+ "</p>"
-						  + "<p>Sucursal: "+sessionStorage.getItem("sucursale")+ "</p>"
-						  + "<p>Horario: "+sessionStorage.getItem("horae")+ "</p>"
-						  + "<p>Idioma: "+sessionStorage.getItem("idiomae")+ "</p>"
+$("#contenidoP").append(  "<h6 class=card-text card-title tittle>Titulo: "+sessionStorage.getItem("pele")+ "</h6>"
+						  + "<h6 class='card-text '>Dia: "+sessionStorage.getItem("diafune")+ "</h6>"
+						  + "<h6 class='card-text '>Formato: "+sessionStorage.getItem("formatoe")+ "</h6>"
+						  + "<h6 class='card-text '>Sucursal: "+sessionStorage.getItem("sucursale")+ "</h6>"
+						  + "<h6 class='card-text '>Horario: "+sessionStorage.getItem("horae")+ "</h6>"
+						  + "<h6 class='card-text '>Idioma: "+sessionStorage.getItem("idiomae")+ "</h6>"
 						 );
+					
+$("#imagenP").append("<img class='card-img img-radious'  width=110 height=200   src='https://fer-industries.s3.amazonaws.com/Cinema/"+sessionStorage.getItem("imagene")+"'>");
+					
 let idFuncioon = sessionStorage.getItem("funcion"); 
 
 $.ajax({
@@ -26,8 +28,7 @@ $.ajax({
 		
 		const asientos = respuesta;
 		
-		
-//console.log(asientos.listaAsientos.sort());
+		//console.log(asientos.listaAsientos.sort());
 		
 		//console.log(asientos.sort());
 		//seria obtener las letras que vienen en nuestro arreglo
@@ -75,12 +76,10 @@ $.ajax({
 		  // se crea mediante el arreglode letras
 		  let asientosCoincidentes = asientos.listaAsientos.filter(asiento => asiento.asiento.charAt(0) == individual);
 		  asientosCoincidentes.map(asientoC =>{
-			//console.log(asientoC);
-			//console.log(document.getElementById(asientoC.idAsiento));
 		    if(asientoC.disponibilidad == 0){
-		      tr = tr + "<td id=" + asientoC.idAsiento+" class='dispo' onclick='eligiendo("+JSON.stringify(asientoC)+")'><img height=15px class='img img-fluid' id=" + asientoC.asiento+" src=Img/AsientoV.png > "+asientoC.asiento+"</td>";
+		      tr = tr + "<td id=" + asientoC.idAsiento+" onclick='eligiendo("+JSON.stringify(asientoC)+")'><i class='fas fa-chair dispo' id="+ asientoC.asiento +" ></i><h6 class=titulos>"+asientoC.asiento+"</h6></td>";
 		    }else{
-		      tr = tr + "<td id=" + asientoC.idAsiento +" class='dispoNo' onclick='eligiendo("+JSON.stringify(asientoC)+")'><img height=15px class='img img-fluid' id=" + asientoC.asiento+" src=Img/AsientoG.png >"+asientoC.asiento+"</td>";
+		      tr = tr + "<td id=" + asientoC.idAsiento +" onclick='eligiendo("+JSON.stringify(asientoC)+")'><i class='fas fa-chair dispoNo'  id="+ asientoC.asiento +" ></i><h6 class=titulos>"+asientoC.asiento+"</h6></td>";
 		    }
 		  });
 		  tr = tr + "</tr>";
@@ -102,14 +101,10 @@ let asientoSeleccionados = [];
 		        if (bandera == 0) {
 					console.log(asiento);
 					console.log(asiento.idAsiento);
-					const foto = "Img/AsientoG.png"
-					document.getElementById(asiento.idAsiento).className = "selec";
-					document.getElementById(asiento.asiento).src= foto;
+					document.getElementById(asiento.asiento).className= "fas fa-chair selec";
 		            asientoSeleccionados.push(asiento);
 		        }else {
-		          const foto = "Img/AsientoV.png" 
-				  document.getElementById(asiento.idAsiento).className = "dispo";
-				  document.getElementById(asiento.asiento).src= foto;				 				  
+				  document.getElementById(asiento.asiento).className = "fas fa-chair dispo";				 				  
 		          asientoSeleccionados = asientoSeleccionados.filter(asientoSeleccionado => {
 		               return asientoSeleccionado.idAsiento != asiento.idAsiento;
 		          });
