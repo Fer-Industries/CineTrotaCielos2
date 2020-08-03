@@ -87,7 +87,7 @@ $.ajax({
 		});
 	}
 }); 
-let asientoSeleccionados = [];
+let asientoSeleccionados = []; // el arreglo que guarda los asientos que selecciono el usuario 
 		const eligiendo =  (asiento) =>{
 			console.log("Estoy en la funcion eligiendo");
 		    let bandera = 0;
