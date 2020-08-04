@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 
 import mx.com.cinema.entities.CatalogosBean;
 import mx.com.cinema.entities.SucursalBean;
+import mx.com.cinema.model.CatalogoInterface;
 import mx.com.cinema.model.CatalogosCrud;
 
 /**
@@ -36,9 +37,8 @@ public class CatalogoServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		CatalogosCrud catalogosCrud = new CatalogosCrud();
-		
 		CatalogosBean catalogos = new CatalogosBean();
-		catalogos.setListaSucursales(catalogosCrud.getSurcursales());
+		catalogos.setListaSucursales(catalogosCrud.getSucursales());
 		catalogos.setListaFormatos(catalogosCrud.getFormatos());
 		catalogos.setListaIdiomas(catalogosCrud.getIdiomas());
 		catalogos.setListaPeliculas(catalogosCrud.getListapelicula());

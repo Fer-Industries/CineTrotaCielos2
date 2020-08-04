@@ -83,28 +83,14 @@
 			</div>
 		</div>
 	</div>
-	<table id="userdata" class="table table-sm mt-3">
-	  <tbody id="cuerpoTabla">
-	  </tbody>
-	</table>
-</div>
-<!--	<div class="container-sm my-5" >		
-		<div class="mx-auto barraInfo" >
-			<div class="container border caja-1 titulos row align-items-center" style="background-color:  #A497A7;">
-				<div id="imagenP" class="col-6" >
-				</div>
-				<div id="contenidoP" class="col-6 text-left"  >
-				</div>
-			</div>
-		</div>
-	</div> -->
-<!--  	<div class="container">
-	 	<table id="userdata" class="table table-hover">
+		<table id="userdata" class="table table-sm mt-3">
 		  <tbody id="cuerpoTabla">
 		  </tbody>
 		</table>
-	</div>-->
-
+		<div class="boton-confirmacion">
+			<button class="btn btn-primary" id="botonConfirmacion">Aceptar</button>
+		</div>
+	</div>
 <%}%>
 <footer class="footer mt-3">
     <ul class="list-unstyled list-inline text-center">
@@ -150,6 +136,7 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
 	<script src="https://kit.fontawesome.com/af8d928238.js" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	<script src="JS/Asientos.js"></script>
 	
 </body>

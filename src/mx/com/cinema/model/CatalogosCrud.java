@@ -16,13 +16,13 @@ import mx.com.cinema.entities.IdiomaBean;
 import mx.com.cinema.entities.PeliculasBean;
 import mx.com.cinema.entities.SucursalBean;
 
-public class CatalogosCrud {
+public class CatalogosCrud implements CatalogoInterface{
 	ConnectionDB conexion;
 	Connection con;
 	CallableStatement ctmt;
 	ResultSet rs;
 	
-	public List<SucursalBean> getSurcursales() {
+	public List<SucursalBean> getSucursales() {
 		List<SucursalBean> listaSucursales = new ArrayList<SucursalBean>();
 		
 		ConnectionDB conexion = new ConnectionDB();

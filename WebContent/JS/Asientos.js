@@ -111,7 +111,22 @@ let asientoSeleccionados = []; // el arreglo que guarda los asientos que selecci
 		        }
 		    }
 		};	
-		
+// FUNCIÓN DE FLECHA ES DE JAVASCRIPT!!!
+$("#botonConfirmacion").on("click",function(){
+	console.log(asientoSeleccionados);
+	if(asientoSeleccionados.length == 0){
+		Swal.fire(
+				'',
+				'Debe seleccionar por lo menos un asiento',
+				'error'
+		);
+		return;
+	}
+	let idAsientos = asientoSeleccionados.map(asiento => asiento.idAsiento);
+	console.log(idAsientos);
+	sessionStorage.setItem("asientosSeleccionados",idAsientos);
+	window.location.href = "/venta.jsp";
+});
 	
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  */
 
