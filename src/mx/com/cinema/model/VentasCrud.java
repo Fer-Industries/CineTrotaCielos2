@@ -19,7 +19,7 @@ public class VentasCrud {
 	ConnectionDB conexion = new ConnectionDB();
 	CallableStatement cmt;
 	ResultSet rs;
-	
+	 
 	
 	/*parametros a recibir en servelet 
 	 * 
@@ -31,6 +31,7 @@ public class VentasCrud {
 	 * 
 	 * 
 	 * */
+
 	public VentaBoletosBean getInfoVenta(VentaBoletosBean parametrosVenta){
 		VentaBoletosBean infoVenta  = new VentaBoletosBean();
 		String textoProcedure = "select FOR_nombre as Formato, FOR_precio as Precio  from formatos \r\n" + 
