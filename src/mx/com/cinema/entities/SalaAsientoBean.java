@@ -22,19 +22,10 @@ public class SalaAsientoBean {
 	public void setIdAsiento(int idAsiento) {
 		this.idAsiento = idAsiento;
 	}
-
-	
-	
-	
 	public String getAsiento() {
 		return asiento;
 	}
 	public void setAsiento(String asiento) {
 		this.asiento = asiento;
 	}
-
-	
-	
-	
-
 }

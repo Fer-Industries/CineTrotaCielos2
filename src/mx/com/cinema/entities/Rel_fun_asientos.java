@@ -5,9 +5,7 @@ public class Rel_fun_asientos {
   private int idAsiento;
   private int idFuncion; 
   private int disponible;
-  
-  
- 
+   
 public Rel_fun_asientos(int idAsiento, int idFuncion, int disponible) {
 	super();
 	this.idAsiento = idAsiento;

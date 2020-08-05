@@ -79,6 +79,7 @@ public class PeliculasCrud {
 	        	idFormato  = 0, 
 	        	idIdioma   = 0;
 	        
+	        
 	        if(parametrosPel.getIdFormato() > 0){
 	            generandoConsulta = generandoConsulta + " and FOR_idformato = ?";
 	            idFormato = bandera;
