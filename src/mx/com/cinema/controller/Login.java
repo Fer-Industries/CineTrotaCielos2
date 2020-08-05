@@ -24,12 +24,7 @@ public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Pattern pattern = Pattern
 			.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-					+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-	
-	
-	
-	
-       
+					+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");       
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -50,7 +45,6 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
 		HttpSession sesion = request.getSession();
 		
 		String correo=request.getParameter("correo");
@@ -68,17 +62,9 @@ public class Login extends HttpServlet {
 			}else {
 				response.getWriter().write("0");
 			}
-			
-			
 		} else {
-			
 			response.getWriter().write("-1");
-			
 		}
-
-	
-		
-		
 	}
 
 }
