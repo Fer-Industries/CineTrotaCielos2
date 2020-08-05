@@ -152,14 +152,14 @@ function disponibilidad(idFuncioon){
 		text:'Verificando cupo'
 	});
 	Swal.showLoading();
-	$.ajax({
-         url: '/Cinema/CupoSala',
+	$.ajax({ //jQuery, es una libreria de javascript
+         url: '/Cinema/CupoSala', // a que servidor vamos a llamar
          type: 'get',
-		 contentType:'text/plain',
+		 contentType:'text/plain', // el tipo de información que s e va a enviar
          data: { 
-        	 enviarInfo: idFuncioon
+        	 enviarInfo: idFuncioon  // la información que se va a enviar
          },
-         success: function(cupo) {
+         success: function(cupo) { // es la response del Servlet, que al final del día es si hay o no asientos disponibles
 			if(cupo == 1){
 				Swal.fire({
 					icon:"error",
@@ -175,6 +175,7 @@ function disponibilidad(idFuncioon){
 			else{
 				peliculajson.forEach(pel=>{
 					if(pel.idFuncion == idFuncioon){			
+						// para pasar la información que había elegido
 						sessionStorage.setItem("diafune", pel.diaFuncion);
 						sessionStorage.setItem("imagene", pel.imagen);
 						sessionStorage.setItem("formatoe", pel.nombreFormato);
@@ -185,7 +186,9 @@ function disponibilidad(idFuncioon){
 						return;
 					} 
 				});	
+
 				sessionStorage.setItem("funcion",idFuncioon);
+				// Se utilizo para saber en dónde se había quedado el usuario
 				sessionStorage.setItem("paginaActual","Asientos.jsp");
 				window.location.href="Asientos.jsp";
 			}

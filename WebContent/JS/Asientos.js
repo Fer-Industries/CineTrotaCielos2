@@ -113,7 +113,7 @@ let asientoSeleccionados = []; // el arreglo que guarda los asientos que selecci
 		};	
 // FUNCIÓN DE FLECHA ES DE JAVASCRIPT!!!
 $("#botonConfirmacion").on("click",function(){
-	console.log(asientoSeleccionados);
+	//console.log(asientoSeleccionados);
 	if(asientoSeleccionados.length == 0){
 		Swal.fire(
 				'',
@@ -123,15 +123,22 @@ $("#botonConfirmacion").on("click",function(){
 		return;
 	}
 	let idAsientos = asientoSeleccionados.map(asiento => asiento.idAsiento);
-	console.log(idAsientos);
+	//console.log(idAsientos);
 	sessionStorage.setItem("asientosSeleccionados",idAsientos);
-	window.location.href = "/venta.jsp";
-});
+	// NECESITAMOS EL DÍA (LUNES, MARTES, MIERCOLES, JUEVES..)EN EL QUE SE ESTA EFECTUANDO LA COMPRA
+	//NECESITAMOS INSTANCIAR LA CLASE DATE PERO HAY UN POCO DE TRAMPA 
+	// EL YEAR NO HAY PROBLEMA PUEDES MANDAR EL AÑO COMO TAL
+	/* EL MES ES DONDE ESTA LA TRAMPA, 
+	 * 										[0,       1,               2,         3,         4,		5,			6,			7,				8,		9,		10,   11] =
+									[ENERO,FEBRERO,MARZO,ABRIL,MAYO,JUNIO,JULIO,AGOSTO ,SEP,OCT ,NOV, DIC]
+		LOS DÍAS TAMBIÉN SE RESPETAN COMO EL AÑO
+		LOS DÍAS DE LA SEMANA IGUAL FUNCIONARIAN COMO UN ARREGLO
+					[        0					1,			2,				3,						4,				5,			6]
+					[DOMINGO, LUNES, MARTES, MIERCOLES, JUEVES, VIERNES, SABADO]
+	*/
 	
-/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  */
-
-/*$.post("/Cinema/CupoSala",function(response){
-	response.listaAsientos.forEach(asiento =>{
-		console.log(asiento);
-})});*/
-		
+	
+	
+	
+	window.location.href = "/Cinema/ventas.jsp";
+});	

@@ -31,17 +31,19 @@ public class CupoSala extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	 request = peticion
+	 response = respuesta
+	 */ 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	
-		int idFuncion = Integer.parseInt( request.getParameter("enviarInfo"));
+		// vamos a guardar la función que el usuario desea agendar boletos
+		int idFuncion = Integer.parseInt( request.getParameter("enviarInfo")); // el nombre del parametro y lo que va a devolver sería el valor!!!
 		System.out.println("yo soy en id funcion"+idFuncion);
 		FuncionesCrud funciones = new FuncionesCrud();
 		Gson gson = new Gson();	
 		int disponible = funciones.getDispsala(idFuncion);
 		String disponibilidad=gson.toJson(disponible);
-		response.setContentType("text/plain");
+		response.setContentType("text/plain"); 
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().write(disponibilidad);
 	
