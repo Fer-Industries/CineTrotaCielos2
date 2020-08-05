@@ -61,7 +61,6 @@ public class VentasCrud {
 				infoVenta.setDescuento(descuentoo);
 				total = subtotal - ( total * subtotal);
 				infoVenta.setTotal(total);
-				
 			}else {
 				 total = subtotal;
 				 infoVenta.setTotal(total);
