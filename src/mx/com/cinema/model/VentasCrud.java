@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import mx.com.cinema.entities.UsuarioBean;
 import mx.com.cinema.entities.VentaBoletosBean;
 
 
@@ -29,6 +30,7 @@ public class VentasCrud {
 
 	public VentaBoletosBean getInfoVenta(VentaBoletosBean parametrosVenta){
 		VentaBoletosBean infoVenta  = new VentaBoletosBean();
+		
 		String textoProcedure = "{call  getFormatoPrecio( ? )}";
 				/*"select FOR_nombre as Formato, FOR_precio as Precio  from formatos \r\n" + 
 				"inner join funciones on FUN_idformato = FOR_idformato  where FUN_idfuncion = "+ parametrosVenta.getIdFuncion() +"";*/
@@ -74,23 +76,46 @@ public class VentasCrud {
 	public int generarTicket(VentaBoletosBean parametrosVenta){
 		//falta id tarjeta
 		//obtener la atrjeta de la sesion 
+		UsuarioBean usuario = new UsuarioBean();
+		
 		String obtenerTicket ="{call ventaTicket(?, ? , ?)}";
-		String insertarAsientos="{call InsertarAsiento(? ?)}";
+		String insertarAsientos="{call InsertarAsiento(? , ?, ?)}";
 		try {
 			con = conexion.getConexion();
 			cmt = con.prepareCall(obtenerTicket);
 			cmt.setInt(1,parametrosVenta.getIdFuncion());
-			cmt.setDouble(2, parametrosVenta.getTarjeta());
+			cmt.setDouble(2, usuario.getIdTarjeta());
 			cmt.setFloat(3, parametrosVenta.getTotal());
 			rs = cmt.executeQuery();
 			if(rs.next()) {
 				parametrosVenta.setTicket(rs.getInt("idVenta"));
 				cmt = con.prepareCall(insertarAsientos);
 				cmt.setInt(1, parametrosVenta.getTicket());
+				cmt.setDouble(3, usuario.getIdTarjeta());
+				for(int x: parametrosVenta.getArregloAsientos()) {
+					cmt.setInt(2, x);
+					rs = cmt.executeQuery();
+					if(rs.next()) {
+						//obtenemos la salida 
+					}else {
+						System.out.println("Ocurrio un problema en el rs de InsertarAsiento");
+					}	
+				}
+				for(int i = 0;i< parametrosVenta.getArregloAsientos().length ;i++ ) {
+					cmt.setInt(2, parametrosVenta.getArregloAsientos()[i]);
+					rs = cmt.executeQuery();
+					if(rs.next()) {
+						//obtenemos la salida 
+					}else {
+						System.out.println("Ocurrio un problema en el rs de InsertarAsiento");
+					}
+				}
 				/*for(SalaAsientoBean asiento: parametrosVenta.getIdAsientos()) {
 					cmt.setInt(2, asiento.getIdAsiento());
 					rs = cmt.executeQuery();
 				}*/
+			}else {
+				System.out.println("Ocurrio un problema en el rs de ventaTicket");
 			}
 			con.close();
 		}catch(SQLException sql) {

@@ -38,10 +38,11 @@ public class Ventas_ticket extends HttpServlet {
 		System.out.println(parametrosVenta);
 		Gson gson = new Gson();			 
 		VentaBoletosBean ventaBol  = gson.fromJson(parametrosVenta, VentaBoletosBean.class);
-		//new VentaBoletosBean();		//gson.fromJson(parametrosVenta, VentaBoletosBean.class);
+		//new VentaBoletosBean();		//
 		//ventaBol.setDia(5);
 		//ventaBol.setIdFuncion(1);
 		//ventaBol.setNumeroAsientos(3);
+		//int arregloo[] = {1,2};
 		VentaBoletosBean infor = new VentaBoletosBean(); 
 		VentasCrud vendiendo = new VentasCrud();
 		infor =   vendiendo.getInfoVenta(ventaBol);

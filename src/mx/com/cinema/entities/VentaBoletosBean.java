@@ -12,14 +12,7 @@ public class VentaBoletosBean {
 	private int idFuncion;
 	private int dia;
 	private String descuento;
-	private Long tarjeta;
-	public Long getTarjeta() {
-		return tarjeta;
-	}
 
-	public void setTarjeta(Long tarjeta) {
-		this.tarjeta = tarjeta;
-	}
 
 	//private SalaAsientoBean[] idAsientos;
 	private int ticket; 
