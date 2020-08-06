@@ -1,6 +1,6 @@
 package mx.com.cinema.entities;
 
-import java.util.Arrays;
+
 
 public class VentaBoletosBean {
 
@@ -12,23 +12,45 @@ public class VentaBoletosBean {
 	private int idFuncion;
 	private int dia;
 	private String descuento;
-	private SalaAsientoBean[] idAsientos;
-	
+	private Long tarjeta;
+	public Long getTarjeta() {
+		return tarjeta;
+	}
 
+	public void setTarjeta(Long tarjeta) {
+		this.tarjeta = tarjeta;
+	}
+
+	//private SalaAsientoBean[] idAsientos;
+	private int ticket; 
+	private int[] arregloAsientos = new int[numeroAsientos];
+	
 	@Override
 	public String toString() {
 		return "InfoVenta[descuento="+ descuento +",tipoBoleto="+tipoBoleto+",subtotal="+ subtotal+","
 				+ "nombreDescuento="+nombreDescuento+",total="+total+",numeroAsientos="+numeroAsientos+","
-				+ "idFuncion="+idFuncion+",idAsientos="+ Arrays.toString(idAsientos)+"  ]" ;
+				+ "idFuncion="+idFuncion+",idAsientos="+ arregloAsientos +"]" ;
+		
+		/*return "InfoVenta[descuento="+ descuento +",tipoBoleto="+tipoBoleto+",subtotal="+ subtotal+","
+				+ "nombreDescuento="+nombreDescuento+",total="+total+",numeroAsientos="+numeroAsientos+","
+				+ "idFuncion="+idFuncion+",idAsientos="+ Arrays.toString(idAsientos)+" ,idAsientos="+ arregloAsientos +" ]" ;*/
 	}
 	
-	public SalaAsientoBean[] getIdAsientos() {
-		return idAsientos;
+	public int getTicket() {
+		return ticket;
 	}
 
-	public void setIdAsientos(SalaAsientoBean[] idAsientos) {
-		this.idAsientos = idAsientos;
+	public void setTicket(int ticket) {
+		this.ticket = ticket;
 	}
+	
+/*	public SalaAsientoBean[] getIdAsientos() {
+		return idAsientos;
+	} */
+
+/*	public void setIdAsientos(SalaAsientoBean[] idAsientos) {
+		this.idAsientos = idAsientos;
+	} */
 
 	public String getDescuento() {
 		return descuento;
@@ -79,8 +101,13 @@ public class VentaBoletosBean {
 	public void setNumeroAsientos(int numeroAsientos) {
 		this.numeroAsientos = numeroAsientos;
 	}
+	
+	public int[] getArregloAsientos() {
+		return arregloAsientos;
+	}
 
-	
-	
+	public void setArregloAsientos(int[] arregloAsientos) {
+		this.arregloAsientos = arregloAsientos;
+	}
 	
 }

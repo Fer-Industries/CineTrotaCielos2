@@ -1,7 +1,7 @@
 package mx.com.cinema.controller;
 
 import java.io.IOException;
-import java.util.List;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,10 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-
-import mx.com.cinema.entities.BusquedaPeliculaBean;
 import mx.com.cinema.entities.VentaBoletosBean;
-import mx.com.cinema.model.PeliculasCrud;
 import mx.com.cinema.model.VentasCrud;
 
 /**
@@ -37,17 +34,17 @@ public class Ventas_ticket extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		//String parametrosVenta = request.getParameter("infoVenta");	
-		//System.out.println(parametrosVenta);
+		String parametrosVenta = request.getParameter("infoVenta");	
+		System.out.println(parametrosVenta);
 		Gson gson = new Gson();			 
-		VentaBoletosBean ventaBol  = new VentaBoletosBean();//gson.fromJson(parametrosVenta, VentaBoletosBean.class);
-		ventaBol.setIdFuncion(1);
-		ventaBol.setDia(3);
-		ventaBol.setNumeroAsientos(2);
+		VentaBoletosBean ventaBol  = gson.fromJson(parametrosVenta, VentaBoletosBean.class);
+		//new VentaBoletosBean();		//gson.fromJson(parametrosVenta, VentaBoletosBean.class);
+		//ventaBol.setDia(5);
+		//ventaBol.setIdFuncion(1);
+		//ventaBol.setNumeroAsientos(3);
 		VentaBoletosBean infor = new VentaBoletosBean(); 
 		VentasCrud vendiendo = new VentasCrud();
 		infor =   vendiendo.getInfoVenta(ventaBol);
-		
 		String jsonInfoVenta=gson.toJson(infor);
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
