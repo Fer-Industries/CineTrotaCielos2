@@ -46,69 +46,109 @@
       <div class="row">
 	    <div class="col-md-4 order-md-2 mb-4">
 	      <h4 class="d-flex justify-content-between align-items-center mb-3">
-	        <span class="titulo">Your cart</span>
+	        <span class="titulo">Tu compra <i class="fas fa-cart-plus"></i></span>
 	      </h4>
 	      <ul class="list-group mb-3" id="lista">
 	      </ul>
 	
 	    </div>
 	    <div class="pago col-md-8 order-md-1">
-	      <form class="needs-validation" novalidate>                    
-	        
+	     
 	        <hr class="mb-4">
 	
-	        <h4 class="mb-3">Pago</h4>
-	
-	        <div class="d-block my-3">
-	          <div class="custom-control custom-radio">
-	            <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-	            <label class="custom-control-label" for="credit">Tarjeta de Credito</label>
-	          </div>
-	          <div class="custom-control custom-radio">
-	            <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-	            <label class="custom-control-label" for="debit">Tarjeta de Debito</label>
-	          </div>
-	        </div>
-	        <div class="row">
-	          <div class="col-md-6 mb-3">
-	            <label for="cc-name">Nombre en la tarjeta</label>
-	            <input type="text" class="form-control" id="cc-name" placeholder="" required>
-	            <small class="">Nombre completo en la tarjeta</small>
-	            <div class="invalid-feedback">
-	              El nombre en la tarjeta es necesario
-	            </div>
-	          </div>
-	          <div class="col-md-6 mb-3">
-	            <label for="cc-number">Numero Tarjeta</label>
-	            <input type="text" class="form-control" id="cc-number" placeholder="" required>
-	            <div class="invalid-feedback">
-	              El numero de la tarjeta es necesario
-	            </div>
-	          </div>
-	        </div>
-	        <div class="row">
-	          <div class="col-md-3 mb-3">
-	            <label for="cc-expiration">Expiracion</label>
-	            <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-	            <div class="invalid-feedback">
-	              La fecha de expiracion es necesaria
-	            </div>
-	          </div>
-	          <div class="col-md-3 mb-3">
-	            <label for="cc-cvv">CVV</label>
-	            <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-	            <div class="invalid-feedback">
-	              Security code required
-	            </div>
-	          </div>
-	        </div>
+	        <h4 class="mb-3">Pago <i class="fas fa-certificate"></i></h4>
+				<div class="contenedor">
+
+		<!-- Tarjeta -->
+		<section class="tarjeta" id="tarjeta">
+			<div class="delantera">
+				<div class="logo-marca" id="logo-marca">
+					<!-- <img src="img/logos/visa.png" alt=""> -->
+				</div>
+				<img src="Img/chip-tarjeta.png" class="chip" alt="">
+				<div class="datos">
+					<div class="grupo" id="numero">
+						<p class="label">Número Tarjeta</p>
+						<p class="numero">#### #### #### ####</p>
+					</div>
+					<div class="flexbox">
+						<div class="grupo" id="nombre">
+							<p class="label">Nombre Tarjeta</p>
+							<p class="nombre">Juan Perez</p>
+						</div>
+
+						<div class="grupo" id="expiracion">
+							<p class="label">Valida Hasta</p>
+							<p class="expiracion"><span class="mes">MM</span> / <span class="year">AA</span></p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="trasera">
+				<div class="barra-magnetica"></div>
+				<div class="datos">
+					<div class="grupo" id="firma">
+						<p class="label">Firma</p>
+						<div class="firma"><p></p></div>
+					</div>
+					<div class="grupo" id="ccv">
+						<p class="label">CCV</p>
+						<p class="ccv"></p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Contenedor Boton Abrir Formulario -->
+		<div class="contenedor-btn">
+			<button class="btn-abrir-formulario" id="btn-abrir-formulario">
+				<i class="fas fa-caret-down"></i>
+			</button>
+		</div>
+
+		<!-- Formulario -->
+		<form action="" id="formulario-tarjeta" class="formulario-tarjeta">
+			<div class="grupo">
+				<label for="inputNumero">Número Tarjeta</label>
+				<input type="text" id="inputNumero" maxlength="19" autocomplete="off">
+			</div>
+			<div class="grupo">
+				<label for="inputNombre">Nombre</label>
+				<input type="text" id="inputNombre" maxlength="29" autocomplete="off">
+			</div>
+
+					<label for="selectMes">Valida Hasta</label>
+					<div class="flexbox">
+						<div class="grupo-select">
+							<select name="mes" id="selectMes">
+								<option disabled selected>Mes</option>
+							</select>
+							<i class="fas fa-angle-down"></i>
+						</div>
+						<div class="grupo-select">
+							<select name="year" id="selectYear">
+								<option disabled selected>Año</option>
+							</select>
+							<i class="fas fa-angle-down"></i>
+						</div>
+					</div>
+					
+
+				<div class="grupo ccv">
+					<label for="inputCCV">CCV</label>
+					<input type="text" id="inputCCV" maxlength="3">
+				</div>
+
 	        <hr class="mb-4">
 	        <button class="btn btn-primary btn-lg btn-block" type="submit">Hacer compra</button>
 	      </form>
 	    </div>
 	  </div>
      </div>
+     </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <script src="JS/venta.js"></script>
 <%}%>
 </body>
