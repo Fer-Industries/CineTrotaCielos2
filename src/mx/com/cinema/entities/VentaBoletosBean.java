@@ -1,5 +1,7 @@
 package mx.com.cinema.entities;
 
+import java.util.Arrays;
+
 public class VentaBoletosBean {
 
 	private String tipoBoleto;
@@ -10,10 +12,24 @@ public class VentaBoletosBean {
 	private int idFuncion;
 	private int dia;
 	private String descuento;
-	private String asientos;
+	private SalaAsientoBean[] idAsientos;
 	
+
+	@Override
+	public String toString() {
+		return "InfoVenta[descuento="+ descuento +",tipoBoleto="+tipoBoleto+",subtotal="+ subtotal+","
+				+ "nombreDescuento="+nombreDescuento+",total="+total+",numeroAsientos="+numeroAsientos+","
+				+ "idFuncion="+idFuncion+",idAsientos="+ Arrays.toString(idAsientos)+"  ]" ;
+	}
 	
-	
+	public SalaAsientoBean[] getIdAsientos() {
+		return idAsientos;
+	}
+
+	public void setIdAsientos(SalaAsientoBean[] idAsientos) {
+		this.idAsientos = idAsientos;
+	}
+
 	public String getDescuento() {
 		return descuento;
 	}
@@ -63,6 +79,7 @@ public class VentaBoletosBean {
 	public void setNumeroAsientos(int numeroAsientos) {
 		this.numeroAsientos = numeroAsientos;
 	}
+
 	
 	
 	

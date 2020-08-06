@@ -34,10 +34,11 @@ public class VentasCrud {
 
 	public VentaBoletosBean getInfoVenta(VentaBoletosBean parametrosVenta){
 		VentaBoletosBean infoVenta  = new VentaBoletosBean();
-		String textoProcedure = "{call  getFormatoPrecio( ? )}";
+		String textoProcedure = "select FOR_nombre as Formato, FOR_precio as Precio  from formatos \r\n" + 
+				"inner join funciones on FUN_idformato = FOR_idformato  where FUN_idfuncion = "+ parametrosVenta.getIdFuncion() +"";/*"{call  getFormatoPrecio( ? )}";*/
 				/*"select FOR_nombre as Formato, FOR_precio as Precio  from formatos \r\n" + 
 				"inner join funciones on FUN_idformato = FOR_idformato  where FUN_idfuncion = "+ parametrosVenta.getIdFuncion() +"";*/
-		String procPromocion = "call getPromo( ? )"; 
+		String procPromocion = "select PRO_nombre as Nombre ,PRO_descuento as Descuento from promociones";/*"call getPromo( ? )";*/ 
 				//"select PRO_nombre as Nombre ,PRO_descuento as Descuento from promociones";
 		int bandera =0;
 		float subtotal = 1;

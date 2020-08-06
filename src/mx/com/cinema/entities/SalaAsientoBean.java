@@ -6,7 +6,10 @@ public class SalaAsientoBean {
 	private String asiento;
 	private int disponibilidad;
 	
-	
+	@Override
+	public String toString() {
+		return "listaAsientos[id = "+ idAsiento +"]";
+	}
 	public int getDisponibilidad() {
 		return disponibilidad;
 	}
