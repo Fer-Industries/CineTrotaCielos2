@@ -12,7 +12,7 @@ public class UsuarioCrud {
 	
 	Connection con;
 	ConnectionDB conAWS;
-	CallableStatement ctmt; 
+	
 	PreparedStatement ptmt;
 	ResultSet rs;
 	

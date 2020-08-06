@@ -25,12 +25,10 @@ public class AsientosCrud {
 		ConnectionDB conexion = new ConnectionDB();
 		con = conexion.getConexion();
 		String procAsientos = "{call mostrarDispAsientos (?)}";
-		
 		try {
 			ctmt = con.prepareCall(procAsientos);
 			ctmt.setInt(1, idFuncion);
 			rs = ctmt.executeQuery();
-			
 			while
 				(rs.next()) {
 				SalaAsientoBean asiento = new SalaAsientoBean();

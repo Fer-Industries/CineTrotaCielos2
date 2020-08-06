@@ -8,11 +8,7 @@ public class AsientosBean {
 	public List<SalaAsientoBean> getListaAsientos() {
 		return listaAsientos;
 	}
-
 	public void setListaAsientos(List<SalaAsientoBean> listaAsientos) {
 		this.listaAsientos = listaAsientos;
 	}
-
-
-
 }
