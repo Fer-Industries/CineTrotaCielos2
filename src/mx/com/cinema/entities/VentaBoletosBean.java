@@ -10,6 +10,9 @@ public class VentaBoletosBean {
 	private int idFuncion;
 	private int dia;
 	private String descuento;
+	private String asientos;
+	
+	
 	
 	public String getDescuento() {
 		return descuento;

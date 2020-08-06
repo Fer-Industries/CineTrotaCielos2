@@ -34,15 +34,19 @@ public class VentasCrud {
 
 	public VentaBoletosBean getInfoVenta(VentaBoletosBean parametrosVenta){
 		VentaBoletosBean infoVenta  = new VentaBoletosBean();
-		String textoProcedure = "select FOR_nombre as Formato, FOR_precio as Precio  from formatos \r\n" + 
-				"inner join funciones on FUN_idformato = FOR_idformato  where FUN_idfuncion = "+ parametrosVenta.getIdFuncion() +"";
-		String procPromocion = "select PRO_nombre as Nombre ,PRO_descuento as Descuento from promociones";
+		String textoProcedure = "{call  getFormatoPrecio( ? )}";
+				/*"select FOR_nombre as Formato, FOR_precio as Precio  from formatos \r\n" + 
+				"inner join funciones on FUN_idformato = FOR_idformato  where FUN_idfuncion = "+ parametrosVenta.getIdFuncion() +"";*/
+		String procPromocion = "call getPromo( ? )"; 
+				//"select PRO_nombre as Nombre ,PRO_descuento as Descuento from promociones";
+		int bandera =0;
 		float subtotal = 1;
 		float total = 1;
 		String descuentoo;
 		try {
 			con = conexion.getConexion();
 			cmt = con.prepareCall(textoProcedure);
+			cmt.setInt(1, parametrosVenta.getIdFuncion());
 			rs = cmt.executeQuery();
 			while(rs.next()) {
 				infoVenta.setTipoBoleto(rs.getString("Formato"));
@@ -50,20 +54,22 @@ public class VentasCrud {
 			}
 			subtotal = subtotal * parametrosVenta.getNumeroAsientos();
 			infoVenta.setSubtotal(subtotal);
-			if(parametrosVenta.getDia() == 3) {
-				cmt = con.prepareCall(procPromocion);
-				rs = cmt.executeQuery();
-				while(rs.next()) {
-					infoVenta.setNombreDescuento(rs.getString("Nombre"));
-					total = rs.getFloat("Descuento");
-				}
+			cmt = con.prepareCall(procPromocion);
+			cmt.setInt(1, parametrosVenta.getDia() );
+			rs = cmt.executeQuery();
+			while(rs.next()) {
+				bandera++;
+				infoVenta.setNombreDescuento(rs.getString("Nombre"));
+				total = rs.getFloat("Descuento");
+			}
+			if(bandera > 0) {
 				descuentoo = Math.round(total*100) + "% "; 
 				infoVenta.setDescuento(descuentoo);
 				total = subtotal - ( total * subtotal);
 				infoVenta.setTotal(total);
 			}else {
-				 total = subtotal;
-				 infoVenta.setTotal(total);
+				total = subtotal;
+				infoVenta.setTotal(total);
 			}
 			infoVenta.setNumeroAsientos(parametrosVenta.getNumeroAsientos());
 		}catch(SQLException sqle) {
