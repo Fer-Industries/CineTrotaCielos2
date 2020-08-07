@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import mx.com.cinema.controller.Usuario;
 import mx.com.cinema.entities.UsuarioBean;
 import mx.com.cinema.entities.VentaBoletosBean;
 
@@ -30,7 +31,6 @@ public class VentasCrud {
 
 	public VentaBoletosBean getInfoVenta(VentaBoletosBean parametrosVenta){
 		VentaBoletosBean infoVenta  = new VentaBoletosBean();
-		
 		String textoProcedure = "{call  getFormatoPrecio( ? )}";
 				/*"select FOR_nombre as Formato, FOR_precio as Precio  from formatos \r\n" + 
 				"inner join funciones on FUN_idformato = FOR_idformato  where FUN_idfuncion = "+ parametrosVenta.getIdFuncion() +"";*/
@@ -73,35 +73,36 @@ public class VentasCrud {
 		System.out.println(infoVenta);
 		return infoVenta;
 	}
-	public int generarTicket(VentaBoletosBean parametrosVenta){
-		//falta id tarjeta
-		//obtener la atrjeta de la sesion 
-		UsuarioBean usuario = new UsuarioBean();
-		
+	public int generarTicket(VentaBoletosBean parametrosVenta,UsuarioBean usuarioLogin){		
+		System.out.println("El id de la tarjeta es "+ usuarioLogin.getIdTarjeta());
+		System.out.println(parametrosVenta);
+		int respuesta = 0;
 		String obtenerTicket ="{call ventaTicket(?, ? , ?)}";
-		String insertarAsientos="{call InsertarAsiento(? , ?, ?)}";
+		String insertarAsientos="{call ventasAsientos(? , ?, ?)}";
 		try {
 			con = conexion.getConexion();
 			cmt = con.prepareCall(obtenerTicket);
 			cmt.setInt(1,parametrosVenta.getIdFuncion());
-			cmt.setDouble(2, usuario.getIdTarjeta());
+			cmt.setDouble(2, usuarioLogin.getIdTarjeta());
 			cmt.setFloat(3, parametrosVenta.getTotal());
 			rs = cmt.executeQuery();
 			if(rs.next()) {
 				parametrosVenta.setTicket(rs.getInt("idVenta"));
-				cmt = con.prepareCall(insertarAsientos);
-				cmt.setInt(1, parametrosVenta.getTicket());
-				cmt.setDouble(3, usuario.getIdTarjeta());
+				System.out.println("El idVenta"+ parametrosVenta.getTicket());
 				for(int x: parametrosVenta.getArregloAsientos()) {
+					cmt = con.prepareCall(insertarAsientos);
+					cmt.setInt(1, parametrosVenta.getTicket());
+					System.out.println("El asiento "+ x);
 					cmt.setInt(2, x);
+					cmt.setInt(3, parametrosVenta.getIdFuncion());
 					rs = cmt.executeQuery();
 					if(rs.next()) {
-						//obtenemos la salida 
+						 respuesta = rs.getInt("Status");
 					}else {
 						System.out.println("Ocurrio un problema en el rs de InsertarAsiento");
 					}	
 				}
-				for(int i = 0;i< parametrosVenta.getArregloAsientos().length ;i++ ) {
+				/*for(int i = 0;i< parametrosVenta.getArregloAsientos().length ;i++ ) {
 					cmt.setInt(2, parametrosVenta.getArregloAsientos()[i]);
 					rs = cmt.executeQuery();
 					if(rs.next()) {
@@ -109,7 +110,7 @@ public class VentasCrud {
 					}else {
 						System.out.println("Ocurrio un problema en el rs de InsertarAsiento");
 					}
-				}
+				}*/
 				/*for(SalaAsientoBean asiento: parametrosVenta.getIdAsientos()) {
 					cmt.setInt(2, asiento.getIdAsiento());
 					rs = cmt.executeQuery();
@@ -119,9 +120,10 @@ public class VentasCrud {
 			}
 			con.close();
 		}catch(SQLException sql) {
-			System.out.println(sql.getMessage());
+			System.out.println("Es problema con la BD" + sql.getMessage());
 		}
-		return 1;
+		System.out.println(respuesta);
+		return respuesta;
 	}
 	/*public int generarTicket(int idFuncion,int idTarjeta,List<SalaAsientoBean> asientos) {
 		float total = 0;

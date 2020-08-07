@@ -1,6 +1,6 @@
 package mx.com.cinema.entities;
 
-
+import java.util.Arrays;
 
 public class VentaBoletosBean {
 
@@ -22,7 +22,7 @@ public class VentaBoletosBean {
 	public String toString() {
 		return "InfoVenta[descuento="+ descuento +",tipoBoleto="+tipoBoleto+",subtotal="+ subtotal+","
 				+ "nombreDescuento="+nombreDescuento+",total="+total+",numeroAsientos="+numeroAsientos+","
-				+ "idFuncion="+idFuncion+",idAsientos="+ arregloAsientos +"]" ;
+				+ "idFuncion="+idFuncion+",idAsientos="+ Arrays.toString(arregloAsientos) +"]" ;
 		
 		/*return "InfoVenta[descuento="+ descuento +",tipoBoleto="+tipoBoleto+",subtotal="+ subtotal+","
 				+ "nombreDescuento="+nombreDescuento+",total="+total+",numeroAsientos="+numeroAsientos+","

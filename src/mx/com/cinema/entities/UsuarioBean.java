@@ -1,5 +1,4 @@
 package mx.com.cinema.entities;
-import java.util.Date;
 
 public class UsuarioBean {
 	
@@ -71,9 +70,6 @@ public class UsuarioBean {
 	public void setIdNivel(int idNivel) {
 		this.idNivel = idNivel;
 	}
-
-
-
 	public String getBirthday() {
 		return birthday;
 	}

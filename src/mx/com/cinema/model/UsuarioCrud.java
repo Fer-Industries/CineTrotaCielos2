@@ -1,6 +1,6 @@
 package mx.com.cinema.model;
 
-import java.sql.CallableStatement;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,7 +12,6 @@ public class UsuarioCrud {
 	
 	Connection con;
 	ConnectionDB conAWS;
-	
 	PreparedStatement ptmt;
 	ResultSet rs;
 	
