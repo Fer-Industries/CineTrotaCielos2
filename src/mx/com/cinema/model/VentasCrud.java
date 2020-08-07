@@ -102,19 +102,6 @@ public class VentasCrud {
 						System.out.println("Ocurrio un problema en el rs de InsertarAsiento");
 					}	
 				}
-				/*for(int i = 0;i< parametrosVenta.getArregloAsientos().length ;i++ ) {
-					cmt.setInt(2, parametrosVenta.getArregloAsientos()[i]);
-					rs = cmt.executeQuery();
-					if(rs.next()) {
-						//obtenemos la salida 
-					}else {
-						System.out.println("Ocurrio un problema en el rs de InsertarAsiento");
-					}
-				}*/
-				/*for(SalaAsientoBean asiento: parametrosVenta.getIdAsientos()) {
-					cmt.setInt(2, asiento.getIdAsiento());
-					rs = cmt.executeQuery();
-				}*/
 			}else {
 				System.out.println("Ocurrio un problema en el rs de ventaTicket");
 			}
