@@ -33,7 +33,7 @@ public class VentasCrud {
 	 * */
 
 	public VentaBoletosBean getInfoVenta(VentaBoletosBean parametrosVenta){
-		VentaBoletosBean infoVenta  = new VentaBoletosBean();
+		
 		String textoProcedure = "{call  getFormatoPrecio( ? )}";
 				/*"select FOR_nombre as Formato, FOR_precio as Precio  from formatos \r\n" + 
 				"inner join funciones on FUN_idformato = FOR_idformato  where FUN_idfuncion = "+ parametrosVenta.getIdFuncion() +"";*/
@@ -49,34 +49,34 @@ public class VentasCrud {
 			cmt.setInt(1, parametrosVenta.getIdFuncion());
 			rs = cmt.executeQuery();
 			while(rs.next()) {
-				infoVenta.setTipoBoleto(rs.getString("Formato"));
+				parametrosVenta.setTipoBoleto(rs.getString("Formato"));
 				subtotal = rs.getFloat("Precio");
 			}
 			subtotal = subtotal * parametrosVenta.getNumeroAsientos();
-			infoVenta.setSubtotal(subtotal);
+			parametrosVenta.setSubtotal(subtotal);
 			cmt = con.prepareCall(procPromocion);
 			cmt.setInt(1, parametrosVenta.getDia() );
 			rs = cmt.executeQuery();
 			while(rs.next()) {
 				bandera++;
-				infoVenta.setNombreDescuento(rs.getString("Nombre"));
+				parametrosVenta.setNombreDescuento(rs.getString("Nombre"));
 				total = rs.getFloat("Descuento");
 			}
 			if(bandera > 0) {
 				descuentoo = Math.round(total*100) + "% "; 
-				infoVenta.setDescuento(descuentoo);
+				parametrosVenta.setDescuento(descuentoo);
 				total = subtotal - ( total * subtotal);
-				infoVenta.setTotal(total);
+				parametrosVenta.setTotal(total);
 			}else {
 				total = subtotal;
-				infoVenta.setTotal(total);
+				parametrosVenta.setTotal(total);
 			}
-			infoVenta.setNumeroAsientos(parametrosVenta.getNumeroAsientos());
+			parametrosVenta.setNumeroAsientos(parametrosVenta.getNumeroAsientos());
 		}catch(SQLException sqle) {
 			System.out.println(sqle.getMessage());
 		}
-		System.out.println(infoVenta);
-		return infoVenta;
+		System.out.println(parametrosVenta);
+		return parametrosVenta;
 	}
 	
 	/*public int generarTicket(int idFuncion,int idTarjeta,List<SalaAsientoBean> asientos) {

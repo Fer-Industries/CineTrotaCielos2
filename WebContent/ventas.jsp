@@ -141,7 +141,7 @@
 				</div>
 
 	        <hr class="mb-4">
-	        <button class="btn btn-primary btn-lg btn-block" type="submit">Hacer compra</button>
+	        <button class="btn btn-primary btn-lg btn-block" id="compra"type="submit">Hacer compra</button>
 	      </form>
 	    </div>
 	  </div>

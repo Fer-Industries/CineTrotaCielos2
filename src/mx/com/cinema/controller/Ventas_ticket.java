@@ -37,18 +37,19 @@ public class Ventas_ticket extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		//String parametrosVenta = request.getParameter("infoVenta");	
-		//System.out.println(parametrosVenta);
+		String parametrosVenta = request.getParameter("infoVenta");	
+		System.out.println(parametrosVenta);
 		Gson gson = new Gson();			 
-		VentaBoletosBean ventaBol  = new VentaBoletosBean();//gson.fromJson(parametrosVenta, VentaBoletosBean.class);
-		ventaBol.setIdFuncion(1);
+		//VentaBoletosBean ventaBol  = new VentaBoletosBean();//
+		VentaBoletosBean ventaBol = gson.fromJson(parametrosVenta, VentaBoletosBean.class);
+		/*ventaBol.setIdFuncion(1);
 		ventaBol.setDia(3);
-		ventaBol.setNumeroAsientos(2);
-		VentaBoletosBean infor = new VentaBoletosBean(); 
+		ventaBol.setNumeroAsientos(2);*/
+		 
 		VentasCrud vendiendo = new VentasCrud();
-		infor =   vendiendo.getInfoVenta(ventaBol);
+		ventaBol =   vendiendo.getInfoVenta(ventaBol);
 		
-		String jsonInfoVenta=gson.toJson(infor);
+		String jsonInfoVenta=gson.toJson(ventaBol);
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().write(jsonInfoVenta);
