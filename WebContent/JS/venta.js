@@ -163,7 +163,44 @@ d.querySelector("#inputCCV").value = d.querySelector("#inputCCV").value
 	.replace(/\D/g, '');
 	ccv.textContent = d.querySelector("#inputCCV").value;
 });
-
+botonCompra.addEventListener("click",function(){
+	$.ajax({
+		url:'/Cinema/Ventas_ticket',
+		type:'post',
+		data:{
+			infoVenta:JSON.stringify(infCompra)
+		},
+		success:function(response){
+			console.log(response);
+			if(response > 0){
+				Swal.close();
+				Swal.fire(
+						'Venta realizada',
+						'disfrute su función',
+						'success'
+				);
+				// se tendría que descargar el pdf!!!!
+				window.location.href = '/Cinema/principal.jsp';
+			}else{
+				Swal.close();
+				Swal.fire(
+						'Tuvimos un problema',
+						'disculpe las molestias',
+						'error'
+				);
+			}
+		},
+		error:function(response){
+			Swal.close();
+			Swal.fire(
+					'Hubo un problema',
+					'intentelo mas tarde',
+					'error'
+			);
+		}
+	});
+});
+/*
 botonCompra.addEventListener("click",function(){
 	let infoTarjeta = {
 			idTarCliente:d.querySelector("#inputNumero").value.replace(/\s/g, ''),
@@ -268,4 +305,4 @@ botonCompra.addEventListener("click",function(){
 		}
 	});
 });
-
+*/
