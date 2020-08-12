@@ -108,7 +108,7 @@
 		</div>
 
 		<!-- Formulario -->
-		<form action="" id="formulario-tarjeta" class="formulario-tarjeta">
+		<section id="formulario-tarjeta" class="formulario-tarjeta">
 			<div class="grupo">
 				<label for="inputNumero">Número Tarjeta</label>
 				<input type="text" id="inputNumero" maxlength="19" autocomplete="off">
@@ -142,13 +142,14 @@
 
 	        <hr class="mb-4">
 	        <button class="btn btn-primary btn-lg btn-block" id="compra"type="submit">Hacer compra</button>
-	      </form>
+	      </section>
 	    </div>
 	  </div>
      </div>
      </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="JS/venta.js"></script>
 <%}%>
 </body>

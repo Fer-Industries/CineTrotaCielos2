@@ -58,7 +58,7 @@ public class Ventas_ticket extends HttpServlet {
 		// TODO Auto-generated method stub
 		String parametrosVenta = request.getParameter("infoVenta");	
 		System.out.println(parametrosVenta);
-		
+		 
 		Gson gson = new Gson();			 
 		VentaBoletosBean ventaBol  = gson.fromJson(parametrosVenta, VentaBoletosBean.class);
 		//new VentaBoletosBean();		//gson.fromJson(parametrosVenta, VentaBoletosBean.class);
@@ -72,10 +72,9 @@ public class Ventas_ticket extends HttpServlet {
 		VentasCrud vendiendo = new VentasCrud();
 		int salida =   vendiendo.generarTicket(ventaBol,usuarioLogueado);
 		System.out.println("Desde el servlet "+ salida);
-		String jsonInfoVenta=gson.toJson(salida);
-		response.setContentType("application/json");
+		response.setContentType("text/plain");
 		response.setCharacterEncoding("UTF-8");
-		response.getWriter().write(jsonInfoVenta);
+		response.getWriter().write(salida+"");
 	}
 
 }

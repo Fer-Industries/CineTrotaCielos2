@@ -78,8 +78,6 @@ public class VentasCrud {
 	
 	
 	public int generarTicket(VentaBoletosBean parametrosVenta,UsuarioBean usuarioLogin){		
-		System.out.println("El id de la tarjeta es "+ usuarioLogin.getIdTarjeta());
-		System.out.println(parametrosVenta);
 		int respuesta = 0;
 		String obtenerTicket ="{call ventaTicket(?, ? , ?)}";
 		String insertarAsientos="{call ventasAsientos(? , ?, ?)}";
@@ -92,81 +90,25 @@ public class VentasCrud {
 			rs = cmt.executeQuery();
 			if(rs.next()) {
 				parametrosVenta.setTicket(rs.getInt("idVenta"));
-				System.out.println("El idVenta"+ parametrosVenta.getTicket());
 				for(int x: parametrosVenta.getArregloAsientos()) {
 					cmt = con.prepareCall(insertarAsientos);
 					cmt.setInt(1, parametrosVenta.getTicket());
-					System.out.println("El asiento "+ x);
 					cmt.setInt(2, x);
 					cmt.setInt(3, parametrosVenta.getIdFuncion());
 					rs = cmt.executeQuery();
 					if(rs.next()) {
 						 respuesta = rs.getInt("Status");
 					}else {
-						System.out.println("Ocurrio un problema en el rs de InsertarAsiento");
+						respuesta = -1;
 					}	
 				}
 			}else {
-				System.out.println("Ocurrio un problema en el rs de ventaTicket");
+				respuesta = -1;
 			}
 			con.close();
 		}catch(SQLException sql) {
 			System.out.println("Es problema con la BD" + sql.getMessage());
 		}
-		System.out.println(respuesta);
 		return respuesta;
 	}
-	/*public int generarTicket(int idFuncion,int idTarjeta,List<SalaAsientoBean> asientos) {
-		float total = 0;
-		String procAsientos = "{call costo(? ?)}";
-		String ticket ="{call generarTicket( ? ? ? ? )}";
-		String rel_ventas_ticket ="{call llenarRel(? ?)}";
-		try {
-			con = conexion.getConexion();
-			for(SalaAsientoBean asiento :asientos){	
-				cmt = con.prepareCall(procAsientos);
-				cmt.setInt(1,asiento.getIdAsiento());
-				cmt.setInt(2,idFuncion);
-				rs = cmt.executeQuery();
-				while(rs.next()) {
-					total = total + rs.getFloat("Precio");
-				}
-			}
-			Date myDate = new Date();
-			//Aquí obtienes el formato que deseas
- 		    String hoy = new SimpleDateFormat("yyyy/M/dd").format(myDate);
- 		    System.out.println("la fecha es :"+ hoy);
-			
-			cmt = con.prepareCall(ticket);
-			cmt.setInt(1,idFuncion);
-			cmt.setInt(2,idTarjeta);
-			cmt.setString(3, hoy);
-			cmt.setFloat(4, total);
-			rs = cmt.executeQuery();
-			while(rs.next()) {
-				total = total + rs.getFloat("IDVenta");
-			}
-			
-			for(SalaAsientoBean asiento :asientos){	
-				cmt = con.prepareCall(procAsientos);
-				cmt.setInt(1,asiento.getIdAsiento());
-				cmt.setInt(2,idFuncion);
-				rs = cmt.executeQuery();
-				while(rs.next()) {
-					
-				}
-			}
-			
-			
-		con.close();	
-		}catch(SQLException sqle) {
-			System.out.println("Error desde VentasCrud "+sqle.getMessage());
-		}
-		
-		
-		return 1;
-		
-	}
-	
-	*/
 }
