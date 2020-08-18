@@ -1,7 +1,22 @@
-/**
- * 
- */
+let asientos;
+let idFuncioon = sessionStorage.getItem("funcion");
 
+setInterval(()=>{
+	// espreguntar nuevamente al servidor si los asientos que ya cargue siguen disponibles
+		console.log('hola mundo');
+		$.ajax({
+			 url: '/Cinema/CupoSala',
+			 type: 'post',
+			 data: { 
+				 enviarInfo: idFuncioon
+			 },
+			 success: function(respuesta) {
+				console.log(respuesta);
+				asientos = respuesta;
+				generarAsientos(asientos);
+			}
+		}); 
+},10000);
 
 console.log(sessionStorage.getItem("funcion"));
 $("#contenidoP").append(  "<h6 class=card-text card-title tittle>Titulo: "+sessionStorage.getItem("pele")+ "</h6>"
@@ -13,8 +28,6 @@ $("#contenidoP").append(  "<h6 class=card-text card-title tittle>Titulo: "+sessi
 						 );
 					
 $("#imagenP").append("<img class='card-img img-radious'  width=110 height=200   src='https://fer-industries.s3.amazonaws.com/Cinema/"+sessionStorage.getItem("imagene")+"'>");
-					
-let idFuncioon = sessionStorage.getItem("funcion"); 
 
 $.ajax({
 	 url: '/Cinema/CupoSala',
@@ -23,70 +36,68 @@ $.ajax({
 		 enviarInfo: idFuncioon
 	 },
 	 success: function(respuesta) {
-		console.log("yoo soy la resouesta");
 		console.log(respuesta);
-		
-		const asientos = respuesta;
-		
-		//console.log(asientos.listaAsientos.sort());
-		
-		//console.log(asientos.sort());
-		//seria obtener las letras que vienen en nuestro arreglo
-		let arregloLetras = [];
-		let arregloNumeros = asientos;
-		for(let i=0; i <arregloNumeros.listaAsientos.length;i++){
-			for(let j=i+1; j <arregloNumeros.listaAsientos.length;j++){
-				//console.log("Estoy comparando " + arregloNumeros.listaAsientos[i].asiento.substring(1,3) + " con " + arregloNumeros.listaAsientos[j].asiento.substring(1,3) );
-				let gutsu =  parseInt (arregloNumeros.listaAsientos[j].asiento.substring(1,3));
-				 if(arregloNumeros.listaAsientos[i].asiento.substring(1,3) > gutsu ){
-				//	console.log("Entre en el if");
+		asientos = respuesta;
+		generarAsientos(asientos);
+	}
+}); 
+
+const generarAsientos = (asientos) =>{
+	let arregloLetras = [];
+	let arregloNumeros = asientos;
+	//Ordenando el arreglo conforme al NÚMERO (A12) de asiento
+	for(let i=0; i <arregloNumeros.listaAsientos.length;i++){
+		for(let j=i+1; j <arregloNumeros.listaAsientos.length;j++){
+			//console.log("Estoy comparando " + arregloNumeros.listaAsientos[i].asiento.substring(1,3) + " con " + arregloNumeros.listaAsientos[j].asiento.substring(1,3) );
+			let numeroAsiento =  parseInt (arregloNumeros.listaAsientos[j].asiento.substring(1,3));
+			 	if(arregloNumeros.listaAsientos[i].asiento.substring(1,3) > numeroAsiento ){
+			 		//	console.log("Entre en el if");
 					let aux;
 					aux = arregloNumeros.listaAsientos[i];
 					arregloNumeros.listaAsientos[i] = arregloNumeros.listaAsientos[j];
 					arregloNumeros.listaAsientos[j] = aux;
-					}	
-				} 
-		 } 
-		console.log("Arrreglo ordenado");
-		console.log(arregloNumeros.listaAsientos);
+				}	
+			} 
+	 } 
+	console.log("Arrreglo ordenado por ");
+	console.log(arregloNumeros.listaAsientos);
 
-		//let arregloLetras = asientos.map(asiento => asiento.nombre.charAt(0));
-		
-		asientos.listaAsientos.map(asiento => asiento.asiento.charAt(0)).forEach(letra => {
-		    let banderaIgual = 0;
-		    if (arregloLetras.length == 0) {
-		        banderaIgual=0;
-		    }else{
-		        arregloLetras.forEach(individual=> {
-		            if (individual == letra) {
-		                banderaIgual = 1;
-		            }
-		        });
-		    }
-		    if (banderaIgual != 1) {
-		        arregloLetras.push(letra);
-		    }
-		});
-		//Arreglo letras sin repetirse
-		//console.log(arregloLetras);
-		//acomodando el arreglo de letras por orden alfaabetico
-		arregloLetras.sort();
-		arregloLetras.map(individual=>{
-		  let tr = "<tr>";
-		  // se crea mediante el arreglode letras
-		  let asientosCoincidentes = asientos.listaAsientos.filter(asiento => asiento.asiento.charAt(0) == individual);
-		  asientosCoincidentes.map(asientoC =>{
-		    if(asientoC.disponibilidad == 0){
-		      tr = tr + "<td id=" + asientoC.idAsiento+" onclick='eligiendo("+JSON.stringify(asientoC)+")'><i class='fas fa-chair dispo' id="+ asientoC.asiento +" ></i><h6 class=titulos>"+asientoC.asiento+"</h6></td>";
-		    }else{
-		      tr = tr + "<td id=" + asientoC.idAsiento +" onclick='eligiendo("+JSON.stringify(asientoC)+")'><i class='fas fa-chair dispoNo'  id="+ asientoC.asiento +" ></i><h6 class=titulos>"+asientoC.asiento+"</h6></td>";
-		    }
-		  });
-		  tr = tr + "</tr>";
-		  $("#cuerpoTabla").append(tr);
-		});
-	}
-}); 
+	//let arregloLetras = asientos.map(asiento => asiento.nombre.charAt(0));
+	// SE HACE EL ARREGLO DE LAS LETRAS DISPONIBLES [A,B,C,D] SIN REPETICIÓN DE LETRAS
+	asientos.listaAsientos.map(asiento => asiento.asiento.charAt(0)).forEach(letra => {
+	    let banderaIgual = 0;
+	    if (arregloLetras.length == 0) {
+	        banderaIgual=0;
+	    }else{
+	        arregloLetras.forEach(individual=> {
+	            if (individual == letra) {
+	                banderaIgual = 1;
+	            }
+	        });
+	    }
+	    if (banderaIgual != 1) {
+	        arregloLetras.push(letra);
+	    }
+	});		
+	//acomodando el arreglo de letras por orden alfabetico
+	arregloLetras.sort();
+	// Aqui se empieza a pintar en l pantalla los asientos respecto a las letras
+	arregloLetras.map(individual=>{
+	  let tr = "<tr>";
+	  // se crea mediante el arreglode letras
+	  let asientosCoincidentes = asientos.listaAsientos.filter(asiento => asiento.asiento.charAt(0) == individual);
+	  asientosCoincidentes.map(asientoC =>{
+	    if(asientoC.disponibilidad == 0){
+	      tr = tr + "<td id=" + asientoC.idAsiento+" onclick='eligiendo("+JSON.stringify(asientoC)+")'><i class='fas fa-chair dispo' id="+ asientoC.asiento +" ></i><h6 class=titulos>"+asientoC.asiento+"</h6></td>";
+	    }else{
+	      tr = tr + "<td id=" + asientoC.idAsiento +" onclick='eligiendo("+JSON.stringify(asientoC)+")'><i class='fas fa-chair dispoNo'  id="+ asientoC.asiento +" ></i><h6 class=titulos>"+asientoC.asiento+"</h6></td>";
+	    }
+	  });
+	  tr = tr + "</tr>";
+	  $("#cuerpoTabla").append(tr);
+	});
+};
+
 let asientoSeleccionados = []; // el arreglo que guarda los asientos que selecciono el usuario 
 		const eligiendo =  (asiento) =>{
 			console.log("Estoy en la funcion eligiendo");
@@ -136,9 +147,6 @@ $("#botonConfirmacion").on("click",function(){
 					[        0					1,			2,				3,						4,				5,			6]
 					[DOMINGO, LUNES, MARTES, MIERCOLES, JUEVES, VIERNES, SABADO]
 	*/
-	
-	
-	
 	
 	window.location.href = "/Cinema/ventas.jsp";
 });	

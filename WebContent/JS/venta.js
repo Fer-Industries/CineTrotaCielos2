@@ -181,6 +181,12 @@ botonCompra.addEventListener("click",function(){
 				);
 				// se tendría que descargar el pdf!!!!
 				window.location.href = '/Cinema/principal.jsp';
+			}else if(response == -3){
+				Swal.fire(
+						'Disculpe',
+						'uno de los asientos ya esta ocupado',
+						'error'
+				);
 			}else{
 				Swal.close();
 				Swal.fire(

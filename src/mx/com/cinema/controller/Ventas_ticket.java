@@ -70,7 +70,14 @@ public class Ventas_ticket extends HttpServlet {
 		UsuarioBean usuarioLogueado = (UsuarioBean) request.getSession().getAttribute("usuario");
 		System.out.println( usuarioLogueado);
 		VentasCrud vendiendo = new VentasCrud();
-		int salida =   vendiendo.generarTicket(ventaBol,usuarioLogueado);
+		int disponible = vendiendo.validarAsientos(ventaBol.getArregloAsientos(), ventaBol.getIdFuncion());
+		int salida = 0;
+		if(disponible > 0) { //quiere decir que un asiento ya esta ocupado
+			salida = -3;
+		}else {
+			salida =  vendiendo.generarTicket(ventaBol,usuarioLogueado);
+		}
+		
 		System.out.println("Desde el servlet "+ salida);
 		response.setContentType("text/plain");
 		response.setCharacterEncoding("UTF-8");
