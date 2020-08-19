@@ -1,24 +1,24 @@
-let asientos;
+let asientos; // asientos que ya estan pintados
 let idFuncioon = sessionStorage.getItem("funcion");
 
 setInterval(()=>{
-	// espreguntar nuevamente al servidor si los asientos que ya cargue siguen disponibles
-		console.log('hola mundo');
+	// espreguntar nuevamente al servidor si los asientos que ya cargue siguen disponibles		
 		$.ajax({
 			 url: '/Cinema/CupoSala',
 			 type: 'post',
 			 data: { 
 				 enviarInfo: idFuncioon
 			 },
-			 success: function(respuesta) {
-				console.log(respuesta);
-				asientos = respuesta;
-				generarAsientos(asientos);
+			 success: function(asientosActualizados) {
+				  asientosActualizados.listaAsientos.filter(asiento =>asiento.disponibilidad == 1)
+				  .map(asiento=>document.getElementById(asiento.idAsiento).outerHTML  = "<td id=" + asiento.idAsiento +" onclick='eligiendo("+JSON.stringify(asiento)+")'><i class='fas fa-chair dispoNo'  id="+ asiento.asiento +" ></i><h6 class=titulos>"+asiento.asiento+"</h6></td>"	);
 			}
 		}); 
-},10000);
+},3000);
+/*asientoPintado.classList.remove("dispo");
+asientoPintado.classList.add("dispoNo");*/
 
-console.log(sessionStorage.getItem("funcion"));
+
 $("#contenidoP").append(  "<h6 class=card-text card-title tittle>Titulo: "+sessionStorage.getItem("pele")+ "</h6>"
 						  + "<h6 class='card-text '>Dia: "+sessionStorage.getItem("diafune")+ "</h6>"
 						  + "<h6 class='card-text '>Formato: "+sessionStorage.getItem("formatoe")+ "</h6>"
@@ -122,9 +122,8 @@ let asientoSeleccionados = []; // el arreglo que guarda los asientos que selecci
 		        }
 		    }
 		};	
-// FUNCIÓN DE FLECHA ES DE JAVASCRIPT!!!
+		
 $("#botonConfirmacion").on("click",function(){
-	//console.log(asientoSeleccionados);
 	if(asientoSeleccionados.length == 0){
 		Swal.fire(
 				'',
@@ -135,7 +134,43 @@ $("#botonConfirmacion").on("click",function(){
 	}
 	let idAsientos = asientoSeleccionados.map(asiento => asiento.idAsiento);
 	//console.log(idAsientos);
+	let infoAsientosApartados = {
+			arregloAsientos:idAsientos,
+			idFuncion:idFuncioon
+	};
 	sessionStorage.setItem("asientosSeleccionados",idAsientos);
+	$.ajax({
+		url:"/Cinema/ApartarLugar",
+		type:'get',
+		data:{
+			infoAsientos:JSON.stringify(infoAsientosApartados)
+		},
+		success:function(response){
+			console.log(response);
+			if(response > 0){
+				window.location.href = "/Cinema/ventas.jsp";
+			}else if(response == -1){
+				Swal.fire(
+						'',
+						'Ya se ocupo uno de los asientos disculpe la molestia',
+						'error'
+				);	
+			}else{
+				Swal.fire(
+						'Tuvimos un prolema',
+						'intentelo mas tarde',
+						'error'
+				);
+			}
+		},error:function(response){
+			Swal.fire(
+					'Tuvimos un prolema',
+					'intentelo mas tarde',
+					'error'
+			);
+		}
+	});
+	
 	// NECESITAMOS EL DÍA (LUNES, MARTES, MIERCOLES, JUEVES..)EN EL QUE SE ESTA EFECTUANDO LA COMPRA
 	//NECESITAMOS INSTANCIAR LA CLASE DATE PERO HAY UN POCO DE TRAMPA 
 	// EL YEAR NO HAY PROBLEMA PUEDES MANDAR EL AÑO COMO TAL
@@ -147,6 +182,7 @@ $("#botonConfirmacion").on("click",function(){
 					[        0					1,			2,				3,						4,				5,			6]
 					[DOMINGO, LUNES, MARTES, MIERCOLES, JUEVES, VIERNES, SABADO]
 	*/
+	// es el apartado de los asientos!!!
 	
-	window.location.href = "/Cinema/ventas.jsp";
+	//
 });	

@@ -22,7 +22,7 @@ public class AsientosCrud {
 
 	public List<SalaAsientoBean> getAsientos(int idFuncion) {
 		List<SalaAsientoBean> listaAsientos = new ArrayList<SalaAsientoBean>();
-		ConnectionDB conexion = new ConnectionDB();
+		conexion = new ConnectionDB();
 		con = conexion.getConexion();
 		String procAsientos = "{call mostrarDispAsientos (?)}";
 		try {
@@ -42,5 +42,30 @@ public class AsientosCrud {
 			System.out.println(sqle.getMessage());
 		}
 		return listaAsientos;
+	}
+	
+	public int apartarLugares(int idFuncion, int [] idAsientos) {
+		//validar que esten disponibles
+		VentasCrud ventas = new VentasCrud();
+		int disponible = ventas.validarAsientos(idAsientos, idFuncion);
+		int filasActualizadas = 0;
+		if(disponible > 0) { //algunos de los asientos ya esta ocupado
+			return -1;
+		}else {// caso contrario los apartamos
+			conexion = new ConnectionDB();
+			con = conexion.getConexion();
+			String proc = "{call apartarLugar(?,?)}";
+			try {
+				for(int idAsiento: idAsientos) {
+					ctmt = con.prepareCall(proc);
+					ctmt.setInt(1,idFuncion);
+					ctmt.setInt(2, idAsiento);
+					filasActualizadas = ctmt.executeUpdate();
+				}
+			}catch(SQLException sqle) {
+				System.out.println(sqle.getMessage());
+			}
+		return filasActualizadas;
+		}	
 	}
 }

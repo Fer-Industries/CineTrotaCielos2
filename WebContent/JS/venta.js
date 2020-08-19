@@ -4,6 +4,11 @@ let arregloAsientos = sessionStorage.getItem("asientosSeleccionados").split(",")
 let numeroAsientos = arregloAsientos.length;
 let date = new Date();
 let total = 0;
+let tiempoInicial = 180000;
+setInterval(()=>{
+	tiempoInicial--;
+	$("#temporizador").html(tiempoInicial);
+},1000);
 //	ESTE JSON LO VAS A ENVIAR AL SERVLET!!!!
 let infoVenta = {
 		idFuncion:idFuncion,

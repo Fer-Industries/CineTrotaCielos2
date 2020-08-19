@@ -2,6 +2,12 @@ body{
 	background-color:#3E3241 !important;
 }
 
+.temporizador{
+	font-size:20px;
+	font-family:sans-serif;
+	color:#fff;	
+}
+
 .pago{
 	color:#fff;
 }
