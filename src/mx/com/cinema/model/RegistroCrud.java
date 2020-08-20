@@ -54,7 +54,7 @@ public class RegistroCrud {
 		int mensaje = 0;
 		conexionAWS = new ConnectionDB();
 		con  = conexionAWS.getConexion();
-		String insertarUsuario ="{call InsertarUsuario(?,?,?,?,?,?,?)}";
+		String insertarUsuario ="{call P_ALTA_USUARIO(?,?,?,?,?,?,?)}";
 		try{
 			CallableStatement ctmt = con.prepareCall(insertarUsuario);
 			ctmt.setLong(1,usuarioNuevo.getIdTarjeta());

@@ -34,7 +34,7 @@ public class PeliculasCrud {
 	public List<PeliculasBean> getPeliculasEstreno(){
 		conexion= new ConnectionDB();
 		con  = conexion.getConexion();
-		String getPelEstreno = "{call Pel_estreno}";
+		String getPelEstreno = "{call P_PELICULAS_ESTRENO}";
 		List<PeliculasBean> listaPeliculas = new ArrayList <> ();	
 		try {
 			ctmt= con.prepareCall(getPelEstreno);
@@ -77,9 +77,7 @@ public class PeliculasCrud {
 	        	idPelicula = 0,
 	        	idSucursal = 0, 
 	        	idFormato  = 0, 
-	        	idIdioma   = 0;
-	        
-	        
+	        	idIdioma   = 0;	        
 	        if(parametrosPel.getIdFormato() > 0){
 	            generandoConsulta = generandoConsulta + " and FOR_idformato = ?";
 	            idFormato = bandera;

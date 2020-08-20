@@ -19,7 +19,7 @@ public class UsuarioCrud {
 	public UsuarioBean validar(UsuarioBean usuarioLogin) {
 		conAWS = new ConnectionDB();
 		con = conAWS.getConexion();
-		String proc = "{call Login(?,?)}";
+		String proc = "{call P_LOGIN(?,?)}";
 		
 		try {
 			ptmt = con.prepareStatement(proc);

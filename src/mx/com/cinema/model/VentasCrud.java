@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import mx.com.cinema.controller.Usuario;
 import mx.com.cinema.entities.UsuarioBean;
 import mx.com.cinema.entities.VentaBoletosBean;
 
@@ -31,8 +30,8 @@ public class VentasCrud {
 
 	public VentaBoletosBean getInfoVenta(VentaBoletosBean parametrosVenta){
 		
-		String textoProcedure = "{call  getFormatoPrecio( ? )}";
-		String procPromocion = "{call getPromo( ? )}";
+		String textoProcedure = "{call  P_FORMATO_PRECIO( ? )}";
+		String procPromocion = "{call P_PROMO_DIA( ? )}";
 		float subtotal = 1;
 		float total = 1;
 		String descuentoo;
@@ -61,7 +60,6 @@ public class VentasCrud {
 				parametrosVenta.setTotal(total);
 			}			
 			else {
-			
 				total = subtotal;
 				parametrosVenta.setTotal(total);
 			}
@@ -79,7 +77,7 @@ public class VentasCrud {
 		// validamos que los asientos seleccionados sigan disponibles
 		conexion = new ConnectionDB();
 		con = conexion.getConexion();
-		String checarDispo = "{call disponibilidad_asiento(?, ?)}";
+		String checarDispo = "{call P_DISPO_ASIENTO(?, ?)}";
 		int asientoOcupado = 0; //0 que esta disponible, 1 ya no esta disponible
 		
 		try {
@@ -91,7 +89,6 @@ public class VentasCrud {
 				if(rs.next()) {
 					asientoOcupado = rs.getInt("disponible");
 					if(asientoOcupado > 0) {
-						System.out.println("YA ESTA OCUPADO!!!!");
 						return asientoOcupado;
 					}
 				}
@@ -126,8 +123,8 @@ public class VentasCrud {
 	
 	public int generarTicket(VentaBoletosBean parametrosVenta,UsuarioBean usuarioLogin){		
 		int respuesta = 0;
-		String obtenerTicket ="{call ventaTicket(?, ? , ?)}";
-		String insertarAsientos="{call ventasAsientos(? , ?, ?)}";
+		String obtenerTicket ="{call P_VENTA_TICKET(?, ? , ?)}";
+		String insertarAsientos="{call P_VENTA_ASIENTO(? , ?, ?)}";
 		conexion = new ConnectionDB();
 		con = conexion.getConexion();
 		try {

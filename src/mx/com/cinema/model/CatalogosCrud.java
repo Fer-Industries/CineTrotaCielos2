@@ -27,7 +27,7 @@ public class CatalogosCrud implements CatalogoInterface{
 		
 		ConnectionDB conexion = new ConnectionDB();
 		con = conexion.getConexion();
-		String procSucursales = "{call sucursalesActivas}";
+		String procSucursales = "{call P_SUCURSALES_ACTIVAS}";
 		try {
 			ctmt = con.prepareCall(procSucursales);
 			rs = ctmt.executeQuery();
@@ -50,7 +50,7 @@ public class CatalogosCrud implements CatalogoInterface{
 		
 		ConnectionDB conexion = new ConnectionDB();
 		con = conexion.getConexion();
-		String procFormatos = "{call formatosActivos}";
+		String procFormatos = "{call P_FORMATOS_ACTIVOS}";
 		try {
 			ctmt = con.prepareCall(procFormatos);
 			rs = ctmt.executeQuery();
@@ -74,7 +74,7 @@ public class CatalogosCrud implements CatalogoInterface{
 		List<IdiomaBean> listaIdiomas = new ArrayList<IdiomaBean>();
 		ConnectionDB conection = new ConnectionDB();
 		con = conection.getConexion();
-		String textsql= "{call MostrarIDioma}";
+		String textsql= "{call P_IDIOMAS_ACTIVOS}";
 		try {
 			ctmt= con.prepareCall(textsql);
 			rs = ctmt.executeQuery();
@@ -98,7 +98,7 @@ public class CatalogosCrud implements CatalogoInterface{
 		List<PeliculasBean> listaPeliculas = new ArrayList<PeliculasBean>();
 		ConnectionDB conexion = new ConnectionDB();
 		con = conexion.getConexion();
-		String llamarproc ="{call mostrarPeliIdNombre}";
+		String llamarproc ="{call P_PELICULAS}";
 		try {
 			ctmt =con.prepareCall(llamarproc) ;
 			rs= ctmt.executeQuery();

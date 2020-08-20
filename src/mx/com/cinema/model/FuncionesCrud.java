@@ -16,7 +16,7 @@ public class FuncionesCrud { //CREATE, READ, UPDATE, DELETE
 		int cupo = 0;
 		conexion = new ConnectionDB();
 		con = conexion.getConexion();
-		String procDispsala = "{call disponible (?) }";
+		String procDispsala = "{call P_SALA_DISPONIBILIDAD (?) }";
 		try {
 			
 			ctmt = con.prepareCall(procDispsala);//preparas el procedure
@@ -25,7 +25,6 @@ public class FuncionesCrud { //CREATE, READ, UPDATE, DELETE
 
 			if(rs.next()) { //CEHCA SI HAY UN REGISTRO EN EL RESULT SET
 				cupo = rs.getInt("Status");// obtienes del result set el valor de la columna "Cupo"
-				
 			}
 			con.close();
 		}catch(SQLException sqle) {

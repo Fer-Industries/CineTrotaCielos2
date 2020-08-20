@@ -1,15 +1,16 @@
 package mx.com.cinema.entities;
 
-public class Ventas_dulceriaBean {
+public class VentasTicketBean {
 	
 	private int idVenta;
+	private int idFuncion;
 	private int idTarjeta;
 	private String fecha;
 	private float total;
 	
 	
 	
-	public Ventas_dulceriaBean() {
+	public VentasTicketBean() {
 		
 	}
 	public int getIdVenta() {
@@ -17,6 +18,12 @@ public class Ventas_dulceriaBean {
 	}
 	public void setIdVenta(int idVenta) {
 		this.idVenta = idVenta;
+	}
+	public int getIdFuncion() {
+		return idFuncion;
+	}
+	public void setIdFuncion(int idFuncion) {
+		this.idFuncion = idFuncion;
 	}
 	public int getIdTarjeta() {
 		return idTarjeta;
@@ -36,8 +43,6 @@ public class Ventas_dulceriaBean {
 	public void setTotal(float total) {
 		this.total = total;
 	}
-	
-	
 	
 	
 

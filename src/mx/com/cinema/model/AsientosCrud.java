@@ -7,11 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import mx.com.cinema.entities.FuncionesBean;
 import mx.com.cinema.entities.SalaAsientoBean;
-
-
-
 
 public class AsientosCrud {
 	ConnectionDB conexion;
@@ -19,12 +15,11 @@ public class AsientosCrud {
 	CallableStatement ctmt;
 	ResultSet rs;
 	
-
 	public List<SalaAsientoBean> getAsientos(int idFuncion) {
 		List<SalaAsientoBean> listaAsientos = new ArrayList<SalaAsientoBean>();
 		conexion = new ConnectionDB();
 		con = conexion.getConexion();
-		String procAsientos = "{call mostrarDispAsientos (?)}";
+		String procAsientos = "{call P_OBTENER_ASIENTOS (?)}";
 		try {
 			ctmt = con.prepareCall(procAsientos);
 			ctmt.setInt(1, idFuncion);
@@ -54,7 +49,7 @@ public class AsientosCrud {
 		}else {// caso contrario los apartamos
 			conexion = new ConnectionDB();
 			con = conexion.getConexion();
-			String proc = "{call apartarLugar(?,?)}";
+			String proc = "{call P_RESERVAR_LUGAR(?,?)}";
 			try {
 				for(int idAsiento: idAsientos) {
 					ctmt = con.prepareCall(proc);
@@ -64,8 +59,44 @@ public class AsientosCrud {
 				}
 			}catch(SQLException sqle) {
 				System.out.println(sqle.getMessage());
+			}finally {
+				try {
+					if(con != null) 
+						con.close();
+				}catch(SQLException sqle) {
+					System.out.println(sqle.getMessage());
+				}
 			}
 		return filasActualizadas;
 		}	
 	}
+	
+	public int desapartarLugares(int idFuncion, int [] idAsientos) {
+		//validar que esten disponibles		
+		int filasActualizadas = 0;
+		conexion = new ConnectionDB();
+		con = conexion.getConexion();
+		String proc = "{call P_LIBERAR_LUGAR(?,?)}";
+		try {
+			for(int idAsiento: idAsientos) {
+				ctmt = con.prepareCall(proc);
+				ctmt.setInt(1,idFuncion);
+				ctmt.setInt(2, idAsiento);
+				filasActualizadas = ctmt.executeUpdate();
+			}
+		}catch(SQLException sqle) {
+			System.out.println(sqle.getMessage());
+		}finally {
+			try {
+				if(con != null) 
+					con.close();
+				if(ctmt != null)
+					ctmt.close();
+			}catch(SQLException sqle) {
+				System.out.println(sqle.getMessage());
+			}
+		}
+		return filasActualizadas;	
+	}
+	
 }

@@ -4,10 +4,51 @@ let arregloAsientos = sessionStorage.getItem("asientosSeleccionados").split(",")
 let numeroAsientos = arregloAsientos.length;
 let date = new Date();
 let total = 0;
-let tiempoInicial = 180000;
+/*let segundos = 59;
+let minutos = 2;*/
+let segundos = 10;
+let minutos = 0;
+let tiempoRestante= "";
+
+let infoAsientosApartados = {
+		arregloAsientos:arregloAsientos,
+		idFuncion:idFuncion
+};
+
 setInterval(()=>{
-	tiempoInicial--;
-	$("#temporizador").html(tiempoInicial);
+	if(segundos < 10){
+		tiempoRestante = minutos + ":0" + segundos;
+	}else{
+		tiempoRestante = minutos + ":" + segundos;
+	}
+	
+	segundos --;
+	if(segundos == 0){
+		segundos = 59;
+		if(minutos > 0){
+			minutos--;
+		}else{
+			$.ajax({
+				url:'/Cinema/ApartarLugar',
+				type:'get',
+				data:{
+					infoAsientos:JSON.stringify(infoAsientosApartados),
+					opcion:2
+				},
+				success:function(response){
+					window.location.href = "Asientos.jsp";
+				},error:function(response){
+					console.log(response);
+				}
+			});
+			Swal.fire(
+					'Se acabo el tiempo',
+					'tendrá que volver a escoger los asientos',
+					'error'
+			);
+		}
+	}
+	$("#temporizador").html(tiempoRestante);
 },1000);
 //	ESTE JSON LO VAS A ENVIAR AL SERVLET!!!!
 let infoVenta = {

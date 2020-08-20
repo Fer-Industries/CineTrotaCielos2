@@ -55,18 +55,11 @@ public class Ventas_ticket extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String parametrosVenta = request.getParameter("infoVenta");	
 		System.out.println(parametrosVenta);
 		 
 		Gson gson = new Gson();			 
 		VentaBoletosBean ventaBol  = gson.fromJson(parametrosVenta, VentaBoletosBean.class);
-		//new VentaBoletosBean();		//gson.fromJson(parametrosVenta, VentaBoletosBean.class);
-		//ventaBol.setDia(5);
-		//ventaBol.setIdFuncion(1);
-		//ventaBol.setNumeroAsientos(3);
-		//int arregloo[] = {1,2};
-		//ventaBol.setArregloAsientos(arregloo);
 		UsuarioBean usuarioLogueado = (UsuarioBean) request.getSession().getAttribute("usuario");
 		System.out.println( usuarioLogueado);
 		VentasCrud vendiendo = new VentasCrud();
@@ -77,8 +70,6 @@ public class Ventas_ticket extends HttpServlet {
 		}else {
 			salida =  vendiendo.generarTicket(ventaBol,usuarioLogueado);
 		}
-		
-		System.out.println("Desde el servlet "+ salida);
 		response.setContentType("text/plain");
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().write(salida+"");

@@ -10,14 +10,29 @@ setInterval(()=>{
 				 enviarInfo: idFuncioon
 			 },
 			 success: function(asientosActualizados) {
-				  asientosActualizados.listaAsientos.filter(asiento =>asiento.disponibilidad == 1)
-				  .map(asiento=>document.getElementById(asiento.idAsiento).outerHTML  = "<td id=" + asiento.idAsiento +" onclick='eligiendo("+JSON.stringify(asiento)+")'><i class='fas fa-chair dispoNo'  id="+ asiento.asiento +" ></i><h6 class=titulos>"+asiento.asiento+"</h6></td>"	);
+				  asientosActualizados.listaAsientos.filter(asiento =>asiento.disponibilidad == 1) // generamos el arreglo con los asientos actualizados que estan ocupados
+				  .map(asiento=>{
+					  asientos.listaAsientos.forEach(asientoPintado=>{
+						 if(asiento.idAsiento == asientoPintado.idAsiento){
+							 asientoPintado.disponibilidad = 1;
+						 } 
+					  });
+					  document.getElementById(asiento.idAsiento).outerHTML  = "<td id=" + asiento.idAsiento +" onclick='eligiendo("+JSON.stringify(asiento)+")'><i class='fas fa-chair dispoNo'  id="+ asiento.asiento +" ></i><h6 class=titulos>"+asiento.asiento+"</h6></td>";	
+				  });
+				  
+				  asientosActualizados.listaAsientos.filter(asiento =>asiento.disponibilidad == 0) // estamos filtrando los que estan disponibles
+				  .map(asiento=>{// primera iteración
+					  asientos.listaAsientos.map(asientoPintado =>{ // iteramos los asientos que estan disponibles y estan pintados | segunda iteración
+						  if(asiento.idAsiento == asientoPintado.idAsiento){ // si coinciden tanto el asiento de la primera iteración con la segunda iteración
+							  if(asientoPintado.disponibilidad != 2){ // vas a validar si esta seleccionado por el usuario, y en caso de que no lo este entonces lo vas a pintar de verde, si ya esta seleccionado entonces no vas a hacer nada
+								  document.getElementById(asiento.idAsiento).outerHTML  = "<td id=" + asiento.idAsiento +" onclick='eligiendo("+JSON.stringify(asiento)+")'><i class='fas fa-chair dispo'  id="+ asiento.asiento +" ></i><h6 class=titulos>"+asiento.asiento+"</h6></td>"	;
+							  }
+						  }
+					  });
+				  });
 			}
 		}); 
 },3000);
-/*asientoPintado.classList.remove("dispo");
-asientoPintado.classList.add("dispoNo");*/
-
 
 $("#contenidoP").append(  "<h6 class=card-text card-title tittle>Titulo: "+sessionStorage.getItem("pele")+ "</h6>"
 						  + "<h6 class='card-text '>Dia: "+sessionStorage.getItem("diafune")+ "</h6>"
@@ -58,9 +73,7 @@ const generarAsientos = (asientos) =>{
 					arregloNumeros.listaAsientos[j] = aux;
 				}	
 			} 
-	 } 
-	console.log("Arrreglo ordenado por ");
-	console.log(arregloNumeros.listaAsientos);
+	 }
 
 	//let arregloLetras = asientos.map(asiento => asiento.nombre.charAt(0));
 	// SE HACE EL ARREGLO DE LAS LETRAS DISPONIBLES [A,B,C,D] SIN REPETICIÓN DE LETRAS
@@ -98,31 +111,38 @@ const generarAsientos = (asientos) =>{
 	});
 };
 
-let asientoSeleccionados = []; // el arreglo que guarda los asientos que selecciono el usuario 
-		const eligiendo =  (asiento) =>{
-			console.log("Estoy en la funcion eligiendo");
-		    let bandera = 0;
-		    if (asiento.disponibilidad != 1) {
-		        asientoSeleccionados.forEach(asientoo => {
-		            if (asiento.idAsiento == asientoo.idAsiento )
-		            {
-		                bandera++;
-		            }
-		        });
-		        if (bandera == 0) {
-					console.log(asiento);
-					console.log(asiento.idAsiento);
-					document.getElementById(asiento.asiento).className= "fas fa-chair selec";
-		            asientoSeleccionados.push(asiento);
-		        }else {
-				  document.getElementById(asiento.asiento).className = "fas fa-chair dispo";				 				  
-		          asientoSeleccionados = asientoSeleccionados.filter(asientoSeleccionado => {
-		               return asientoSeleccionado.idAsiento != asiento.idAsiento;
-		          });
-		        }
-		    }
-		};	
-		
+let asientoSeleccionados = []; // el arreglo que guarda los asientos que selecciono el usuario
+
+const eligiendo =  (asiento) =>{
+	console.log("Estoy en la funcion eligiendo");
+    let bandera = 0;
+    if (asiento.disponibilidad != 1) {
+        asientoSeleccionados.forEach(asientoo => {
+            if (asiento.idAsiento == asientoo.idAsiento )
+            {
+                bandera++;
+            }
+        });
+        if (bandera == 0) {
+			console.log(asiento);
+			console.log(asiento.idAsiento);
+			document.getElementById(asiento.asiento).className= "fas fa-chair selec";
+            asientoSeleccionados.push(asiento); // si la bandera es igual a cero quiere decir que aún no esta el asiento dentro de nuestro arreglo asientoSeleciconados
+            asientos.listaAsientos = asientos.listaAsientos.filter(asientoPintado => asientoPintado.idAsiento != asiento.idAsiento); // vas a generar un nuevo arreglo en base a los asientos pintados, exceptuando el que estan seleccionando
+            asiento.disponibilidad = 2; // aqui le estamos diciendo que esta seleccionado por el usuario
+            asientos.listaAsientos.push(asiento);
+        }else {// en caso de que si encuentres un asiento con el mismo ID de los asientos que se han seleccionado entonces vas a quitar el asiento y e vas a cambiar la clase a dispo
+		  document.getElementById(asiento.asiento).className = "fas fa-chair dispo";				 				  
+          asientoSeleccionados = asientoSeleccionados.filter(asientoSeleccionado => {
+               return asientoSeleccionado.idAsiento != asiento.idAsiento;
+          });
+          asientos.listaAsientos = asientos.listaAsientos.filter(asientoPintado => asientoPintado.idAsiento != asiento.idAsiento); // vas a generar un nuevo arreglo en base a los asientos pintados, exceptuando el que estan seleccionando
+          asiento.disponibilidad = 1; // aqui le estamos diciendo que esta seleccionado por el usuario
+          asientos.listaAsientos.push(asiento);
+        }
+    }
+};	
+
 $("#botonConfirmacion").on("click",function(){
 	if(asientoSeleccionados.length == 0){
 		Swal.fire(
@@ -143,7 +163,8 @@ $("#botonConfirmacion").on("click",function(){
 		url:"/Cinema/ApartarLugar",
 		type:'get',
 		data:{
-			infoAsientos:JSON.stringify(infoAsientosApartados)
+			infoAsientos:JSON.stringify(infoAsientosApartados),
+			opcion:1
 		},
 		success:function(response){
 			console.log(response);
@@ -170,19 +191,4 @@ $("#botonConfirmacion").on("click",function(){
 			);
 		}
 	});
-	
-	// NECESITAMOS EL DÍA (LUNES, MARTES, MIERCOLES, JUEVES..)EN EL QUE SE ESTA EFECTUANDO LA COMPRA
-	//NECESITAMOS INSTANCIAR LA CLASE DATE PERO HAY UN POCO DE TRAMPA 
-	// EL YEAR NO HAY PROBLEMA PUEDES MANDAR EL AÑO COMO TAL
-	/* EL MES ES DONDE ESTA LA TRAMPA, 
-	 * 										[0,       1,               2,         3,         4,		5,			6,			7,				8,		9,		10,   11] =
-									[ENERO,FEBRERO,MARZO,ABRIL,MAYO,JUNIO,JULIO,AGOSTO ,SEP,OCT ,NOV, DIC]
-		LOS DÍAS TAMBIÉN SE RESPETAN COMO EL AÑO
-		LOS DÍAS DE LA SEMANA IGUAL FUNCIONARIAN COMO UN ARREGLO
-					[        0					1,			2,				3,						4,				5,			6]
-					[DOMINGO, LUNES, MARTES, MIERCOLES, JUEVES, VIERNES, SABADO]
-	*/
-	// es el apartado de los asientos!!!
-	
-	//
 });	

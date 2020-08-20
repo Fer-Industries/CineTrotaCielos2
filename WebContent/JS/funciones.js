@@ -1,23 +1,4 @@
-/*
-async function getCatalogo(){
-	
-	const respuesta = await fetch("http://localhost:8080/Cinema/CatalogoServlet");
-	const jsonCatalogos = await respuesta.json();
-	
-	return jsonCatalogos;
-	/*fetch("http://localhost:8080/Cinema/CatalogoServlet")
-		.then(response =>{
-			//console.log(response.json());
-			return response.json();
-		})
-		.then(json =>{
-			console.log(json);
-		})
-	;
-}
-console.log(getCatalogo());
-getCatalogo()
-	.then(jsonCatalogos => console.log(jsonCatalogos));*/
+let peliculajson;
 Swal.fire({
 	text:'Espere por favor'
 });
@@ -46,14 +27,6 @@ $.get("/Cinema/CatalogoServlet",function(response){
 	Swal.close();
 });
 
-
-/*
-$("#btnfuncion").on("click",function(){
-	console.log("event listener btnfuncion");
-});*/
-
-let peliculajson;
-
 $("#buscar").on("click",function(){
 	Swal.fire({
 		text:'Obteniendo datos'
@@ -77,30 +50,16 @@ $("#buscar").on("click",function(){
 	    month = date.getMonth() + 1; 
 	    year = date.getFullYear();
 		fechaselec = [year,month,day].join('/'); 	
-	}
-	
-	console.log("yo soy la fecha que selecciono :" + fechaselec);
-	
-	
-	
- 	/*console.log([day, month, year].join('/')); */ 
-	console.log(minimo);
-	console.log(maximo);	 
+	} 
 	
 	let idubicacion = document.getElementById("inputCine").value;
-	console.log("id ubicacion"+idubicacion);
 	
 	let idformato = document.getElementById("inputFormato").value;
-	console.log("id formato"+idformato);
-	//console.log(document.getElementById("inputFormato"));
-	//console.log(document.getElementById("idioma"));
 	
 	let ididioma =  idiomaseleccionado();	
-	console.log ("id idioma: " + ididioma);
 	
 	let idpelicula = document.getElementById("inputPelicula").value;
-	console.log("id pelicula"+ idpelicula);
-	//CAMEL CASE
+	
 	let ParametrosPel = {
 		idPelicula: idpelicula,
 		idSucursal: idubicacion,
@@ -147,7 +106,6 @@ $("#buscar").on("click",function(){
 });
 		
 function disponibilidad(idFuncioon){
-	console.log(idFuncioon);
 	Swal.fire({
 		text:'Verificando cupo'
 	});
@@ -186,7 +144,6 @@ function disponibilidad(idFuncioon){
 						return;
 					} 
 				});	
-
 				sessionStorage.setItem("funcion",idFuncioon);
 				// Se utilizo para saber en dónde se había quedado el usuario
 				sessionStorage.setItem("paginaActual","Asientos.jsp");
@@ -195,7 +152,6 @@ function disponibilidad(idFuncioon){
          }
      });
 	 Swal.close(); 
-
 };
    
 let minimo;
@@ -266,7 +222,6 @@ rangeSlider.noUiSlider.on('update', function(values, handle) {
 });
 });
 
-
 var day, month, year; 
 
 function  idiomaseleccionado(){
@@ -286,8 +241,6 @@ function  idiomaseleccionado(){
 	return register;
 }
 
-
-
 let enviarfecha=()=>{
 	let d = new Date();
 	let dd = d.getDate();
@@ -301,6 +254,3 @@ $(function() {
 	$("#fecha").datepicker({ minDate: 0});
 	$("#fecha").datepicker("setDate", enviarfecha());
 });
-
-
-
