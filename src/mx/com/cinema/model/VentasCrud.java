@@ -4,7 +4,10 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import mx.com.cinema.entities.Boleto;
 import mx.com.cinema.entities.UsuarioBean;
 import mx.com.cinema.entities.VentaBoletosBean;
 
@@ -157,5 +160,32 @@ public class VentasCrud {
 			System.out.println("Me ejecute al final");
 		}
 		return respuesta;
+	}
+	
+	public List<Boleto> getInfoBoleto(int idFuncion, int [] idAsientos) {
+		String procInfoBoletos = "{ call P_info_boleto(?,?)}";
+		List<Boleto> boletos = new ArrayList<Boleto>();
+		conexion = new ConnectionDB();
+		con = conexion.getConexion();
+		try {
+			for(int idAsiento: idAsientos) {
+				cmt = con.prepareCall(procInfoBoletos);
+				cmt.setInt(1, idFuncion);
+				cmt.setInt(2, idAsiento);
+				rs = cmt.executeQuery();
+				if(rs.next()) {
+					Boleto infoBoleto = new Boleto();
+					infoBoleto.setSala(rs.getString("NombreSala"));
+					infoBoleto.setPelicula(rs.getString("pelicula"));
+					infoBoleto.setNombre(rs.getString("nombreasiento"));
+					infoBoleto.setHora(rs.getString("hora"));
+					infoBoleto.setFecha(rs.getString("dia"));
+					boletos.add(infoBoleto);
+				}
+			}
+		}catch(SQLException sqle) {
+			System.out.println(sqle.getMessage());
+		}
+		return boletos;
 	}
 }

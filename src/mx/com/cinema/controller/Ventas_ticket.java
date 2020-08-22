@@ -55,21 +55,20 @@ public class Ventas_ticket extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String parametrosVenta = request.getParameter("infoVenta");	
-		System.out.println(parametrosVenta);
-		 
+		String parametrosVenta = request.getParameter("infoVenta");			 
 		Gson gson = new Gson();			 
 		VentaBoletosBean ventaBol  = gson.fromJson(parametrosVenta, VentaBoletosBean.class);
 		UsuarioBean usuarioLogueado = (UsuarioBean) request.getSession().getAttribute("usuario");
 		System.out.println( usuarioLogueado);
 		VentasCrud vendiendo = new VentasCrud();
-		int disponible = vendiendo.validarAsientos(ventaBol.getArregloAsientos(), ventaBol.getIdFuncion());
+		//int disponible = vendiendo.validarAsientos(ventaBol.getArregloAsientos(), ventaBol.getIdFuncion());
 		int salida = 0;
-		if(disponible > 0) { //quiere decir que un asiento ya esta ocupado
+		/*if(disponible > 0) { //quiere decir que un asiento ya esta ocupado
 			salida = -3;
 		}else {
-			salida =  vendiendo.generarTicket(ventaBol,usuarioLogueado);
-		}
+			
+		}*/
+		salida =  vendiendo.generarTicket(ventaBol,usuarioLogueado);
 		response.setContentType("text/plain");
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().write(salida+"");

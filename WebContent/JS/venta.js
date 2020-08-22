@@ -4,10 +4,10 @@ let arregloAsientos = sessionStorage.getItem("asientosSeleccionados").split(",")
 let numeroAsientos = arregloAsientos.length;
 let date = new Date();
 let total = 0;
-/*let segundos = 59;
-let minutos = 2;*/
-let segundos = 10;
-let minutos = 0;
+let segundos = 59;
+let minutos = 2;
+/*let segundos = 10;
+let minutos = 0;*/
 let tiempoRestante= "";
 
 let infoAsientosApartados = {
@@ -226,7 +226,26 @@ botonCompra.addEventListener("click",function(){
 						'success'
 				);
 				// se tendría que descargar el pdf!!!!
-				window.location.href = '/Cinema/principal.jsp';
+				$.ajax({
+					url:'/Cinema/AsientosController',
+					type:'post',
+					data:{
+						infoVenta:JSON.stringify(infCompra)
+					},success:function(data){
+						console.log(data);
+						var iframe = $('<iframe>');
+		               iframe.attr('src','_blank');
+		               $('#targetDiv').append(iframe);
+						/*var blob=new Blob([data]);
+						window.open(URL.createObjectURL(blob));
+						/*var blob=new Blob([data]);
+					    var link=document.createElement('a');
+					    link.href=window.URL.createObjectURL(blob);
+					    link.download="boletos.pdf";
+					    link.click();*/
+					}
+				});
+				//window.location.href = '/Cinema/principal.jsp';
 			}else if(response == -3){
 				Swal.fire(
 						'Disculpe',
