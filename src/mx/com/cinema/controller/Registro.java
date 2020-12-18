@@ -1,7 +1,9 @@
 package mx.com.cinema.controller;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +14,8 @@ import com.google.gson.Gson;
 import mx.com.cinema.entities.MensajeJson;
 import mx.com.cinema.entities.UsuarioBean;
 import mx.com.cinema.model.RegistroCrud;
+import mx.com.cinema.model.VentasCrud;
+import mx.com.cinema.utils.GeneradorPDF;
 import mx.com.cinema.utils.GeneradorTarjeta;
 
 /**
@@ -34,7 +38,17 @@ public class Registro extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().write("Soy el registro#");
+		response.setContentType("application/pdf;charset=UTF-8");
+
+        response.addHeader("Content-Disposition", "inline; filename=" + "cities.pdf");
+        ServletOutputStream out = response.getOutputStream();
+        VentasCrud ventas = new VentasCrud();
+        GeneradorPDF generadorPdf = new GeneradorPDF();
+        int [] arregloAsiento = new int[2];
+        arregloAsiento[0] = 49;
+        ByteArrayOutputStream baos = generadorPdf.generarPDF(ventas.getInfoBoleto(26, arregloAsiento));
+        
+        baos.writeTo(out);
 		
 	}
 

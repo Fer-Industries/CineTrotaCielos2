@@ -1,14 +1,11 @@
 package mx.com.cinema.model;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Properties;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Properties;
-
 
 public class ConnectionDB {
 	
@@ -17,7 +14,6 @@ public class ConnectionDB {
 	public ConnectionDB() {
 		Properties prop = new Properties();
 		InputStream is;
-		//System.out.println(System.getProperty("user.dir"));
 		try {
 			is = getClass().getClassLoader().getResourceAsStream("application.properties");
 			prop.load(is);

@@ -226,25 +226,19 @@ botonCompra.addEventListener("click",function(){
 						'success'
 				);
 				// se tendría que descargar el pdf!!!!
-				$.ajax({
+				/*$.ajax({
 					url:'/Cinema/AsientosController',
 					type:'post',
 					data:{
 						infoVenta:JSON.stringify(infCompra)
 					},success:function(data){
 						console.log(data);
-						var iframe = $('<iframe>');
-		               iframe.attr('src','_blank');
-		               $('#targetDiv').append(iframe);
-						/*var blob=new Blob([data]);
-						window.open(URL.createObjectURL(blob));
-						/*var blob=new Blob([data]);
-					    var link=document.createElement('a');
-					    link.href=window.URL.createObjectURL(blob);
-					    link.download="boletos.pdf";
-					    link.click();*/
+						/*var link = document.createElement('a');
+						link.href = data;
+						link.download = 'boletos.pdf';
+						link.dispatchEvent(new MouseEvent('click'));
 					}
-				});
+				});*/
 				//window.location.href = '/Cinema/principal.jsp';
 			}else if(response == -3){
 				Swal.fire(

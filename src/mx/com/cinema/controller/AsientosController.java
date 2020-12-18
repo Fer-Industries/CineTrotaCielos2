@@ -61,27 +61,20 @@ public class AsientosController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//descargar el PDF
-				
 		String parametrosVenta = request.getParameter("infoVenta");
-		System.out.println(parametrosVenta);
 		Gson gson = new Gson();			 
 		VentaBoletosBean ventaBol  = gson.fromJson(parametrosVenta, VentaBoletosBean.class);
-		VentasCrud ventas = new VentasCrud();
-		GeneradorPDF generadorPdf = new GeneradorPDF();
-		ByteArrayOutputStream baos = generadorPdf.generarPDF(ventas.getInfoBoleto(ventaBol.getIdFuncion(), ventaBol.getArregloAsientos()));
 		
-		response.setHeader("Expires", "0");
-		response.setHeader("Cache-Control","must-revalidate, post-check=0, pre-check=0");
-		response.setHeader("Pragma", "public");
-		
-		response.setContentType("application/pdf");
-		
-		response.setContentLength(baos.size());
-		
-		ServletOutputStream out = response.getOutputStream();
-		  
-		baos.writeTo(out);
-		out.flush();
+		response.setContentType("application/pdf;charset=UTF-8");
+		System.out.println("header");
+        response.addHeader("Content-Disposition", "inline; filename=" + "boletos.pdf");
+        
+        ServletOutputStream out = response.getOutputStream();
+        VentasCrud ventas = new VentasCrud();
+        GeneradorPDF generadorPdf = new GeneradorPDF();
+        
+        ByteArrayOutputStream baos = generadorPdf.generarPDF(ventas.getInfoBoleto(ventaBol.getIdFuncion(), ventaBol.getArregloAsientos()));
+        baos.writeTo(out);
 	}
 
 }
