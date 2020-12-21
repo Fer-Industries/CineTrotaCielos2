@@ -51,13 +51,13 @@
 		    <div class="mb-3">
 		    <input id="buscador" type="search" placeholder="nombre o codigo...."> <button id="inputBuscar" class="btn btn-primary">buscar</button>
 		    </div>
-		    <div class="row row-cols-1 row-cols-md-3 g-0">
+		    <div class="row row-cols-1 row-cols-md-3 row-no-gutters">
 			  <div class="col-4 mb-1" >
 			    <div class="card ">
 			      <img src="Img/AsientoG.png" class="mx-auto rounded d-block"   width="100" height="100">
 			      <div class="card-body p-1">
 					 <div class="d-inline-flex  bd-highlight">
-						<h5 class="card-title">Codigo: </h5><h6 id="idProducto" class="mt-1 mx-1  card-title">id</h6>
+						<h5 class="card-title">Codigo: </h5><h6 id="idProducto1" class="mt-1 mx-1  card-title">id</h6>
 					 </div>
 			      	 <div class="d-inline-flex  bd-highlight">
 				        <h5 class="card-title">Producto: </h5><h6 id="nombreProducto" class="mt-1  card-title">Palomitas Grandes</h6>
@@ -66,51 +66,175 @@
 						<h5 class="card-title">Precio: </h5><h6 id="precioProducto" class="mt-1 mx-1  card-title">precio</h6>
 					 </div>		
 					<div class="container">
-						 <div class="row border ">
-				        	<div class="col-4 ">
-				        		<button onclick="" id="btnrestar" class="btn btn-primary"> <i class="fas fa-minus-square"></i></button>
+						 <div class="row">
+				        	<div class="col-4 border border-success d-grid gap-2 d-md-flex justify-content-md-end ">
+				        		<button onclick="disminuir(1)" id="btnrestar" class="btn btn-primary "> <i class="fas fa-minus-square"></i></button>
 				        	</div>
-				        	<div class="col-4 ">
-				        		<input type="number" id="idcantidad" class="cantidad" placeholder="0" min="0" max="99"  value="0"> 
+				        	<div class="col-4  text-center border border-primary">
+				        		<input  id="idcantidad1" class="cantidad border mt-1" placeholder="0" min="0" max="99"  value="0"> 
 				        	</div>
-				        	<div class="col-4 text-end ">
-				        		<button id="btnsumar"class=" btn btn-primary"> <i class="fas fa-plus-square"></i></button>
+				        	<div class="col-4 container border border-warning ">
+				        		<button onclick="aumentar(1)" id="btnsumar"class=" btn btn-primary"> <i class="fas fa-plus-square"></i></button>
 				        	</div>
 					     </div>
 					</div>					 		       
 			      </div>
-			   
 			    <button class="btn btn-success">Agregar</button>
+			    </div>
+			  </div>
+				  <div class="col-4 mb-1" >
+			    <div class="card ">
+			      <img src="Img/AsientoG.png" class="mx-auto rounded d-block"   width="100" height="100">
+			      <div class="card-body p-1">
+					 <div class="d-inline-flex  bd-highlight">
+						<h5 class="card-title">Codigo: </h5><h6 id="idProducto1" class="mt-1 mx-1  card-title">id</h6>
+					 </div>
+			      	 <div class="d-inline-flex  bd-highlight">
+				        <h5 class="card-title">Producto: </h5><h6 id="nombreProducto" class="mt-1  card-title">Palomitas Grandes</h6>
+			         </div>
+			         <div class="d-inline-flex  bd-highlight">
+						<h5 class="card-title">Precio: </h5><h6 id="precioProducto" class="mt-1 mx-1  card-title">precio</h6>
+					 </div>		
+					<div class="container">
+						 <div class="row">
+				        	<div class="col-4 border border-success d-grid gap-2 d-md-flex justify-content-md-end ">
+				        		<button onclick="disminuir(1)" id="btnrestar" class="btn btn-primary "> <i class="fas fa-minus-square"></i></button>
+				        	</div>
+				        	<div class="col-4  text-center border border-primary">
+				        		<input  id="idcantidad1" class="cantidad border mt-1" placeholder="0" min="0" max="99"  value="0"> 
+				        	</div>
+				        	<div class="col-4 container border border-warning ">
+				        		<button onclick="aumentar(1)" id="btnsumar"class=" btn btn-primary"> <i class="fas fa-plus-square"></i></button>
+				        	</div>
+					     </div>
+					</div>					 		       
+			      </div>
+			    <button class="btn btn-success">Agregar</button>
+			    </div>
+			  </div>
+			  	  <div class="col-4 mb-1" >
+			    <div class="card ">
+			      <img src="Img/AsientoG.png" class="mx-auto rounded d-block"   width="100" height="100">
+			      <div class="card-body p-1">
+					 <div class="d-inline-flex  bd-highlight">
+						<h5 class="card-title">Codigo: </h5><h6 id="idProducto1" class="mt-1 mx-1  card-title">id</h6>
+					 </div>
+			      	 <div class="d-inline-flex  bd-highlight">
+				        <h5 class="card-title">Producto: </h5><h6 id="nombreProducto" class="mt-1  card-title">Palomitas Grandes</h6>
+			         </div>
+			         <div class="d-inline-flex  bd-highlight">
+						<h5 class="card-title">Precio: </h5><h6 id="precioProducto" class="mt-1 mx-1  card-title">precio</h6>
+					 </div>		
+					<div class="container">
+						 <div class="row">
+				        	<div class="col-4 border border-success d-grid gap-2 d-md-flex justify-content-md-end ">
+				        		<button onclick="disminuir(1)" id="btnrestar" class="btn btn-primary "> <i class="fas fa-minus-square"></i></button>
+				        	</div>
+				        	<div class="col-4  text-center border border-primary">
+				        		<input  id="idcantidad1" class="cantidad border mt-1" placeholder="0" min="0" max="99"  value="0"> 
+				        	</div>
+				        	<div class="col-4 container border border-warning ">
+				        		<button onclick="aumentar(1)" id="btnsumar"class=" btn btn-primary"> <i class="fas fa-plus-square"></i></button>
+				        	</div>
+					     </div>
+					</div>					 		       
+			      </div>
+			    <button class="btn btn-success">Agregar</button>
+			    </div>
+			  </div>
+			  	  <div class="col-4 mb-1" >
+			    <div class="card ">
+			      <img src="Img/AsientoG.png" class="mx-auto rounded d-block"   width="100" height="100">
+			      <div class="card-body p-1">
+					 <div class="d-inline-flex  bd-highlight">
+						<h5 class="card-title">Codigo: </h5><h6 id="idProducto1" class="mt-1 mx-1  card-title">id</h6>
+					 </div>
+			      	 <div class="d-inline-flex  bd-highlight">
+				        <h5 class="card-title">Producto: </h5><h6 id="nombreProducto" class="mt-1  card-title">Palomitas Grandes</h6>
+			         </div>
+			         <div class="d-inline-flex  bd-highlight">
+						<h5 class="card-title">Precio: </h5><h6 id="precioProducto" class="mt-1 mx-1  card-title">precio</h6>
+					 </div>		
+					<div class="container">
+						 <div class="row">
+				        	<div class="col-4 border border-success d-grid gap-2 d-md-flex justify-content-md-end ">
+				        		<button onclick="disminuir(1)" id="btnrestar" class="btn btn-primary "> <i class="fas fa-minus-square"></i></button>
+				        	</div>
+				        	<div class="col-4  text-center border border-primary">
+				        		<input  id="idcantidad1" class="cantidad border mt-1" placeholder="0" min="0" max="99"  value="0"> 
+				        	</div>
+				        	<div class="col-4 container border border-warning ">
+				        		<button onclick="aumentar(1)" id="btnsumar"class=" btn btn-primary"> <i class="fas fa-plus-square"></i></button>
+				        	</div>
+					     </div>
+					</div>					 		       
+			      </div>
+			    <button class="btn btn-success">Agregar</button>
+			    </div>
+			  </div>
+			  	  <div class="col-4 mb-1" >
+			    <div class="card ">
+			      <img src="Img/AsientoG.png" class="mx-auto rounded d-block"   width="100" height="100">
+			      <div class="card-body p-1">
+					 <div class="d-inline-flex  bd-highlight">
+						<h5 class="card-title">Codigo: </h5><h6 id="idProducto1" class="mt-1 mx-1  card-title">id</h6>
+					 </div>
+			      	 <div class="d-inline-flex  bd-highlight">
+				        <h5 class="card-title">Producto: </h5><h6 id="nombreProducto" class="mt-1  card-title">Palomitas Grandes</h6>
+			         </div>
+			         <div class="d-inline-flex  bd-highlight">
+						<h5 class="card-title">Precio: </h5><h6 id="precioProducto" class="mt-1 mx-1  card-title">precio</h6>
+					 </div>		
+					<div class="container">
+						 <div class="row">
+				        	<div class="col-4 border border-success d-grid gap-2 d-md-flex justify-content-md-end ">
+				        		<button onclick="disminuir(1)" id="btnrestar" class="btn btn-primary "> <i class="fas fa-minus-square"></i></button>
+				        	</div>
+				        	<div class="col-4  text-center border border-primary">
+				        		<input  id="idcantidad1" class="cantidad border mt-1" placeholder="0" min="0" max="99"  value="0"> 
+				        	</div>
+				        	<div class="col-4 container border border-warning ">
+				        		<button onclick="aumentar(1)" id="btnsumar"class=" btn btn-primary"> <i class="fas fa-plus-square"></i></button>
+				        	</div>
+					     </div>
+					</div>					 		       
+			      </div>
+			    <button class="btn btn-success">Agregar</button>
+			    </div>
+			  </div>
+			  	  <div class="col-4 mb-1" >
+			    <div class="card ">
+			      <img src="Img/AsientoG.png" class="mx-auto rounded d-block"   width="100" height="100">
+			      <div class="card-body p-1">
+					 <div class="d-inline-flex  bd-highlight">
+						<h5 class="card-title">Codigo: </h5><h6 id="idProducto1" class="mt-1 mx-1  card-title">id</h6>
+					 </div>
+			      	 <div class="d-inline-flex  bd-highlight">
+				        <h5 class="card-title">Producto: </h5><h6 id="nombreProducto" class="mt-1  card-title">Palomitas Grandes</h6>
+			         </div>
+			         <div class="d-inline-flex  bd-highlight">
+						<h5 class="card-title">Precio: </h5><h6 id="precioProducto" class="mt-1 mx-1  card-title">precio</h6>
+					 </div>		
+					<div class="container">
+						 <div class="row">
+				        	<div class="col-4 border border-success d-grid gap-2 d-md-flex justify-content-md-end ">
+				        		<button onclick="disminuir(1)" id="btnrestar" class="btn btn-primary "> <i class="fas fa-minus-square"></i></button>
+				        	</div>
+				        	<div class="col-4  text-center border border-primary">
+				        		<input  id="idcantidad1" class="cantidad border mt-1" placeholder="0" min="0" max="99"  value="0"> 
+				        	</div>
+				        	<div class="col-4 container border border-warning ">
+				        		<button onclick="aumentar(1)" id="btnsumar"class=" btn btn-primary"> <i class="fas fa-plus-square"></i></button>
+				        	</div>
+					     </div>
+					</div>					 		       
+			      </div>
+			    <button class="btn btn-success">Agregar</button>
+			    </div>
+			  </div>
 			    
-			    </div>
-			  </div>
-			  <div class="col-4  mb-1">
-			    <div class="card h-100">
-			      <img src="..." class="card-img-top" alt="...">
-			      <div class="card-body">
-			        <h5 class="card-title">Card title</h5>
-			        <p class="card-text">This is a short card.</p>
-			      </div>
-			    </div>
-			  </div>
-			  <div class="col-4  mb-1">
-			    <div class="card h-100">
-			      <img src="..." class="card-img-top" alt="...">
-			      <div class="card-body">
-			        <h5 class="card-title">Card title</h5>
-			        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-			      </div>
-			    </div>
-			  </div>
-			  <div class="col-3  mb-1">
-			    <div class="card h-100">
-			      <img src="..." class="card-img-top" alt="...">
-			      <div class="card-body">
-			        <h5 class="card-title">Card title</h5>
-			        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-			      </div>
-			    </div>
-			  </div>
+			  
+			 
 			</div>
 	    </div>
 	    
