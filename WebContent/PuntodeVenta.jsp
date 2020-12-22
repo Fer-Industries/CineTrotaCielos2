@@ -44,18 +44,44 @@
      <div class="container text-center">
       	<p class="tittle1">VENTAS DESDE EL MOSTRADOR</p>
     </div>
-    <div>
+    <div class="row">
+    	<div class="col-8 align-self-end">
+	    	<div class="container ">
+				<input  id="buscador" type="search" placeholder="nombre o codigo...."> <button id="inputBuscar" class="btn btn-primary">buscar</button>
+		   	</div>
+    	</div>
+    	<div class="col-4">
+	    	<div class="container">
+		    	<div class="row justify-content-around">
+				  <div class="col-sm">
+				  	<h5><i class="iconoCarrito fas fa-shopping-cart"></i></h5>
+				  	<h5>Pedido</h5>
+				  	 
+				  </div>
+				  <div class="col-sm border border-success text-center">
+				  	<h5>Total</h5>
+				   <p id="grantotal">$ Super total</p>
+				  </div>
+				  <div class="col-sm">
+				  	<button onclick="agregarCarrito()" class="btn btn-primary ml-5">Confirmar pedido</button>
+				  </div>
+				</div>
+		    </div>
+    	</div>
+    	
+    </div>
+    <hr>
+    <div >
    	<div class="row">
    		<div class="col-8">
-   		  <div class="container">
-		    <div class="mb-3">
-		    <input id="buscador" type="search" placeholder="nombre o codigo...."> <button id="inputBuscar" class="btn btn-primary">buscar</button>
-		    </div>
+   		  <div class="container scrolleando">
 		    <div class="row row-cols-1 row-cols-md-3 row-no-gutters">
 			  <div class="col-4 mb-1" >
-			    <div class="card ">
+			    <div class="card">
 			      <img src="Img/AsientoG.png" class="mx-auto rounded d-block"   width="100" height="100">
 			      <div class="card-body p-1">
+			      <table class="table table-bordered border-primary">	
+				  </table>
 					 <div class="d-inline-flex  bd-highlight">
 						<h5 class="card-title">Codigo: </h5><h6 id="idProducto1" class="mt-1 mx-1  card-title">id</h6>
 					 </div>
@@ -64,7 +90,10 @@
 			         </div>
 			         <div class="d-inline-flex  bd-highlight">
 						<h5 class="card-title">Precio: </h5><h6 id="precioProducto" class="mt-1 mx-1  card-title">precio</h6>
-					 </div>		
+					 </div>	
+					 <div class="d-inline-flex  bd-highlight">
+						<h5 class="card-title"> Unidad de Medida:</h5><h6 id="medida" class="mt-1 mx-1  card-title">gr</h6>
+					 </div>			
 					<div class="container">
 						 <div class="row">
 				        	<div class="col-4 border border-success d-grid gap-2 d-md-flex justify-content-md-end ">
@@ -79,7 +108,7 @@
 					     </div>
 					</div>					 		       
 			      </div>
-			    <button class="btn btn-success">Agregar</button>
+			    <button class="btn btn-success" onclick="agregarAlCarrito()">Agregar</button>
 			    </div>
 			  </div>
 				  <div class="col-4 mb-1" >
@@ -172,90 +201,46 @@
 			    <button class="btn btn-success">Agregar</button>
 			    </div>
 			  </div>
-			  	  <div class="col-4 mb-1" >
-			    <div class="card ">
-			      <img src="Img/AsientoG.png" class="mx-auto rounded d-block"   width="100" height="100">
-			      <div class="card-body p-1">
-					 <div class="d-inline-flex  bd-highlight">
-						<h5 class="card-title">Codigo: </h5><h6 id="idProducto1" class="mt-1 mx-1  card-title">id</h6>
-					 </div>
-			      	 <div class="d-inline-flex  bd-highlight">
-				        <h5 class="card-title">Producto: </h5><h6 id="nombreProducto" class="mt-1  card-title">Palomitas Grandes</h6>
-			         </div>
-			         <div class="d-inline-flex  bd-highlight">
-						<h5 class="card-title">Precio: </h5><h6 id="precioProducto" class="mt-1 mx-1  card-title">precio</h6>
-					 </div>		
-					<div class="container">
-						 <div class="row">
-				        	<div class="col-4 border border-success d-grid gap-2 d-md-flex justify-content-md-end ">
-				        		<button onclick="disminuir(1)" id="btnrestar" class="btn btn-primary "> <i class="fas fa-minus-square"></i></button>
-				        	</div>
-				        	<div class="col-4  text-center border border-primary">
-				        		<input  id="idcantidad1" class="cantidad border mt-1" placeholder="0" min="0" max="99"  value="0"> 
-				        	</div>
-				        	<div class="col-4 container border border-warning ">
-				        		<button onclick="aumentar(1)" id="btnsumar"class=" btn btn-primary"> <i class="fas fa-plus-square"></i></button>
-				        	</div>
-					     </div>
-					</div>					 		       
-			      </div>
-			    <button class="btn btn-success">Agregar</button>
-			    </div>
-			  </div>
-			  	  <div class="col-4 mb-1" >
-			    <div class="card ">
-			      <img src="Img/AsientoG.png" class="mx-auto rounded d-block"   width="100" height="100">
-			      <div class="card-body p-1">
-					 <div class="d-inline-flex  bd-highlight">
-						<h5 class="card-title">Codigo: </h5><h6 id="idProducto1" class="mt-1 mx-1  card-title">id</h6>
-					 </div>
-			      	 <div class="d-inline-flex  bd-highlight">
-				        <h5 class="card-title">Producto: </h5><h6 id="nombreProducto" class="mt-1  card-title">Palomitas Grandes</h6>
-			         </div>
-			         <div class="d-inline-flex  bd-highlight">
-						<h5 class="card-title">Precio: </h5><h6 id="precioProducto" class="mt-1 mx-1  card-title">precio</h6>
-					 </div>		
-					<div class="container">
-						 <div class="row">
-				        	<div class="col-4 border border-success d-grid gap-2 d-md-flex justify-content-md-end ">
-				        		<button onclick="disminuir(1)" id="btnrestar" class="btn btn-primary "> <i class="fas fa-minus-square"></i></button>
-				        	</div>
-				        	<div class="col-4  text-center border border-primary">
-				        		<input  id="idcantidad1" class="cantidad border mt-1" placeholder="0" min="0" max="99"  value="0"> 
-				        	</div>
-				        	<div class="col-4 container border border-warning ">
-				        		<button onclick="aumentar(1)" id="btnsumar"class=" btn btn-primary"> <i class="fas fa-plus-square"></i></button>
-				        	</div>
-					     </div>
-					</div>					 		       
-			      </div>
-			    <button class="btn btn-success">Agregar</button>
-			    </div>
-			  </div>
+			  	  
 			    
 			  
-			 
+			 <!-- Hasta aqui borrar las cards -->
 			</div>
 	    </div>
 	    
    		</div>
    		<div class="col-4">
-   		<div class="container">
-	   		<div class="mb-3">
-		    <p class="titulo2">Pedido</p>
-		    </div>
-	   		<table class="table table-bordered border-primary">
-	   		 	<thead>
-	   		 		<tr>
-	   		 		<th> Imagen </th>
-	   		 		<th> Precio </th>
-	   		 		<th> Cantidad </th>
-	   		 		<th> Total </th>
-	   		 		</tr>
-	   		 	</thead>
-	   		 	<tbody>
-	   		 	</tbody>
-	   		 </table>
+   		<div class="container scrolleando">
+	   		<table class="table">
+			  <thead>
+			    <tr>
+			      <th scope="col">Imagen</th>
+			      <th scope="col">#</th>
+			      <th scope="col">Código</th>
+			      <th scope="col">Nombre del producto</th>
+			      <th scope="col">Cantidad</th>
+			      <th scope="col">Total</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr>
+			      <td scope="row"><img src="Img/AsientoV.png"  class="mx-auto rounded d-block" width="50" height="50" alt="Houston tenemos Problemas"></td>
+			      <th>1</th>
+			      <td>2394uejd</td>
+			      <td>Palomitas de Mantequilla Grandes</td>
+			      <td>4</td>
+			      <td>4</td>
+			    </tr>
+			    <tr>
+			      <td scope="row"><img src="Img/AsientoV.png"  class="mx-auto rounded d-block" width="50" height="50" alt="Houston tenemos Problemas"></td>
+			      <th>1</th>
+			      <td>2394uejd</td>
+			      <td>Palomitas de Mantequilla Grandes</td>
+			      <td>4</td>
+			      <td>4</td>
+			    </tr>
+			  </tbody>
+			</table>
 	   		</div>
    		</div>
    	</div>

@@ -23,17 +23,7 @@ https://www.youtube.com/watch?v=VWL7I71pU2A
 	height:250px;
 }
 
-/*#ejemplo{
-	width:800px;
-	height:250px;
-	background-color: red;
-}
-*/
-/*@media (min-width: 1200px) {
-    .container{
-        max-width: 1300px;
-    }
-}*/
+
 #buscador{
 	margin-bottom:1%;
 }
@@ -82,8 +72,16 @@ https://www.youtube.com/watch?v=VWL7I71pU2A
 	color: skyblue;	
 	font-size: 100px;
 }
+.iconoCarrito{
+	color: skyblue;	
+	font-size: 40px;
+}
 .coloricono{
 	color: skyblue;	
+}
+
+.barraSuperiorIzq{
+	  vertical-align: sub;
 }
 
 .colornav{
@@ -112,7 +110,7 @@ https://www.youtube.com/watch?v=VWL7I71pU2A
 
 .scrolleando{
 	overflow:auto;
-	height:500px;
+	height:700px;
 }
 
 /*@media only screen and (min-width:700px) and (max-width:940px){
