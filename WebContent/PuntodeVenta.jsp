@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
 </head>
 <body class="fondo  animate__animated animate__fadeIn ">
- <nav class="navbar navbar-expand-lg navbar-toggleable-sm  navbar-dark bg-dark"  animate_animated animate_fadeInDown  shadow-lg sticky-top">
+ <nav class="navbar navbar-expand-lg navbar-toggleable-sm  navbar-dark bg-dark animate_animated animate_fadeInDown  shadow-lg sticky-top">
 		<button class="navbar-toggler navbar-toggler-right togglercolor" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -45,24 +45,24 @@
       	<p class="tittle1">VENTAS DESDE EL MOSTRADOR</p>
     </div>
     <div class="row">
-    	<div class="col-8 align-self-end">
-	    	<div class="container ">
+    	<div class="col-8 align-self-end ">
+	    	<div class="container-fluid mt-1 ">
 				<input  id="buscador" type="search" placeholder="nombre o codigo...."> <button id="inputBuscar" class="btn btn-primary">buscar</button>
 		   	</div>
     	</div>
     	<div class="col-4">
-	    	<div class="container">
+	    	<div class="container mt-1">
 		    	<div class="row justify-content-around">
 				  <div class="col-sm">
 				  	<h5><i class="iconoCarrito fas fa-shopping-cart"></i></h5>
 				  	<h5>Pedido</h5>
 				  	 
 				  </div>
-				  <div class="col-sm border border-success text-center">
+				  <div class="col-sm cajatotal text-center">
 				  	<h5>Total</h5>
 				   <p id="grantotal">$ Super total</p>
 				  </div>
-				  <div class="col-sm">
+				  <div class="col-sm mt-1">
 				  	<button onclick="confirmarPedido()" class="btn btn-primary ml-5">Confirmar pedido</button>
 				  </div>
 				</div>
@@ -70,22 +70,20 @@
     	</div>
     	
     </div>
-    <hr>
+    <hr class="estilohr">
     <div >
    	<div class="row">
-   		<div class="col-8">
-   		  <div class="container scrolleando">
-		    <div class="row row-cols-1 row-cols-md-3 row-no-gutters">
-			  <div class="col-4 mb-1" >
-			    <div id="elemento1"name="elemento1" class="card">
+   		<div class="col-sm-8 border">
+   		  <div class="container-fluid scrolleando">
+		    <div id="contenedorCartas" class="row row-cols-1 row-cols-md-3 row-no-gutters">
+			<!--  <div class="col-4 mb-1" >
+			    <div id="elemento1" name="elemento1" class="card">
 			      <img src="Img/AsientoG.png" class="mx-auto rounded d-block"   width="100" height="100">
 			      <div class="card-body p-1">
 					 <div class="d-inline-flex  bd-highlight">
 						<h5 class="card-title">Codigo: </h5><h6 id="idProducto1" class="mt-1 mx-1  card-title">id</h6>
 					 </div>
-			      	 <div class="d-inline-flex  bd-highlight">
-				        <h5 class="card-title">Producto: </h5><h6 id="nombreProducto" class="mt-1  card-title">Palomitas Grandes</h6>
-			         </div>
+				     <h5 class="card-title">Producto: </h5><h6 id="nombreProducto" class="mt-1  card-title">Palomitas Grandes</h6>
 			         <div class="d-inline-flex  bd-highlight">
 						<h5 class="card-title">Precio: </h5><h6 id="precioProducto" class="mt-1 mx-1  card-title">precio</h6>
 					 </div>	
@@ -94,32 +92,33 @@
 					 </div>			
 					<div class="container">
 						 <div class="row">
-				        	<div class="col-4 border border-success d-grid gap-2 d-md-flex justify-content-md-end ">
-				        		<button onclick="disminuir(elemento1)" id="btnrestar" class="btn btn-primary "> <i class="fas fa-minus-square"></i></button>
+				        	<div class="col-4 d-grid gap-2 d-md-flex justify-content-md-end ">
+				        		<button onclick="disminuir(cantidadTabla1)" id="btnrestar" class="btn btn-primary "> <i class="fas fa-minus-square"></i></button>
 				        	</div>
 				        	<div class="col-4  text-center border border-primary">
-				        		<input  id="idcantidad1" onchange="out(elemento1)" class="cantidad border mt-1" min="0" max="99"  value="0"> 
+				        		<input  id="cantidadTabla1" onchange="out(cantidadTabla1)" class="cantidad border mt-1" min="0" max="99"  value="0"> 
 				        	</div>
-				        	<div class="col-4 container border border-warning ">
-				        		<button onclick="aumentar(elemento1)" id="btnsumar"class=" btn btn-primary"> <i class="fas fa-plus-square"></i></button>
+				        	<div class="col-4 container ">
+				        		<button onclick="aumentar(cantidadTabla1)" id="btnsumar"class=" btn btn-primary"> <i class="fas fa-plus-square"></i></button>
 				        	</div>
 					     </div>
 					</div>					 		       
 			      </div>
 			    <button class="btn btn-success" onclick="agregarAlCarrito(elemento1)">Agregar</button>
 			    </div>
-			  </div>
+			  </div>  --> 
 
 			 <!-- Hasta aqui borrar las cards -->
 			</div>
 	    </div>
 	    
    		</div>
-   		<div class="col-4">
+   		<div class="col-sm-4 border">
    		<div class="container scrolleando">
-	   		<table class="table" id="tablacarrito">
+	   		<table class="table table-sm" id="tablacarrito">
 			  <thead id="headcarrito">
 			    <tr>
+			      <th scope="col">Eliminar</th>
 			      <th scope="col">Imagen</th>
 			      <th scope="col">#</th>
 			      <th scope="col">Código</th>
@@ -129,22 +128,18 @@
 			    </tr>
 			  </thead>
 			  <tbody id="bodycarrito">
-			    <tr>
+			    <!--<tr id="carritoid1">
+			      <td class="text-center"><button class="btn btn-light"> <i class="fas fa-trash iconoBasura"></i> </button></td>
 			      <td scope="row"><img src="Img/AsientoV.png"  class="mx-auto rounded d-block" width="50" height="50" alt="Houston tenemos Problemas"></td>
 			      <th>1</th>
 			      <td>2394uejd</td>
 			      <td>Palomitas de Mantequilla Grandes</td>
+			      <td>
+				  <input  type="number" id="cantidadCarrito1" onchange="out(cantidadCarrito1)" class="cantidadCarrito border mt-1" min="0" max="99"  value="0"> 				 		     
+			      </td>
 			      <td>4</td>
-			      <td>4</td>
-			    </tr>
-			    <tr>
-			      <td scope="row"><img src="Img/AsientoV.png"  class="mx-auto rounded d-block" width="50" height="50" alt="Houston tenemos Problemas"></td>
-			      <th>1</th>
-			      <td>2394uejd</td>
-			      <td>Palomitas de Mantequilla Grandes</td>
-			      <td>4</td>
-			      <td>4</td>
-			    </tr>
+			    </tr> -->
+			    
 			  </tbody>
 			</table>
 	   		</div>

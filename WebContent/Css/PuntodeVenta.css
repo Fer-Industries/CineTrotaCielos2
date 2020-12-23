@@ -22,7 +22,14 @@ https://www.youtube.com/watch?v=VWL7I71pU2A
 	width:250px;
 	height:250px;
 }
-
+.estilohr{
+	border: 2px solid skyblue;
+  	border-radius: 5px;
+}
+.cajatotal{
+	border: 2px solid green;
+  	border-radius: 5px;
+}
 
 #buscador{
 	margin-bottom:1%;
@@ -34,7 +41,10 @@ https://www.youtube.com/watch?v=VWL7I71pU2A
 .cantidad{
 	width:30px;
 	text-align: center;
-	
+}
+.cantidadCarrito{
+	width:40px;
+	text-align: center;
 }
 .tablaContenedor{
 	width: 90% ;
@@ -78,6 +88,10 @@ https://www.youtube.com/watch?v=VWL7I71pU2A
 }
 .coloricono{
 	color: skyblue;	
+}
+.iconoBasura{
+	color: red;	
+	font-size: 20px;
 }
 
 .barraSuperiorIzq{
