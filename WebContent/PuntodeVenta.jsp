@@ -60,7 +60,7 @@
 				  </div>
 				  <div class="col-sm cajatotal text-center">
 				  	<h5>Total</h5>
-				   <p id="grantotal">$ Super total</p>
+				   <p>$</p><input id="grantotal" disabled>
 				  </div>
 				  <div class="col-sm mt-1">
 				  	<button onclick="confirmarPedido()" class="btn btn-primary ml-5">Confirmar pedido</button>
@@ -73,7 +73,7 @@
     <hr class="estilohr">
     <div >
    	<div class="row">
-   		<div class="col-sm-8 border">
+   		<div class="col-sm-8 ">
    		  <div class="container-fluid scrolleando">
 		    <div id="contenedorCartas" class="row row-cols-1 row-cols-md-3 row-no-gutters">
 			<!--  <div class="col-4 mb-1" >
@@ -113,7 +113,7 @@
 	    </div>
 	    
    		</div>
-   		<div class="col-sm-4 border">
+   		<div class="col-sm-4 ">
    		<div class="container scrolleando">
 	   		<table class="table table-sm" id="tablacarrito">
 			  <thead id="headcarrito">

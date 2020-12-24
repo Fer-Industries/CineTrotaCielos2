@@ -1,5 +1,5 @@
 /**
- * 
+ * https://es.stackoverflow.com/questions/113944/eliminar-objeto-en-javascript
  */
 /*obtener los productos */
 /*$.get("/Cinema/AdmonPeliculaInfo",function obtener(data){
@@ -13,7 +13,7 @@
 	console.log("Se termina de obtiener la informacion==========");	
 }); */
   
-const  arregloProductos=[
+let  arregloProductos=[
   {
     "id": "13",
     "producto": "Hot Dog",
@@ -43,7 +43,8 @@ const  arregloProductos=[
     "producto": "Refresco 600",
     "imagen": "Img/AsientoG.png",
     "precio": 48,
-	"unidad":"pz"
+	"unidad":"pz",
+	"cantidad":0
     /*"name": "Madame Uppercut",
     "age": 39,
     "secretIdentity": "Jane Wilson",
@@ -108,13 +109,6 @@ function out(elementoSeleccionado){
 	}
 }
 
-function borrar(id){
-	const indexaBorrar = carro.indexOf(id);
-	if (index > -1) {
-  		array.splice(indexaBorrar, 1);
-	}	 
-	console.log(carro);
-}
 
 $(function() { 
 	arregloProductos.forEach(producto=> {
@@ -122,7 +116,7 @@ $(function() {
 		"<div class='col-4 mb-1' >"
 			    +"<div id='"+"elemento"+producto.id+"' class='card'>"
 			      +"<img src='"+producto.imagen+"' class='mx-auto rounded d-block'   width='100' height='100'>"
-					+"<hr class='estilohr'>"
+					
 					+"<div class='card-body p-1'>"
 					 +"<div class='d-inline-flex  bd-highlight'>"
 						+"<h5 class='card-title ml-1'>Codigo: </h5><h6 id='"+"producto"+producto.id+"' class='mt-1 mx-1 text-decoration-underline'  card-title>"+producto.id	+"</h6>"
@@ -142,10 +136,10 @@ $(function() {
 				        		+"<button onclick='disminuir(cantidadTabla"+producto.id+")'  class='btn btn-primary '> <i class='fas fa-minus-square'></i></button>"
 				        	+"</div>"
 				        	+"<div class='col-4  text-center border border-primary'>"
-				        	+	"<input  id='"+"cantidadTabla"+producto.id+"' onchange='out(cantidadTabla"+producto.id+")' class='cantidad border mt-1' min='1' max='99'  value='1'>" 
+				        	+"<input  id='"+"cantidadTabla"+producto.id+"'  onchange='out(cantidadTabla"+producto.id+")' class='cantidad border mt-1' min='1' max='99'  value='1'>" 
 				        	+"</div>"
 				        	+"<div class='col-4 container'>"
-				        		+"<button onclick='aumentar(cantidadTabla"+producto.id+")' class=' btn btn-primary'> <i class='fas fa-plus-square'></i></button>"
+				        		+"<button onclick='aumentar(cantidadTabla"+producto.id+")' class='btn btn-primary'> <i class='fas fa-plus-square'></i></button>"
 				        	+"</div>"
 					     +"</div>"
 					+"</div>"					 		       
@@ -161,55 +155,138 @@ $(function() {
 });
 
 
-
 /*Funcioneeees del caritooooooooooooooooooooooooooo */
 let carro= [];
 
-let carrito = (producto) =>{
+const carrito = (producto) =>{
 		let bandera = 0;
-		console.log(carro);
-		carro.forEach(produ =>{
-			console.log("estoy comparando "+produ.id+"con "+producto);
-			if(producto == produ.id){
-				bandera=1;
-			}	
-		});
+		//console.log("h en arreglar carrito");
+		//console.log(can);
+		bandera = existente(producto)
 		if(bandera == 0){
 			arregloProductos.forEach(x=>{
 				if(producto == x.id){
 					carro.push(x);	
 				}	
+			});
+			carro.forEach(produ =>{
+				if(producto == produ.id){
+					produ.cantidad=document.getElementById("cantidadTabla"+producto).value;
+				}
 			});	
+			grantotal();
 		}
 		return bandera;
 };
-
+const existente = (producto) =>{
+	console.log("Empieza existente");
+	let bandera = 0;
+	carro.forEach(produ =>{
+			if(producto == produ.id){
+				bandera=1;
+			}	
+		});
+	console.log("Termina existente");
+	return bandera
+}
 function agregarAlCarrito(elemento){
-		let i = 1;
-		let h = document.getElementById("cantidadTabla"+elemento).value;
-		console.log(h);
-		let bandera =carrito(elemento);
-		if(bandera == 0){
-			let list = document.getElementById("bodycarrito");
-			while(list.hasChildNodes()){
-		    	list.removeChild(list.firstChild);
-		  	}
-			carro.forEach(producto =>{
-				$("#bodycarrito").append("<tr id='"+"carritoid"+producto.id+"'>"
-			      +"<td class='text-center'><button class='btn btn-light' onclick()> <i class='fas fa-trash iconoBasura'></i> </button></td>"
-			      +"<td scope='row'><img src='"+producto.imagen+"'  class='mx-auto rounded d-block' width=50 height=50 alt=Houston tenemos Problemas></td>"
-			      +"<th>"+i+"</th>"
-			      +"<td>"+producto.id+"</td>"
-			      +"<td>"+producto.producto+"</td>"
-			      +"<td>"
-				  +"<input  type=number id='"+"cantidadCarritoid"+producto.id+"' onchange='out(cantidadCarrito1)' class='cantidadCarrito border mt-1' min=1 max=99  value=1>" 				 		     
-			      +"</td>"
-			      +"<td>4</td>"
-			    +"</tr>"
-				);
-			i++;	
-			});
-		}
+		console.log("Estoy en agregar al carrito");
+		carrito(elemento);
+		crearCarrito();
+		console.log("Termina agregar al carrito");
+}
+ 
+function crearCarrito(){
+	let i = 1;
+	let list = document.getElementById("bodycarrito");
+				while(list.hasChildNodes()){
+			    	list.removeChild(list.firstChild);
+			  	}
+				carro.forEach(producto =>{
+					$("#bodycarrito").append("<tr id='"+"carritoid"+producto.id+"'>"
+				      +"<td class='text-center'><button class='btn btn-light' onclick='borrar("+producto.id+")'> <i class='fas fa-trash iconoBasura'></i> </button></td>"
+				      +"<td scope='row'><img src='"+producto.imagen+"'  class='mx-auto rounded d-block' width=50 height=50 alt=Houston tenemos Problemas></td>"
+				      +"<th>"+i+"</th>"
+				      +"<td>"+producto.id+"</td>"
+				      +"<td>"+producto.producto+"</td>"
+				      +"<td>"
+					  +"<input  id='"+"cantidadCarrito"+producto.id+"' onfocusout='actualizarCantidad("+producto.id+")' onchange='out(cantidadCarrito"+producto.id+")' class='cantidadCarrito border mt-1' min=1 max=99  value="+producto.cantidad+">" 				 		     
+				      +"</td>"
+				      +"<td><input id='"+"total"+producto.id+"' value="+producto.precio * producto.cantidad+"></td>"
+				    +"</tr>"
+					);
+				i++;	
+				});
 }
 
+function grantotal(){
+	let supertotal = 0;
+	console.log("estoy en gran total");
+	console.log(carro);
+	carro.forEach(total=>{
+		supertotal= supertotal + total.precio*total.cantidad;
+	})
+	console.log(supertotal);
+	document.getElementById("grantotal").value = supertotal;
+	console.log("termina gran total");
+};
+
+function actualizarCantidad(id){
+	console.log("Estoy en actualizar Cantidad");
+	let total = document.getElementById("cantidadCarrito"+id).value;
+	carro.forEach(produ =>{
+		console.log("estoy comparando "+produ.id+"con "+id);
+		if(id == produ.id){
+			produ.cantidad=total;
+			console.log("la nueva cantidad es");
+			console.log(produ.total);
+			console.log("voy a multiplicar"+ total +" por "+produ.precio);
+			console.log(total * produ.precio);
+			document.getElementById("total"+id).value = produ.cantidad * produ.precio;
+		}		
+	 });
+grantotal();
+}
+
+function borrar(id){
+	console.log("comienza borrar");
+	console.log(carro);
+	let i=0;
+	let bandera= 0;
+	carro.forEach(product=>{
+		if(product.id = id){
+			bandera =i;
+		}
+		i++;
+	});
+	console.log("bandera vale:");
+	console.log(bandera);
+	carro.splice(bandera,1); 
+	
+/*	let ids= [];
+	carro.forEach(product=>{
+		console.log(product);
+		ids.push(product.id);
+	});
+	console.log(ids)
+	console.log(id);
+	const indexaBorrar = ids.indexOf(id);	
+	
+	console.log(indexaBorrar);
+	if (indexaBorrar > -1) {
+  		carro.splice(indexaBorrar, 1);
+	} */	 
+	 
+	console.log("carro vale");
+	console.log(carro);
+	crearCarrito()
+	console.log("Termina borrar");
+	
+}
+
+
 /*Funcioneeees del caritooooooooooooooooooooooooooo */
+
+/*
+ ir te de viaje cancun  
+ */
