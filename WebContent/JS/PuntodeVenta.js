@@ -12,7 +12,6 @@
 	//arregloPeliculas = Object.assing({},temp); solo funciona con ES6	
 	console.log("Se termina de obtiener la informacion==========");	
 }); */
-  
 let  arregloProductos=[
   {
     "id": "13",
@@ -29,14 +28,6 @@ let  arregloProductos=[
     "precio": 45,
 	"unidad":"pz",
 	"cantidad":0
-    /*"name": "Madame Uppercut",
-    "age": 39,
-    "secretIdentity": "Jane Wilson",
-    "powers": [
-      "Million tonne punch",
-      "Damage resistance",
-      "Superhuman reflexes"
-    ] */
   },
   {
 	"id": "14",
@@ -53,7 +44,24 @@ let  arregloProductos=[
       "Damage resistance",
       "Superhuman reflexes"
     ] */
-  }
+  },
+  {
+	"id": "1",
+    "producto": "Refresco grande",
+    "imagen": "Img/AsientoG.png",
+    "precio": 68,
+	"unidad":"pz",
+	"cantidad":0
+    /*"name": "Madame Uppercut",
+    "age": 39,
+    "secretIdentity": "Jane Wilson",
+    "powers": [
+      "Million tonne punch",
+      "Damage resistance",
+      "Superhuman reflexes"
+    ] */
+  },
+
 ]
 
 function aumentar(elementoSeleccionado){
@@ -109,14 +117,22 @@ function out(elementoSeleccionado){
 	}
 }
 
+$(function(){
+	crearTablaProductos(arregloProductos);
+});
+		
 
-$(function() { 
-	arregloProductos.forEach(producto=> {
+
+function crearTablaProductos(nuevaTabla){ 
+	let list = document.getElementById("contenedorCartas");
+	while(list.hasChildNodes()){
+    	list.removeChild(list.firstChild);
+  	}	
+	nuevaTabla.forEach(producto=> {
 	$("#contenedorCartas").append(
 		"<div class='col-4 mb-1' >"
 			    +"<div id='"+"elemento"+producto.id+"' class='card'>"
 			      +"<img src='"+producto.imagen+"' class='mx-auto rounded d-block'   width='100' height='100'>"
-					
 					+"<div class='card-body p-1'>"
 					 +"<div class='d-inline-flex  bd-highlight'>"
 						+"<h5 class='card-title ml-1'>Codigo: </h5><h6 id='"+"producto"+producto.id+"' class='mt-1 mx-1 text-decoration-underline'  card-title>"+producto.id	+"</h6>"
@@ -135,8 +151,8 @@ $(function() {
 				        	+"<div class='col-4 d-grid gap-2 d-md-flex justify-content-md-end'>"
 				        		+"<button onclick='disminuir(cantidadTabla"+producto.id+")'  class='btn btn-primary '> <i class='fas fa-minus-square'></i></button>"
 				        	+"</div>"
-				        	+"<div class='col-4  text-center border border-primary'>"
-				        	+"<input  id='"+"cantidadTabla"+producto.id+"'  onchange='out(cantidadTabla"+producto.id+")' class='cantidad border mt-1' min='1' max='99'  value='1'>" 
+				        	+"<div class='col-4  text-center '>"
+				        	+"<input  id='"+"cantidadTabla"+producto.id+"'  onchange='out(cantidadTabla"+producto.id+")' class='cantidad mt-1' min='1' max='99'  value='1'>" 
 				        	+"</div>"
 				        	+"<div class='col-4 container'>"
 				        		+"<button onclick='aumentar(cantidadTabla"+producto.id+")' class='btn btn-primary'> <i class='fas fa-plus-square'></i></button>"
@@ -144,15 +160,15 @@ $(function() {
 					     +"</div>"
 					+"</div>"					 		       
 			      +'</div>'
-			    +"<button class='btn btn-success' onclick='agregarAlCarrito("+producto.id+")'>Agregar</button>"
+			    +"<button class='btn btn-secondary' onclick='agregarAlCarrito("+producto.id+")'>Agregar</button>"
 			    +'</div>'
 			  +'</div>'
 		);
 	});
-	arregloProductos.forEach(w=>{
+	nuevaTabla.forEach(w=>{
 		console.log(w);
 	});
-});
+}
 
 
 /*Funcioneeees del caritooooooooooooooooooooooooooo */
@@ -237,7 +253,23 @@ function crearCarrito(nuevocarro){
 		i++;	
 	});
 }
-
+/*Buscadooooor */
+$("#buscador").on("keyup",function(){
+	console.log("Empieza la funcion buscador+++++++++++");
+	let parametro = document.getElementById("buscador").value;
+	if(parametro.length == 0){
+		crearTablaProductos(arregloProductos);
+	}else{
+	let coincidentes = arregloProductos.filter(producto=>{
+			const expRegular = new RegExp(`^${parametro}`,'gi'); // i para ignorar mayusculas y minusculas
+			return producto.producto.match(expRegular) || producto.id.match(expRegular);
+		}
+	);
+	crearTablaProductos(coincidentes);	
+	}
+	
+});
+/*Buscadooooor */
 function grantotal(){
 	/* 
 	  Este metodo lo que hace es del arreglo global carro 
@@ -247,6 +279,7 @@ function grantotal(){
 	*/
 	let supertotal = 0;
 	console.log("estoy en gran total");
+	console.log(carro);
 	carro.forEach(total=>{
 		supertotal= supertotal + total.precio*total.cantidad;
 	})
@@ -285,6 +318,7 @@ function borrar(id){
 	}) ;
 	carro = n;
 	crearCarrito(n);
+	grantotal();
 	console.log("Termina borrar");
 }
 
