@@ -1,4 +1,3 @@
-@charset "ISO-8859-1";
 /*fuentes https://www.w3schools.com/css/css_align.asp
 https://www.youtube.com/watch?v=VWL7I71pU2A
 */
@@ -22,32 +21,20 @@ https://www.youtube.com/watch?v=VWL7I71pU2A
 	width:250px;
 	height:250px;
 }
-.estilohr{
-	border: 2px solid skyblue;
-  	border-radius: 5px;
-}
-.cajatotal{
-	border: 2px solid green;
-  	border-radius: 5px;
-}
-:root {
-	--omrs-color-ink-medium-contrast: rgba(19, 19, 21, 0.6);
-}
 
-
-.carda{
-	border-style: solid;
+/*#ejemplo{
+	width:800px;
+	height:250px;
+	background-color: red;
 }
-
-.cantidad{
-	width: 100%;
-	text-align: center;
-	border: none;
-	border-bottom: 0.125rem solid var(--omrs-color-ink-medium-contrast);
-}
-.cantidadCarrito{
-	width:40px;
-	text-align: center;
+*/
+/*@media (min-width: 1200px) {
+    .container{
+        max-width: 1300px;
+    }
+}*/
+#buscador{
+	margin-left:5%;
 }
 .tablaContenedor{
 	width: 90% ;
@@ -85,20 +72,8 @@ https://www.youtube.com/watch?v=VWL7I71pU2A
 	color: skyblue;	
 	font-size: 100px;
 }
-.iconoCarrito{
-	color: skyblue;	
-	font-size: 40px;
-}
 .coloricono{
 	color: skyblue;	
-}
-.iconoBasura{
-	color: red;	
-	font-size: 20px;
-}
-
-.barraSuperiorIzq{
-	  vertical-align: sub;
 }
 
 .colornav{
@@ -127,7 +102,7 @@ https://www.youtube.com/watch?v=VWL7I71pU2A
 
 .scrolleando{
 	overflow:auto;
-	height:700px;
+	height:500px;
 }
 
 /*@media only screen and (min-width:700px) and (max-width:940px){
