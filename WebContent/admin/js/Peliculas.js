@@ -43,9 +43,9 @@ $("#inputBuscar").on("click",function(){
 
 const crearTabla =(arreglo)=>{
 	const a = arreglo;
-	console.log(a);
-	console.log("Empieza la funcion crearTabla----------");
-	console.log(document.getElementsByName("catpelicula"));
+	//console.log(a);
+	//console.log("Empieza la funcion crearTabla----------");
+	//console.log(document.getElementsByName("catpelicula"));
 	let list = document.getElementById("catpelicula");
 	while(list.hasChildNodes()){
     	list.removeChild(list.firstChild);
@@ -139,7 +139,6 @@ const diferente =   (id)=>{
 	console.log(arregloActual);
 	console.log("Arreglo fijo");	
 	console.log(arregloPeliculas);
-	
 	arregloPeliculas.map(ap=>{
 		if(ap.idPelicula == id){
 			arregloActual.forEach(act=>{
@@ -193,6 +192,12 @@ return arreglo;
 }
 function editar(identificador){
 	let arreglo =diferente(identificador);
+	let encontrado = []
+	arregloPeliculas.forEach(x=>{
+		if(x.id= identificador){
+			encontrado.push(x);
+		}
+	})
 	console.log(document.getElementsByName(identificador));
 	if(arreglo[5] > 0){
 	let	info={
@@ -210,12 +215,39 @@ function editar(identificador){
 		console.log(arreglo);
 		Swal.fire({
 			title: 'Seguro que desea realizar los siguientes cambios',
-			html:  '<table class="text-left" id="tableAler"><thead><th>Concepto</th><th class="ml-3">Cambio</th></thead>'
-				  +'<tbody class="ml-1"><tr><td><b>Nombre</b> </td><td>'+arreglo[0]+'</td></tr>'
-				  +'<tr><td><b>Clasificacion</b> </td><td>'+arreglo[2]+'</tr>'
-				  +'<tr><td><b>Duracion</b> </td><td>'+arreglo[3]+'</td></tr>'
-				  +'<tr><td><b>Estreno</b> </td><td>'+arreglo[4]+'</td></tr>'
-				  +'<tr><td><b>Imagen </b></td><td>'+arreglo[1]+'</td></tr><table>',
+			html:  '<table class="text-left" id="tableAler">'
+				+'<thead>'
+					+'<th>Concepto</th>'
+					+'<th class="ml-3">Actual</th>'
+					+'<th class="ml-3">Cambio</th>'
+				+'</thead>'
+				+'<tbody class="ml-1">'
+					+'<tr>'
+						+'<td><b>Nombre</b></td>'
+						+'<td>'+encontrado[0].nombrePelicula+'</td>'
+						+'<td>'+arreglo[0]+'</td>'
+					+'</tr>'
+					+'<tr>'
+			          	+'<td><b>Clasificacion</b></td>'
+						+'<td>'+encontrado[0].clasificacionPeliculas+'</td>'
+						+'<td>'+arreglo[2]+'</td>'
+					+'</tr>'
+				  	+'<tr>'
+						+'<td><b>Duracion</b></td>'
+						+'<td>'+encontrado[0].duracionPelicula+'</td>'
+						+'<td>'+arreglo[3]+'</td>'
+					+'</tr>'
+				  	+'<tr>'
+						+'<td><b>Estreno</b> </td>'
+						+'<td>'+encontrado[0].fechaEstreno+'</td>'
+						+'<td>'+arreglo[4]+'</td>'
+					+'</tr>'
+				  	+'<tr>'
+						+'<td><b>Imagen </b></td>'
+						+'<td>'+encontrado[0].imagenPelicula+'</td>'
+						+'<td>'+arreglo[1]+'</td>'
+				  	+'</tr>'
+				+'<table>',
 			icon: 'warning',
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
