@@ -30,7 +30,83 @@ public class PeliculasCrud {
 	public PeliculasCrud() {
 		
 	}
+	public List<PeliculasBean> getPeliculas(){
+		List<PeliculasBean> peliculas = new ArrayList<PeliculasBean>();
+		
+		conexion = new ConnectionDB();
+		con = conexion.getConexion();
+		String query= "{call cat_peliculas}";
+		try {
+			ctmt = con.prepareCall(query);
+			rs= ctmt.executeQuery();
+			while(rs.next()) {
+				PeliculasBean pelicula = new PeliculasBean();
+				pelicula.setIdPelicula(rs.getInt("ID"));
+				pelicula.setDuracionPelicula(rs.getString("Duracion"));
+				/*Date fechaf= new Date();
+				fechaf =  rs.getDate("Estreno");
+				
+				fechaf.setDate( fechaf.getDate()+1);
+				fechaf.setMonth( fechaf.getMonth()+1);
+				
+				
+				System.out.println(fechaf); */
+			    pelicula.setFechaEstreno(rs.getString("Estreno"));
+			    //System.out.println("lo que recibo"+ rs.getDate("Estreno"));
+				pelicula.setClasificacionPeliculas(rs.getString("Clasificacion"));
+				pelicula.setNombrePelicula(rs.getString("Nombre"));
+				pelicula.setImagenPelicula(rs.getString("Imagen"));
+				peliculas.add(pelicula);
+			}
+			con.close();
+		}catch(SQLException sqle) {
+			System.out.println("Error en metodo get Peliculas en el crud"+sqle.getMessage());	
+		}
+		return peliculas;
+	}
 	
+	public int eleminarPelicula(int id) {
+		String query= "{call P_BAJA_PELICULA(?)}";
+		conexion = new ConnectionDB();
+		con = conexion.getConexion();
+		int bandera = 0;
+		try {
+			ctmt = con.prepareCall(query);
+			ctmt.setInt(1, id);
+			if(ctmt.executeUpdate() > 0)
+				bandera = 1;
+		}catch(SQLException sqle){
+			System.out.println(sqle.getMessage());
+		}
+		
+		return bandera;
+	}
+	
+	public int agregarPelicula(PeliculasBean pelicula){
+		String llamarproc= "{call P_ALTA_PELICULA( ?, ?, ?, ?, ? )}";
+		System.out.println(pelicula);
+		conexion = new ConnectionDB();
+		con = conexion.getConexion();
+		int bandera =0;
+		try {
+			ctmt = con.prepareCall(llamarproc);
+			System.out.println("nombre peli: "+pelicula.getNombrePelicula());
+			ctmt.setString(1, pelicula.getNombrePelicula());
+			ctmt.setString(2,pelicula.getClasificacionPeliculas());
+			ctmt.setString(3,pelicula.getDuracionPelicula());
+			ctmt.setString(4, pelicula.getFechaEstreno());
+			ctmt.setString(5, pelicula.getImagenPelicula());
+			
+			System.out.println(rs);
+			if(ctmt.executeUpdate() >0) {
+				bandera =+1;
+			}
+			con.close();
+		}catch(SQLException sql) {
+			System.out.println("soy el error en agregar peliculas"+ sql);
+		}
+		return bandera;
+	}
 	public List<PeliculasBean> getPeliculasEstreno(){
 		conexion= new ConnectionDB();
 		con  = conexion.getConexion();
@@ -46,7 +122,7 @@ public class PeliculasCrud {
 				peliculaEncontrada.setNombrePelicula(rs.getString("PEL_nombre"));
 				peliculaEncontrada.setClasificacionPeliculas(rs.getString("PEL_clasificacion"));
 				peliculaEncontrada.setDuracionPelicula(rs.getString("PEL_duracion"));
-				peliculaEncontrada.setFechaEstreno(rs.getDate("PEL_fechaestreno"));
+				peliculaEncontrada.setFechaEstreno( rs.getString("PEL_fechaestreno"));
 				peliculaEncontrada.setImagenPelicula(rs.getString("PEL_imagen"));
 				listaPeliculas.add(peliculaEncontrada);			
 			}

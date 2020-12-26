@@ -22,7 +22,7 @@
  <%
  /*usuarioLogueado.tipo != 'gerente' */
  if(1 != 1) { %>
- windoe.location.href= principal.jsp;
+ window.location.href= principal.jsp;
 <% }else { %>
  <nav class="navbar navbar-expand-lg navbar-toggleable-sm  navbar-dark bg-dark"  animate_animated animate_fadeInDown  shadow-lg sticky-top">
 		<button class="navbar-toggler navbar-toggler-right togglercolor" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
