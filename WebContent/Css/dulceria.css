@@ -1,0 +1,13 @@
+.fondo{
+	background-color: #000;
+}
+.centrar{
+	align-items:center;
+}
+.selectTipoDefault{
+	visibility: hidden;
+}
+
+.selectTipoMostrar{
+	visibility: visible;
+}

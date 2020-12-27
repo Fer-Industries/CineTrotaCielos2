@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.16, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: cinema
+-- Host: 127.0.0.1    Database: cinemat
 -- ------------------------------------------------------
 -- Server version	8.0.15
 
@@ -42,6 +42,33 @@ LOCK TABLES `actores` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `almacen`
+--
+
+DROP TABLE IF EXISTS `almacen`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `almacen` (
+  `Id_producto` int(11) DEFAULT NULL,
+  `Id_proveedor` int(11) DEFAULT NULL,
+  `precio_de_compra` float DEFAULT NULL,
+  KEY `Id_producto` (`Id_producto`),
+  KEY `Id_proveedor` (`Id_proveedor`),
+  CONSTRAINT `almacen_ibfk_1` FOREIGN KEY (`Id_producto`) REFERENCES `producto` (`PRO_id`),
+  CONSTRAINT `almacen_ibfk_2` FOREIGN KEY (`Id_proveedor`) REFERENCES `proveedores` (`id_proveedor`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `almacen`
+--
+
+LOCK TABLES `almacen` WRITE;
+/*!40000 ALTER TABLE `almacen` DISABLE KEYS */;
+/*!40000 ALTER TABLE `almacen` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `combos`
 --
 
@@ -53,8 +80,9 @@ CREATE TABLE `combos` (
   `COMBO_nombre` varchar(30) NOT NULL,
   `COMBO_precio` float NOT NULL,
   `COMBO_status` int(11) DEFAULT NULL,
+  `img` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`COMBO_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,6 +91,7 @@ CREATE TABLE `combos` (
 
 LOCK TABLES `combos` WRITE;
 /*!40000 ALTER TABLE `combos` DISABLE KEYS */;
+INSERT INTO `combos` VALUES (1,'Combo Amigos',120,1,'c_amigos'),(2,'Combo Pareja',150,1,'c_pareja'),(3,'Combo Familiar',200,1,'c_familiar'),(4,'Combo Grande',100,1,'c_grande');
 /*!40000 ALTER TABLE `combos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -152,7 +181,7 @@ CREATE TABLE `funciones` (
 
 LOCK TABLES `funciones` WRITE;
 /*!40000 ALTER TABLE `funciones` DISABLE KEYS */;
-INSERT INTO `funciones` VALUES (1,1,1,'10:00:00','2020-07-10',2,2),(2,2,3,'11:00:00','2020-07-30',2,2),(3,3,2,'16:00:00','2020-08-24',2,1),(4,3,2,'18:00:00','2020-08-24',1,2),(5,4,3,'14:00:00','2020-08-25',3,2),(6,4,1,'15:00:00','2020-08-23',1,2),(7,5,3,'20:00:00','2020-08-24',1,1),(8,5,2,'13:00:00','2020-08-22',2,1),(9,6,1,'17:00:00','2020-08-26',5,2),(10,6,2,'14:00:00','2020-08-18',1,2),(11,7,1,'21:00:00','2020-08-13',1,2),(12,9,2,'17:00:00','2020-08-14',2,1),(13,8,3,'13:00:00','2020-08-17',1,1),(14,7,3,'21:30:00','2020-08-11',1,2),(15,1,3,'20:45:00','2020-08-21',4,2),(16,1,1,'10:00:00','2020-07-10',2,2),(17,2,3,'11:00:00','2020-07-21',2,2),(18,3,2,'20:00:00','2020-08-05',2,2),(19,2,2,'17:00:00','2020-07-30',2,2),(20,2,3,'20:00:00','2020-08-01',2,2),(21,3,3,'10:00:00','2020-07-30',2,2),(22,4,2,'14:00:00','2020-07-30',2,3),(23,3,3,'23:00:00','2020-08-01',2,2),(24,1,1,'12:00:00','2020-08-01',1,1),(25,1,3,'09:00:00','2020-08-10',1,1),(26,1,1,'10:00:00','2020-10-10',1,1),(27,1,1,'10:00:00','2020-08-20',1,1);
+INSERT INTO `funciones` VALUES (1,1,1,'10:00:00','2020-12-20',2,2),(2,2,3,'11:00:00','2020-12-20',2,2),(3,3,2,'16:00:00','2020-12-20',2,1),(4,3,2,'18:00:00','2020-12-20',1,2),(5,4,3,'14:00:00','2020-12-20',3,2),(6,4,1,'15:00:00','2020-12-20',1,2),(7,5,3,'20:00:00','2020-12-20',1,1),(8,5,2,'13:00:00','2020-12-20',2,1),(9,6,1,'17:00:00','2020-12-20',5,2),(10,6,2,'14:00:00','2020-12-20',1,2),(11,7,1,'21:00:00','2020-12-20',1,2),(12,9,2,'17:00:00','2020-12-20',2,1),(13,8,3,'13:00:00','2020-12-20',1,1),(14,7,3,'21:30:00','2020-12-20',1,2),(15,1,3,'20:45:00','2020-12-20',4,2),(16,1,1,'10:00:00','2020-12-20',2,2),(17,2,3,'11:00:00','2020-12-20',2,2),(18,3,2,'20:00:00','2020-12-20',2,2),(19,2,2,'17:00:00','2020-12-20',2,2),(20,2,3,'20:00:00','2020-12-20',2,2),(21,3,3,'10:00:00','2020-12-20',2,2),(22,4,2,'14:00:00','2020-12-20',2,3),(23,3,3,'23:00:00','2020-12-20',2,2),(24,1,1,'12:00:00','2020-12-20',1,1),(25,1,3,'09:00:00','2020-12-20',1,1),(26,1,1,'10:00:00','2020-12-20',1,1),(27,1,1,'10:00:00','2020-12-20',1,1);
 /*!40000 ALTER TABLE `funciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -177,7 +206,7 @@ CREATE TABLE `idiomas` (
 
 LOCK TABLES `idiomas` WRITE;
 /*!40000 ALTER TABLE `idiomas` DISABLE KEYS */;
-INSERT INTO `idiomas` VALUES (1,'EspaÃ±ol',1),(2,'Ingles',1),(3,'Chino',1),(4,'Frances',1);
+INSERT INTO `idiomas` VALUES (1,'EspaÃÂ±ol',1),(2,'Ingles',1),(3,'Chino',1),(4,'Frances',1);
 /*!40000 ALTER TABLE `idiomas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -202,8 +231,32 @@ CREATE TABLE `niveles_tarjeta` (
 
 LOCK TABLES `niveles_tarjeta` WRITE;
 /*!40000 ALTER TABLE `niveles_tarjeta` DISABLE KEYS */;
-INSERT INTO `niveles_tarjeta` VALUES (1,'BÃ¡sica',0.05),(2,'Oro',0.08),(3,'Premium',0.10);
+INSERT INTO `niveles_tarjeta` VALUES (1,'BÃÂ¡sica',0.05),(2,'Oro',0.08),(3,'Premium',0.10);
 /*!40000 ALTER TABLE `niveles_tarjeta` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `opciones_productos`
+--
+
+DROP TABLE IF EXISTS `opciones_productos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `opciones_productos` (
+  `id_opc` int(11) NOT NULL,
+  `nombre` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`id_opc`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `opciones_productos`
+--
+
+LOCK TABLES `opciones_productos` WRITE;
+/*!40000 ALTER TABLE `opciones_productos` DISABLE KEYS */;
+INSERT INTO `opciones_productos` VALUES (1,'Productos'),(2,'Combos');
+/*!40000 ALTER TABLE `opciones_productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -247,9 +300,15 @@ CREATE TABLE `producto` (
   `PRO_precio` float NOT NULL,
   `PRO_almacen` int(11) DEFAULT NULL,
   `PRO_status` int(11) DEFAULT NULL,
-  `PRO_area` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`PRO_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `id_tam` int(11) DEFAULT NULL,
+  `id_tipo` int(11) DEFAULT NULL,
+  `img` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`PRO_id`),
+  KEY `id_tam` (`id_tam`),
+  KEY `id_tipo` (`id_tipo`),
+  CONSTRAINT `producto_ibfk_1` FOREIGN KEY (`id_tam`) REFERENCES `size` (`Idsize`),
+  CONSTRAINT `producto_ibfk_3` FOREIGN KEY (`id_tipo`) REFERENCES `tipo_producto` (`id_tipo`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -258,6 +317,7 @@ CREATE TABLE `producto` (
 
 LOCK TABLES `producto` WRITE;
 /*!40000 ALTER TABLE `producto` DISABLE KEYS */;
+INSERT INTO `producto` VALUES (1,'Palomitas chicas',40,10000,1,1,2,'p_chicas'),(2,'Palomitas medianas',45,10000,1,2,2,'p_medianas'),(3,'Palomitas grandes',50,10000,1,3,2,'p_grandes'),(4,'Refresco grande',50,10000,1,6,1,'r_grande'),(5,'Refresco mediano',45,10000,1,5,1,'r_mediano'),(6,'Refresco chico',40,10000,1,4,1,'r_chico'),(7,'Kit Kat',30,300,1,7,3,'kitkat');
 /*!40000 ALTER TABLE `producto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -286,6 +346,56 @@ LOCK TABLES `promociones` WRITE;
 /*!40000 ALTER TABLE `promociones` DISABLE KEYS */;
 INSERT INTO `promociones` VALUES (1,'Miercoles',0.3,1,0),(2,'Cumple',0.5,1,0),(3,'Viernes Feliz',0.1,1,5),(4,'Martes Feliz',0.25,1,2);
 /*!40000 ALTER TABLE `promociones` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `proveedores`
+--
+
+DROP TABLE IF EXISTS `proveedores`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `proveedores` (
+  `id_proveedor` int(11) NOT NULL,
+  `nombre_proveedor` varchar(40) DEFAULT NULL,
+  `email` varchar(40) DEFAULT NULL,
+  PRIMARY KEY (`id_proveedor`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `proveedores`
+--
+
+LOCK TABLES `proveedores` WRITE;
+/*!40000 ALTER TABLE `proveedores` DISABLE KEYS */;
+/*!40000 ALTER TABLE `proveedores` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `punto_reorden`
+--
+
+DROP TABLE IF EXISTS `punto_reorden`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `punto_reorden` (
+  `Id_producto` int(11) DEFAULT NULL,
+  `cantidad_limite` int(11) DEFAULT NULL,
+  `cantidad_ordenar` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  KEY `Id_producto` (`Id_producto`),
+  CONSTRAINT `punto_reorden_ibfk_1` FOREIGN KEY (`Id_producto`) REFERENCES `producto` (`PRO_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `punto_reorden`
+--
+
+LOCK TABLES `punto_reorden` WRITE;
+/*!40000 ALTER TABLE `punto_reorden` DISABLE KEYS */;
+/*!40000 ALTER TABLE `punto_reorden` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -364,7 +474,7 @@ CREATE TABLE `rel_fun_asientos` (
 
 LOCK TABLES `rel_fun_asientos` WRITE;
 /*!40000 ALTER TABLE `rel_fun_asientos` DISABLE KEYS */;
-INSERT INTO `rel_fun_asientos` VALUES (1,1,1),(2,1,1),(3,1,0),(4,1,0),(5,1,0),(6,1,1),(7,1,0),(8,1,0),(9,1,1),(10,1,1),(11,1,0),(12,1,0),(51,18,0),(52,18,0),(53,18,0),(54,18,0),(55,18,0),(56,18,0),(57,18,0),(58,18,0),(59,18,0),(60,18,0),(61,18,0),(62,18,0),(63,18,0),(64,18,0),(65,18,0),(66,18,0),(67,18,0),(68,18,0),(69,18,0),(70,18,0),(71,18,0),(72,18,0),(73,18,0),(74,18,0),(75,18,0),(76,18,0),(77,18,0),(78,18,0),(79,18,0),(80,18,0),(81,18,0),(82,18,0),(83,18,0),(84,18,0),(85,18,0),(86,18,0),(87,18,0),(88,18,0),(89,18,0),(90,18,0),(91,18,0),(92,18,0),(93,18,0),(94,18,0),(95,18,0),(96,18,0),(97,18,0),(98,18,0),(99,18,0),(100,18,0),(251,19,0),(252,19,0),(253,19,0),(254,19,0),(255,19,0),(256,19,0),(257,19,0),(258,19,0),(259,19,0),(260,19,0),(261,19,0),(262,19,0),(263,19,0),(264,19,0),(265,19,0),(266,19,0),(267,19,0),(268,19,0),(269,19,0),(270,19,0),(271,19,0),(272,19,0),(273,19,0),(274,19,0),(275,19,0),(276,19,0),(277,19,0),(278,19,0),(279,19,0),(280,19,0),(281,19,0),(282,19,0),(283,19,0),(284,19,0),(285,19,0),(286,19,0),(287,19,0),(288,19,0),(289,19,0),(290,19,0),(291,19,0),(292,19,0),(293,19,0),(294,19,0),(295,19,0),(296,19,0),(297,19,0),(298,19,0),(299,19,0),(300,19,0),(51,20,1),(52,20,1),(53,20,1),(54,20,1),(55,20,1),(56,20,1),(57,20,1),(58,20,1),(59,20,1),(60,20,1),(61,20,1),(62,20,1),(63,20,1),(64,20,1),(65,20,1),(66,20,1),(67,20,1),(68,20,1),(69,20,1),(70,20,1),(71,20,1),(72,20,1),(73,20,1),(74,20,1),(75,20,1),(76,20,1),(77,20,1),(78,20,1),(79,20,1),(80,20,1),(81,20,1),(82,20,1),(83,20,1),(84,20,1),(85,20,1),(86,20,1),(87,20,1),(88,20,1),(89,20,1),(90,20,1),(91,20,1),(92,20,1),(93,20,1),(94,20,1),(95,20,1),(96,20,1),(97,20,1),(98,20,1),(99,20,1),(100,20,1),(1,21,0),(2,21,0),(3,21,0),(4,21,0),(5,21,0),(6,21,0),(7,21,0),(8,21,0),(9,21,0),(10,21,0),(11,21,0),(12,21,0),(13,21,0),(14,21,0),(15,21,0),(16,21,0),(17,21,0),(18,21,0),(19,21,0),(20,21,0),(21,21,0),(22,21,0),(23,21,0),(24,21,0),(25,21,0),(26,21,0),(27,21,0),(28,21,0),(29,21,0),(30,21,0),(31,21,0),(32,21,0),(33,21,0),(34,21,0),(35,21,0),(36,21,0),(37,21,0),(38,21,0),(39,21,0),(40,21,0),(41,21,0),(42,21,0),(43,21,0),(44,21,0),(45,21,0),(46,21,0),(47,21,0),(48,21,0),(49,21,0),(50,21,0),(51,22,0),(52,22,0),(53,22,0),(54,22,0),(55,22,0),(56,22,0),(57,22,0),(58,22,0),(59,22,0),(60,22,0),(61,22,0),(62,22,0),(63,22,0),(64,22,0),(65,22,0),(66,22,0),(67,22,0),(68,22,0),(69,22,0),(70,22,0),(71,22,0),(72,22,0),(73,22,0),(74,22,0),(75,22,0),(76,22,0),(77,22,0),(78,22,0),(79,22,0),(80,22,0),(81,22,0),(82,22,0),(83,22,0),(84,22,0),(85,22,0),(86,22,0),(87,22,0),(88,22,0),(89,22,0),(90,22,0),(91,22,0),(92,22,0),(93,22,0),(94,22,0),(95,22,0),(96,22,0),(97,22,0),(98,22,0),(99,22,0),(100,22,0),(251,23,0),(252,23,0),(253,23,0),(254,23,0),(255,23,0),(256,23,0),(257,23,0),(258,23,0),(259,23,0),(260,23,0),(261,23,0),(262,23,0),(263,23,0),(264,23,0),(265,23,0),(266,23,0),(267,23,0),(268,23,0),(269,23,0),(270,23,0),(271,23,0),(272,23,0),(273,23,0),(274,23,0),(275,23,0),(276,23,0),(277,23,0),(278,23,0),(279,23,0),(280,23,0),(281,23,0),(282,23,0),(283,23,0),(284,23,0),(285,23,0),(286,23,0),(287,23,0),(288,23,0),(289,23,0),(290,23,0),(291,23,0),(292,23,0),(293,23,0),(294,23,0),(295,23,0),(296,23,0),(297,23,0),(298,23,0),(299,23,0),(300,23,0),(1,24,0),(2,24,0),(3,24,0),(4,24,0),(5,24,0),(6,24,0),(7,24,0),(8,24,0),(9,24,0),(10,24,0),(11,24,0),(12,24,0),(13,24,0),(14,24,0),(15,24,0),(16,24,0),(17,24,0),(18,24,0),(19,24,0),(20,24,0),(21,24,0),(22,24,0),(23,24,0),(24,24,0),(25,24,0),(26,24,0),(27,24,0),(28,24,0),(29,24,0),(30,24,0),(31,24,0),(32,24,0),(33,24,0),(34,24,0),(35,24,0),(36,24,0),(37,24,0),(38,24,0),(39,24,0),(40,24,0),(41,24,0),(42,24,0),(43,24,0),(44,24,0),(45,24,0),(46,24,0),(47,24,0),(48,24,0),(49,24,0),(50,24,0),(1,25,0),(2,25,0),(3,25,0),(4,25,0),(5,25,0),(6,25,0),(7,25,0),(8,25,0),(9,25,0),(10,25,0),(11,25,0),(12,25,0),(13,25,0),(14,25,0),(15,25,0),(16,25,0),(17,25,0),(18,25,0),(19,25,0),(20,25,0),(21,25,0),(22,25,0),(23,25,0),(24,25,0),(25,25,0),(26,25,0),(27,25,0),(28,25,0),(29,25,0),(30,25,0),(31,25,0),(32,25,0),(33,25,0),(34,25,0),(35,25,0),(36,25,0),(37,25,0),(38,25,0),(39,25,0),(40,25,1),(41,25,1),(42,25,0),(43,25,0),(44,25,1),(45,25,1),(46,25,0),(47,25,1),(48,25,1),(49,25,0),(50,25,0),(1,26,0),(2,26,0),(3,26,0),(4,26,0),(5,26,0),(6,26,0),(7,26,0),(8,26,0),(9,26,0),(10,26,0),(11,26,0),(12,26,0),(13,26,0),(14,26,0),(15,26,0),(16,26,0),(17,26,0),(18,26,0),(19,26,0),(20,26,0),(21,26,0),(22,26,0),(23,26,0),(24,26,0),(25,26,0),(26,26,0),(27,26,0),(28,26,0),(29,26,0),(30,26,0),(31,26,0),(32,26,0),(33,26,0),(34,26,0),(35,26,0),(36,26,0),(37,26,0),(38,26,0),(39,26,0),(40,26,0),(41,26,0),(42,26,0),(43,26,0),(44,26,0),(45,26,0),(46,26,0),(47,26,0),(48,26,0),(49,26,0),(50,26,0),(1,27,0),(2,27,0),(3,27,0),(4,27,0),(5,27,0),(6,27,0),(7,27,0),(8,27,0),(9,27,0),(10,27,0),(11,27,1),(12,27,0),(13,27,0),(14,27,0),(15,27,1),(16,27,1),(17,27,1),(18,27,1),(19,27,1),(20,27,1),(21,27,1),(22,27,1),(23,27,1),(24,27,1),(25,27,0),(26,27,0),(27,27,0),(28,27,1),(29,27,1),(30,27,1),(31,27,1),(32,27,1),(33,27,1),(34,27,1),(35,27,1),(36,27,1),(37,27,1),(38,27,1),(39,27,1),(40,27,1),(41,27,1),(42,27,1),(43,27,1),(44,27,1),(45,27,1),(46,27,1),(47,27,1),(48,27,1),(49,27,1),(50,27,1);
+INSERT INTO `rel_fun_asientos` VALUES (1,1,1),(2,1,1),(3,1,0),(4,1,0),(5,1,0),(6,1,1),(7,1,0),(8,1,0),(9,1,1),(10,1,1),(11,1,0),(12,1,0),(51,18,0),(52,18,0),(53,18,0),(54,18,0),(55,18,0),(56,18,0),(57,18,0),(58,18,0),(59,18,0),(60,18,0),(61,18,0),(62,18,0),(63,18,0),(64,18,0),(65,18,0),(66,18,0),(67,18,0),(68,18,0),(69,18,0),(70,18,0),(71,18,0),(72,18,0),(73,18,0),(74,18,0),(75,18,0),(76,18,0),(77,18,0),(78,18,0),(79,18,0),(80,18,0),(81,18,0),(82,18,0),(83,18,0),(84,18,0),(85,18,0),(86,18,0),(87,18,0),(88,18,0),(89,18,0),(90,18,0),(91,18,0),(92,18,0),(93,18,0),(94,18,0),(95,18,0),(96,18,0),(97,18,0),(98,18,0),(99,18,0),(100,18,0),(251,19,0),(252,19,0),(253,19,0),(254,19,0),(255,19,0),(256,19,0),(257,19,0),(258,19,0),(259,19,0),(260,19,0),(261,19,0),(262,19,0),(263,19,0),(264,19,0),(265,19,0),(266,19,0),(267,19,0),(268,19,0),(269,19,0),(270,19,0),(271,19,0),(272,19,0),(273,19,0),(274,19,0),(275,19,0),(276,19,0),(277,19,0),(278,19,0),(279,19,0),(280,19,0),(281,19,0),(282,19,0),(283,19,0),(284,19,0),(285,19,0),(286,19,0),(287,19,0),(288,19,0),(289,19,0),(290,19,0),(291,19,0),(292,19,0),(293,19,0),(294,19,0),(295,19,0),(296,19,0),(297,19,0),(298,19,0),(299,19,0),(300,19,0),(51,20,1),(52,20,1),(53,20,1),(54,20,1),(55,20,1),(56,20,1),(57,20,1),(58,20,1),(59,20,1),(60,20,1),(61,20,1),(62,20,1),(63,20,1),(64,20,1),(65,20,1),(66,20,1),(67,20,1),(68,20,1),(69,20,1),(70,20,1),(71,20,1),(72,20,1),(73,20,1),(74,20,1),(75,20,1),(76,20,1),(77,20,1),(78,20,1),(79,20,1),(80,20,1),(81,20,1),(82,20,1),(83,20,1),(84,20,1),(85,20,1),(86,20,1),(87,20,1),(88,20,1),(89,20,1),(90,20,1),(91,20,1),(92,20,1),(93,20,1),(94,20,1),(95,20,1),(96,20,1),(97,20,1),(98,20,1),(99,20,1),(100,20,1),(1,21,0),(2,21,0),(3,21,0),(4,21,0),(5,21,0),(6,21,0),(7,21,0),(8,21,0),(9,21,0),(10,21,0),(11,21,0),(12,21,0),(13,21,0),(14,21,0),(15,21,0),(16,21,0),(17,21,0),(18,21,0),(19,21,0),(20,21,0),(21,21,0),(22,21,0),(23,21,0),(24,21,0),(25,21,0),(26,21,0),(27,21,0),(28,21,0),(29,21,0),(30,21,0),(31,21,0),(32,21,0),(33,21,0),(34,21,0),(35,21,0),(36,21,0),(37,21,0),(38,21,0),(39,21,0),(40,21,0),(41,21,0),(42,21,0),(43,21,0),(44,21,0),(45,21,0),(46,21,0),(47,21,0),(48,21,0),(49,21,0),(50,21,0),(51,22,0),(52,22,0),(53,22,0),(54,22,0),(55,22,0),(56,22,0),(57,22,0),(58,22,0),(59,22,0),(60,22,0),(61,22,0),(62,22,0),(63,22,0),(64,22,0),(65,22,0),(66,22,0),(67,22,0),(68,22,0),(69,22,0),(70,22,0),(71,22,0),(72,22,0),(73,22,0),(74,22,0),(75,22,0),(76,22,0),(77,22,0),(78,22,0),(79,22,0),(80,22,0),(81,22,0),(82,22,0),(83,22,0),(84,22,0),(85,22,0),(86,22,0),(87,22,0),(88,22,0),(89,22,0),(90,22,0),(91,22,0),(92,22,0),(93,22,0),(94,22,0),(95,22,0),(96,22,0),(97,22,0),(98,22,0),(99,22,0),(100,22,0),(251,23,0),(252,23,0),(253,23,0),(254,23,0),(255,23,0),(256,23,0),(257,23,0),(258,23,0),(259,23,0),(260,23,0),(261,23,0),(262,23,0),(263,23,0),(264,23,0),(265,23,0),(266,23,0),(267,23,0),(268,23,0),(269,23,0),(270,23,0),(271,23,0),(272,23,0),(273,23,0),(274,23,0),(275,23,0),(276,23,0),(277,23,0),(278,23,0),(279,23,0),(280,23,0),(281,23,0),(282,23,0),(283,23,0),(284,23,0),(285,23,0),(286,23,0),(287,23,0),(288,23,0),(289,23,0),(290,23,0),(291,23,0),(292,23,0),(293,23,0),(294,23,0),(295,23,0),(296,23,0),(297,23,0),(298,23,0),(299,23,0),(300,23,0),(1,24,0),(2,24,0),(3,24,0),(4,24,0),(5,24,0),(6,24,0),(7,24,0),(8,24,0),(9,24,0),(10,24,0),(11,24,0),(12,24,0),(13,24,0),(14,24,0),(15,24,0),(16,24,0),(17,24,0),(18,24,0),(19,24,0),(20,24,0),(21,24,0),(22,24,0),(23,24,0),(24,24,0),(25,24,0),(26,24,0),(27,24,0),(28,24,0),(29,24,0),(30,24,0),(31,24,0),(32,24,0),(33,24,0),(34,24,0),(35,24,0),(36,24,0),(37,24,0),(38,24,0),(39,24,0),(40,24,0),(41,24,0),(42,24,0),(43,24,0),(44,24,0),(45,24,0),(46,24,0),(47,24,0),(48,24,0),(49,24,0),(50,24,0),(1,25,0),(2,25,0),(3,25,0),(4,25,0),(5,25,0),(6,25,0),(7,25,0),(8,25,0),(9,25,0),(10,25,0),(11,25,0),(12,25,0),(13,25,0),(14,25,0),(15,25,0),(16,25,0),(17,25,0),(18,25,0),(19,25,0),(20,25,0),(21,25,0),(22,25,0),(23,25,0),(24,25,0),(25,25,0),(26,25,0),(27,25,0),(28,25,0),(29,25,0),(30,25,0),(31,25,0),(32,25,0),(33,25,0),(34,25,0),(35,25,0),(36,25,0),(37,25,0),(38,25,0),(39,25,0),(40,25,1),(41,25,1),(42,25,0),(43,25,0),(44,25,1),(45,25,1),(46,25,0),(47,25,1),(48,25,1),(49,25,0),(50,25,0),(1,26,0),(2,26,0),(3,26,0),(4,26,0),(5,26,0),(6,26,0),(7,26,0),(8,26,0),(9,26,0),(10,26,0),(11,26,0),(12,26,0),(13,26,0),(14,26,0),(15,26,0),(16,26,0),(17,26,0),(18,26,0),(19,26,0),(20,26,0),(21,26,0),(22,26,0),(23,26,0),(24,26,0),(25,26,0),(26,26,0),(27,26,0),(28,26,0),(29,26,0),(30,26,0),(31,26,0),(32,26,0),(33,26,0),(34,26,0),(35,26,0),(36,26,0),(37,26,0),(38,26,0),(39,26,1),(40,26,1),(41,26,1),(42,26,1),(43,26,1),(44,26,1),(45,26,1),(46,26,1),(47,26,1),(48,26,1),(49,26,1),(50,26,1),(1,27,0),(2,27,0),(3,27,0),(4,27,0),(5,27,0),(6,27,1),(7,27,1),(8,27,1),(9,27,1),(10,27,1),(11,27,1),(12,27,1),(13,27,1),(14,27,1),(15,27,1),(16,27,1),(17,27,1),(18,27,1),(19,27,1),(20,27,1),(21,27,1),(22,27,1),(23,27,1),(24,27,1),(25,27,1),(26,27,1),(27,27,1),(28,27,1),(29,27,1),(30,27,1),(31,27,1),(32,27,1),(33,27,1),(34,27,1),(35,27,1),(36,27,1),(37,27,1),(38,27,1),(39,27,1),(40,27,1),(41,27,1),(42,27,1),(43,27,1),(44,27,1),(45,27,1),(46,27,1),(47,27,1),(48,27,1),(49,27,1),(50,27,1);
 /*!40000 ALTER TABLE `rel_fun_asientos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -521,7 +631,7 @@ CREATE TABLE `rel_ventas_asientos` (
 
 LOCK TABLES `rel_ventas_asientos` WRITE;
 /*!40000 ALTER TABLE `rel_ventas_asientos` DISABLE KEYS */;
-INSERT INTO `rel_ventas_asientos` VALUES (2,48),(2,47),(3,44),(3,45),(4,44),(4,45),(5,44),(5,45),(6,44),(6,45),(7,44),(7,45),(8,41),(8,40),(9,48),(9,47),(10,48),(10,47),(11,42),(11,43),(12,42),(12,41),(13,46),(13,45),(14,34),(14,35),(15,33),(15,32),(16,30),(16,31),(17,20),(17,19),(18,18),(18,17),(19,24),(19,23),(20,36),(21,49),(21,50),(22,39),(22,40),(23,16),(23,15);
+INSERT INTO `rel_ventas_asientos` VALUES (2,48),(2,47),(3,44),(3,45),(4,44),(4,45),(5,44),(5,45),(6,44),(6,45),(7,44),(7,45),(8,41),(8,40),(9,48),(9,47),(10,48),(10,47),(11,42),(11,43),(12,42),(12,41),(13,46),(13,45),(14,34),(14,35),(15,33),(15,32),(16,30),(16,31),(17,20),(17,19),(18,18),(18,17),(19,24),(19,23),(20,36),(21,49),(21,50),(22,39),(22,40),(23,16),(23,15),(24,13),(24,14),(25,25),(26,12),(27,12),(28,10),(29,9),(30,8),(31,7),(32,6),(33,6),(34,5),(35,4),(36,5),(37,50),(38,48),(39,49),(40,49),(41,47),(41,46),(42,45),(43,44),(44,43),(45,41),(46,40),(47,39);
 /*!40000 ALTER TABLE `rel_ventas_asientos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -581,6 +691,32 @@ INSERT INTO `salas` VALUES (1,1,1,50),(2,2,1,50),(3,3,1,50),(4,4,1,50),(5,5,1,50
 UNLOCK TABLES;
 
 --
+-- Table structure for table `size`
+--
+
+DROP TABLE IF EXISTS `size`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `size` (
+  `Idsize` int(11) NOT NULL AUTO_INCREMENT,
+  `size_name` varchar(30) DEFAULT NULL,
+  `cantidad` float DEFAULT NULL,
+  `unidad_medida` varchar(5) DEFAULT NULL,
+  PRIMARY KEY (`Idsize`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `size`
+--
+
+LOCK TABLES `size` WRITE;
+/*!40000 ALTER TABLE `size` DISABLE KEYS */;
+INSERT INTO `size` VALUES (1,'Chico',200,'gr'),(2,'Mediano',400,'gr'),(3,'Grande',600,'gr'),(4,'Chico',500,'ml'),(5,'Mediano',800,'ml'),(6,'Grande',1000,'ml'),(7,'Chico',41,'gr');
+/*!40000 ALTER TABLE `size` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `sucursal`
 --
 
@@ -603,6 +739,30 @@ LOCK TABLES `sucursal` WRITE;
 /*!40000 ALTER TABLE `sucursal` DISABLE KEYS */;
 INSERT INTO `sucursal` VALUES (1,'Cinema Azcapotzalco',1),(2,'Cinema Lomas Estrella',1),(3,'Cinema Iztapalapa',1);
 /*!40000 ALTER TABLE `sucursal` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tipo_producto`
+--
+
+DROP TABLE IF EXISTS `tipo_producto`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `tipo_producto` (
+  `id_tipo` int(11) NOT NULL,
+  `nombre_tipo` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`id_tipo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tipo_producto`
+--
+
+LOCK TABLES `tipo_producto` WRITE;
+/*!40000 ALTER TABLE `tipo_producto` DISABLE KEYS */;
+INSERT INTO `tipo_producto` VALUES (1,'Bebidas'),(2,'Comida'),(3,'Dulces');
+/*!40000 ALTER TABLE `tipo_producto` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -636,7 +796,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1578288561973418,'Fernando','Delgadillo','JuÃ¡rez',1,'1997-08-13','fer@hotmail.com',_binary '\�\0\�%��Ƈ�ǊѓE�4',1,0);
+INSERT INTO `usuarios` VALUES (753135376193581,'Fernando','skywalker','Mcfly',1,'2020-12-18','fersky@hotmail.com',_binary '\�\0\�%��Ƈ�ǊѓE�4',1,0),(1578288561973418,'Fernando','Delgadillo','JuÃÂ¡rez',1,'1997-08-13','fer@hotmail.com',_binary 'ß\0Ö%§Æ',1,0);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -652,6 +812,7 @@ CREATE TABLE `ventas_dulceria` (
   `VDU_idtarjeta` decimal(16,0) NOT NULL,
   `VDU_fecha` date NOT NULL,
   `VDU_total` float NOT NULL,
+  `status_entrega` int(11) DEFAULT NULL,
   PRIMARY KEY (`VDU_idventa`),
   KEY `VDU_idtarjeta` (`VDU_idtarjeta`),
   CONSTRAINT `Ventas_dulceria_ibfk_1` FOREIGN KEY (`VDU_idtarjeta`) REFERENCES `usuarios` (`USU_idtarjeta`)
@@ -685,7 +846,7 @@ CREATE TABLE `ventas_ticket` (
   KEY `VET_idtarjeta` (`VET_idtarjeta`),
   CONSTRAINT `Ventas_ticket_ibfk_1` FOREIGN KEY (`VET_idfuncion`) REFERENCES `funciones` (`FUN_idfuncion`),
   CONSTRAINT `Ventas_ticket_ibfk_2` FOREIGN KEY (`VET_idtarjeta`) REFERENCES `usuarios` (`USU_idtarjeta`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -694,12 +855,16 @@ CREATE TABLE `ventas_ticket` (
 
 LOCK TABLES `ventas_ticket` WRITE;
 /*!40000 ALTER TABLE `ventas_ticket` DISABLE KEYS */;
-INSERT INTO `ventas_ticket` VALUES (1,25,1578288561973418,'2020-08-07',0),(2,25,1578288561973418,'2020-08-07',108),(3,25,1578288561973418,'2020-08-07',108),(4,25,1578288561973418,'2020-08-07',108),(5,25,1578288561973418,'2020-08-07',108),(6,25,1578288561973418,'2020-08-07',108),(7,25,1578288561973418,'2020-08-07',108),(8,25,1578288561973418,'2020-08-07',108),(9,27,1578288561973418,'2020-08-12',120),(10,27,1578288561973418,'2020-08-12',120),(11,27,1578288561973418,'2020-08-12',120),(12,27,1578288561973418,'2020-08-12',120),(13,27,1578288561973418,'2020-08-17',120),(14,27,1578288561973418,'2020-08-17',120),(15,27,1578288561973418,'2020-08-17',120),(16,27,1578288561973418,'2020-08-17',120),(17,27,1578288561973418,'2020-08-17',120),(18,27,1578288561973418,'2020-08-17',120),(19,27,1578288561973418,'2020-08-18',90),(20,27,1578288561973418,'2020-08-18',45),(21,27,1578288561973418,'2020-08-18',90),(22,27,1578288561973418,'2020-08-18',90),(23,27,1578288561973418,'2020-08-18',90);
+INSERT INTO `ventas_ticket` VALUES (1,25,1578288561973418,'2020-08-07',0),(2,25,1578288561973418,'2020-08-07',108),(3,25,1578288561973418,'2020-08-07',108),(4,25,1578288561973418,'2020-08-07',108),(5,25,1578288561973418,'2020-08-07',108),(6,25,1578288561973418,'2020-08-07',108),(7,25,1578288561973418,'2020-08-07',108),(8,25,1578288561973418,'2020-08-07',108),(9,27,1578288561973418,'2020-08-12',120),(10,27,1578288561973418,'2020-08-12',120),(11,27,1578288561973418,'2020-08-12',120),(12,27,1578288561973418,'2020-08-12',120),(13,27,1578288561973418,'2020-08-17',120),(14,27,1578288561973418,'2020-08-17',120),(15,27,1578288561973418,'2020-08-17',120),(16,27,1578288561973418,'2020-08-17',120),(17,27,1578288561973418,'2020-08-17',120),(18,27,1578288561973418,'2020-08-17',120),(19,27,1578288561973418,'2020-08-18',90),(20,27,1578288561973418,'2020-08-18',45),(21,27,1578288561973418,'2020-08-18',90),(22,27,1578288561973418,'2020-08-18',90),(23,27,1578288561973418,'2020-08-18',90),(24,27,1578288561973418,'2020-08-21',108),(25,27,1578288561973418,'2020-08-21',54),(26,27,1578288561973418,'2020-08-21',54),(27,27,1578288561973418,'2020-08-21',54),(28,27,1578288561973418,'2020-08-21',54),(29,27,1578288561973418,'2020-08-21',54),(30,27,1578288561973418,'2020-08-21',54),(31,27,1578288561973418,'2020-08-21',54),(32,27,1578288561973418,'2020-08-21',54),(33,27,1578288561973418,'2020-08-22',60),(34,27,1578288561973418,'2020-08-22',60),(35,27,1578288561973418,'2020-08-22',60),(36,27,1578288561973418,'2020-08-22',60),(37,26,1578288561973418,'2020-08-22',60),(38,26,1578288561973418,'2020-08-22',60),(39,26,1578288561973418,'2020-08-22',60),(40,26,1578288561973418,'2020-08-22',60),(41,26,1578288561973418,'2020-08-22',120),(42,26,1578288561973418,'2020-08-22',60),(43,26,1578288561973418,'2020-08-22',60),(44,26,1578288561973418,'2020-08-22',60),(45,26,1578288561973418,'2020-08-22',60),(46,26,1578288561973418,'2020-08-22',60),(47,26,1578288561973418,'2020-08-22',60);
 /*!40000 ALTER TABLE `ventas_ticket` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Dumping routines for database 'cinema'
+-- Dumping events for database 'cinemat'
+--
+
+--
+-- Dumping routines for database 'cinemat'
 --
 /*!50003 DROP PROCEDURE IF EXISTS `insertar_funcion` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -726,9 +891,9 @@ BEGIN
 	inner join funciones c on b.RFA_idfuncion=c.FUN_idfuncion group by  SAL_idsala,FUN_hora,FUN_dia,FUN_idsucursal;
 	DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
 
-    SET bandera = 0;/*AUN NO SE VALIDA QUE SE REPITA LA FUNCIÓN*/
+    SET bandera = 0;/*AUN NO SE VALIDA QUE SE REPITA LA FUNCIÃN*/
 
-	OPEN cur2;/*NOS SIRVE PARA SABER SI SE EMPALMA CON ALGÚNA FUNCIÓN*/
+	OPEN cur2;/*NOS SIRVE PARA SABER SI SE EMPALMA CON ALGÃNA FUNCIÃN*/
     BEGIN
 	  DECLARE exit_flag INT DEFAULT 0;
       DECLARE CONTINUE HANDLER FOR SQLSTATE '02000' SET exit_flag = 1;
@@ -737,8 +902,8 @@ BEGIN
             IF exit_flag THEN LEAVE read_loop;
             END IF;
 			IF (dispSala = sala and dispHora=hora and dispDia=dia and dispSucursal=idsucursal) then 
-				SET bandera=1;/*CON UNA FUNCIÓN QUE SE EMPALME ES MAS QUE SUFICIENTE*/
-				LEAVE read_loop;/*ya con una función que haya empalmado entonces se cierra el ciclo*/
+				SET bandera=1;/*CON UNA FUNCIÃN QUE SE EMPALME ES MAS QUE SUFICIENTE*/
+				LEAVE read_loop;/*ya con una funciÃ³n que haya empalmado entonces se cierra el ciclo*/
 			END IF;
 		END LOOP;
     END;
@@ -748,10 +913,10 @@ BEGIN
     BEGIN
     DECLARE exit_flag INT DEFAULT 0;
 	DECLARE CONTINUE HANDLER FOR SQLSTATE '02000' SET exit_flag = 1;
-    IF bandera != 1 THEN /*SI ES DIFERENTE A 1 ENTONCES NO SE EMPALMA Y PODEMOS CREAR LA FUNCIÓN*/
+    IF bandera != 1 THEN /*SI ES DIFERENTE A 1 ENTONCES NO SE EMPALMA Y PODEMOS CREAR LA FUNCIÃN*/
 		set @maximo=(select max(FUN_idfuncion) from funciones)+1;
-		/*Necesitamos el idfuncion que el proc lo guarde en una variable con la funciÃ³n de agregado MAX*/
-        /*SE INSERTA LA FUNCIÓN*/
+		/*Necesitamos el idfuncion que el proc lo guarde en una variable con la funciÃÂ³n de agregado MAX*/
+        /*SE INSERTA LA FUNCIÃN*/
 		INSERT INTO funciones (FUN_idfuncion , FUN_idpelicula ,  FUN_idsucursal, FUN_hora, FUN_dia, FUN_idformato, FUN_ididioma )
 		VALUES ( @maximo, idpelicula, idsucursal , hora , dia , formato , idioma);
         
@@ -808,6 +973,25 @@ begin
 		end if;
 END IF;
 end ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `P_COMBOS` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `P_COMBOS`()
+BEGIN
+	select * from combos where COMBO_status = 1;
+END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -899,6 +1083,35 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `P_INFO_BOLETO` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `P_INFO_BOLETO`(IN id_funcion INT, IN id_asiento INT)
+BEGIN
+	select SAL_numerosala as NombreSala,PEL_nombre as pelicula, SAS_asiento as nombreasiento, FUN_hora as hora,FUN_dia as dia
+	from funciones f 
+	inner join rel_fun_asientos rf
+	ON f.FUN_idfuncion = rf.RFA_idfuncion
+	inner join sala_asientos sa
+	ON rf.RFA_idasiento = sa.SAS_idasiento
+	inner join salas s
+	ON sa.SAS_sala = s.SAL_idsala
+	inner join peliculas p
+	ON f.FUN_idpelicula = p.PEL_idpelicula
+	where f.FUN_idfuncion = id_funcion and rf.RFA_idasiento = id_asiento;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `P_LIBERAR_LUGAR` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -962,6 +1175,25 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `P_OPCIONES` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `P_OPCIONES`()
+BEGIN
+	select * from opciones_productos order by nombre;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `P_PELICULAS` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -995,6 +1227,28 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `P_PELICULAS_ESTRENO`()
 begin
 	select * from peliculas order by PEL_fechaestreno DESC Limit 4 ;
 end ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `P_PRODUCTOS_TIPO` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `P_PRODUCTOS_TIPO`(tipo int)
+BEGIN
+	select PRO_id, PRO_nombre, PRO_precio,size_name,img from producto p
+	inner join size s
+	on p.id_tam = idsize
+	where id_tipo = tipo;
+END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1091,6 +1345,25 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `P_TIPOS` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `P_TIPOS`()
+BEGIN
+	SELECT * FROM tipo_producto;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `P_VENTA_ASIENTO` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -1149,4 +1422,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-08-19 19:25:14
+-- Dump completed on 2020-12-26 22:05:52

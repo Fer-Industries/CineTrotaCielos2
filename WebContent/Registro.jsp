@@ -24,9 +24,7 @@
          <div class="collapse navbar-collapse" id="menu">
             <div class="navbar-nav" >
                 <a class="nav-link" href="principal.jsp">INICIO<span class="sr-only">(current)</span></a>
-                <a class="nav-link" href=""> CARTELERA <span class="sr-only">(current)</span></a>
-                <a class="nav-link" href="">PRODUCTOS</a>
-                <a class="nav-link" href="">CONTACTO</a>
+                <a class="nav-link" href="dulceria.jsp">DULCERIA</a>
                 <a class="nav-link" href="Funciones.jsp">BUSQUEDA<span class="sr-only">(current)</span></a>
           </div>
          </div>
