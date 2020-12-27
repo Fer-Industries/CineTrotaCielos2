@@ -11,10 +11,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import mx.com.cinema.entities.Combo;
+import mx.com.cinema.entities.DatosDulceria;
 import mx.com.cinema.entities.FormatosBean;
 import mx.com.cinema.entities.IdiomaBean;
+import mx.com.cinema.entities.OpcionProducto;
 import mx.com.cinema.entities.PeliculasBean;
+import mx.com.cinema.entities.Producto;
 import mx.com.cinema.entities.SucursalBean;
+import mx.com.cinema.entities.TipoProducto;
 
 public class CatalogosCrud implements CatalogoInterface{
 	ConnectionDB conexion;
@@ -115,6 +120,106 @@ public class CatalogosCrud implements CatalogoInterface{
 		}
 		return listaPeliculas;
 	
+	}
+	
+	public DatosDulceria getCatalogosDul() {
+		DatosDulceria datos = new DatosDulceria();
+		datos.setOpciones(getOpciones());
+		datos.setCombos(getCombos());
+		datos.setTiposProductos(getTipos());
+		return datos;
+	}
+	
+	public List<Combo> getCombos() {
+		List<Combo> combos = new ArrayList<Combo>();
+		ConnectionDB conexion = new ConnectionDB();
+		con = conexion.getConexion();
+		String comboProc = "{call P_COMBOS}";
+		try {
+			ctmt = con.prepareCall(comboProc);
+			rs = ctmt.executeQuery();
+			while(rs.next()) {
+				Combo combo = new Combo();
+				combo.setId(rs.getInt("COMBO_id"));
+				combo.setNombre(rs.getString("COMBO_nombre"));
+				combo.setPrecio(rs.getInt("COMBO_precio"));
+				combo.setImg(rs.getString("img"));
+				combos.add(combo);
+			}
+			con.close();
+		}catch(SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return combos;
+	}
+	
+	public List<OpcionProducto> getOpciones() {
+		List<OpcionProducto> opciones = new ArrayList<OpcionProducto>();
+		ConnectionDB conexion = new ConnectionDB();
+		con = conexion.getConexion();
+		String opcionesProc = "{call P_OPCIONES}";
+		try {
+			ctmt = con.prepareCall(opcionesProc);
+			rs = ctmt.executeQuery();
+			while(rs.next()) {
+				OpcionProducto opcion = new OpcionProducto();
+				opcion.setId(rs.getInt(1));
+				opcion.setNombre(rs.getString(2));
+				opciones.add(opcion);
+			}
+			con.close();
+		}catch(SQLException sqle){
+			System.out.println(sqle.getMessage());
+		}
+		return opciones;
+	}
+	
+	public List<TipoProducto> getTipos() {
+		List<TipoProducto> tipos = new ArrayList<TipoProducto>();
+		ConnectionDB conexion = new ConnectionDB();
+		con = conexion.getConexion();
+		String tiposProc = "{call P_TIPOS}";
+		try {
+			ctmt = con.prepareCall(tiposProc);
+			rs = ctmt.executeQuery();
+			while(rs.next()) {
+				TipoProducto tipo = new TipoProducto();
+				tipo.setId(rs.getInt(1));
+				tipo.setNombre(rs.getString(2));
+				tipos.add(tipo);
+			}
+		}catch(SQLException sqle) {
+			System.out.println(sqle.getMessage());
+		}
+		
+		return tipos;
+	}
+	
+	public List<Producto> getProductos(int tipoSeleccionado) {
+		List<Producto> productos = new ArrayList<Producto>();
+		ConnectionDB conexion = new ConnectionDB();
+		con = conexion.getConexion();
+		String productosProc = "{call P_PRODUCTOS_TIPO(?)}";
+		try{
+			ctmt = con.prepareCall(productosProc);
+			ctmt.setInt(1, tipoSeleccionado);
+			rs = ctmt.executeQuery();
+			while(rs.next()) {
+				Producto producto= new Producto();
+				producto.setId(rs.getInt(1));
+				producto.setNombre(rs.getString(2));
+				producto.setPrecio(rs.getInt(3));
+				producto.setSize(rs.getString(4));
+				producto.setImg(rs.getString(5));
+				productos.add(producto);
+			}
+			con.close();
+		}catch(SQLException sqle) {
+			System.out.println(sqle.getMessage());
+		}
+		
+		return productos;
 	}
 	
 }

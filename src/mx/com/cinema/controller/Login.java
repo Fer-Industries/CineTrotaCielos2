@@ -8,8 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+
 import mx.com.cinema.entities.EmpleadoBean;
 import mx.com.cinema.entities.UsuarioBean;
+import mx.com.cinema.model.CatalogosCrud;
 import mx.com.cinema.model.ConnectionDB;
 import mx.com.cinema.model.EmpleadoCrud;
 import mx.com.cinema.model.UsuarioCrud;
@@ -37,7 +40,7 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 	}
 
 	/**
