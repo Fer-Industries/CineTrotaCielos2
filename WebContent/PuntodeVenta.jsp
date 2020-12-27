@@ -83,7 +83,7 @@
    		<div class="col-sm-8 ">
    		  <div class="container-fluid scrolleando">
    		  <hr class="estilohr">
-		    <div id="contenedorCartas" class="row row-cols-1 row-cols-md-3 row-no-gutters">
+		    <div id="contenedorCartas" class="card-deck">
 			</div>
 	    </div>
 	    

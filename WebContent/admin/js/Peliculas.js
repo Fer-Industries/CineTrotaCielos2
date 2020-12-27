@@ -16,7 +16,8 @@ let arregloPeliculas = [];
 $("#salir").on("click",function(){});//aqui va el log out 
 
 /*Busca las peliculas pero en el arreglo que se obtuvo al cargar por primera vez la pagina */
-$("#buscador").on("keyup",function(){
+
+$("#inputBuscar").on("click",function(){
 	console.log("Empieza la funcion buscador+++++++++++");
 	let parametro = document.getElementById("buscador").value;
 	let coincidentes = arregloPeliculas.filter(pelicula =>{
@@ -26,17 +27,6 @@ $("#buscador").on("keyup",function(){
 	);
 	crearTabla(coincidentes);
 	arregloActual=JSON.parse( JSON.stringify(coincidentes));
-});
-
-$("#inputBuscar").on("click",function(){
-	let parametro = document.getElementById("buscador").value;
-	let coincidentes = arregloPeliculas.filter(pelicula =>{
-			const expRegular = new RegExp(`^${parametro}`,'gi'); // i para ignorar mayusculas y minusculas
-			return pelicula.nombrePelicula.match(expRegular) || pelicula.clasificacionPeliculas.match(expRegular);
-		}
-	);
-	arregloActual=JSON.parse( JSON.stringify(coincidentes) );
-	
 });
 
 /* LLena la tabla con la informacion de las peliculas y recibe un parametro que es un arreglo*/
@@ -129,83 +119,80 @@ la 4 la clasificacion
 la 5 es para saber si si tenemos un cambio;
  */
 
-
 const diferente =   (id)=>{
 	console.log("Empieza la funcion diferente*************");
 	let arreglo =[null,null,null,null,null,0];
-	let elemento =document.getElementById(id);
-	console.log("Voy a ver si es diferente");
-	console.log("arreglo actual");
-	console.log(arregloActual);
-	console.log("Arreglo fijo");	
-	console.log(arregloPeliculas);
-	arregloPeliculas.map(ap=>{
-		if(ap.idPelicula == id){
-			arregloActual.forEach(act=>{
-				if(act.idPelicula == id){
-					let nombre = elemento.children[1].children[0].value;
-					let clasificacion = elemento.children[2].children[0].value;
-					let duracion = elemento.children[3].children[0].value;
-					let fechaEstreno =elemento.children[4].children[0].value;
-					let imagen;
-					if( elemento.children[5].children[2].children[1].files[0]){
-						imagen=elemento.children[5].children[2].children[1].files[0].name;	
-					}else{
-						imagen =ap.imagenPelicula;
-					}
-					if(imagen != ap.imagenPelicula){
-						arreglo.fill(imagen,1,2);
-						arreglo.fill(1,5,6);
-						act.imagenPelicula = imagen;
-					}
-					if(fechaEstreno != ap.fechaEstreno){
-						arreglo.fill(fechaEstreno,2,3);
-						arreglo.fill(1,5,6);
-						act.fechaEstreno = fechaEstreno;
-					}	
-					if(duracion != ap.duracionPelicula ){
-						arreglo.fill(1,5,6);
-						arreglo.fill(duracion,3,4);
-						act.duracionPelicula = duracion;
-					}
-					if(clasificacion != ap.clasificacionPeliculas){
-						arreglo.fill(1,5,6);
-						arreglo.fill(clasificacion,4,5);
-						act.clasificacionPeliculas = clasificacion;
-					}
-					if(nombre != ap.nombrePelicula){
-						arreglo.fill(1,5,6);
-						arreglo.fill(nombre,0,1);
-						act.nombrePelicula = nombre;
-					}
-				}
-			});
+	let arregloo= arregloPeliculas.find(peli=>{
+		if(peli.id = id){
+		console.log(peli);
+		return peli
 		}
-	});	
-	if(arreglo[5] == 0){
+	});
+	console.log(arregloo);
+	let elemento =document.getElementById(id);
+	arregloActual.forEach(act=>{
+		if(act.idPelicula == id){
+			let nombre = elemento.children[1].children[0].value;
+			let clasificacion = elemento.children[2].children[0].value;
+			let duracion = elemento.children[3].children[0].value;
+			let fechaEstreno =elemento.children[4].children[0].value;
+			let imagen;
+			if(elemento.children[5].children[2].children[1].files[0]){
+				imagen=elemento.children[5].children[2].children[1].files[0].name;	
+			}else{
+				imagen =arregloo.imagenPelicula;
+			}
+			if(nombre != arregloo.nombrePelicula){
+				arreglo.fill(1,5,6);
+				arreglo.fill(nombre,0,1);
+				act.nombrePelicula = nombre;
+			}
+			if(imagen != arregloo.imagenPelicula){
+				arreglo.fill(imagen,1,2);
+				arreglo.fill(1,5,6);
+				act.imagenPelicula = imagen;
+			}
+			if(fechaEstreno != arregloo.fechaEstreno){
+				arreglo.fill(fechaEstreno,2,3);
+				arreglo.fill(1,5,6);
+				act.fechaEstreno = fechaEstreno;
+			}	
+			if(duracion != arregloo.duracionPelicula ){
+				arreglo.fill(1,5,6);
+				arreglo.fill(duracion,3,4);
+				act.duracionPelicula = duracion;
+			}
+			if(clasificacion != arregloo.clasificacionPeliculas){
+				arreglo.fill(1,5,6);
+				arreglo.fill(clasificacion,4,5);
+				act.clasificacionPeliculas = clasificacion;
+			}
+			
+		}
+	});
+	if(arreglo[5] == 0)
 		elemento.style.background="white";
-	}else{
-		elemento.style.background="#eeffe6";
-	}
+	else
+		elemento.style.background="#eeffe6";	
 	console.log("termina la funcion diferente*************");
-return arreglo;
+	return arreglo;
 }
 function editar(identificador){
-	let arreglo =diferente(identificador);
-	let encontrado = []
-	arregloPeliculas.forEach(x=>{
-		if(x.id= identificador){
-			encontrado.push(x);
-		}
-	})
-	console.log(document.getElementsByName(identificador));
+	console.log("Empieza editar");
+	let arreglo = diferente(identificador);
+	let encontrado = arregloPeliculas.find(peli=>{
+		if(peli.id = identificador)
+		return peli
+	});
 	if(arreglo[5] > 0){
+	
+
 	let	info={
 		 	infoidPelicula: identificador,
 		 	nombrePelicula: arreglo[0],
-		 	clasificacionPeliculas: arreglo[2],
+		 	clasificacionPeliculas: arreglo[4],
 		 	duracionPelicula: arreglo[3],
-		 	fechaEstreno: arreglo[4],
+		 	fechaEstreno: arreglo[2],
 		 	imagenPelicula: arreglo[1]
 		}
 		for(let i = 0;i < arreglo.length;i++){
@@ -224,27 +211,27 @@ function editar(identificador){
 				+'<tbody class="ml-1">'
 					+'<tr>'
 						+'<td><b>Nombre</b></td>'
-						+'<td>'+encontrado[0].nombrePelicula+'</td>'
+						+'<td>'+encontrado.nombrePelicula+'</td>'
 						+'<td>'+arreglo[0]+'</td>'
 					+'</tr>'
 					+'<tr>'
 			          	+'<td><b>Clasificacion</b></td>'
-						+'<td>'+encontrado[0].clasificacionPeliculas+'</td>'
-						+'<td>'+arreglo[2]+'</td>'
+						+'<td>'+encontrado.clasificacionPeliculas+'</td>'
+						+'<td>'+arreglo[4]+'</td>'
 					+'</tr>'
 				  	+'<tr>'
 						+'<td><b>Duracion</b></td>'
-						+'<td>'+encontrado[0].duracionPelicula+'</td>'
+						+'<td>'+encontrado.duracionPelicula+'</td>'
 						+'<td>'+arreglo[3]+'</td>'
 					+'</tr>'
 				  	+'<tr>'
 						+'<td><b>Estreno</b> </td>'
-						+'<td>'+encontrado[0].fechaEstreno+'</td>'
-						+'<td>'+arreglo[4]+'</td>'
+						+'<td>'+encontrado.fechaEstreno+'</td>'
+						+'<td>'+arreglo[2]+'</td>'
 					+'</tr>'
 				  	+'<tr>'
 						+'<td><b>Imagen </b></td>'
-						+'<td>'+encontrado[0].imagenPelicula+'</td>'
+						+'<td>'+encontrado.imagenPelicula+'</td>'
 						+'<td>'+arreglo[1]+'</td>'
 				  	+'</tr>'
 				+'<table>',
@@ -253,7 +240,7 @@ function editar(identificador){
 			confirmButtonColor: '#3085d6',
 			cancelButtonColor: '#d33',
 			cancelButtonText:'Cancelar',
-			confirmButtonText: 'Borrar!'
+			confirmButtonText: 'Editar!'
 		}).then((result) => {
 			if(result.isConfirmed){
 				Swal.fire({
@@ -263,7 +250,7 @@ function editar(identificador){
 			confirmButtonColor: '#3085d6',
 			cancelButtonColor: '#d33',
 			cancelButtonText:'Cancelar',
-			confirmButtonText: 'Borrar!'
+			confirmButtonText: 'Editar!'
 		}).then((result) => {
 			if (result.isConfirmed) {}
 				

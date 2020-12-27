@@ -75,6 +75,7 @@ public class PeliculasCrud {
 			ctmt.setInt(1, id);
 			if(ctmt.executeUpdate() > 0)
 				bandera = 1;
+		con.close();
 		}catch(SQLException sqle){
 			System.out.println(sqle.getMessage());
 		}

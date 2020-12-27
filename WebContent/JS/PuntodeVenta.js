@@ -130,9 +130,7 @@ function crearTablaProductos(nuevaTabla){
   	}	
 	nuevaTabla.forEach(producto=> {
 	$("#contenedorCartas").append(
-		"<div class='col-4 mb-1' >"
-			    +"<div id='"+"elemento"+producto.id+"' class='card'>"
-			      +"<img src='"+producto.imagen+"' class='mx-auto rounded d-block'   width='100' height='100'>"
+			    "<div id='"+"elemento"+producto.id+"' class='card'>"
 					+"<div class='card-body p-1'>"
 					 +"<div class='d-inline-flex  bd-highlight'>"
 						+"<h5 class='card-title ml-1'>Codigo: </h5><h6 id='"+"producto"+producto.id+"' class='mt-1 mx-1 text-decoration-underline'  card-title>"+producto.id	+"</h6>"
@@ -143,9 +141,6 @@ function crearTablaProductos(nuevaTabla){
 			         +"<div class='d-inline-flex  bd-highlight'>"
 						+"<h5 class='card-title ml-1'>Precio: </h5><h6  class='mt-1 mx-1 text-decoration-underline'  card-title>"+producto.precio+"</h6>"
 					 +"</div>"	
-					 +"<div class='d-inline-flex  bd-highlight'>"
-						+"<h5 class='card-title ml-1'>Unidad: </h5><h6  class='mt-1 mx-1 text-decoration-underline'  card-title>"+producto.unidad+"</h6>"					
-					 +"</div>"			
 					+"<div class='container'>"
 						 +"<div class='row'>"
 				        	+"<div class='col-4 d-grid gap-2 d-md-flex justify-content-md-end'>"
@@ -162,7 +157,6 @@ function crearTablaProductos(nuevaTabla){
 			      +'</div>'
 			    +"<button class='btn btn-secondary' onclick='agregarAlCarrito("+producto.id+")'>Agregar</button>"
 			    +'</div>'
-			  +'</div>'
 		);
 	});
 	nuevaTabla.forEach(w=>{
