@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
+import mx.com.cinema.model.CatalogosCrud;
+
 /**
  * Servlet implementation class PuntoDeVenta
  */
@@ -27,7 +31,11 @@ public class PuntoDeVenta extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		CatalogosCrud catalogos = new CatalogosCrud();
+		Gson gson=new Gson();
+		response.setContentType("application/json");
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().write(gson.toJson(catalogos.getTodosLosProductos()));
 	}
 
 	/**

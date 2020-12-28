@@ -2,74 +2,45 @@
  * https://es.stackoverflow.com/questions/113944/eliminar-objeto-en-javascript
  */
 /*obtener los productos */
-/*$.get("/Cinema/AdmonPeliculaInfo",function obtener(data){
+
+let  arregloProductos=[];
+ $.get("/Cinema/PuntoDeVenta",function (data){
 	console.log("Se obtiene la informacion==========");
-	arregloActual=data;
-	crearTabla(arregloActual);
-	data.map(function(x){
-		arregloPeliculas.push(x);
+	arregloProductos=JSON.parse( JSON.stringify(data) );
+	arregloProductos.forEach(produc=>{
+		produc.cantidad=0;
 	});
-	//arregloPeliculas = Object.assing({},temp); solo funciona con ES6	
+	crearTablaProductos(arregloProductos);	
 	console.log("Se termina de obtiener la informacion==========");	
-}); */
-let  arregloProductos=[
-  {
-    "id": "13",
-    "producto": "Hot Dog",
-    "imagen": "Img/AsientoG.png",
-    "precio": 23,
-	"unidad":"gr",
-
-  },
-  {
-	"id": "12",
-    "producto": "Palomitas",
-    "imagen": "Img/AsientoG.png",
-    "precio": 45,
-	"unidad":"pz",
-
-  },
-  {
-	"id": "14",
-    "producto": "Refresco 600",
-    "imagen": "Img/AsientoG.png",
-    "precio": 48,
-	"unidad":"pz",
-
-  },
-  {
-	"id": "1",
-    "producto": "Refresco grande",
-    "imagen": "Img/AsientoG.png",
-    "precio": 68,
-	"unidad":"pz",
-
-  },
-
-]
-
+}); 
+ 
 function aumentar(elementoSeleccionado){
 	let resultado =document.getElementById("cantidadTabla"+elementoSeleccionado).value;
 	console.log(elementoSeleccionado);
 	const reg = /^[\+\-]?\d*\.?\d+(?:[Ee][\+\-]?\d+)?$/;
 	if(reg.test(resultado) == false || resultado.charAt(0) == '.'){
 			document.getElementById("cantidadTabla"+elementoSeleccionado).value = 1;
-			document.getElementById("cantidadCarrito"+elementoSeleccionado).value = 1;
+			if(document.getElementById("cantidadCarrito"+elementoSeleccionado) != null){
+				document.getElementById("cantidadCarrito"+elementoSeleccionado).value = 1;
+			}
 	}else{
 		if(parseInt(resultado)+1>=99){
 			//console.log(resultado);
 			document.getElementById("cantidadTabla"+elementoSeleccionado).value  = 99;
-			document.getElementById("cantidadCarrito"+elementoSeleccionado).value = 99;
+			if(document.getElementById("cantidadCarrito"+elementoSeleccionado) != null){
+				document.getElementById("cantidadCarrito"+elementoSeleccionado).value = 99;
+			}
 		}else{
 			resultado = parseInt(resultado)+1;
 			//console.log(resultado);
 			document.getElementById("cantidadTabla"+elementoSeleccionado).value = resultado;
-			document.getElementById("cantidadCarrito"+elementoSeleccionado).value = resultado;	
+			if(document.getElementById("cantidadCarrito"+elementoSeleccionado) != null){
+				document.getElementById("cantidadCarrito"+elementoSeleccionado).value = resultado;
+			}	
 		}
 	}
 	actualizarCantidad(elementoSeleccionado);
 }
-
 function disminuir(elementoSeleccionado){
 	/*Validacion pattern solo numeros y tiene un error el pattern para validar los decimales asi que con solo poner charat funciona si se pone espacio en blanco 
 	y luego el . marca error asi que ya esta*/
@@ -77,45 +48,52 @@ function disminuir(elementoSeleccionado){
 	const reg = /^[\+\-]?\d*\.?\d+(?:[Ee][\+\-]?\d+)?$/;
 	if(reg.test(resultado) == false || resultado.charAt(0) == '.'){
 			document.getElementById("cantidadTabla"+elementoSeleccionado).value = 1;
-			document.getElementById("cantidadCarrito"+elementoSeleccionado).value = 1;
+			if(document.getElementById("cantidadCarrito"+elementoSeleccionado) != null){
+				document.getElementById("cantidadCarrito"+elementoSeleccionado).value = 1;	
+			}
 	}else{
 		if(parseInt(resultado)-1 < 1 || parseInt(resultado) > 99){
 			//console.log(resultado);
 			document.getElementById("cantidadTabla"+elementoSeleccionado).value = 1;
-			document.getElementById("cantidadCarrito"+elementoSeleccionado).value = 1;
+			if(document.getElementById("cantidadCarrito"+elementoSeleccionado) != null){
+				document.getElementById("cantidadCarrito"+elementoSeleccionado).value = 1;
+			}
 		}else{
 			resultado = parseInt(resultado)-1;
 			//console.log(resultado);
 			document.getElementById("cantidadTabla"+elementoSeleccionado).value = resultado;	
-			document.getElementById("cantidadCarrito"+elementoSeleccionado).value = resultado;
+			if(document.getElementById("cantidadCarrito"+elementoSeleccionado) != null){
+				document.getElementById("cantidadCarrito"+elementoSeleccionado).value = resultado;
+			}	
 		}	
 	}
 	//console.log("Resultado vale");
 	//console.log(resultado);	
 	actualizarCantidad(elementoSeleccionado);
 }
-
 function out(elementoSeleccionado){
 	let resultado =elementoSeleccionado.value;
+	let bandera = 0;
 	const reg = /^[\+\-]?\d*\.?\d+(?:[Ee][\+\-]?\d+)?$/;
 	console.log(reg.test(resultado));
 	console.log(resultado.charAt(0));
 	if(reg.test(resultado) == false || resultado.charAt(0) == '.' || resultado < 1 || resultado > 99){
 		if(resultado>99){
 			elementoSeleccionado.value = 99;
+			bandera= 1;
 		}else{
 			elementoSeleccionado.value = 1;
+			bandera = 2;
 		}
 	}
+	return bandera;
 }
-
-$(function(){
+/*$(function(){
 	arregloProductos.forEach(produc=>{
 		produc.cantidad=0;
 	});
 	crearTablaProductos(arregloProductos);
-});
-		
+});	*/	
 function crearTablaProductos(nuevaTabla){ 
 	let list = document.getElementById("contenedorCartas");
 	console.log(nuevaTabla);
@@ -157,8 +135,6 @@ function crearTablaProductos(nuevaTabla){
 		console.log(w);
 	});
 }
-
-
 /*Funcioneeees del caritooooooooooooooooooooooooooo */
 /*variable global que se va a estar jugando con el carro */
 let carro= [];
@@ -177,7 +153,6 @@ const carrito = (producto) =>{
 		actualizarCantidadCarro(producto);
 		grantotal();
 };
-
 const actualizarCantidadCarro = (producto)=>{
 	carro.forEach(produ =>{
 			if(producto == produ.id){
@@ -218,7 +193,6 @@ function agregarAlCarrito(elemento){
 		}
 		console.log("Termina agregar al carrito");
 }
- 
 function crearCarrito(nuevocarro){
 	/*
 	Este metodo lo que hace es crear en bodycarrito los productos que se encuentren en el arreglo que recibe como parametro 
@@ -278,7 +252,6 @@ function grantotal(){
 	document.getElementById("grantotal").value = supertotal;
 	console.log("termina gran total");
 };
-
 function actualizarCantidad(id){
 	/*
 	Se manda a llamar en el evento onfocusout del elemento html  input relacionado al id del producto
@@ -287,20 +260,19 @@ function actualizarCantidad(id){
 	y luego en en el input totalid id se sustituye se va a setar el nuevo valor. 
 	 */
 	console.log("Estoy en actualizar Cantidad");
+	if(document.getElementById("cantidadCarrito"+id) != null){
 	let total = document.getElementById("cantidadCarrito"+id).value;
-	document.getElementById("cantidadTabla"+id).value=total;
-	carro.forEach(produ =>{
-		if(id == produ.id){
-			produ.cantidad=total;
-			document.getElementById("total"+id).value = produ.cantidad * produ.precio;
-		}		
-	 });
-	grantotal();
+		document.getElementById("cantidadTabla"+id).value=total;
+		carro.forEach(produ =>{
+			if(id == produ.id){
+				produ.cantidad=total;
+				document.getElementById("total"+id).value = produ.cantidad * produ.precio;
+			}		
+		 });
+		grantotal();	
+	}	
 	console.log("Termina actualizar cantidad");
 }
-
-
-
 function borrar(id){
 	/* borra el elemento del html bodycarrito y tambien del arreglo global carro
 	  pero se hace trampa ya que no se borra en realidad se hace un nuevo arreglo llamado n 
@@ -316,13 +288,42 @@ function borrar(id){
 	grantotal();
 	console.log("Termina borrar");
 }
-
-
 /*Funcioneeees del Terminaa caritooooooooooooooooooooooooooo */
 /*Funcioneeeeessss del total inician */
-
-
 $("#confirmarPedido").on("click",function(){
 	console.log("el carrito acutal es ");
 	console.log(carro);
 });
+
+/*let  arregloProductos=[
+  {
+    "id": "13",
+    "producto": "Hot Dog",
+    "imagen": "Img/AsientoG.png",
+    "precio": 23,
+	"unidad":"gr",
+  },
+  {
+	"id": "12",
+    "producto": "Palomitas",
+    "imagen": "Img/AsientoG.png",
+    "precio": 45,
+	"unidad":"pz",
+  },
+  {
+	"id": "14",
+    "producto": "Refresco 600",
+    "imagen": "Img/AsientoG.png",
+    "precio": 48,
+	"unidad":"pz",
+
+  },
+  {
+	"id": "1",
+    "producto": "Refresco grande",
+    "imagen": "Img/AsientoG.png",
+    "precio": 68,
+	"unidad":"pz",
+  }
+]
+*/
