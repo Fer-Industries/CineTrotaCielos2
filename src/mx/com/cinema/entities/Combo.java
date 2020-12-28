@@ -2,15 +2,15 @@ package mx.com.cinema.entities;
 
 public class Combo {
 	
-	private int id;
+	private String id;
 	private String nombre;
 	private int precio;
 	private String img;
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getNombre() {
