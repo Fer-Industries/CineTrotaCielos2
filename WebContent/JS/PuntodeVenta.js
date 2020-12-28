@@ -19,7 +19,7 @@ let  arregloProductos=[
     "imagen": "Img/AsientoG.png",
     "precio": 23,
 	"unidad":"gr",
-	"cantidad":0
+
   },
   {
 	"id": "12",
@@ -27,7 +27,7 @@ let  arregloProductos=[
     "imagen": "Img/AsientoG.png",
     "precio": 45,
 	"unidad":"pz",
-	"cantidad":0
+
   },
   {
 	"id": "14",
@@ -35,15 +35,7 @@ let  arregloProductos=[
     "imagen": "Img/AsientoG.png",
     "precio": 48,
 	"unidad":"pz",
-	"cantidad":0
-    /*"name": "Madame Uppercut",
-    "age": 39,
-    "secretIdentity": "Jane Wilson",
-    "powers": [
-      "Million tonne punch",
-      "Damage resistance",
-      "Superhuman reflexes"
-    ] */
+
   },
   {
 	"id": "1",
@@ -51,61 +43,61 @@ let  arregloProductos=[
     "imagen": "Img/AsientoG.png",
     "precio": 68,
 	"unidad":"pz",
-	"cantidad":0
-    /*"name": "Madame Uppercut",
-    "age": 39,
-    "secretIdentity": "Jane Wilson",
-    "powers": [
-      "Million tonne punch",
-      "Damage resistance",
-      "Superhuman reflexes"
-    ] */
+
   },
 
 ]
 
 function aumentar(elementoSeleccionado){
-	let resultado =elementoSeleccionado.value;
+	let resultado =document.getElementById("cantidadTabla"+elementoSeleccionado).value;
 	console.log(elementoSeleccionado);
-	var reg = /^[\+\-]?\d*\.?\d+(?:[Ee][\+\-]?\d+)?$/;
+	const reg = /^[\+\-]?\d*\.?\d+(?:[Ee][\+\-]?\d+)?$/;
 	if(reg.test(resultado) == false || resultado.charAt(0) == '.'){
-			elementoSeleccionado.value = 1;
+			document.getElementById("cantidadTabla"+elementoSeleccionado).value = 1;
+			document.getElementById("cantidadCarrito"+elementoSeleccionado).value = 1;
 	}else{
 		if(parseInt(resultado)+1>=99){
 			//console.log(resultado);
-			elementoSeleccionado.value = 99;
+			document.getElementById("cantidadTabla"+elementoSeleccionado).value  = 99;
+			document.getElementById("cantidadCarrito"+elementoSeleccionado).value = 99;
 		}else{
 			resultado = parseInt(resultado)+1;
 			//console.log(resultado);
-			elementoSeleccionado.value = resultado;	
+			document.getElementById("cantidadTabla"+elementoSeleccionado).value = resultado;
+			document.getElementById("cantidadCarrito"+elementoSeleccionado).value = resultado;	
 		}
 	}
+	actualizarCantidad(elementoSeleccionado);
 }
 
 function disminuir(elementoSeleccionado){
 	/*Validacion pattern solo numeros y tiene un error el pattern para validar los decimales asi que con solo poner charat funciona si se pone espacio en blanco 
 	y luego el . marca error asi que ya esta*/
-	let resultado =elementoSeleccionado.value;
-	var reg = /^[\+\-]?\d*\.?\d+(?:[Ee][\+\-]?\d+)?$/;
+	let resultado =document.getElementById("cantidadTabla"+elementoSeleccionado).value;
+	const reg = /^[\+\-]?\d*\.?\d+(?:[Ee][\+\-]?\d+)?$/;
 	if(reg.test(resultado) == false || resultado.charAt(0) == '.'){
-			elementoSeleccionado.value = 1;
+			document.getElementById("cantidadTabla"+elementoSeleccionado).value = 1;
+			document.getElementById("cantidadCarrito"+elementoSeleccionado).value = 1;
 	}else{
 		if(parseInt(resultado)-1 < 1 || parseInt(resultado) > 99){
 			//console.log(resultado);
-			elementoSeleccionado.value = 1;
+			document.getElementById("cantidadTabla"+elementoSeleccionado).value = 1;
+			document.getElementById("cantidadCarrito"+elementoSeleccionado).value = 1;
 		}else{
 			resultado = parseInt(resultado)-1;
 			//console.log(resultado);
-			elementoSeleccionado.value = resultado;	
+			document.getElementById("cantidadTabla"+elementoSeleccionado).value = resultado;	
+			document.getElementById("cantidadCarrito"+elementoSeleccionado).value = resultado;
 		}	
 	}
 	//console.log("Resultado vale");
 	//console.log(resultado);	
+	actualizarCantidad(elementoSeleccionado);
 }
 
 function out(elementoSeleccionado){
 	let resultado =elementoSeleccionado.value;
-	var reg = /^[\+\-]?\d*\.?\d+(?:[Ee][\+\-]?\d+)?$/;
+	const reg = /^[\+\-]?\d*\.?\d+(?:[Ee][\+\-]?\d+)?$/;
 	console.log(reg.test(resultado));
 	console.log(resultado.charAt(0));
 	if(reg.test(resultado) == false || resultado.charAt(0) == '.' || resultado < 1 || resultado > 99){
@@ -118,13 +110,15 @@ function out(elementoSeleccionado){
 }
 
 $(function(){
+	arregloProductos.forEach(produc=>{
+		produc.cantidad=0;
+	});
 	crearTablaProductos(arregloProductos);
 });
 		
-
-
 function crearTablaProductos(nuevaTabla){ 
 	let list = document.getElementById("contenedorCartas");
+	console.log(nuevaTabla);
 	while(list.hasChildNodes()){
     	list.removeChild(list.firstChild);
   	}	
@@ -144,13 +138,13 @@ function crearTablaProductos(nuevaTabla){
 					+"<div class='container'>"
 						 +"<div class='row'>"
 				        	+"<div class='col-4 d-grid gap-2 d-md-flex justify-content-md-end'>"
-				        		+"<button onclick='disminuir(cantidadTabla"+producto.id+")'  class='btn btn-primary '> <i class='fas fa-minus-square'></i></button>"
+				        		+"<button onclick='disminuir("+producto.id+")'  class='btn btn-primary '> <i class='fas fa-minus-square'></i></button>"
 				        	+"</div>"
 				        	+"<div class='col-4  text-center '>"
 				        	+"<input  id='"+"cantidadTabla"+producto.id+"'  onchange='out(cantidadTabla"+producto.id+")' class='cantidad mt-1' min='1' max='99'  value='1'>" 
 				        	+"</div>"
 				        	+"<div class='col-4 container'>"
-				        		+"<button onclick='aumentar(cantidadTabla"+producto.id+")' class='btn btn-primary'> <i class='fas fa-plus-square'></i></button>"
+				        		+"<button onclick='aumentar("+producto.id+")' class='btn btn-primary'> <i class='fas fa-plus-square'></i></button>"
 				        	+"</div>"
 					     +"</div>"
 					+"</div>"					 		       
@@ -180,13 +174,17 @@ const carrito = (producto) =>{
 				carro.push(x);	
 			}	
 		});
-		carro.forEach(produ =>{
+		actualizarCantidadCarro(producto);
+		grantotal();
+};
+
+const actualizarCantidadCarro = (producto)=>{
+	carro.forEach(produ =>{
 			if(producto == produ.id){
 				produ.cantidad=document.getElementById("cantidadTabla"+producto).value;
 			}
-		});	
-		grantotal();
-};
+	});	
+}
 const existente = (producto) =>{
 /*metodo que sirve para saber si el producto que se quiere agregar ya se encuentra en el arreglo globar carro
   o si este esta vacio si este esta vacio o si ya se encuentra el producto se regresara una bandera = 1 lo cual indica 
@@ -241,7 +239,7 @@ function crearCarrito(nuevocarro){
 		      +"<td>"
 			  +"<input  id='"+"cantidadCarrito"+producto.id+"' onfocusout='actualizarCantidad("+producto.id+")' onchange='out(cantidadCarrito"+producto.id+")' class='cantidadCarrito border mt-1' min=1 max=99  value="+producto.cantidad+">" 				 		     
 		      +"</td>"
-		      +"<td><input id='"+"total"+producto.id+"' value="+producto.precio * producto.cantidad+"></td>"
+		      +"<td><input id='"+"total"+producto.id+"'  value="+producto.precio * producto.cantidad+" disabled></td>"
 		    +"</tr>"
 		);
 		i++;	
@@ -290,6 +288,7 @@ function actualizarCantidad(id){
 	 */
 	console.log("Estoy en actualizar Cantidad");
 	let total = document.getElementById("cantidadCarrito"+id).value;
+	document.getElementById("cantidadTabla"+id).value=total;
 	carro.forEach(produ =>{
 		if(id == produ.id){
 			produ.cantidad=total;
@@ -299,6 +298,8 @@ function actualizarCantidad(id){
 	grantotal();
 	console.log("Termina actualizar cantidad");
 }
+
+
 
 function borrar(id){
 	/* borra el elemento del html bodycarrito y tambien del arreglo global carro
@@ -318,65 +319,10 @@ function borrar(id){
 
 
 /*Funcioneeees del Terminaa caritooooooooooooooooooooooooooo */
+/*Funcioneeeeessss del total inician */
 
-/* Para hacer pruebas 
-function borrar(id){
-	console.log("comienza borrar");
-	console.log(carro);
-/*	let i=0;
-	let bandera= 0;
-	carro.forEach(product=>{
-		if(product.id = id){
-			bandera =i;
-		}
-		i++;
-	});
-	console.log("bandera vale:");
-	console.log(bandera);
-	carro.splice(bandera,1); */ 
-	
-/*	let ids= [];
-	carro.forEach(product=>{
-		console.log(product);
-		ids.push(product.id);
-	});
-	console.log(ids)
-	console.log(id);
-	const indexaBorrar = ids.indexOf(id);	
-	
-	console.log(indexaBorrar);
-	if (indexaBorrar > -1) {
-  		carro.splice(indexaBorrar, 1);
-	}  
-	let n = carro.filter(producto=>{
-		if(producto.id != id){
-			return producto;
-		}
-	}) ;
-	console.log("carro vale");
-	console.log(carro);
-	console.log(n);
-	
-	crearCarrito(n);
-	console.log("Termina borrar");
-	return n;
-}
-  
-function actualizarCantidad(id){
-	//console.log("Estoy en actualizar Cantidad");
-	let total = document.getElementById("cantidadCarrito"+id).value;
-	carro.forEach(produ =>{
-		//console.log("estoy comparando "+produ.id+"con "+id);
-		if(id == produ.id){
-			produ.cantidad=total;
-			//console.log("la nueva cantidad es");
-			//console.log(produ.total);
-			//console.log("voy a multiplicar"+ total +" por "+produ.precio);
-			//console.log(total * produ.precio);
-			document.getElementById("total"+id).value = produ.cantidad * produ.precio;
-		}		
-	 });
-	grantotal();
-}
 
- */
+$("#confirmarPedido").on("click",function(){
+	console.log("el carrito acutal es ");
+	console.log(carro);
+});

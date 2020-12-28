@@ -71,7 +71,7 @@
 				   </div>
 				  </div>
 				  <div class="col-sm mt-1">
-				  	<button onclick="confirmarPedido()" class="btn btn-primary ml-5">Confirmar pedido</button>
+				  	<button id="confirmarPedido" class="btn btn-primary ml-5">Confirmar pedido</button>
 				  </div>
 				</div>
 		    </div>
