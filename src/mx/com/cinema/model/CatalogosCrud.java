@@ -140,7 +140,7 @@ public class CatalogosCrud implements CatalogoInterface{
 			rs = ctmt.executeQuery();
 			while(rs.next()) {
 				Combo combo = new Combo();
-				combo.setId(rs.getInt("COMBO_id"));
+				combo.setId(rs.getString("COMBO_id"));
 				combo.setNombre(rs.getString("COMBO_nombre"));
 				combo.setPrecio(rs.getInt("COMBO_precio"));
 				combo.setImg(rs.getString("img"));

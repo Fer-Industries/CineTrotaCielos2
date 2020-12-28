@@ -28,7 +28,7 @@
           </div>
          </div>
      </nav>
-	<div class="container" id ="carrusel">
+	<!--  <div class="container" id ="carrusel">
          <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
            <div class="carousel-inner">
              <div class="carousel-item active">
@@ -50,7 +50,7 @@
              <span class="sr-only">Next</span>
            </a>
          </div>
-	</div>
+	</div>-->
 	<br>
 	<section id="filtros" class="container">
 		<div class="row">
@@ -78,6 +78,10 @@
 	<section  class="container">
 		<div id=productos class="row">
 		</div>
+	</section>
+	
+	<section class="overlay">
+	
 	</section>
 	
 	
