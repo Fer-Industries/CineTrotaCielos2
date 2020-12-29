@@ -1,14 +1,22 @@
 let datosCatalogos;
 
 $.get("/Cinema/CatalogoDulceria",function(response){
-	console.log(response);
-	
 	datosCatalogos = response;
-	
 	const opciones = datosCatalogos.opciones
 	opciones.forEach(opcion=>{
 		$("#opcProducto").append("<option value="+opcion.id+">"+opcion.nombre+"</option>");
 	});
+	
+	let arregloCarrito = localStorage.getItem('ArregloCarrito');
+	let arregloProductos= [];
+	var longitudCarrito = 0;
+	if(arregloCarrito != null){ //ya seleccionó un producto
+		var arregloLocal = arregloCarrito;
+		arregloProductos = JSON.parse(arregloLocal);
+		longitudCarrito = arregloProductos.length;
+		$("#cantidadProductos").html("");
+		$("#cantidadProductos").html(longitudCarrito + ''); 
+	}
 });
 
 function opcionSeleccionada(selectOpcion){
@@ -38,10 +46,10 @@ function opcionSeleccionada(selectOpcion){
 				$("#productos").append(
 						"<div class='col-sm-12 col-md-6 col-lg-4 mb-4'>" +
 							"<div class='card reb mx-sm-4' style='width: 18rem;''>"+
-			                "<img class='card-img-top' src='imgsdulc/COMBO.jpg' alt='Card image cap'>"+
+			                "<img class='card-img-top' src='https://fer-industries.s3.amazonaws.com/Cinema/"+combo.img+"' alt='Card image cap'>"+
 			                "<div class='card-body'>"+
 			                    "<h5 class='card-title'>"+combo.nombre+"</h5>"+
-			                    "<p>$"+combo.precio+"</p>"+
+			                    /*"<p>$"+combo.precio+"</p>"+*/
 			                    "<button onclick='seleccion("+JSON.stringify(combo)+")' class='btn btn-primary'>Seleccionar</button>"+
 			                "</div>"+
 			              "</div>"+
@@ -66,7 +74,7 @@ function tipoSeleccionada(selectTipo){
 		                "<img class='card-img-top' src='imgsdulc/COMBO.jpg' alt='Card image cap'>"+
 		                "<div class='card-body'>"+
 		                    "<h5 class='card-title'>"+producto.nombre+"</h5>"+
-		                    "<p>$"+producto.precio+"</p>"+
+		                    /*"<p>$"+producto.precio+"</p>"+*/
 		                    "<button class='btn btn-primary' onclick='seleccion("+JSON.stringify(producto)+")'>Seleccionar</button>"+
 		                "</div>"+
 		              "</div>"+
@@ -85,7 +93,7 @@ function seleccion(producto){
             "<h3>"+producto.nombre+"</h3>"+
             "<div class='row'>" +
 	            "<div class='col-sm-12 col-lg-6'>" +
-	            	"<img class='' src='imgsdulc/COMBO.jpg' alt='Card image cap'>"+
+	            	"<img class='' src='https://fer-industries.s3.amazonaws.com/Cinema/"+producto.img+"' alt='Card image cap'>"+
 	            "</div>"+
 	            "<div class='col-sm-12 col-lg-6'>" +
 	            	"<p>Cantidad</p>"+
@@ -104,7 +112,7 @@ function seleccion(producto){
 	            	"</div>"+
 	            	"<div class='row'>" + 
 	            		"<div class='col-sm-6 col-lg-6 mb-2'>" +
-	            			"<button class='btn btn-success' onclick='confirmar("+producto.id+")'>Confirmar</button>"+
+	            			"<button class='btn btn-success' onclick='confirmar("+JSON.stringify(producto)+")'>Confirmar</button>"+
 	            		"</div>"+
 	            		"<div class='col-sm-6 col-lg-6 mb-2'>" +
 	            			"<button class='btn btn-danger' onclick='cancelar()'>Cancelar</button>"+
@@ -147,10 +155,46 @@ function disminuir(){
 	}
 }
 
-function confirmar(productoId){
-	let productoSeleccionado;
+function confirmar(producto){
+	/*Se crea el producto a agregar en el carrito*/
+	let productoSeleccionado={
+			cantidad:0,
+			id:'0'
+	};
 	productoSeleccionado.cantidad = parseInt(document.getElementById("valorCantidad").value);
-	productoSeleccionado.id =(productoId); 
+	productoSeleccionado.id =producto.id+'';
+	
+	/*Se obtiene el arreglo de productos*/
+	let arregloProductos = [];
+	
+	let arregloCarrito = localStorage.getItem('ArregloCarrito');
+	var longitudCarrito = 0;
+	if(arregloCarrito != null){ //ya seleccionó un producto
+		var arregloLocal = arregloCarrito;
+		arregloProductos = JSON.parse(arregloLocal);
+		let contador = 0;
+		arregloProductos.forEach(producto =>{
+			if(producto.id == productoSeleccionado.id){
+				producto.cantidad = producto.cantidad +productoSeleccionado.cantidad;
+				contador++;
+			}
+		});
+		if(contador == 0){
+			arregloProductos.push(productoSeleccionado);
+		}
+	}else{ // no ha seleccionado nada 
+		arregloProductos.push(productoSeleccionado);
+	}
+	
+	localStorage.setItem('ArregloCarrito',JSON.stringify(arregloProductos));
+	longitudCarrito = arregloProductos.length;
+	
+	console.log(localStorage.getItem('ArregloCarrito'));
+	
+	$("#cantidadProductos").html("");
+	$("#cantidadProductos").html(longitudCarrito + ''); 
+	$( ".overlay" ).removeClass("active");
+	$( ".overlay" ).html("");
 }
 
 function cancelar(){

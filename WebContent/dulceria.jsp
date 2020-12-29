@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="Css/dulceria.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
-	
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 </head>
 <body class="fondo">
   	<nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-dark 
@@ -28,30 +28,8 @@
           </div>
          </div>
      </nav>
-	<!--  <div class="container" id ="carrusel">
-         <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
-           <div class="carousel-inner">
-             <div class="carousel-item active">
-               <img src="imgsdulc/palomitas.jpg" class="d-block w-100 " alt="..." width="350" height="350">
-             </div>
-             <div class="carousel-item">
-               <img src="imgsdulc/palo.jpg" class="d-block w-100" alt="..." width="350" height="350">
-             </div>
-             <div class="carousel-item">
-               <img src="imgsdulc/palomas.jpg" class="d-block w-100" alt="..."  width="350" height="350">
-             </div>
-             </div>
-           <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
-             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-             <span class="sr-only">Previous</span>
-           </a>
-           <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
-             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-             <span class="sr-only">Next</span>
-           </a>
-         </div>
-	</div>-->
 	<br>
+	
 	<section id="filtros" class="container">
 		<div class="row">
 			<div class="input-group mb-3 col-sm-12 col-md-6 col-lg-4"style="width:350px">
@@ -74,7 +52,9 @@
 	         </div>
          </div> 
 	</section>
+	
 	<br>
+	
 	<section  class="container">
 		<div id=productos class="row">
 		</div>
@@ -83,7 +63,12 @@
 	<section class="overlay">
 	
 	</section>
-	
+
+    
+  	<div class="bottomcorner">
+		<i class=" far fa-shopping-cart "></i>
+		<p class=" number" id="cantidadProductos">0</p>
+	</div>
 	
 <!-- JS PARA BOOTSTRAP -->	
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -93,6 +78,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="JS/dulceria.js"></script>
 <!-- FONT-AWESOME -->
-<script src="https://kit.fontawesome.com/af8d928238.js" crossorigin="anonymous"></script>
+<!-- <script src="https://kit.fontawesome.com/af8d928238.js" crossorigin="anonymous"></script>-->
 </body>
 </html>

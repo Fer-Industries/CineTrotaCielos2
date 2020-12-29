@@ -3,6 +3,8 @@
 -- Host: 127.0.0.1    Database: cinemat
 -- ------------------------------------------------------
 -- Server version	8.0.15
+CREATE DATABASE CinemaT;
+use CinemaT;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -206,7 +208,7 @@ CREATE TABLE `idiomas` (
 
 LOCK TABLES `idiomas` WRITE;
 /*!40000 ALTER TABLE `idiomas` DISABLE KEYS */;
-INSERT INTO `idiomas` VALUES (1,'EspaÃÂ±ol',1),(2,'Ingles',1),(3,'Chino',1),(4,'Frances',1);
+INSERT INTO `idiomas` VALUES (1,'EspaÃÂÃÂ±ol',1),(2,'Ingles',1),(3,'Chino',1),(4,'Frances',1);
 /*!40000 ALTER TABLE `idiomas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -231,7 +233,7 @@ CREATE TABLE `niveles_tarjeta` (
 
 LOCK TABLES `niveles_tarjeta` WRITE;
 /*!40000 ALTER TABLE `niveles_tarjeta` DISABLE KEYS */;
-INSERT INTO `niveles_tarjeta` VALUES (1,'BÃÂ¡sica',0.05),(2,'Oro',0.08),(3,'Premium',0.10);
+INSERT INTO `niveles_tarjeta` VALUES (1,'Básica',0.05),(2,'Oro',0.08),(3,'Premium',0.10);
 /*!40000 ALTER TABLE `niveles_tarjeta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -796,7 +798,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (753135376193581,'Fernando','skywalker','Mcfly',1,'2020-12-18','fersky@hotmail.com',_binary '\�\0\�%��Ƈ�ǊѓE�4',1,0),(1578288561973418,'Fernando','Delgadillo','JuÃÂ¡rez',1,'1997-08-13','fer@hotmail.com',_binary 'ß\0Ö%§Æ',1,0);
+INSERT INTO `usuarios` VALUES (753135376193581,'Fernando','skywalker','Mcfly',1,'2020-12-18','fersky@hotmail.com',_binary '\ß\0\Ö%§ÆÇÑEÿ4',1,0),(1578288561973418,'Fernando','Delgadillo','JuÃÂÃÂ¡rez',1,'1997-08-13','fer@hotmail.com',_binary 'Ã\0Ã%Â§ÂÃÂÂ',1,0);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -876,7 +878,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertar_funcion`(in idpelicula int , in idsucursal int , in hora time , in dia date ,  in formato int , in idioma int, IN sala int)
+CREATE  PROCEDURE `insertar_funcion`(in idpelicula int , in idsucursal int , in hora time , in dia date ,  in formato int , in idioma int, IN sala int)
 BEGIN
 	DECLARE done INT DEFAULT FALSE;
 	DECLARE idAsiento INT;
@@ -891,9 +893,9 @@ BEGIN
 	inner join funciones c on b.RFA_idfuncion=c.FUN_idfuncion group by  SAL_idsala,FUN_hora,FUN_dia,FUN_idsucursal;
 	DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
 
-    SET bandera = 0;/*AUN NO SE VALIDA QUE SE REPITA LA FUNCIÃN*/
+    SET bandera = 0;/*AUN NO SE VALIDA QUE SE REPITA LA FUNCIÃÂN*/
 
-	OPEN cur2;/*NOS SIRVE PARA SABER SI SE EMPALMA CON ALGÃNA FUNCIÃN*/
+	OPEN cur2;/*NOS SIRVE PARA SABER SI SE EMPALMA CON ALGÃÂNA FUNCIÃÂN*/
     BEGIN
 	  DECLARE exit_flag INT DEFAULT 0;
       DECLARE CONTINUE HANDLER FOR SQLSTATE '02000' SET exit_flag = 1;
@@ -902,8 +904,8 @@ BEGIN
             IF exit_flag THEN LEAVE read_loop;
             END IF;
 			IF (dispSala = sala and dispHora=hora and dispDia=dia and dispSucursal=idsucursal) then 
-				SET bandera=1;/*CON UNA FUNCIÃN QUE SE EMPALME ES MAS QUE SUFICIENTE*/
-				LEAVE read_loop;/*ya con una funciÃ³n que haya empalmado entonces se cierra el ciclo*/
+				SET bandera=1;/*CON UNA FUNCIÃÂN QUE SE EMPALME ES MAS QUE SUFICIENTE*/
+				LEAVE read_loop;/*ya con una funciÃÂ³n que haya empalmado entonces se cierra el ciclo*/
 			END IF;
 		END LOOP;
     END;
@@ -913,10 +915,10 @@ BEGIN
     BEGIN
     DECLARE exit_flag INT DEFAULT 0;
 	DECLARE CONTINUE HANDLER FOR SQLSTATE '02000' SET exit_flag = 1;
-    IF bandera != 1 THEN /*SI ES DIFERENTE A 1 ENTONCES NO SE EMPALMA Y PODEMOS CREAR LA FUNCIÃN*/
+    IF bandera != 1 THEN /*SI ES DIFERENTE A 1 ENTONCES NO SE EMPALMA Y PODEMOS CREAR LA FUNCIÃÂN*/
 		set @maximo=(select max(FUN_idfuncion) from funciones)+1;
-		/*Necesitamos el idfuncion que el proc lo guarde en una variable con la funciÃÂ³n de agregado MAX*/
-        /*SE INSERTA LA FUNCIÃN*/
+		/*Necesitamos el idfuncion que el proc lo guarde en una variable con la funciÃÂÃÂ³n de agregado MAX*/
+        /*SE INSERTA LA FUNCIÃÂN*/
 		INSERT INTO funciones (FUN_idfuncion , FUN_idpelicula ,  FUN_idsucursal, FUN_hora, FUN_dia, FUN_idformato, FUN_ididioma )
 		VALUES ( @maximo, idpelicula, idsucursal , hora , dia , formato , idioma);
         
@@ -949,7 +951,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `P_ALTA_USUARIO`(
+CREATE  PROCEDURE `P_ALTA_USUARIO`(
 								IN tarjeta decimal(16),
                                 IN nombre varchar(40),
                                 IN ap varchar(40),
@@ -988,7 +990,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `P_COMBOS`()
+CREATE  PROCEDURE `P_COMBOS`()
 BEGIN
 	select * from combos where COMBO_status = 1;
 END ;;
@@ -1007,7 +1009,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `P_DISPO_ASIENTO`(IN idasiento int, IN idfuncion int)
+CREATE  PROCEDURE `P_DISPO_ASIENTO`(IN idasiento int, IN idfuncion int)
 BEGIN 
 		set @disponibilidad=(select RFA_disponible from rel_fun_asientos where RFA_idasiento=idasiento and RFA_idfuncion=idfuncion);
         
@@ -1034,7 +1036,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `P_FORMATOS_ACTIVOS`()
+CREATE  PROCEDURE `P_FORMATOS_ACTIVOS`()
 BEGIN
 	SELECT FOR_idformato as id, FOR_nombre as name FROM formatos where status = 1;
 END ;;
@@ -1053,7 +1055,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `P_FORMATO_PRECIO`(IN id_funcion int )
+CREATE  PROCEDURE `P_FORMATO_PRECIO`(IN id_funcion int )
 begin 
 		select FOR_nombre as Formato, FOR_precio as Precio  from formatos fo
         inner join funciones fu on fu.FUN_idformato = fo.FOR_idformato  where fu.FUN_idfuncion=id_funcion;
@@ -1073,7 +1075,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `P_IDIOMAS_ACTIVOS`()
+CREATE  PROCEDURE `P_IDIOMAS_ACTIVOS`()
 BEGIN
 	select IDI_id as ID, IDI_nombre as Nombre, IDI_status as Estatus  
     from idiomas WHERE IDI_status = 1; 
@@ -1093,7 +1095,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `P_INFO_BOLETO`(IN id_funcion INT, IN id_asiento INT)
+CREATE  PROCEDURE `P_INFO_BOLETO`(IN id_funcion INT, IN id_asiento INT)
 BEGIN
 	select SAL_numerosala as NombreSala,PEL_nombre as pelicula, SAS_asiento as nombreasiento, FUN_hora as hora,FUN_dia as dia
 	from funciones f 
@@ -1122,7 +1124,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `P_LIBERAR_LUGAR`(IN id_funcion int, IN id_asiento int)
+CREATE  PROCEDURE `P_LIBERAR_LUGAR`(IN id_funcion int, IN id_asiento int)
 BEGIN
 	update rel_fun_asientos
 	set RFA_disponible = 0
@@ -1143,7 +1145,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `P_LOGIN`(IN correo varchar(50), IN pass varchar(20))
+CREATE  PROCEDURE `P_LOGIN`(IN correo varchar(50), IN pass varchar(20))
 begin
 SELECT * FROM usuarios where USU_correo = correo and  USU_contrasena = AES_ENCRYPT(pass,'/Rw0/]_R}Xj,Cs([') and USU_status = 1;
 end ;;
@@ -1162,7 +1164,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `P_OBTENER_ASIENTOS`(IN funcion int )
+CREATE  PROCEDURE `P_OBTENER_ASIENTOS`(IN funcion int )
 BEGIN
 select SAS_idasiento,SAS_asiento, RFA_disponible  
 from rel_fun_asientos 
@@ -1185,7 +1187,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `P_OPCIONES`()
+CREATE  PROCEDURE `P_OPCIONES`()
 BEGIN
 	select * from opciones_productos order by nombre;
 END ;;
@@ -1204,7 +1206,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `P_PELICULAS`()
+CREATE  PROCEDURE `P_PELICULAS`()
 BEGIN
 SELECT PEL_idpelicula as ID, PEL_nombre as Nombre FROM peliculas;
 END ;;
@@ -1223,7 +1225,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `P_PELICULAS_ESTRENO`()
+CREATE PROCEDURE `P_PELICULAS_ESTRENO`()
 begin
 	select * from peliculas order by PEL_fechaestreno DESC Limit 4 ;
 end ;;
@@ -1242,7 +1244,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `P_PRODUCTOS_TIPO`(tipo int)
+CREATE  PROCEDURE `P_PRODUCTOS_TIPO`(tipo int)
 BEGIN
 	select PRO_id, PRO_nombre, PRO_precio,size_name,img from producto p
 	inner join size s
@@ -1264,7 +1266,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `P_PROMO_DIA`( in dia int)
+CREATE  PROCEDURE `P_PROMO_DIA`( in dia int)
 begin 
     
 	select PRO_nombre as Nombre ,PRO_descuento as Descuento from promociones
@@ -1285,7 +1287,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `P_RESERVAR_LUGAR`(IN id_funcion int, IN id_asiento int)
+CREATE  PROCEDURE `P_RESERVAR_LUGAR`(IN id_funcion int, IN id_asiento int)
 BEGIN
 	update rel_fun_asientos
 	set RFA_disponible = 1
@@ -1306,7 +1308,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `P_SALA_DISPONIBILIDAD`(IN funcion int )
+CREATE  PROCEDURE `P_SALA_DISPONIBILIDAD`(IN funcion int )
 begin
 set @ocupado= (select SUM(RFA_disponible) as asientosOcupados from  rel_fun_asientos where RFA_idfuncion = funcion)
 ;
@@ -1336,7 +1338,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `P_SUCURSALES_ACTIVAS`()
+CREATE  PROCEDURE `P_SUCURSALES_ACTIVAS`()
 BEGIN
 	select SUC_idsucursal as id, SUC_nombre as name from sucursal where status = 1;
 END ;;
@@ -1355,7 +1357,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `P_TIPOS`()
+CREATE  PROCEDURE `P_TIPOS`()
 BEGIN
 	SELECT * FROM tipo_producto;
 END ;;
@@ -1374,7 +1376,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `P_VENTA_ASIENTO`( IN idVenta int, IN idAsiento int, IN idFuncion int)
+CREATE  PROCEDURE `P_VENTA_ASIENTO`( IN idVenta int, IN idAsiento int, IN idFuncion int)
 begin
      insert into rel_ventas_asientos values(idVenta, idAsiento);
      
@@ -1398,7 +1400,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `P_VENTA_TICKET`(in idFuncion int, in idTarjeta decimal(16,0), in total float)
+CREATE  PROCEDURE `P_VENTA_TICKET`(in idFuncion int, in idTarjeta decimal(16,0), in total float)
 begin
 
 set @maximo=(select max(VET_idventa) from ventas_ticket)+1;
