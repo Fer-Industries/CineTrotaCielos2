@@ -1,4 +1,6 @@
 let datosCatalogos;
+Swal.fire('Espere por favor');
+Swal.showLoading();
 
 $.get("/Cinema/CatalogoDulceria",function(response){
 	datosCatalogos = response;
@@ -17,6 +19,7 @@ $.get("/Cinema/CatalogoDulceria",function(response){
 		$("#cantidadProductos").html("");
 		$("#cantidadProductos").html(longitudCarrito + ''); 
 	}
+	Swal.close();
 });
 
 function opcionSeleccionada(selectOpcion){
@@ -159,11 +162,14 @@ function confirmar(producto){
 	/*Se crea el producto a agregar en el carrito*/
 	let productoSeleccionado={
 			cantidad:0,
-			id:'0'
+			id:'0',
+			precio:0,
+			nombre:''
 	};
 	productoSeleccionado.cantidad = parseInt(document.getElementById("valorCantidad").value);
 	productoSeleccionado.id =producto.id+'';
-	
+	productoSeleccionado.precio = producto.precio;
+	productoSeleccionado.nombre = producto.nombre;
 	/*Se obtiene el arreglo de productos*/
 	let arregloProductos = [];
 	
@@ -201,3 +207,10 @@ function cancelar(){
 	$( ".overlay" ).removeClass("active");
 	$( ".overlay" ).html("");
 }
+
+const carrito = () =>{
+	// Se utilizo para saber en dónde se había quedado el usuario
+	sessionStorage.setItem("paginaActual","carrito.jsp");
+	window.location.href="Asientos.jsp";
+	window.location.href='carrito.jsp';
+};

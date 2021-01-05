@@ -65,7 +65,7 @@
 	</section>
 
     
-  	<div class="bottomcorner">
+  	<div class="bottomcorner" onclick='carrito()'>
 		<i class=" far fa-shopping-cart "></i>
 		<p class=" number" id="cantidadProductos">0</p>
 	</div>
@@ -76,6 +76,8 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 <!-- JQUERY -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 <script src="JS/dulceria.js"></script>
 <!-- FONT-AWESOME -->
 <!-- <script src="https://kit.fontawesome.com/af8d928238.js" crossorigin="anonymous"></script>-->

@@ -1,0 +1,38 @@
+body{
+	font-family: sans-serif;
+	
+}
+.fondo{
+	background-color: #000;
+}
+
+.reb {
+    padding-top: 100px;
+}
+
+.letraBlanca {
+    color: white;
+}
+
+#div1 {
+    overflow: scroll;
+    height: 400px;
+    
+}
+
+#div1 table {
+    width: 500px;
+    background-color: lightgray;
+}
+
+.letraNegra {
+    color: black;
+}
+
+.pago{
+	color: #fff;
+}
+
+.max-w{
+	width:100%;
+}
