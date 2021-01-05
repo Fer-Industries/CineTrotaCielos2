@@ -74,7 +74,8 @@ function tipoSeleccionada(selectTipo){
 			$("#productos").append(
 					"<div class='col-sm-12 col-md-6 col-lg-4 mb-4'>" +
 						"<div class='card reb mx-sm-4' style='width: 18rem;''>"+
-		                "<img class='card-img-top' src='imgsdulc/COMBO.jpg' alt='Card image cap'>"+
+		                "<img class='card-img-top' src='https://fer-industries.s3.amazonaws.com/Cinema/"+producto.img+"' "+
+		                " alt='Card image cap'>"+
 		                "<div class='card-body'>"+
 		                    "<h5 class='card-title'>"+producto.nombre+"</h5>"+
 		                    /*"<p>$"+producto.precio+"</p>"+*/
