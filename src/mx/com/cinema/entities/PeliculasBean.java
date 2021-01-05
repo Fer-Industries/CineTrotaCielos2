@@ -9,7 +9,7 @@ public class PeliculasBean  {
 	private String nombrePelicula;
 	private String clasificacionPeliculas;
 	private String duracionPelicula ;
-	private Date fechaEstreno;
+	private String fechaEstreno;
 	private String imagenPelicula;
 	public PeliculasBean () {
 	
@@ -47,11 +47,11 @@ public class PeliculasBean  {
 		this.duracionPelicula = duracionPelicula;
 	}
 
-	public Date getFechaEstreno() {
+	public String getFechaEstreno() {
 		return fechaEstreno;
 	}
 
-	public void setFechaEstreno(Date fechaEstreno) {
+	public void setFechaEstreno(String fechaEstreno) {
 		this.fechaEstreno = fechaEstreno;
 	}
 

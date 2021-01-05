@@ -1,16 +1,17 @@
 <%@page import="mx.com.cinema.entities.UsuarioBean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-      <% HttpSession sesion = request.getSession();
+          <% HttpSession sesion = request.getSession();
     UsuarioBean usuarioLogueado = (UsuarioBean) sesion.getAttribute("usuario");  
     %>
+   
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title></title>
 	<!-- CSS only -->
-	<link href="css/Peliculas.css" rel="stylesheet" type="text/css">
+	<link href="Css/PuntodeVenta.css" rel="stylesheet" type="text/css">
 	<link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
@@ -19,12 +20,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
 </head>
 <body class="fondo  animate__animated animate__fadeIn ">
- <%
- /*usuarioLogueado.tipo != 'gerente' */
- if(1 != 1) { %>
- window.location.href= principal.jsp;
-<% }else { %>
- <nav class="navbar navbar-expand-lg navbar-toggleable-sm  navbar-dark bg-dark"  animate_animated animate_fadeInDown  shadow-lg sticky-top">
+ <nav class="navbar navbar-expand-lg navbar-toggleable-sm  navbar-dark bg-dark animate_animated animate_fadeInDown  shadow-lg sticky-top">
 		<button class="navbar-toggler navbar-toggler-right togglercolor" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -46,67 +42,76 @@
          </div>
      </nav>
      <div class="container text-center">
-      	<p class="tittle1">MOVIES MANAGEMENT </p>
+      	<p class="tittle1">VENTAS DESDE EL MOSTRADOR</p>
     </div>
-   	<div class="mb-3">
-    <input id="buscador" type="search" placeholder="pelicula...."> <button id="inputBuscar" class="btn btn-primary">buscar</button>
-    </div>
-    <div class="scrolleando tablaContenedor ">
-			<table class="table table-hover">
-			  <thead class="text-center" class="thead-dark">
-			    <tr>
-			      <th scope="col"><button class="btn btn-secondary  btn-block" id="ordenarId" value=0><i class="fas fa-arrows-alt-v"></i> #ID</button></th>
-			      <th scope="col"><button class="btn btn-secondary  btn-block" id="ordenarNombre"><i class="fas fa-arrows-alt-v"></i> Nombre</button></th>
-			      <th scope="col"><button class="btn btn-secondary  btn-block" id="ordenarClasificacion"><i class="fas fa-arrows-alt-v"></i> Clasificacion</button></th>
-			      <th scope="col"><button class="btn btn-secondary  btn-block" id="ordenarDuracion"><i class="fas fa-arrows-alt-v"></i> Duracion</button></th>
-			      <th scope="col"><button class="btn btn-secondary  btn-block" id="ordenarEstreno"><i class="fas fa-arrows-alt-v"></i> Estreno</button></th>
-			      <th scope="col" style='width:300px' >Imagen</th>
-			      <th scope="col">Eliminar</th>
-			      <th scope="col">Editar</th>
-			      <th scope="col">Restablecer</th>		
-			    </tr>
-			  </thead>
-			  
-			  <tbody  id="catpelicula" name="catpelicula" class="text-center">
-			  </tbody>
-			</table>
-	</div>
-    <div class="tablaContenedor mt-3">
-		<div class="row ">
-			<div class="col-auto">
-				<div class="card carta mt-2">
-			    <button class="btn btn-secundary">
-			    	<i id="btnformagregar" class="fas fa-plus-circle iconosize"></i>
-			    </button>		    
-			    <div class="card-body">
-			        <h5 class="card-title">Agregar pelicula</h5>
-			        <p class="card-text">Aqui puede agregar las peliculas que desee</p>
-			    </div>
-		    	</div>
-			</div>
-			<div class="col-auto ajustable ">
-				<div id="formagregar" class="animate__animated animate__backInDown padown mb-2 ">
-				  <div class="row  card-block" >
-				    <div id="imagenP"  class="col-md-7 border text-center"> 
-				    	 <label  for="inputimagen"><i id="btnagreagar" class="fas fa-image iconosize"></i></label>	
-				    	 <input  type="file" id="inputimagen" name="inputimagen" accept="image/*" multiple>
-				    	 <img id="imagenSelec" class="rounded mx-auto d-block my-1" src=""  width="400" height="250"> 		    	  
-				    </div>
-				    <div class="col-auto-md-5 m-1">
-				      <div id="contenidoP" class="card-body" >
-				      	  <h6 class= "card-text card-title tittle ">Titulo </h6><input name="requerido" id="inputtitulo" type="text" class="titulo2 ajustable" >
-						  <h6 class='card-text '>Categoria:</h6> <input name="requerido" id="inputcategoria" type="text" class="card-text">
-						  <h6 class='card-text '>Estreno:</h6><input name="requerido" id="inputfecha" type="date" placeholder="selecciona una fecha" class="card-text">
-						  <h6 class='card-text '>Duracion:</h6><input name="requerido" id="inputhora" class="entrada formatohora"size="1" type="text" placeholder="hr">:<input name="requerido" id="inputminutos" class="entrada formatohora"size="1" type="text" size="1" placeholder="min">:<input name="requerido" id="inputsegundos" class="entrada formatohora"size="1" size="1" type="text" placeholder="seg">
-				      </div>
-				      <p id="errorAgregar" >error</p>
-				    </div>
-				  </div>
-				  <button id="btnagregar" class="my-4 btn btn-primary btn-lg btn-block">Guardar</button>
+    <div class="row">
+    	<div class="col-8 align-self-end ">
+	    	<div class="container-fluid ">
+				 <!-- <input  id="buscador" type="search" placeholder="nombre o codigo....">  <button id="inputBuscar" class="btn btn-primary">buscar</button> -->
+				<div class="input-group">
+				  <span class="input-group-text">Nombre o Codigo...</span>
+				  <input type="text" id="buscador" aria-label="First name" class="form-control">
 				</div>
+		   	</div>
+    	</div>
+    	<div class="col-4">
+	    	<div class="container mt-1">
+		    	<div class="row justify-content-around">
+				  <div class="col-sm">
+				  	<h5><i class="iconoCarrito fas fa-shopping-cart"></i></h5>
+				  	<h5>Pedido</h5>
+				  	 
+				  </div>
+				  <div class="col-sm cajatotal text-center">
+				  	<h5>Total</h5>
+				   
+				   <div class="input-group mb-3">
+					   <span class="input-group-text">$</span>
+					   <input type="text" id="grantotal" disabled class="form-control" aria-label="Amount (to the nearest dollar)">
+				   </div>
+				  </div>
+				  <div class="col-sm mt-1">
+				  	<button id="confirmarPedido" class="btn btn-primary ml-5">Confirmar pedido</button>
+				  </div>
+				</div>
+		    </div>
+    	</div>
+    	
+    </div>
+    <div >
+   	<div class="row">
+   		<div class="col-sm-8 ">
+   		  <div class="container-fluid scrolleando">
+   		  <hr class="estilohr">
+		    <div id="contenedorCartas" class="card-deck">
 			</div>
-		</div>
-	</div>
+	    </div>
+	    
+   		</div>
+   		<div class="col-sm-4 ">
+	   		<hr class="estilohr">
+	   		<div class="container scrolleando">
+		   		<table class="table" id="tablacarrito">
+				  <thead id="headcarrito" class="table-warning "> 
+				    <tr>
+				      <th scope="col">Eliminar</th>
+				      <th scope="col">Imagen</th>
+				      <th scope="col">#</th>
+				      <th scope="col">Código</th>
+				      <th scope="col">Nombre del producto</th>
+				      <th scope="col">Cantidad</th>
+				      <th scope="col">Total</th>
+				    </tr>
+				  </thead>
+				  <tbody id="bodycarrito">
+				  </tbody>
+				</table>
+	   		</div>
+   		</div>
+   	</div>
+    </div>
+    
+ 
 <Footer class="footer mt-3">
     <ul class="list-unstyled list-inline text-center">
       <li class="list-inline-item">
@@ -160,7 +165,6 @@
 	
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<script src="js/Peliculas.js"></script>
-<% } %>
+	<script src="JS/PuntodeVenta.js"></script>
 </body>
 </html>

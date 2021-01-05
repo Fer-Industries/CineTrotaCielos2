@@ -222,4 +222,27 @@ public class CatalogosCrud implements CatalogoInterface{
 		return productos;
 	}
 	
+	public List<Combo> getTodosLosProductos(){
+		List<Combo> combos = new ArrayList<Combo>();
+		ConnectionDB conexion = new ConnectionDB();
+		con = conexion.getConexion();
+		String comboProc = "{call P_Cat_Productos}";
+		try {
+			ctmt = con.prepareCall(comboProc);
+			rs = ctmt.executeQuery();
+			while(rs.next()){
+				Combo combo = new Combo();
+				combo.setId(rs.getInt("Id"));
+				combo.setNombre(rs.getString("Nombre"));
+				combo.setPrecio(rs.getInt("Precio"));
+				combo.setImg(rs.getString("img"));
+				combos.add(combo);
+			}
+			con.close();
+		}catch(SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return combos;
+	}
+	
 }
