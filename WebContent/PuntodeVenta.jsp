@@ -83,7 +83,7 @@
    		<div class="col-sm-8 ">
    		  <div class="container-fluid scrolleando">
    		  <hr class="estilohr">
-		    <div id="contenedorCartas" class="card-deck">
+		    <div id="contenedorCartas" name="contene"class="row row-cols-1 row-cols-md-3 g-4">
 			</div>
 	    </div>
 	    
@@ -94,9 +94,9 @@
 		   		<table class="table" id="tablacarrito">
 				  <thead id="headcarrito" class="table-warning "> 
 				    <tr>
-				      <th scope="col">Eliminar</th>
-				      <th scope="col">Imagen</th>
 				      <th scope="col">#</th>
+				      <th scope="col">Eliminar</th>
+				      <th scope="col">Precio</th>
 				      <th scope="col">Código</th>
 				      <th scope="col">Nombre del producto</th>
 				      <th scope="col">Cantidad</th>
