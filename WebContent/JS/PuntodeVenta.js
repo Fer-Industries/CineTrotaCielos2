@@ -4,7 +4,7 @@
 /*obtener los productos */
 
 let  arregloProductos=[];
- $.get("/Cinema/PuntoDeVenta",function (data){
+$.get("/Cinema/PuntoDeVenta",function (data){
 	console.log("Se obtiene la informacion==========");
 	arregloProductos=JSON.parse( JSON.stringify(data) );
 	arregloProductos.forEach(produc=>{
@@ -15,61 +15,65 @@ let  arregloProductos=[];
 }); 
  
 function aumentar(elementoSeleccionado){
-	let resultado =document.getElementById("cantidadTabla"+elementoSeleccionado).value;
+	const cantidadTabla = document.getElementById("cantidadTabla"+elementoSeleccionado.id);
+	const cantidadCarrito = document.getElementById("cantidadCarrito"+elementoSeleccionado.id);
+	let resultado =cantidadTabla.value; 
 	console.log(elementoSeleccionado);
 	const reg = /^[\+\-]?\d*\.?\d+(?:[Ee][\+\-]?\d+)?$/;
 	if(reg.test(resultado) == false || resultado.charAt(0) == '.'){
-			document.getElementById("cantidadTabla"+elementoSeleccionado).value = 1;
-			if(document.getElementById("cantidadCarrito"+elementoSeleccionado) != null){
-				document.getElementById("cantidadCarrito"+elementoSeleccionado).value = 1;
+			cantidadTabla.value = 1;
+			if(cantidadCarrito != null){
+				cantidadCarrito.value = 1;
 			}
 	}else{
 		if(parseInt(resultado)+1>=99){
 			//console.log(resultado);
-			document.getElementById("cantidadTabla"+elementoSeleccionado).value  = 99;
-			if(document.getElementById("cantidadCarrito"+elementoSeleccionado) != null){
-				document.getElementById("cantidadCarrito"+elementoSeleccionado).value = 99;
+			cantidadTabla.value  = 99;
+			if(cantidadCarrito != null){
+				cantidadCarrito.value = 99;
 			}
 		}else{
 			resultado = parseInt(resultado)+1;
 			//console.log(resultado);
-			document.getElementById("cantidadTabla"+elementoSeleccionado).value = resultado;
-			if(document.getElementById("cantidadCarrito"+elementoSeleccionado) != null){
-				document.getElementById("cantidadCarrito"+elementoSeleccionado).value = resultado;
+			cantidadTabla.value = resultado;
+			if(cantidadCarrito != null){
+				cantidadCarrito.value = resultado;
 			}	
 		}
 	}
-	actualizarCantidad(elementoSeleccionado);
+	actualizarCantidad(elementoSeleccionado.id);
 }
 function disminuir(elementoSeleccionado){
 	/*Validacion pattern solo numeros y tiene un error el pattern para validar los decimales asi que con solo poner charat funciona si se pone espacio en blanco 
 	y luego el . marca error asi que ya esta*/
-	let resultado =document.getElementById("cantidadTabla"+elementoSeleccionado).value;
+	const cantidadTabla = document.getElementById("cantidadTabla"+elementoSeleccionado.id);
+	const cantidadCarrito = document.getElementById("cantidadCarrito"+elementoSeleccionado.id);
+	let resultado =cantidadTabla.value;
 	const reg = /^[\+\-]?\d*\.?\d+(?:[Ee][\+\-]?\d+)?$/;
 	if(reg.test(resultado) == false || resultado.charAt(0) == '.'){
-			document.getElementById("cantidadTabla"+elementoSeleccionado).value = 1;
-			if(document.getElementById("cantidadCarrito"+elementoSeleccionado) != null){
-				document.getElementById("cantidadCarrito"+elementoSeleccionado).value = 1;	
+			cantidadTabla.value = 1;
+			if(cantidadCarrito != null){
+				cantidadCarrito.value = 1;	
 			}
 	}else{
 		if(parseInt(resultado)-1 < 1 || parseInt(resultado) > 99){
 			//console.log(resultado);
-			document.getElementById("cantidadTabla"+elementoSeleccionado).value = 1;
-			if(document.getElementById("cantidadCarrito"+elementoSeleccionado) != null){
-				document.getElementById("cantidadCarrito"+elementoSeleccionado).value = 1;
+			cantidadTabla.value = 1;
+			if(cantidadCarrito != null){
+				cantidadCarrito.value = 1;
 			}
 		}else{
 			resultado = parseInt(resultado)-1;
 			//console.log(resultado);
-			document.getElementById("cantidadTabla"+elementoSeleccionado).value = resultado;	
-			if(document.getElementById("cantidadCarrito"+elementoSeleccionado) != null){
-				document.getElementById("cantidadCarrito"+elementoSeleccionado).value = resultado;
+			cantidadTabla.value = resultado;	
+			if(cantidadCarrito != null){
+				cantidadCarrito.value = resultado;
 			}	
 		}	
 	}
 	//console.log("Resultado vale");
 	//console.log(resultado);	
-	actualizarCantidad(elementoSeleccionado);
+	actualizarCantidad(elementoSeleccionado.id);
 }
 function out(elementoSeleccionado){
 	let resultado =elementoSeleccionado.value;
@@ -95,6 +99,7 @@ function out(elementoSeleccionado){
 	crearTablaProductos(arregloProductos);
 });	*/	
 function crearTablaProductos(nuevaTabla){ 
+	console.log(document.getElementsByName("contene"));
 	let list = document.getElementById("contenedorCartas");
 	console.log(nuevaTabla);
 	while(list.hasChildNodes()){
@@ -102,33 +107,25 @@ function crearTablaProductos(nuevaTabla){
   	}	
 	nuevaTabla.forEach(producto=> {
 	$("#contenedorCartas").append(
-			    "<div id='"+"elemento"+producto.id+"' class='card'>"
-					+"<div class='card-body p-1'>"
-					 +"<div class='d-inline-flex  bd-highlight'>"
-						+"<h5 class='card-title ml-1'>Codigo: </h5><h6 id='"+"producto"+producto.id+"' class='mt-1 mx-1 text-decoration-underline'  card-title>"+producto.id	+"</h6>"
-					 +"</div>"
-					 +"<div class='d-inline-flex  bd-highlight'>"
-					 	+"<h5 class='card-title ml-1'>Producto: </h5><h6  class='mt-1 mx-1 text-decoration-underline'  card-title>"+producto.producto	+"</h6>"
-					 +"</div>"
-			         +"<div class='d-inline-flex  bd-highlight'>"
-						+"<h5 class='card-title ml-1'>Precio: </h5><h6  class='mt-1 mx-1 text-decoration-underline'  card-title>"+producto.precio+"</h6>"
-					 +"</div>"	
-					+"<div class='container'>"
-						 +"<div class='row'>"
-				        	+"<div class='col-4 d-grid gap-2 d-md-flex justify-content-md-end'>"
-				        		+"<button onclick='disminuir("+producto.id+")'  class='btn btn-primary '> <i class='fas fa-minus-square'></i></button>"
-				        	+"</div>"
-				        	+"<div class='col-4  text-center '>"
-				        	+"<input  id='"+"cantidadTabla"+producto.id+"'  onchange='out(cantidadTabla"+producto.id+")' class='cantidad mt-1' min='1' max='99'  value='1'>" 
-				        	+"</div>"
-				        	+"<div class='col-4 container'>"
-				        		+"<button onclick='aumentar("+producto.id+")' class='btn btn-primary'> <i class='fas fa-plus-square'></i></button>"
-				        	+"</div>"
-					     +"</div>"
-					+"</div>"					 		       
-			      +'</div>'
-			    +"<button class='btn btn-secondary' onclick='agregarAlCarrito("+producto.id+")'>Agregar</button>"
-			    +'</div>'
+			"<div  id='"+"elemento"+producto.id+"' class='card'>"
+			    +"<div class='card-body'>"
+			  	+ "<h5 class='card-title'>"+producto.nombre+"</h5>"
+				+  "<p class='card-text'><b> Codigo: </b> "+ producto.id+"</p>"
+				+  "<p class='card-text'><b> Precio: </b> "+producto.precio+"</p>"
+				 +"<div class='row'>"
+			        	+"<div class='col-4 d-grid gap-2 d-md-flex justify-content-md-end'>"
+			        		+"<button onclick='disminuir("+JSON.stringify(producto)+")'  class='btn btn-primary '> <i class='fas fa-minus-square'></i></button>"
+			        	+"</div>"
+			        	+"<div class='col-4  text-center '>"
+			        	+"<input  id='cantidadTabla"+producto.id+"'  onchange='out(cantidadTabla"+producto.id+")' class='cantidad mt-1' min='1' max='99'  value='1'>" 
+			        	+"</div>"
+			        	+"<div class='col-4 container'>"
+			        		+"<button onclick='aumentar("+JSON.stringify(producto)+")' class='btn btn-primary'> <i class='fas fa-plus-square'></i></button>"
+			        	+"</div>"
+				     +"</div>"
+				+"</div>"					 		       
+				+"<button class='btn btn-secondary' onclick='agregarAlCarrito("+JSON.stringify(producto)+")'><i class='fas fa-plus-square'></i> Agregar</button>"
+		  	+"</div>" 
 		);
 	});
 	nuevaTabla.forEach(w=>{
@@ -186,9 +183,9 @@ function agregarAlCarrito(elemento){
   si se agrega se manda a llamar el metodo carrito para agregarlo al arreglo global y crearCarrito para crear la tabla del nuevo carro
  */
 		console.log("Estoy en agregar al carrito");
-		let bandera = existente(elemento);
+		let bandera = existente(elemento.id);
 		if(bandera == 0){
-			carrito(elemento);
+			carrito(elemento.id);
 			crearCarrito(carro);
 		}
 		console.log("Termina agregar al carrito");
@@ -205,11 +202,11 @@ function crearCarrito(nuevocarro){
 	  	}
 		nuevocarro.forEach(producto =>{
 			$("#bodycarrito").append("<tr id='"+"carritoid"+producto.id+"'>"
-		      +"<td class='text-center'><button class='btn btn-light' onclick='borrar("+producto.id+")'> <i class='fas fa-trash iconoBasura'></i> </button></td>"
-		      +"<td scope='row'><img src='"+producto.imagen+"'  class='mx-auto rounded d-block' width=50 height=50 alt=Houston tenemos Problemas></td>"
 		      +"<th>"+i+"</th>"
+			  +"<td class='text-center'><button class='btn btn-light' onclick='borrar("+JSON.stringify(producto)+")'> <i class='fas fa-trash iconoBasura'></i> </button></td>"
+		      +"<td scope='row'>$ "+producto.precio+"</td>"
 		      +"<td>"+producto.id+"</td>"
-		      +"<td>"+producto.producto+"</td>"
+		      +"<td>"+producto.nombre+"</td>"
 		      +"<td>"
 			  +"<input  id='"+"cantidadCarrito"+producto.id+"' onfocusout='actualizarCantidad("+producto.id+")' onchange='out(cantidadCarrito"+producto.id+")' class='cantidadCarrito border mt-1' min=1 max=99  value="+producto.cantidad+">" 				 		     
 		      +"</td>"
@@ -228,7 +225,7 @@ $("#buscador").on("keyup",function(){
 	}else{
 	let coincidentes = arregloProductos.filter(producto=>{
 			const expRegular = new RegExp(`^${parametro}`,'gi'); // i para ignorar mayusculas y minusculas
-			return producto.producto.match(expRegular) || producto.id.match(expRegular);
+			return producto.nombre.match(expRegular) || producto.id.match(expRegular);
 		}
 	);
 	crearTablaProductos(coincidentes);	
@@ -260,13 +257,16 @@ function actualizarCantidad(id){
 	y luego en en el input totalid id se sustituye se va a setar el nuevo valor. 
 	 */
 	console.log("Estoy en actualizar Cantidad");
-	if(document.getElementById("cantidadCarrito"+id) != null){
-	let total = document.getElementById("cantidadCarrito"+id).value;
-		document.getElementById("cantidadTabla"+id).value=total;
+	const cantidadCarrito = document.getElementById('cantidadCarrito'+id);
+	const cantidadTabla = document.getElementById("cantidadTabla"+id);
+	const elementoTotal = document.getElementById("total"+id);
+	if(cantidadCarrito != null){
+	let total = cantidadCarrito.value;
+		cantidadTabla.value=total;
 		carro.forEach(produ =>{
 			if(id == produ.id){
 				produ.cantidad=total;
-				document.getElementById("total"+id).value = produ.cantidad * produ.precio;
+				elementoTotal.value = produ.cantidad * produ.precio;
 			}		
 		 });
 		grantotal();	
@@ -274,12 +274,11 @@ function actualizarCantidad(id){
 	console.log("Termina actualizar cantidad");
 }
 function borrar(id){
-	/* borra el elemento del html bodycarrito y tambien del arreglo global carro
-	  pero se hace trampa ya que no se borra en realidad se hace un nuevo arreglo llamado n 
-	 */
+/*	borra el elemento del html bodycarrito y tambien del arreglo global carro
+	pero se hace trampa ya que no se borra en realidad se hace un nuevo arreglo llamado n */
 	console.log("comienza borrar");
 	let n = carro.filter(producto=>{
-		if(producto.id != id){
+		if(producto.id != id.id){
 			return producto;
 		}
 	}) ;
