@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import mx.com.cinema.entities.InfoCarrito;
 
@@ -82,5 +84,62 @@ public class DulceriaCrud {
 		}catch(SQLException sqle) {
 			System.out.println(sqle.getMessage());
 		}
-	}	
+	}
+	
+	public List<String> productosVentas(int idVenta) {
+		String procComboProducto = "{call p_productos_combo_venta(?)}";
+		String procProducto = "{call P_Productos_venta(?)}";
+		List<String> productosAEntregar = new ArrayList<String>();
+		conAWS = new ConnectionDB();
+		con = conAWS.getConexion();
+		try {
+			ctmt = con.prepareCall(procComboProducto);
+			ctmt.setInt(1, idVenta);
+			rs = ctmt.executeQuery();
+			while(rs.next()) {
+				productosAEntregar.add(rs.getString("nombre"));
+			}
+			ctmt = con.prepareCall(procProducto);
+			ctmt.setInt(1, idVenta);
+			
+			rs = ctmt.executeQuery();
+			while(rs.next()) {
+				productosAEntregar.add(rs.getString("nombre"));
+			}
+			
+		}catch(SQLException sqle) {
+			System.out.println(sqle.getMessage());
+		}finally {
+			try {
+				con.close();
+			}catch(SQLException sqle){
+				System.out.println("Problemas para cerrar la conexión");
+				System.out.println(sqle.getMessage());
+			}
+		}
+		return productosAEntregar;
+	}
+	
+	public int ordenEntregada(int idVenta) {
+		String procActualizarOrden = "{call P_orden_entregada(?)}";
+		int registroAfectado= 0;
+		conAWS = new ConnectionDB();
+		con = conAWS.getConexion();
+		try {
+			ctmt = con.prepareCall(procActualizarOrden);
+			ctmt.setInt(1, idVenta);
+			registroAfectado = ctmt.executeUpdate();
+		}catch(SQLException sqle) {
+			System.out.println(sqle.getMessage());
+		}finally {
+			try {
+				con.close();
+			}catch(SQLException sqle){
+				System.out.println("Problemas para cerrar la conexión");
+				System.out.println(sqle.getMessage());
+			}
+		}
+		return registroAfectado;
+	}
+	 
 }

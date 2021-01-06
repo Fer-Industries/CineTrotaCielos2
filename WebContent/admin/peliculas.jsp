@@ -31,7 +31,7 @@
         <a class="navbar-brand" href="principal.jsp">Cinema<img class="imagenav mx-sm-2"  alt""></a>
          <div class="collapse navbar-collapse  " id="menu">
             <div class="navbar-nav" >
-                <a class="nav-link" href="principal.jsp">INICIO<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/Cinema/principal.jsp">INICIO<span class="sr-only">(current)</span></a>
                 <a class="nav-link" href=""> CARTELERA <span class="sr-only">(current)</span></a>
                 <a class="nav-link" href="">PRODUCTOS</a>
                 <a class="nav-link" href="">CONTACTO</a>
