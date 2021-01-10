@@ -292,6 +292,59 @@ function borrar(id){
 $("#confirmarPedido").on("click",function(){
 	console.log("el carrito acutal es ");
 	console.log(carro);
+	let total= document.getElementById("grantotal").value;
+	/*private int cantidad;
+	private String id;
+	private int precio;
+	private int total;*/
+	let car = [];
+	carro.forEach(producto=>{
+		let pro={
+		"cantidad":producto.cantidad,
+		"id":producto.id,
+		"precio":producto.precio,
+		"total":producto.cantidad * producto.precio
+		}
+	;
+	car.push(pro);
+	})			
+	
+	console.log("nuevo carro");
+	JSON.stringify(car)
+	console.log(car);
+	/*Swal.showLoading();
+		$.ajax({
+			 url: '/Cinema/Carrito',
+			 type: 'get',
+			 data: { 
+				 carrito: JSON.stringify(arregloProductos)
+			 },
+			 success: function(response) {
+				 Swal.close();
+				 if(response > 0 ){
+					 Swal.fire({
+						  title: 'Exito',
+						  text: "Por favor presente el siguiente codigo en la caja para recoger su pedido : " + response,
+						  icon: 'warning',
+						  confirmButtonColor: '#3085d6',
+						  confirmButtonText: 'Ya lo anote'
+						}).then((result) => {
+						  if (result.isConfirmed) {
+							  localStorage.removeItem('ArregloCarrito');
+							 window.location.href = 'principal.jsp';
+						  }
+						});
+				 }else{
+					 Swal.fire({
+						  icon: 'error',
+						  title: 'Error',
+						  text: 'Hubo un pequeño problema para realizar la venta'
+					});
+				 }
+			 }
+		});
+	 */
+	
 });
 
 /*let  arregloProductos=[

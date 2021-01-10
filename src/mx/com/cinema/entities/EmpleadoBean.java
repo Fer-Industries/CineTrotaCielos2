@@ -17,12 +17,6 @@ public EmpleadoBean(String nombre,String contraseña) {
 	this.contrasena=contraseña;
 		
 	}
-	
-	
-	
-	
-	
-	
     
 	public int getIdEmpleado() {
 		return idEmpleado;
