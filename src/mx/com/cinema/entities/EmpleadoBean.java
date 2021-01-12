@@ -1,7 +1,7 @@
 package mx.com.cinema.entities;
 
 public class EmpleadoBean {
-	private int    idEmpleado;
+	private String    idEmpleado;
 	private String nombre;
 	private String aPaterno;
 	private String aMaterno;
@@ -12,17 +12,17 @@ public class EmpleadoBean {
 	private String contrasena;
 	private String administrador;
 	
-public EmpleadoBean(String nombre,String contraseña) {
-	this.nombre=nombre;
-	this.contrasena=contraseña;
+public EmpleadoBean(String id,String contrasena) {
+	this.idEmpleado=id;
+	this.contrasena=contrasena;
 		
 	}
     
-	public int getIdEmpleado() {
+	public String getIdEmpleado() {
 		return idEmpleado;
 	}
 
-	public void setIdEmpleado(int idEmpleado) {
+	public void setIdEmpleado(String idEmpleado) {
 		this.idEmpleado = idEmpleado;
 	}
 

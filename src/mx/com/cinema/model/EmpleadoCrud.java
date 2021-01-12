@@ -18,19 +18,17 @@ public class EmpleadoCrud {
 	public EmpleadoBean validar(EmpleadoBean empleadoLogin) {
 		conAWS = new ConnectionDB();
 		con = conAWS.getConexion();
-		String queryValidar = "select * from Empleados where name=? and contraseña=? ; ";
-		
+		String queryValidar = "{call Login_emp(?,?)} ";
 		try {
 			ptmt = con.prepareStatement(queryValidar);
-			ptmt.setString(1, empleadoLogin.getNombre());
+			System.out.println(empleadoLogin.getIdEmpleado());
+			ptmt.setInt(1, Integer.parseInt(empleadoLogin.getIdEmpleado()));
 			ptmt.setString(2, empleadoLogin.getContrasena());
-			
 			rs = ptmt.executeQuery();
 			if(rs.next()) {
-				empleadoLogin.setIdEmpleado(rs.getInt("idEmpleado"));
-				empleadoLogin.setNombre(rs.getString("nombre"));
-				empleadoLogin.setaPaterno(rs.getString("aPaterno"));
-				
+				empleadoLogin.setIdEmpleado(Integer.toString(rs.getInt("EMP_idempleado")));
+				empleadoLogin.setNombre(rs.getString("EMP_nombre"));
+				empleadoLogin.setaPaterno(rs.getString("EMP_ap"));
 			}
 			con.close();
 		}catch(SQLException sqle) {

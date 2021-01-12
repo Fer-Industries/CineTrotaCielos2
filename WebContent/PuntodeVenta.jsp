@@ -1,8 +1,8 @@
-<%@page import="mx.com.cinema.entities.UsuarioBean"%>
+<%@page import="mx.com.cinema.entities.EmpleadoBean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
           <% HttpSession sesion = request.getSession();
-    UsuarioBean usuarioLogueado = (UsuarioBean) sesion.getAttribute("usuario");  
+          EmpleadoBean empleadoLogueado = (EmpleadoBean) sesion.getAttribute("empleado");  
     %>
    
 <!DOCTYPE html>
@@ -19,7 +19,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
 </head>
+
 <body class="fondo  animate__animated animate__fadeIn ">
+<% if(  empleadoLogueado == null){%>
+                <h1>no puedes estar aqui</h1>
+          		<% }else{%>
  <nav class="navbar navbar-expand-lg navbar-toggleable-sm  navbar-dark bg-dark animate_animated animate_fadeInDown  shadow-lg sticky-top">
 		<button class="navbar-toggler navbar-toggler-right togglercolor" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -27,17 +31,7 @@
         <a class="navbar-brand" href="principal.jsp">Cinema<img class="imagenav mx-sm-2"  alt""></a>
          <div class="collapse navbar-collapse  " id="menu">
             <div class="navbar-nav" >
-                <a class="nav-link" href="principal.jsp">INICIO<span class="sr-only">(current)</span></a>
-                <a class="nav-link" href=""> CARTELERA <span class="sr-only">(current)</span></a>
-                <a class="nav-link" href="">PRODUCTOS</a>
-                <a class="nav-link" href="">CONTACTO</a>
-                <a class="nav-link" href="Funciones.jsp">BUSQUEDA<span class="sr-only">(current)</span></a>
-            	<% if(usuarioLogueado == null){%>
-                <a class="nav-link buttonnav pl" href="Login.jsp">INICIAR SESIÓN <i class="fas fa-user-circle"></i></a>
-                <a class="nav-link buttonnav pl2" href="Registro.jsp">REGISTRARME  <i class="fas fa-user-edit"></i></a>
-          		<% }else{%>
-          			<a class="nav-link buttonnav pl2" ><%=usuarioLogueado.getNombre() +" "+ usuarioLogueado.getaPaterno()%></a>
-          		<%}%>
+         		<a class="nav-link buttonnav pl2" ><%=empleadoLogueado.getNombre() +" "+ empleadoLogueado.getaPaterno() + " "+ empleadoLogueado.getIdEmpleado()%></a>
           </div>
          </div>
      </nav>
@@ -56,15 +50,15 @@
     	</div>
     	<div class="col-4">
 	    	<div class="container mt-1">
+	    		
 		    	<div class="row justify-content-around">
 				  <div class="col-sm">
 				  	<h5><i class="iconoCarrito fas fa-shopping-cart"></i></h5>
 				  	<h5>Pedido</h5>
-				  	 
 				  </div>
 				  <div class="col-sm cajatotal text-center">
+				 <h5>Cliente</h5>  <input id="idcliente"  placeholder="numero de tarjeta" max="99999999999999999999">
 				  	<h5>Total</h5>
-				   
 				   <div class="input-group mb-3">
 					   <span class="input-group-text">$</span>
 					   <input type="text" id="grantotal" disabled class="form-control" aria-label="Amount (to the nearest dollar)">
@@ -147,7 +141,9 @@
 
 </footer>
 <!-- Footer -->	
-
+          		 	
+          		<%}%>
+ 
 
 <!-- JS, Popper.js, and jQuery -->
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>

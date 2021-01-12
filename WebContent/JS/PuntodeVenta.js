@@ -92,6 +92,16 @@ function out(elementoSeleccionado){
 	}
 	return bandera;
 }
+const soloNumeros= (resultado)=> {
+	let bandera = 0;
+	const reg = /^[\+\-]?\d*\.?\d+(?:[Ee][\+\-]?\d+)?$/;
+	console.log(reg.test(resultado));
+	console.log(resultado.charAt(0));
+	if(reg.test(resultado) == false || resultado.charAt(0) == '.' || resultado.length>19){
+		bandera= 1;
+	}
+	return bandera;
+}
 /*$(function(){
 	arregloProductos.forEach(produc=>{
 		produc.cantidad=0;
@@ -292,7 +302,6 @@ function borrar(id){
 $("#confirmarPedido").on("click",function(){
 	console.log("el carrito acutal es ");
 	console.log(carro);
-	let total= document.getElementById("grantotal").value;
 	/*private int cantidad;
 	private String id;
 	private int precio;
@@ -308,19 +317,28 @@ $("#confirmarPedido").on("click",function(){
 	;
 	car.push(pro);
 	})			
-	
-	console.log("nuevo carro");
-	JSON.stringify(car)
-	console.log(car);
-	/*Swal.showLoading();
+	let  cliente = document.getElementById("idcliente").value;
+	let validacion =  soloNumeros(cliente);
+	console.log(validacion);
+	if(validacion === 0 && car.length > 0){
+		console.log(cliente);
+		console.log("nuevo carro");
+		console.log(car);
+	Swal.showLoading();
 		$.ajax({
-			 url: '/Cinema/Carrito',
+			 url: '/Cinema/CarritoEmpleado',
 			 type: 'get',
 			 data: { 
-				 carrito: JSON.stringify(arregloProductos)
+				 carrito: JSON.stringify(car),
+				 idTarjeta: cliente
 			 },
 			 success: function(response) {
 				 Swal.close();
+			    carro = [];
+				crearCarrito(carro);	
+				crearTablaProductos(arregloProductos);
+				cliente.value = "";
+				grantotal();		 	 
 				 if(response > 0 ){
 					 Swal.fire({
 						  title: 'Exito',
@@ -328,11 +346,6 @@ $("#confirmarPedido").on("click",function(){
 						  icon: 'warning',
 						  confirmButtonColor: '#3085d6',
 						  confirmButtonText: 'Ya lo anote'
-						}).then((result) => {
-						  if (result.isConfirmed) {
-							  localStorage.removeItem('ArregloCarrito');
-							 window.location.href = 'principal.jsp';
-						  }
 						});
 				 }else{
 					 Swal.fire({
@@ -343,8 +356,15 @@ $("#confirmarPedido").on("click",function(){
 				 }
 			 }
 		});
-	 */
+	}else{
+		Swal.fire({
+			  icon: 'error',
+			  title: 'Error',
+			  text: 'El carro esta vacio o el numero de la tarjeta es incorrecto'
+		});		
+	}
 	
+	 
 });
 
 /*let  arregloProductos=[

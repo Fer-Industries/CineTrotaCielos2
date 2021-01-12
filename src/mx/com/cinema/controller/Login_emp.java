@@ -1,6 +1,9 @@
 package mx.com.cinema.controller;
 
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,30 +11,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.google.gson.Gson;
-
 import mx.com.cinema.entities.EmpleadoBean;
-import mx.com.cinema.entities.UsuarioBean;
-import mx.com.cinema.model.CatalogosCrud;
-import mx.com.cinema.model.ConnectionDB;
 import mx.com.cinema.model.EmpleadoCrud;
-import mx.com.cinema.model.UsuarioCrud;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
 
 /**
- * Servlet implementation class Login
+ * Servlet implementation class Login_emp
  */
-@WebServlet("/Login")
-public class Login extends HttpServlet {
+@WebServlet("/Login_emp")
+public class Login_emp extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	Pattern pattern = Pattern
-			.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-					+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");       
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Login() {
+    public Login_emp() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,7 +33,8 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -49,23 +43,17 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession sesion = request.getSession();
-		
-		String correo=request.getParameter("correo");
-		
-		Matcher mather = pattern.matcher(correo);
-		
-		if (mather.matches()) {
-			UsuarioBean usuario = new UsuarioBean( correo, request.getParameter("contra"));
-			UsuarioCrud usuCrud = new UsuarioCrud();
-			usuario = usuCrud.validar(usuario);
-			if(usuario.getIdTarjeta() > 0) {
-				sesion.setAttribute("usuario", usuario);
-				response.getWriter().write("1");
-			}else {
-				response.getWriter().write("0");
-			}
-		} else {
-			response.getWriter().write("-1");
+		String    id =  request.getParameter("id");
+		System.out.print("estoy en servlet el id que recibo es"+id);
+		EmpleadoBean empleado = new EmpleadoBean(id, request.getParameter("contra"));
+		EmpleadoCrud empCrud = new EmpleadoCrud();
+		empleado = empCrud.validar(empleado);
+		System.out.println(empleado.toString());
+		if(empleado.getIdEmpleado() != null) {
+			sesion.setAttribute("empleado", empleado);
+			response.getWriter().write("1");
+		}else {
+			response.getWriter().write("0");
 		}
 	}
 

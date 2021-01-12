@@ -60,6 +60,8 @@ public class DulceriaCrud {
 		return idTicketVenta;
 	}
 	
+	
+	
 	public void relacionVentaCombo(int idVenta, String idCombo) {
 		String insertVentaCombo = "insert into rel_venta_combo values(?,?)";
 		try {
@@ -141,5 +143,58 @@ public class DulceriaCrud {
 		}
 		return registroAfectado;
 	}
-	 
+	/*jimmy*/
+	private static long convertirToLong(String strNum) {
+	    long valor;
+	    try {
+	        valor = Long.parseLong(strNum);
+	    } catch (NumberFormatException | NullPointerException nfe) {
+	        return 0; //Valor default en caso de no poder convertir  a Long
+	    }
+	    return valor;
+	}
+	
+	public int realizarVentaEmpleado(InfoCarrito[] productos, int idEmpleado, String idCliente) {
+		float total = 0;
+		int idTicketVenta = 0;
+		for(InfoCarrito producto: productos) {
+			String id = producto.getId();
+			total = total + producto.getTotal();
+			System.out.println(id.substring(0, 1));
+		}
+		System.out.println(total);
+		String ventaDul ="{call p_venta_empleado(?, ?, ?)}";
+		conAWS = new ConnectionDB();
+		con = conAWS.getConexion();
+		try {
+			ctmt = con.prepareCall(ventaDul);
+			ctmt.setFloat(1, total);
+			ctmt.setInt(2, idEmpleado);
+			ctmt.setDouble(3, convertirToLong(idCliente));
+			rs = ctmt.executeQuery();
+			if(rs.next()) {
+				idTicketVenta = rs.getInt("id_ticket");
+				for(InfoCarrito producto: productos) {
+					String idProducto = producto.getId().substring(0, 1);
+					if(idProducto.equals("C")) {
+						relacionVentaCombo(idTicketVenta,producto.getId());
+					}else {
+						relacionVentaProducto(idTicketVenta,producto.getId());
+					}
+				}
+			}else {
+				idTicketVenta = -1;
+			}
+		}catch(SQLException sqle) {
+			System.out.println(sqle.getMessage());
+		}finally {
+			try {
+				con.close();
+			}catch(SQLException sqle){
+				System.out.println("Error al cerrar la conexión");
+				System.out.println(sqle.getMessage());
+			}
+		}
+		return idTicketVenta;
+	}
 }
