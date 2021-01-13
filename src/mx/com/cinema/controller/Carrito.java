@@ -14,6 +14,7 @@ import mx.com.cinema.entities.CarritoBean;
 import mx.com.cinema.entities.InfoCarrito;
 import mx.com.cinema.entities.UsuarioBean;
 import mx.com.cinema.model.DulceriaCrud;
+import mx.com.cinema.utils.EnvioCorreo;
 
 @WebServlet("/Carrito")
 public class Carrito extends HttpServlet {
@@ -34,6 +35,11 @@ public class Carrito extends HttpServlet {
 		InfoCarrito[] productos = gson.fromJson(carrito, InfoCarrito[].class);
 		DulceriaCrud dulceriaCrud = new DulceriaCrud();
 		int idVenta = dulceriaCrud.realizarVenta(productos,usuarioLogueado.getIdTarjeta());
+		if(idVenta > 0) {
+			EnvioCorreo envioCorreo = new EnvioCorreo();
+			boolean enviado = envioCorreo.sendEmail(usuarioLogueado.getCorreo(), idVenta);
+			System.out.println(enviado);
+		}
 		response.getWriter().write(""+idVenta);
 	}
 

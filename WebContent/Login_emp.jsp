@@ -1,6 +1,10 @@
 <%@page import="mx.com.cinema.entities.EmpleadoBean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+ <% 
+ 		HttpSession sesion = request.getSession();
+ 		EmpleadoBean empleadoLogueado = (EmpleadoBean) sesion.getAttribute("empleado");
+  %>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -13,7 +17,7 @@
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
 </head>
 <body>
-
+<% if(empleadoLogueado == null){%>
     <nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-dark 
   animate_animated animate_fadeInDown  shadow-lg sticky-top">
 		<button class="navbar-toggler navbar-toggler-right togglercolor" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,8 +35,8 @@
 			<div class="padcenter">
 			<div class="text1">
 		  	<div class="row">
-		      <label for="inputEmail4">Email: </label>
-		      <input type="email" class="form-control " id="Email" name="Login">
+		      <label for="inputEmail4">ID Empleado </label>
+		      <input type="text" class="form-control " id="Email" name="Login">
 		      <label id="emailMensaje" class="mensajeErroneo"></label>
 			</div>
 		</div>
@@ -44,11 +48,11 @@
 			</div>	
 			
 
-			<div class="Olv">
+			<!-- <div class="Olv">
 		 	<div class="row">
 		 	<a href="#" class="text-center">¿Olvidaste tu contraseña?</a>
 			</div>	
-			</div>
+			</div>-->
 			<div class="paddingB">
 			<input class="btn btn-primary padding1" id="enviar"
 			type="submit"  value="Entrar" > 
@@ -59,6 +63,10 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="JS/Login_emp.js"></script>
-
+<%}else{%>
+	<script>
+		window.location.href = "/Cinema/PuntodeVenta.jsp";
+	</script>
+<%}%>
 </body>
 </html>
