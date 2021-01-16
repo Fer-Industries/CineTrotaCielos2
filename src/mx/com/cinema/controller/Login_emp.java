@@ -46,11 +46,15 @@ public class Login_emp extends HttpServlet {
 		String    id =  request.getParameter("id");
 		System.out.print("estoy en servlet el id que recibo es"+id);
 		EmpleadoBean empleado = new EmpleadoBean(id, request.getParameter("contra"));
+		System.out.print("estoy en servlet la contaseña que recibo es"+request.getParameter("contra"));
 		EmpleadoCrud empCrud = new EmpleadoCrud();
-		empleado = empCrud.validar(empleado);
+		EmpleadoBean empleadoL =new EmpleadoBean(); 
+		empleadoL = empCrud.validar(empleado);	
+		System.out.println("El empleado es:");
 		System.out.println(empleado.toString());
-		if(empleado.getIdEmpleado() != null) {
-			sesion.setAttribute("empleado", empleado);
+		System.out.println(empleado.getIdEmpleado());
+		if(empleadoL.getIdEmpleado() != null) {
+			sesion.setAttribute("empleadoL", empleado);
 			response.getWriter().write("1");
 		}else {
 			response.getWriter().write("0");

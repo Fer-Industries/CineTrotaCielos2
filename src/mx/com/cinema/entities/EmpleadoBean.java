@@ -17,6 +17,10 @@ public EmpleadoBean(String id,String contrasena) {
 	this.contrasena=contrasena;
 		
 	}
+public EmpleadoBean() {
+
+		
+	}
     
 	public String getIdEmpleado() {
 		return idEmpleado;

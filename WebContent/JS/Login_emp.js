@@ -45,6 +45,15 @@ document.getElementById("enviar").addEventListener("click",() =>{
 	let pass= document.getElementById("Password").value;
 	console.log(identificacion)
 	console.log(pass);
+	const reg = /^[\+\-]?\d*\.?\d+(?:[Ee][\+\-]?\d+)?$/;
+	if(reg.test(identificacion)== false || identificacion.charAt(0) == '.'){
+		 Swal.fire({
+	        			  icon: 'error',
+	        			  title: 'Credenciales Invalidas',
+	        			  showConfirmButton: false,
+	        			  timer: 1500
+	        			});
+	}else{
 	Swal.fire('Espere por favor');
 	Swal.showLoading();
 		 $.ajax( {
@@ -56,6 +65,7 @@ document.getElementById("enviar").addEventListener("click",() =>{
 	         },
 	         success: function (response) {
 	        	 Swal.close();
+				 console.log(response);
 	        	 if(response == '0'){
 	        		 Swal.fire({
 	        			  icon: 'error',
@@ -74,6 +84,8 @@ document.getElementById("enviar").addEventListener("click",() =>{
 	        	 }
 	         }
 	     } );
+	}
+	
 		
 		//alert('se envia la info');
 	

@@ -17,6 +17,7 @@ public class EmpleadoCrud {
 	
 	public EmpleadoBean validar(EmpleadoBean empleadoLogin) {
 		conAWS = new ConnectionDB();
+		EmpleadoBean empleadoLogeado = new EmpleadoBean();
 		con = conAWS.getConexion();
 		String queryValidar = "{call Login_emp(?,?)} ";
 		try {
@@ -26,15 +27,16 @@ public class EmpleadoCrud {
 			ptmt.setString(2, empleadoLogin.getContrasena());
 			rs = ptmt.executeQuery();
 			if(rs.next()) {
-				empleadoLogin.setIdEmpleado(Integer.toString(rs.getInt("EMP_idempleado")));
-				empleadoLogin.setNombre(rs.getString("EMP_nombre"));
-				empleadoLogin.setaPaterno(rs.getString("EMP_ap"));
+				empleadoLogeado.setIdEmpleado(Integer.toString(rs.getInt("EMP_idempleado")));
+				empleadoLogeado.setNombre(rs.getString("EMP_nombre"));
+				empleadoLogeado.setaPaterno(rs.getString("EMP_ap"));
 			}
 			con.close();
 		}catch(SQLException sqle) {
 			System.out.println("Error SQL" + sqle.getMessage());
 		}
-		return empleadoLogin;
+		System.out.println("Estoy en crud empleado"+ empleadoLogeado.getIdEmpleado());
+		return empleadoLogeado;
 	}
 
 }
