@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import mx.com.cinema.entities.EmpleadoBean;
 
@@ -30,11 +32,37 @@ public class EmpleadoCrud {
 				empleadoLogin.setNombre(rs.getString("EMP_nombre"));
 				empleadoLogin.setaPaterno(rs.getString("EMP_ap"));
 			}
+			System.out.println(empleadoLogin.toString());
 			con.close();
 		}catch(SQLException sqle) {
 			System.out.println("Error SQL" + sqle.getMessage());
 		}
 		return empleadoLogin;
 	}
-
+	
+	public List<EmpleadoBean> getEmpleadosActivos(){
+		List<EmpleadoBean> empleados = new ArrayList<EmpleadoBean>();
+		conAWS = new ConnectionDB();
+		con = conAWS.getConexion();
+		String procEmpleados = "{ call P_EMPLEADOS}";
+		try {
+			ctmt = con.prepareCall(procEmpleados);
+			rs = ctmt.executeQuery();
+			while(rs.next()) {
+				EmpleadoBean empleado = new EmpleadoBean();
+				empleado.setId(rs.getInt("EMP_idempleado"));
+				empleado.setNombre(rs.getString("EMP_nombre"));
+				empleados.add(empleado);
+			}
+		}catch(SQLException sqle) {
+			System.out.println("ERROR EMPLEADO ACTIVOS" + sqle.getMessage());
+		}finally {
+			try {
+				con.close();
+			}catch(SQLException sqle) {
+				System.out.println("ERROR CERRAR DE CONEXION "+ sqle.getMessage());
+			}
+		}
+		return empleados;
+	}
 }

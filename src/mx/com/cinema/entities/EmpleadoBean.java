@@ -11,13 +11,26 @@ public class EmpleadoBean {
 	private int    status;
 	private String contrasena;
 	private String administrador;
+	private int id;
 	
-public EmpleadoBean(String id,String contrasena) {
-	this.idEmpleado=id;
-	this.contrasena=contrasena;
+	public EmpleadoBean(String id,String contrasena) {
+		this.idEmpleado=id;
+		this.contrasena=contrasena;
+		
+	}
+
+	public EmpleadoBean() {
 		
 	}
     
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getIdEmpleado() {
 		return idEmpleado;
 	}
@@ -96,6 +109,13 @@ public EmpleadoBean(String id,String contrasena) {
 
 	public void setAdministrador(String administrador) {
 		this.administrador = administrador;
+	}
+
+	@Override
+	public String toString() {
+		return "EmpleadoBean [idEmpleado=" + idEmpleado + ", nombre=" + nombre + ", aPaterno=" + aPaterno
+				+ ", aMaterno=" + aMaterno + ", birthday=" + birthday + ", area=" + area + ", salario=" + salario
+				+ ", status=" + status + ", contrasena=" + contrasena + ", administrador=" + administrador + "]";
 	}
 
 	

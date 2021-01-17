@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title></title>
+<title>Punto de Venta</title>
 	<!-- CSS only -->
 	<link href="Css/PuntodeVenta.css" rel="stylesheet" type="text/css">
 	<link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
