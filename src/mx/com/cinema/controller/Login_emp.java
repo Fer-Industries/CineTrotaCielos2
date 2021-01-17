@@ -54,7 +54,7 @@ public class Login_emp extends HttpServlet {
 		System.out.println(empleado.toString());
 		System.out.println(empleado.getIdEmpleado());
 		if(empleadoL.getIdEmpleado() != null) {
-			sesion.setAttribute("empleadoL", empleado);
+			sesion.setAttribute("empleado", empleado);
 			response.getWriter().write("1");
 		}else {
 			response.getWriter().write("0");
