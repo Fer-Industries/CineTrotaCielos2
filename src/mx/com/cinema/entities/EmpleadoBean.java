@@ -22,10 +22,6 @@ public class EmpleadoBean {
 	public EmpleadoBean() {
 		
 	}
-public EmpleadoBean() {
-
-		
-	}
     
 	public int getId() {
 		return id;
