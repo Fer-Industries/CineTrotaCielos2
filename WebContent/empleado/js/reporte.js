@@ -5,7 +5,7 @@ $.get("/Cinema/empleado/EmpleadoController",function(response){
 	let empleadosEncontrados = response;
 	empleadosEncontrados.forEach(empleado =>{
 		$("#selectEmpleado").append(
-			"<option value='"+empleado.id+"'>"+empleado.nombre+"</option>"	
+			"<option value='"+empleado.id+"'>"+empleado.nombre +" "+empleado.id+"</option>"	
 		);
 	});
 	Swal.close();

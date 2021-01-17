@@ -22,8 +22,8 @@
 
 <body class="fondo  animate__animated animate__fadeIn ">
 <% if(  empleadoLogueado == null){%>
-                <h1>no puedes estar aqui</h1>
-          		<% }else{%>
+       <h1>no puedes estar aqui</h1>
+<% }else{%>
  <nav class="navbar navbar-expand-lg navbar-toggleable-sm  navbar-dark bg-dark animate_animated animate_fadeInDown  shadow-lg sticky-top">
 		<button class="navbar-toggler navbar-toggler-right togglercolor" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -32,6 +32,11 @@
          <div class="collapse navbar-collapse  " id="menu">
             <div class="navbar-nav" >
          		<a class="nav-link buttonnav pl2" ><%=empleadoLogueado.getNombre() +" "+ empleadoLogueado.getaPaterno() + " "+ empleadoLogueado.getIdEmpleado()%></a>
+          </div>
+          <div class="navbar-nav" >
+         		<a class="nav-link buttonnav pl2" href="/Cinema/empleado/reporte.jsp">
+         			Reporte
+         		</a>
           </div>
          </div>
      </nav>

@@ -185,7 +185,7 @@ document.getElementById("pagar").addEventListener("click",function(){
 					 
 					 Swal.fire({
 						  title: 'Exito',
-						  text: "Por favor presente el siguiente codigo en la caja para recoger su pedido : " + response,
+						  text: "Por favor presente el siguiente codigo en la caja para recoger su pedido : " + response+", también se envío un correo con el ticket de su pedido",
 						  icon: 'warning',
 						  confirmButtonColor: '#3085d6',
 						  confirmButtonText: 'Ya lo anote'

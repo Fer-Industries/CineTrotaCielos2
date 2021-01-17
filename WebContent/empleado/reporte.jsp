@@ -1,5 +1,9 @@
+<%@page import="mx.com.cinema.entities.EmpleadoBean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<% HttpSession sesion = request.getSession();
+       EmpleadoBean empleadoLogueado = (EmpleadoBean) sesion.getAttribute("empleado");  
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +17,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Unica+One&display=swap" rel="stylesheet">
 </head>
 <body>
+<% if(  empleadoLogueado == null){%>
+       <h1>no puedes estar aqui</h1>
+<% }else{%>
 	<nav class="navbar navbar-expand-lg navbar-toggleable-sm  navbar-dark bg-dark animate_animated animate_fadeInDown  shadow-lg sticky-top">
 		<button class="navbar-toggler navbar-toggler-right togglercolor" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -20,7 +27,8 @@
         <a class="navbar-brand" >Cinema<img class="imagenav mx-sm-2"  alt""></a>
          <div class="collapse navbar-collapse  " id="menu">
             <div class="navbar-nav" >
-         		<a class="nav-link buttonnav pl2" >
+         		<a class="nav-link buttonnav pl2" href="/Cinema/PuntodeVenta.jsp">
+         			Punto de Venta
          		</a>
           </div>
          </div>
@@ -40,7 +48,7 @@
 	</section>     
 	<br>
 	<section class="container">
-		<canvas id="myChart" width="400" height="300"></canvas>	
+		<canvas id="myChart" width="400" height="250"></canvas>	
 	</section>
 	
 	
@@ -55,5 +63,6 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 	
 	
 	<script src="js/reporte.js"></script>
+<%}%>
 </body>
 </html>
