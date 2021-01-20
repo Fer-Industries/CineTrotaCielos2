@@ -18,8 +18,9 @@
         <a class="navbar-brand" href="principal.jsp">Cinema<img class="imagenav mx-sm-2"  alt""></a>
          <div class="collapse navbar-collapse  " id="menu">
             <div class="navbar-nav" >
-                <a class="nav-link" href="principal.jsp">PUNTO DE VENTA</a>
+                <a class="nav-link" href="/Cinema/PuntodeVenta.jsp">PUNTO DE VENTA</a>
                 <a class="nav-link" href="#">VENTA EN LINEA </a>
+                <a class="nav-link" href="reporte.jsp">REPORTES</a>
           </div>
          </div>
      </nav>
@@ -27,6 +28,9 @@
      <br>
      <section id="busqueda" class="container">
      	<h2>Busqueda Productos</h2>
+     	<p>
+     		Apartado para buscar los productos a entregar de las ventas realizadas en línea.
+     	</p>
      	<br> 
      	<div class="row">
      		<div class="col-sm-4 col-lg-4">

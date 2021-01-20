@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Arrays;
 
 import mx.com.cinema.entities.InfoCarrito;
 
@@ -36,12 +37,18 @@ public class DulceriaCrud {
 			rs = ctmt.executeQuery();
 			if(rs.next()) {
 				idTicketVenta = rs.getInt("id_ticket");
-				for(InfoCarrito producto: productos) {
+				for(InfoCarrito producto: productos) {//refresco
 					String idProducto = producto.getId().substring(0, 1);
 					if(idProducto.equals("C")) {
-						relacionVentaCombo(idTicketVenta,producto.getId());
+						while(producto.getCantidad() > 0) {
+							relacionVentaCombo(idTicketVenta,producto.getId());
+							producto.setCantidad(producto.getCantidad() - 1);
+						}
 					}else {
-						relacionVentaProducto(idTicketVenta,producto.getId());
+						while(producto.getCantidad() > 0) {
+							relacionVentaProducto(idTicketVenta,producto.getId());
+							producto.setCantidad(producto.getCantidad() - 1);
+						}
 					}
 				}
 			}else {
@@ -59,8 +66,6 @@ public class DulceriaCrud {
 		}
 		return idTicketVenta;
 	}
-	
-	
 	
 	public void relacionVentaCombo(int idVenta, String idCombo) {
 		String insertVentaCombo = "insert into rel_venta_combo values(?,?)";
@@ -108,7 +113,6 @@ public class DulceriaCrud {
 			while(rs.next()) {
 				productosAEntregar.add(rs.getString("nombre"));
 			}
-			
 		}catch(SQLException sqle) {
 			System.out.println(sqle.getMessage());
 		}finally {
@@ -177,9 +181,15 @@ public class DulceriaCrud {
 				for(InfoCarrito producto: productos) {
 					String idProducto = producto.getId().substring(0, 1);
 					if(idProducto.equals("C")) {
-						relacionVentaCombo(idTicketVenta,producto.getId());
+						while(producto.getCantidad() > 0) {
+							relacionVentaCombo(idTicketVenta,producto.getId());
+							producto.setCantidad(producto.getCantidad() - 1);
+						}
 					}else {
-						relacionVentaProducto(idTicketVenta,producto.getId());
+						while(producto.getCantidad() > 0) {
+							relacionVentaProducto(idTicketVenta,producto.getId());
+							producto.setCantidad(producto.getCantidad() - 1);
+						}
 					}
 				}
 			}else {

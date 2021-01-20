@@ -13,6 +13,7 @@ document.getElementById("buscar").addEventListener("click",function(){
 	}else{
 		$.get("/Cinema/VentaLinea?idVenta="+ticket,function(productos){
 			console.log(productos);
+			//productos.sort();
 			$("#lista").html("");
 			if(productos.length != 0){				
 				let consecutivo = 1;

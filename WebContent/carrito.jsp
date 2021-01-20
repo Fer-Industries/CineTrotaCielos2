@@ -61,7 +61,7 @@
             </div>
 
             <div class="col-lg-6 col-sm-12 pago">
-                <h4 class="mb-3">Pago</h4>
+                <h4 class="mb-3">Pago  (Por el momento es simulacion de cobro)</h4>
                 <div class="my-3">
                     <div class="form-check">
                         <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
@@ -91,11 +91,27 @@
                         </div>
                     </div>
 
-                    <div class="col-md-3">
+                    <!-- <div class="col-md-3">
                         <label for="cc-expiration" class="form-label" id="mensajeVigencia">Valida hasta</label>
                         <input type="text" class="form-control" id="vigencia" placeholder="00-00" required>
                         <div class="invalid-feedback">
                             Fecha de expiracion requerida
+                        </div>
+                    </div>-->
+                    
+                    <div class="col-md-3">
+                        <label for="cc-expiration" class="form-label" id="mensajeVigencia">Valida hasta</label>
+                        <input type="text" class="form-control" id="vigencia" placeholder="Month" required>
+                        <div class="invalid-feedback">
+                            Mes de expiracion requerida
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <label for="cc-expiration" class="form-label" id="mensajeVigencia1"></label>
+                        <input type="text" class="form-control" id="vigencia1" placeholder="Year" required>
+                        <div class="invalid-feedback">
+                            Año de expiracion requerida
                         </div>
                     </div>
 

@@ -27,14 +27,19 @@
         <a class="navbar-brand" >Cinema<img class="imagenav mx-sm-2"  alt""></a>
          <div class="collapse navbar-collapse  " id="menu">
             <div class="navbar-nav" >
-         		<a class="nav-link buttonnav pl2" href="/Cinema/PuntodeVenta.jsp">
-         			Punto de Venta
-         		</a>
+                <a class="nav-link" href="/Cinema/PuntodeVenta.jsp">PUNTO DE VENTA</a>
+                <a class="nav-link" href="/Cinema/empleado/ventalinea.jsp">VENTA EN LINEA </a>
+                <a class="nav-link" href="#">REPORTES</a>
           </div>
          </div>
      </nav>
      <br>
 	<section class="container">
+		<h2>Reportes</h2>
+     	<p>
+     		Grafica de las ventas del empleado que seleccione, de los últimos 6 días
+     	</p>
+     	<br>
 		<div class="row">
 			<div class="col-sm-12 col-lg-6">
 				<select class="form-select" aria-label="Default select example" id="selectEmpleado">

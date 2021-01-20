@@ -34,9 +34,9 @@
          		<a class="nav-link buttonnav pl2" ><%=empleadoLogueado.getNombre() +" "+ empleadoLogueado.getaPaterno() + " "+ empleadoLogueado.getIdEmpleado()%></a>
           </div>
           <div class="navbar-nav" >
-         		<a class="nav-link buttonnav pl2" href="/Cinema/empleado/reporte.jsp">
-         			Reporte
-         		</a>
+                <a class="nav-link" href="/Cinema/PuntodeVenta.jsp">PUNTO DE VENTA</a>
+                <a class="nav-link" href="/Cinema/empleado/ventalinea.jsp">VENTA EN LINEA </a>
+                <a class="nav-link" href="/Cinema/empleado/reporte.jsp">REPORTES</a>
           </div>
          </div>
      </nav>
