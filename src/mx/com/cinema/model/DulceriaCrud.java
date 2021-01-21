@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Arrays;
 
 import mx.com.cinema.entities.InfoCarrito;
+import mx.com.cinema.entities.InfoUsuario;
 
 public class DulceriaCrud {
 	Connection con;
@@ -206,5 +207,33 @@ public class DulceriaCrud {
 			}
 		}
 		return idTicketVenta;
+	}
+	
+	public InfoUsuario infoVenta(int idVenta) {
+		String procInfoUsu = "{call P_Info_usuario(?)}";
+		conAWS = new ConnectionDB();
+		con = conAWS.getConexion();
+		InfoUsuario info = new InfoUsuario();
+		try {
+			ctmt = con.prepareCall(procInfoUsu);
+			ctmt.setInt(1, idVenta);
+			rs = ctmt.executeQuery();
+			if(rs.next()) {
+				info.setIdVenta(rs.getInt("VDU_idventa"));
+				info.setIdTarjeta(rs.getLong("USU_idtarjeta"));
+				info.setNombreCompleto(rs.getString("nombre"));
+				info.setFechaVenta(rs.getString("VDU_fecha"));
+			}
+		}catch(SQLException sqle) {
+			System.out.println(sqle.getMessage());
+		}finally {
+			try {
+				con.close();
+			}catch(SQLException sqle){
+				System.out.println("Problemas para cerrar la conexión");
+				System.out.println(sqle.getMessage());
+			}
+		}
+		return info;
 	}
 }

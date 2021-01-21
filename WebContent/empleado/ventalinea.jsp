@@ -44,18 +44,32 @@
      	</div>
      </section>
      <br>
-     <section id="productos" class="container">
-     	
-	    <ul class="list-group" id="lista">
-			  
-		</ul>
-		<br>
-		<div class="boton entregado" id="entregada">
-			<button type="button" class="btn btn-outline-success" id="botonEntregado"
-			 >Orden entregada</button>
+     <div class="entregado" id="entregada">
+   		<section class="container">
+   			<div class="row">
+			     <section id="infoUsuario" class="col-sm-12 col-md-3">
+					<div class="card border-primary mb-3" style="max-width: 15rem;">
+					  <div class="card-header">Informaci&oacute;n Usuario</div>
+					  <div class="card-body text-primary" id="cardBody">		    
+					  </div>
+					</div>
+			     </section>
+			     <section id="productos" class="col-sm-12 col-md-8">
+			     	<div class="listaProductos">
+					    <ul class="list-group" id="lista">
+						</ul>
+					</div>
+					<br>
+					
+			     </section>
+		     </div>
+	     </section>
+	     <div class="boton" >
+				<button type="button" class="btn btn-outline-success" id="botonEntregado"
+				 >Orden entregada</button>
 		 </div>
-     </section>
-     
+     </div>
+     <br>
      <!-- JS PARA BOOTSTRAP -->	
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

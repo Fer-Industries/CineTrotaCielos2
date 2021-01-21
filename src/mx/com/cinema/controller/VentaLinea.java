@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
+import mx.com.cinema.entities.InfoUsuario;
+import mx.com.cinema.entities.SaleInformation;
 import mx.com.cinema.model.DulceriaCrud;
 
 /**
@@ -35,8 +37,12 @@ public class VentaLinea extends HttpServlet {
 		String idVenta = request.getParameter("idVenta");
 		DulceriaCrud dulceria = new DulceriaCrud(); 
 		List<String> productosEntregar = dulceria.productosVentas(Integer.parseInt(idVenta));
+		InfoUsuario infoUsuEncontrada = dulceria.infoVenta(Integer.parseInt(idVenta));
+		SaleInformation saleInfo = new SaleInformation();
+		saleInfo.setProductosEntregar(productosEntregar);
+		saleInfo.setInfoUsuEncontrada(infoUsuEncontrada);
 		Gson gson = new Gson();
-		String productos = gson.toJson(productosEntregar);
+		String productos = gson.toJson(saleInfo);
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().write(productos); 

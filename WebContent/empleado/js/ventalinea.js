@@ -11,13 +11,17 @@ document.getElementById("buscar").addEventListener("click",function(){
 			title:'Por favor ingrese el ticket'
 		});
 	}else{
-		$.get("/Cinema/VentaLinea?idVenta="+ticket,function(productos){
-			console.log(productos);
+		$.get("/Cinema/VentaLinea?idVenta="+ticket,function(saleInformation){
+			console.log(saleInformation);
+			let productos = saleInformation.productosEntregar;
+			let infoUser = saleInformation.infoUsuEncontrada;
 			//productos.sort();
+			$("#entregada").removeClass("entregado");
 			$("#lista").html("");
+			$("#cardBody").html("");
 			if(productos.length != 0){				
 				let consecutivo = 1;
-				
+				productos.sort();
 				productos.forEach(producto =>{
 					$("#lista").append(
 						"<li class='list-group-item'>"+
@@ -31,7 +35,13 @@ document.getElementById("buscar").addEventListener("click",function(){
 					);
 					consecutivo++;
 				});
-				$("#entregada").removeClass("entregado");
+				$("#cardBody").append(
+						"<p class='card-text'>Ticket: "+infoUser.idVenta+"</p>"+
+						"<p class='card-text'>ID Cliente: "+infoUser.idTarjeta+"</p>"+
+						"<p class='card-text'>Nombre: "+infoUser.nombreCompleto+"</p>"+
+						"<p class='card-text'>Fecha Venta: "+infoUser.fechaVenta+"</p>"
+				);
+				
 				Swal.close();
 			}else{
 				Swal.close();
@@ -59,6 +69,7 @@ document.getElementById("botonEntregado").addEventListener("click",function(){
 			});
 			document.getElementById("ticket").value = "";
 			$("#lista").html("");
+			$("#cardBody").html("");
 			$("#entregada").addClass("entregado");
 		}else{
 			Swal.fire({

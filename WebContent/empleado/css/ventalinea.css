@@ -10,3 +10,12 @@ body{
 .boton{
 	padding-left:75%;
 }
+
+.listaProductos{
+	overflow: scroll;
+    height: 300px;
+}
+
+#productos{
+	width:100%;
+}
