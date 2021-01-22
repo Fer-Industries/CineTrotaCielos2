@@ -2,6 +2,12 @@ body{
 	font-family: sans-serif;
 	
 }
+
+.logo{
+	width:  65px;
+	height:   50px;
+}
+
 .fondo{
 	background-color: #000;
 }

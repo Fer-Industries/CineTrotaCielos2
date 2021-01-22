@@ -5,6 +5,11 @@ body{
 	background-color: #000;
 }
 
+.logo{
+	width:  65px;
+	height:   50px;
+}
+
 .centrar{
 	align-items:center;
 }

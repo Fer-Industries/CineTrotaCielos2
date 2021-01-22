@@ -25,7 +25,7 @@
 		<button class="navbar-toggler navbar-toggler-right togglercolor" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="principal.jsp">Cinema<img class="imagenav mx-sm-2"  alt""></a>
+        <a class="navbar-brand" href="principal.jsp"><img class="imagenav mx-sm-2 logo"  alt="logo" src="Img/logo.png"></a>
          <div class="collapse navbar-collapse" id="menu">
             <div class="navbar-nav" >
                 <a class="nav-link" href="principal.jsp">INICIO<span class="sr-only">(current)</span></a>
