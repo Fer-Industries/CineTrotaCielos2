@@ -39,9 +39,12 @@
 	<br>
 	
 	<section id="filtros" class="container">
+		<h1 class="descripcion">Dulceria</h1>
+         <p class="descripcion">Selecciona la opción de producto para mostrar los productos o combos disponibles</p>
 		<div class="row">
 			<div class="input-group mb-3 col-sm-12 col-md-6 col-lg-4"style="width:350px">
 	            <div class="input-group-prepend">
+	            
 	              <label class="input-group-text" for="opcProducto">Opción producto</label>
 	            </div>
 	            <select class="custom-select" id="opcProducto" onchange="opcionSeleccionada(this)">

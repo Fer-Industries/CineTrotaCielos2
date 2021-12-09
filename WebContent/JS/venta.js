@@ -239,7 +239,7 @@ botonCompra.addEventListener("click",function(){
 						link.dispatchEvent(new MouseEvent('click'));
 					}
 				});*/
-				//window.location.href = '/Cinema/principal.jsp';
+				window.location.href = '/Cinema/principal.jsp';
 			}else if(response == -3){
 				Swal.fire(
 						'Disculpe',

@@ -10,6 +10,10 @@ body{
 	height:   50px;
 }
 
+.descripcion{
+	color:white;
+}
+
 .centrar{
 	align-items:center;
 }

@@ -175,6 +175,8 @@ document.getElementById("pagar").addEventListener("click",function(){
 				 carrito: JSON.stringify(arregloProductos)
 			 },
 			 success: function(response) {
+				 
+				 console.log(response);
 				 Swal.close();
 				 if(response > 0 ){
 					 /*Swal.fire({
